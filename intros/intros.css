@@ -188,21 +188,28 @@
   100% { transform: scale(1);  opacity: 1; }
 }
 
-/* forest: 4 side arrayanes scale-in around the central tree */
+/* forest: 4 side arrayanes scale-in around the central tree
+   1100ms duration with two-stage keyframes so the user sees a clear
+   sapling-then-tree transition rather than an instant pop. */
 .intro-mycelium .myc-forest-tree {
   transform-box: view-box;
   transform: scale(0);
   opacity: 0;
-  animation: myc-forest-grow 880ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation: myc-forest-grow 1100ms cubic-bezier(.16,.84,.44,1) forwards;
 }
 .intro-mycelium .ft-1 { transform-origin: 140px 320px; animation-delay: 3300ms; }
 .intro-mycelium .ft-2 { transform-origin: 460px 320px; animation-delay: 3420ms; }
-.intro-mycelium .ft-3 { transform-origin:  72px 320px; animation-delay: 3560ms; }
-.intro-mycelium .ft-4 { transform-origin: 528px 320px; animation-delay: 3680ms; }
+.intro-mycelium .ft-3 { transform-origin:  76px 320px; animation-delay: 3560ms; }
+.intro-mycelium .ft-4 { transform-origin: 524px 320px; animation-delay: 3680ms; }
+
+/* Two-stage growth so the trees visibly mature: rapid sprout, then a
+   slower second push that doubles their size into a full canopy. */
 @keyframes myc-forest-grow {
-  0%   { transform: scale(0); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+  0%   { transform: scale(0);    opacity: 0; }
+  18%  { opacity: 1; }
+  35%  { transform: scale(0.45); }   /* sapling stage */
+  60%  { transform: scale(0.55); }   /* brief hold */
+  100% { transform: scale(1);    opacity: 1; }
 }
 
 /* mycorriza connecting the forest: dashed lines drawn between tree bases */
@@ -224,7 +231,7 @@
 
 /* whole canvas holds the final composition, then fades out */
 .intro-mycelium .myc-canvas {
-  animation: myc-fade 320ms 5050ms ease forwards;
+  animation: myc-fade 320ms 5500ms ease forwards;
 }
 @keyframes myc-fade { to { opacity: 0; transform: scale(1.04); } }
 

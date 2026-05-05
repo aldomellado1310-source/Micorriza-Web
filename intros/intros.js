@@ -360,20 +360,47 @@ function playMycelium(stage, { isSkipped }) {
     svg.appendChild(g);
   });
 
-  // === FOREST: side trees emerge after the central arrayán ===
+  // === FOREST: full-canopy side trees emerge after the central arrayán ===
+  // Each tree has a taller cinnamon trunk, bark patches and a canopy of 11
+  // overlapping leaves arranged in upper / mid / lower rings, so it reads
+  // as a mature tree rather than a sapling even at small scale.
   const forestSpec = [
-    { x: 140, scale: 0.55 },
-    { x: 460, scale: 0.55 },
-    { x:  72, scale: 0.40 },
-    { x: 528, scale: 0.40 },
+    { x: 140, scale: 0.72, dense: true  },
+    { x: 460, scale: 0.72, dense: true  },
+    { x:  76, scale: 0.55, dense: false },
+    { x: 524, scale: 0.55, dense: false },
   ];
-  const sideLeafD = "M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z";
+  const treeLeafD = "M0 0 Q -22 -28 0 -64 Q 22 -28 0 0 Z";
+  const treeVeinD = "M 0 -3 L 0 -56";
+  const fullCanopy = [
+    { dx:   0, dy: -22, rot:   0, size: 1.00, fill: "#7ab063" },
+    { dx: -22, dy: -10, rot: -30, size: 1.00, fill: "#6da25a" },
+    { dx:  22, dy: -10, rot:  30, size: 1.00, fill: "#6da25a" },
+    { dx: -38, dy:   8, rot: -55, size: 1.05, fill: "#5e8b4a" },
+    { dx:  38, dy:   8, rot:  55, size: 1.05, fill: "#5e8b4a" },
+    { dx: -28, dy:  -4, rot: -42, size: 1.00, fill: "#7ab063" },
+    { dx:  28, dy:  -4, rot:  42, size: 1.00, fill: "#7ab063" },
+    { dx: -34, dy:  24, rot: -78, size: 0.90, fill: "#6da25a" },
+    { dx:  34, dy:  24, rot:  78, size: 0.90, fill: "#6da25a" },
+    { dx:  -8, dy:  32, rot: -10, size: 0.90, fill: "#5e8b4a" },
+    { dx:   8, dy:  32, rot:  10, size: 0.90, fill: "#5e8b4a" },
+  ];
+  const lightCanopy = [
+    { dx:   0, dy: -22, rot:   0, size: 1.00, fill: "#7ab063" },
+    { dx: -28, dy:  -2, rot: -42, size: 1.00, fill: "#6da25a" },
+    { dx:  28, dy:  -2, rot:  42, size: 1.00, fill: "#6da25a" },
+    { dx: -32, dy:  20, rot: -72, size: 0.92, fill: "#5e8b4a" },
+    { dx:  32, dy:  20, rot:  72, size: 0.92, fill: "#5e8b4a" },
+    { dx:  -6, dy:  28, rot: -10, size: 0.85, fill: "#6da25a" },
+    { dx:   6, dy:  28, rot:  10, size: 0.85, fill: "#6da25a" },
+  ];
+
   forestSpec.forEach((t, i) => {
     const tree = document.createElementNS(NS, "g");
     tree.setAttribute("class", `myc-forest-tree ft-${i + 1}`);
 
     // 3 short roots fanning into the soil
-    const rs = 50 * t.scale;
+    const rs = 60 * t.scale;
     [
       `M${t.x},320 Q ${t.x - rs * 0.5},${320 + rs * 0.5} ${t.x - rs * 0.7},${320 + rs}`,
       `M${t.x},320 Q ${t.x + rs * 0.5},${320 + rs * 0.5} ${t.x + rs * 0.7},${320 + rs}`,
@@ -382,32 +409,49 @@ function playMycelium(stage, { isSkipped }) {
       tree.appendChild(path(NS, d, "#898561", 1.4 * t.scale, "ft-root"));
     });
 
-    // cinnamon stem
-    const stemH = 130 * t.scale;
+    // taller cinnamon trunk
+    const stemH = 200 * t.scale;
     const sTop = 320 - stemH;
     const stemD =
       `M${t.x},320 ` +
-      `Q ${t.x - 2},${320 - stemH * 0.45} ${t.x + 2},${320 - stemH * 0.7} ` +
-      `Q ${t.x - 1},${sTop + 6} ${t.x},${sTop}`;
-    tree.appendChild(path(NS, stemD, "#b56a3e", 3 * t.scale, "ft-stem"));
+      `Q ${t.x - 3},${320 - stemH * 0.4}  ${t.x + 3},${320 - stemH * 0.7} ` +
+      `Q ${t.x - 2},${sTop + 8} ${t.x},${sTop}`;
+    tree.appendChild(path(NS, stemD, "#b56a3e", 4 * t.scale, "ft-stem"));
 
-    // 4 leaves (paired lower + paired upper)
-    const treeLeaves = [
-      { y: sTop + stemH * 0.30, rot: -55, size: 1.00, fill: "#6da25a" },
-      { y: sTop + stemH * 0.32, rot:  50, size: 1.00, fill: "#5e8b4a" },
-      { y: sTop + 4,            rot: -28, size: 0.85, fill: "#7ab063" },
-      { y: sTop + 4,            rot:  28, size: 0.85, fill: "#6da25a" },
-    ];
-    treeLeaves.forEach((l) => {
+    // a couple of bark patches
+    [
+      [t.x - 1, sTop + stemH * 0.4, 2.6 * t.scale, 1.3 * t.scale],
+      [t.x + 1, sTop + stemH * 0.7, 2.4 * t.scale, 1.2 * t.scale],
+    ].forEach(([cx, cy, rx, ry]) => {
+      const e = document.createElementNS(NS, "ellipse");
+      e.setAttribute("cx", cx); e.setAttribute("cy", cy);
+      e.setAttribute("rx", rx); e.setAttribute("ry", ry);
+      e.setAttribute("fill", "#e8c8a4");
+      e.setAttribute("opacity", "0.75");
+      tree.appendChild(e);
+    });
+
+    // canopy
+    const canopy = t.dense ? fullCanopy : lightCanopy;
+    canopy.forEach((l) => {
       const g = document.createElementNS(NS, "g");
+      const lx = t.x + l.dx * t.scale;
+      const ly = sTop + l.dy * t.scale;
       g.setAttribute(
         "transform",
-        `translate(${t.x} ${l.y}) rotate(${l.rot}) scale(${l.size * t.scale})`
+        `translate(${lx} ${ly}) rotate(${l.rot}) scale(${l.size * t.scale})`
       );
       const blade = document.createElementNS(NS, "path");
-      blade.setAttribute("d", sideLeafD);
+      blade.setAttribute("d", treeLeafD);
       blade.setAttribute("fill", l.fill);
       g.appendChild(blade);
+      const vein = document.createElementNS(NS, "path");
+      vein.setAttribute("d", treeVeinD);
+      vein.setAttribute("stroke", "#3a5e2f");
+      vein.setAttribute("stroke-width", "0.6");
+      vein.setAttribute("stroke-linecap", "round");
+      vein.setAttribute("opacity", "0.7");
+      g.appendChild(vein);
       tree.appendChild(g);
     });
 
@@ -418,10 +462,10 @@ function playMycelium(stage, { isSkipped }) {
   const networkPaths = [
     "M300,320 Q 220,360 140,332",  // central → tree-1 (left medium)
     "M300,320 Q 380,360 460,332",  // central → tree-2 (right medium)
-    "M140,332 Q 105,355  72,338",  // tree-1 → tree-3 (far left)
-    "M460,332 Q 495,355 528,338",  // tree-2 → tree-4 (far right)
-    "M300,320 Q 200,420  72,338",  // central → tree-3 (deep arc)
-    "M300,320 Q 400,420 528,338",  // central → tree-4 (deep arc)
+    "M140,332 Q 108,355  76,338",  // tree-1 → tree-3 (far left)
+    "M460,332 Q 492,355 524,338",  // tree-2 → tree-4 (far right)
+    "M300,320 Q 200,420  76,338",  // central → tree-3 (deep arc)
+    "M300,320 Q 400,420 524,338",  // central → tree-4 (deep arc)
   ];
   networkPaths.forEach((d, i) => {
     const p = path(NS, d, "#4f9eb0", 1.6, `myc-network mn-${i + 1}`);
@@ -464,7 +508,7 @@ function playMycelium(stage, { isSkipped }) {
   });
 
   stage.appendChild(svg);
-  return raceWithSkip(5400, isSkipped);
+  return raceWithSkip(5900, isSkipped);
 }
 
 /* ---------- 2) Logo build-up ---------- */
