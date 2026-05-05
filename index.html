@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Micorriza — Infraestructura inteligente inspirada en redes vivas</title>
+  <meta name="description" content="Micorriza traduce la inteligencia de las redes micorrícicas en infraestructura tecnológica escalable, resiliente y sostenible para industrias diversas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+</head>
+<body>
+  <!-- Topographic background pattern -->
+  <div class="topo-bg" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Micorriza inicio">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g class="net-lines" stroke-linecap="round">
+              <line x1="32" y1="32" x2="14" y2="18" stroke="#898561" stroke-width="1.4"/>
+              <line x1="32" y1="32" x2="48" y2="14" stroke="#898561" stroke-width="1.4"/>
+              <line x1="32" y1="32" x2="52" y2="32" stroke="#898561" stroke-width="1.4"/>
+              <line x1="32" y1="32" x2="14" y2="46" stroke="#66B7C9" stroke-width="1.4"/>
+              <line x1="32" y1="32" x2="32" y2="54" stroke="#66B7C9" stroke-width="1.4"/>
+              <line x1="32" y1="32" x2="50" y2="50" stroke="#66B7C9" stroke-width="1.4"/>
+              <line x1="14" y1="18" x2="26" y2="10" stroke="#898561" stroke-width="1"/>
+              <line x1="48" y1="14" x2="58" y2="22" stroke="#898561" stroke-width="1"/>
+              <line x1="14" y1="46" x2="6" y2="36" stroke="#66B7C9" stroke-width="1"/>
+              <line x1="50" y1="50" x2="58" y2="42" stroke="#66B7C9" stroke-width="1"/>
+            </g>
+            <g class="net-nodes">
+              <circle cx="32" cy="32" r="4" fill="#1F3B5B"/>
+              <circle cx="14" cy="18" r="2.5" fill="#3B2E26"/>
+              <circle cx="48" cy="14" r="2.5" fill="#B07A4A"/>
+              <circle cx="52" cy="32" r="2.5" fill="#DCC8A8"/>
+              <circle cx="26" cy="10" r="1.8" fill="#898561"/>
+              <circle cx="58" cy="22" r="1.8" fill="#898561"/>
+              <circle cx="14" cy="46" r="2.5" fill="#66B7C9"/>
+              <circle cx="32" cy="54" r="2.5" fill="#1F3B5B"/>
+              <circle cx="50" cy="50" r="2.5" fill="#66B7C9"/>
+              <circle cx="6" cy="36" r="1.8" fill="#66B7C9"/>
+              <circle cx="58" cy="42" r="1.8" fill="#66B7C9"/>
+            </g>
+          </svg>
+        </span>
+        <span class="brand-name">Micorriza</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#soluciones">Soluciones</a></li>
+          <li><a href="#sectores">Sectores</a></li>
+          <li><a href="#tecnologia">Tecnología</a></li>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contacto" class="btn btn-pill btn-primary">Contacto</a>
+
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Infraestructura inteligente</span>
+          <h1>
+            Infraestructura que <em>conecta lo natural</em><br />
+            con <span class="accent">lo digital</span>
+          </h1>
+          <p class="lede">
+            Creamos infraestructuras inteligentes inspiradas en las redes micorrícicas
+            para impulsar soluciones tecnológicas escalables, seguras y sostenibles
+            para terceros.
+          </p>
+          <div class="hero-cta">
+            <a href="#soluciones" class="btn btn-primary">Explorar soluciones</a>
+            <a href="#nosotros" class="btn btn-link">Conocer más →</a>
+          </div>
+
+          <ul class="hero-meta">
+            <li><strong>+15</strong><span>Años de experiencia colectiva</span></li>
+            <li><strong>40+</strong><span>Proyectos desplegados</span></li>
+            <li><strong>99.9%</strong><span>Disponibilidad promedio</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 520 520" class="network" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#F7F5F2" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#F7F5F2" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="260" cy="260" r="240" fill="url(#rg)"/>
+            <g class="net" stroke-linecap="round" fill="none">
+              <!-- upper (clay/earth) branches -->
+              <path d="M260,260 L160,140" stroke="#B07A4A" stroke-width="1.5"/>
+              <path d="M260,260 L260,110" stroke="#898561" stroke-width="1.5"/>
+              <path d="M260,260 L380,150" stroke="#B07A4A" stroke-width="1.5"/>
+              <path d="M260,260 L420,210" stroke="#898561" stroke-width="1.2"/>
+              <path d="M160,140 L100,90" stroke="#B07A4A" stroke-width="1"/>
+              <path d="M160,140 L210,80" stroke="#898561" stroke-width="1"/>
+              <path d="M260,110 L320,60" stroke="#898561" stroke-width="1"/>
+              <path d="M380,150 L450,100" stroke="#B07A4A" stroke-width="1"/>
+              <!-- lower (water blue) branches -->
+              <path d="M260,260 L120,360" stroke="#66B7C9" stroke-width="1.5"/>
+              <path d="M260,260 L220,420" stroke="#66B7C9" stroke-width="1.5"/>
+              <path d="M260,260 L360,400" stroke="#1F3B5B" stroke-width="1.5"/>
+              <path d="M260,260 L450,330" stroke="#66B7C9" stroke-width="1.2"/>
+              <path d="M120,360 L60,420" stroke="#66B7C9" stroke-width="1"/>
+              <path d="M120,360 L180,440" stroke="#66B7C9" stroke-width="1"/>
+              <path d="M220,420 L290,470" stroke="#1F3B5B" stroke-width="1"/>
+              <path d="M360,400 L460,460" stroke="#66B7C9" stroke-width="1"/>
+              <path d="M450,330 L490,400" stroke="#66B7C9" stroke-width="1"/>
+            </g>
+            <g class="nodes">
+              <circle cx="260" cy="260" r="11" fill="#1F3B5B"/>
+              <circle cx="160" cy="140" r="6" fill="#3B2E26"/>
+              <circle cx="260" cy="110" r="5" fill="#898561"/>
+              <circle cx="380" cy="150" r="6" fill="#B07A4A"/>
+              <circle cx="420" cy="210" r="4" fill="#DCC8A8"/>
+              <circle cx="100" cy="90" r="3.5" fill="#B07A4A"/>
+              <circle cx="210" cy="80" r="3.5" fill="#898561"/>
+              <circle cx="320" cy="60" r="3.5" fill="#898561"/>
+              <circle cx="450" cy="100" r="3.5" fill="#B07A4A"/>
+              <circle cx="120" cy="360" r="6" fill="#66B7C9"/>
+              <circle cx="220" cy="420" r="5" fill="#1F3B5B"/>
+              <circle cx="360" cy="400" r="6" fill="#66B7C9"/>
+              <circle cx="450" cy="330" r="4" fill="#66B7C9"/>
+              <circle cx="60" cy="420" r="3.5" fill="#66B7C9"/>
+              <circle cx="180" cy="440" r="3.5" fill="#66B7C9"/>
+              <circle cx="290" cy="470" r="3.5" fill="#1F3B5B"/>
+              <circle cx="460" cy="460" r="3.5" fill="#66B7C9"/>
+              <circle cx="490" cy="400" r="3.5" fill="#66B7C9"/>
+            </g>
+            <g class="pulse">
+              <circle cx="260" cy="260" r="11" fill="none" stroke="#66B7C9" stroke-width="1.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Esencia -->
+    <section class="essence">
+      <div class="container essence-grid">
+        <div class="essence-mark" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#898561" stroke-width="0.6" opacity="0.6">
+              <path d="M10,150 Q 60,120 100,140 T 190,130"/>
+              <path d="M10,160 Q 70,130 110,150 T 190,140"/>
+              <path d="M10,170 Q 60,150 110,160 T 190,150"/>
+              <path d="M10,180 Q 80,160 130,170 T 190,165"/>
+            </g>
+            <g>
+              <line x1="100" y1="100" x2="60" y2="60" stroke="#B07A4A" stroke-width="1.2"/>
+              <line x1="100" y1="100" x2="140" y2="50" stroke="#B07A4A" stroke-width="1.2"/>
+              <line x1="100" y1="100" x2="100" y2="40" stroke="#898561" stroke-width="1.2"/>
+              <line x1="100" y1="100" x2="160" y2="90" stroke="#898561" stroke-width="1"/>
+              <circle cx="100" cy="100" r="6" fill="#1F3B5B"/>
+              <circle cx="60" cy="60" r="3.5" fill="#3B2E26"/>
+              <circle cx="140" cy="50" r="3.5" fill="#B07A4A"/>
+              <circle cx="100" cy="40" r="3" fill="#898561"/>
+              <circle cx="160" cy="90" r="3" fill="#DCC8A8"/>
+            </g>
+          </svg>
+        </div>
+        <div class="essence-copy">
+          <span class="eyebrow eyebrow-dark">Esencia de marca</span>
+          <h2>La red invisible que conecta, nutre y fortalece ecosistemas.</h2>
+          <p>
+            Traducimos la inteligencia de las redes micorrícicas en infraestructura
+            tecnológica para terceros, impulsando soluciones escalables, resilientes
+            y sostenibles para industrias diversas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soluciones -->
+    <section class="solutions" id="soluciones">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">01 — Soluciones</span>
+          <h2>Cuatro principios que sostienen cada proyecto</h2>
+          <p>Diseñamos plataformas que crecen, se adaptan y protegen — siempre con un horizonte regenerativo.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 22 L10 16 L18 20 L28 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="4" cy="22" r="2" fill="currentColor"/>
+                <circle cx="10" cy="16" r="2" fill="currentColor"/>
+                <circle cx="18" cy="20" r="2" fill="currentColor"/>
+                <circle cx="28" cy="10" r="2" fill="currentColor"/>
+              </svg>
+            </span>
+            <h3>Infraestructura escalable</h3>
+            <p>Arquitecturas flexibles listas para crecer contigo, sin reescribir lo que ya funciona.</p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4 C 8 12, 8 22, 16 28 C 24 22, 24 12, 16 4 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M16 4 V 28 M 9 14 H 23" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <h3>Resiliencia natural</h3>
+            <p>Sistemas adaptativos que garantizan continuidad ante el cambio, la carga o la falla.</p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4 L 26 8 V 16 C 26 22 22 26 16 28 C 10 26 6 22 6 16 V 8 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M12 16 l 3 3 l 5 -6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3>Seguridad por diseño</h3>
+            <p>Protegemos tus datos e infraestructura desde el primer trazo, no como una capa añadida.</p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 28 V 18 M 16 18 C 12 16 10 12 12 8 C 16 10 18 14 16 18 Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 18 C 20 16 22 12 20 8 C 16 10 14 14 16 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 28 H 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <h3>Impacto sostenible</h3>
+            <p>Tecnología que impulsa un futuro regenerativo, midiendo el impacto a cada decisión.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sectores -->
+    <section class="sectors" id="sectores">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">02 — Sectores</span>
+          <h2>Industrias diversas, una misma red</h2>
+          <p>Trabajamos con organizaciones donde la conectividad, los datos y la sostenibilidad son críticos.</p>
+        </header>
+
+        <div class="sector-grid">
+          <div class="sector"><span class="sector-num">01</span><h4>Agroindustria</h4><p>Trazabilidad, sensórica de campo y plataformas de decisión.</p></div>
+          <div class="sector"><span class="sector-num">02</span><h4>Energía</h4><p>Redes distribuidas, monitoreo y optimización de recursos.</p></div>
+          <div class="sector"><span class="sector-num">03</span><h4>Logística</h4><p>Visibilidad de extremo a extremo y orquestación de flujos.</p></div>
+          <div class="sector"><span class="sector-num">04</span><h4>Salud</h4><p>Interoperabilidad, datos clínicos seguros y telemetría continua.</p></div>
+          <div class="sector"><span class="sector-num">05</span><h4>Sector público</h4><p>Plataformas ciudadanas resilientes y abiertas por diseño.</p></div>
+          <div class="sector"><span class="sector-num">06</span><h4>Industria</h4><p>Manufactura conectada, IoT y mantenimiento predictivo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tecnología / Capas -->
+    <section class="tech" id="tecnologia">
+      <div class="container tech-grid">
+        <div class="tech-copy">
+          <span class="eyebrow">03 — Tecnología</span>
+          <h2>Cuatro capas que se nutren entre sí</h2>
+          <p>Como un ecosistema micorrícico, cada capa intercambia recursos con las demás. Diseñamos la pila completa con observabilidad y seguridad transversales.</p>
+          <ul class="tech-stack">
+            <li><span class="dot" style="--c:#1F3B5B"></span><div><strong>Capa de Aplicación</strong><span>Productos, APIs y experiencias de usuario.</span></div></li>
+            <li><span class="dot" style="--c:#66B7C9"></span><div><strong>Capa de Datos</strong><span>Pipelines, gobernanza y analítica en tiempo real.</span></div></li>
+            <li><span class="dot" style="--c:#898561"></span><div><strong>Capa de Red</strong><span>Conectividad segura, multi-nube y edge.</span></div></li>
+            <li><span class="dot" style="--c:#3B2E26"></span><div><strong>Capa de Infraestructura</strong><span>Cómputo elástico, IaC y plataformas internas.</span></div></li>
+          </ul>
+        </div>
+
+        <aside class="metrics-panel" aria-label="Panel de métricas">
+          <div class="metrics-head">
+            <span class="dot-status"></span>
+            <span>Estado del sistema · <strong>Óptimo</strong></span>
+          </div>
+          <div class="metrics-row">
+            <div class="metric"><strong>128</strong><span>Servicios</span></div>
+            <div class="metric"><strong>512</strong><span>Conexiones</span></div>
+            <div class="metric"><strong>98.7%</strong><span>Disponibilidad</span></div>
+          </div>
+
+          <div class="metric-block">
+            <div class="metric-block-head">
+              <span>Actividad</span>
+              <span class="trend">↑ 24.6%</span>
+            </div>
+            <svg viewBox="0 0 320 80" class="sparkline" preserveAspectRatio="none">
+              <path d="M0,60 C40,55 60,40 90,42 C120,44 140,20 170,28 C200,36 220,12 250,18 C280,24 300,30 320,22"
+                fill="none" stroke="#66B7C9" stroke-width="2"/>
+              <path d="M0,60 C40,55 60,40 90,42 C120,44 140,20 170,28 C200,36 220,12 250,18 C280,24 300,30 320,22 L 320,80 L 0,80 Z"
+                fill="#66B7C9" opacity="0.12"/>
+            </svg>
+            <span class="muted">vs. últimos 30 días</span>
+          </div>
+
+          <div class="metric-block">
+            <div class="metric-block-head">
+              <span>Nodos activos</span>
+              <strong>128 / 150</strong>
+            </div>
+            <div class="bar"><span style="--w:85%"></span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Iconografía / Capacidades -->
+    <section class="icons-band">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">04 — Capacidades</span>
+          <h2>Un lenguaje común para todo el ecosistema</h2>
+        </header>
+        <ul class="icon-row">
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="3" fill="currentColor"/><circle cx="6" cy="6" r="2" fill="currentColor"/><circle cx="26" cy="6" r="2" fill="currentColor"/><circle cx="6" cy="26" r="2" fill="currentColor"/><circle cx="26" cy="26" r="2" fill="currentColor"/><path d="M16 16 L6 6 M16 16 L26 6 M16 16 L6 26 M16 16 L26 26" stroke="currentColor" stroke-width="1.2"/></svg><span>Conexión</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 10 L16 4 L28 10 L16 16 Z M4 16 L16 22 L28 16 M4 22 L16 28 L28 22" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg><span>Infraestructura</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="8" rx="10" ry="3.5" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M6 8 V 16 C 6 18, 10.5 19.5, 16 19.5 S 26 18, 26 16 V 8" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M6 16 V 24 C 6 26, 10.5 27.5, 16 27.5 S 26 26, 26 24 V 16" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span>Datos</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 C 10 12, 6 18, 6 22 a 10 10 0 0 0 20 0 C 26 18, 22 12, 16 4 Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg><span>Agua</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6 C 12 12, 12 18, 16 26 C 20 18, 20 12, 16 6 Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/><path d="M16 16 C 20 14, 24 16, 26 20 M 16 20 C 12 18, 8 20, 6 24" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg><span>Tierra</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28 V 14 L 12 18 V 12 L 20 16 V 10 L 28 14 V 28 Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg><span>Industria</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 L 26 8 V 16 C 26 22 22 26 16 28 C 10 26 6 22 6 16 V 8 Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg><span>Seguridad</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24 L 12 16 L 18 20 L 28 8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 8 H 28 V 14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Crecimiento</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Recursos -->
+    <section class="resources" id="recursos">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">05 — Recursos</span>
+          <h2>Lecturas y materiales para profundizar</h2>
+        </header>
+        <div class="resource-grid">
+          <a class="resource" href="#">
+            <span class="resource-tag">Whitepaper</span>
+            <h4>Redes micorrícicas como modelo de arquitectura distribuida</h4>
+            <p>Cómo trasladamos los principios biológicos al diseño de plataformas modernas.</p>
+            <span class="resource-link">Descargar PDF →</span>
+          </a>
+          <a class="resource" href="#">
+            <span class="resource-tag">Caso de estudio</span>
+            <h4>Plataforma de trazabilidad para agroindustria de exportación</h4>
+            <p>De silos de datos dispersos a una red única, observable y auditable.</p>
+            <span class="resource-link">Leer caso →</span>
+          </a>
+          <a class="resource" href="#">
+            <span class="resource-tag">Guía</span>
+            <h4>Resiliencia operativa: 8 prácticas para sistemas críticos</h4>
+            <p>Una hoja de ruta práctica para equipos de plataforma e ingeniería.</p>
+            <span class="resource-link">Abrir guía →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nosotros / CTA -->
+    <section class="about" id="nosotros">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">06 — Nosotros</span>
+          <h2>Conectamos lo natural con lo digital para un futuro sostenible.</h2>
+          <p>Somos un equipo interdisciplinar de ingenieros, diseñadores y especialistas en datos. Construimos infraestructura tecnológica para terceros bajo un principio: <em>cada decisión técnica también es una decisión ecológica</em>.</p>
+          <ul class="values">
+            <li><strong>Colaborativos</strong> — Trabajamos como una red, no como un silo.</li>
+            <li><strong>Rigurosos</strong> — Documentamos, medimos y revisamos cada capa.</li>
+            <li><strong>Regenerativos</strong> — Buscamos dejar el entorno mejor de lo que lo encontramos.</li>
+          </ul>
+        </div>
+        <figure class="about-quote">
+          <blockquote>
+            “En los bosques, ningún árbol crece solo. La micorriza enseña que la fortaleza
+            individual depende de la salud de la red.”
+          </blockquote>
+          <figcaption>— Manifiesto Micorriza</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="cta" id="contacto">
+      <div class="container cta-inner">
+        <div>
+          <span class="eyebrow eyebrow-light">Conversemos</span>
+          <h2>¿Listos para diseñar la red que sostendrá tu próxima década?</h2>
+          <p>Cuéntanos sobre tu proyecto. Te responderemos en menos de 48 horas con un primer mapa de posibilidades.</p>
+        </div>
+        <form class="cta-form" onsubmit="event.preventDefault(); this.querySelector('.form-success').hidden = false;">
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="name" required placeholder="Tu nombre" />
+          </label>
+          <label>
+            <span>Correo corporativo</span>
+            <input type="email" name="email" required placeholder="nombre@empresa.com" />
+          </label>
+          <label>
+            <span>Tu reto en una línea</span>
+            <input type="text" name="topic" placeholder="¿Qué quieres construir?" />
+          </label>
+          <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
+          <p class="form-success" hidden>Gracias. Tu mensaje viaja por la red — pronto recibirás respuesta.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="#top" aria-label="Micorriza inicio">
+          <span class="brand-logo brand-logo-light" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g stroke-linecap="round">
+                <line x1="32" y1="32" x2="14" y2="18" stroke="#DCC8A8" stroke-width="1.4"/>
+                <line x1="32" y1="32" x2="48" y2="14" stroke="#DCC8A8" stroke-width="1.4"/>
+                <line x1="32" y1="32" x2="14" y2="46" stroke="#66B7C9" stroke-width="1.4"/>
+                <line x1="32" y1="32" x2="50" y2="50" stroke="#66B7C9" stroke-width="1.4"/>
+              </g>
+              <g>
+                <circle cx="32" cy="32" r="4" fill="#66B7C9"/>
+                <circle cx="14" cy="18" r="2.5" fill="#DCC8A8"/>
+                <circle cx="48" cy="14" r="2.5" fill="#DCC8A8"/>
+                <circle cx="14" cy="46" r="2.5" fill="#66B7C9"/>
+                <circle cx="50" cy="50" r="2.5" fill="#66B7C9"/>
+              </g>
+            </svg>
+          </span>
+          <span class="brand-name">Micorriza</span>
+        </a>
+        <p>Infraestructura inteligente inspirada en redes vivas.</p>
+      </div>
+      <div>
+        <h5>Empresa</h5>
+        <ul><li><a href="#nosotros">Nosotros</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#contacto">Contacto</a></li></ul>
+      </div>
+      <div>
+        <h5>Soluciones</h5>
+        <ul><li><a href="#soluciones">Escalabilidad</a></li><li><a href="#soluciones">Resiliencia</a></li><li><a href="#soluciones">Seguridad</a></li><li><a href="#soluciones">Sostenibilidad</a></li></ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul><li><a href="mailto:hola@micorriza.tech">hola@micorriza.tech</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">GitHub</a></li></ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> Micorriza · Todos los derechos reservados.</span>
+      <span>Diseñado como una red. Construido para durar.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
