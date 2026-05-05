@@ -19,7 +19,7 @@ if (toggle && nav) {
 
 // Reveal-on-scroll for major blocks
 const revealTargets = document.querySelectorAll(
-  ".hero-copy, .hero-visual, .essence-grid, .section-head, .card, .sector, .tech-copy, .metrics-panel, .resource, .about-grid > *, .cta-inner > *, .icon-row > li"
+  ".hero-copy > *, .hero-visual, .essence-grid, .section-head, .card, .sector, .tech-copy, .metrics-panel, .resource, .about-grid > *, .cta-inner > *, .icon-row > li"
 );
 revealTargets.forEach((el) => el.classList.add("reveal"));
 
