@@ -1,0 +1,332 @@
+/* ============================================================
+   Intro overlay — welcome animations
+   Mounted into #intro-root by intros/intros.js.
+   ============================================================ */
+
+#intro-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+#intro-root.is-active { pointer-events: auto; }
+#intro-root .intro-stage {
+  position: absolute;
+  inset: 0;
+  background: var(--blanco, #F7F5F2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+#intro-root .intro-stage.is-leaving {
+  animation: intro-out 280ms ease forwards;
+}
+@keyframes intro-out {
+  to { opacity: 0; transform: scale(1.02); }
+}
+
+#intro-root .intro-skip {
+  position: absolute;
+  bottom: 24px; right: 24px;
+  background: rgba(31, 59, 91, 0.08);
+  border: 1px solid rgba(31, 59, 91, 0.18);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: 500 0.78rem/1 "Sora", system-ui, sans-serif;
+  color: var(--azul, #1F3B5B);
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: skip-in 400ms 600ms ease forwards;
+}
+@keyframes skip-in { to { opacity: 1; } }
+
+/* ============================================================
+   1) Mycelium grow
+   ============================================================ */
+.intro-mycelium svg { width: min(78vmin, 720px); height: auto; }
+.intro-mycelium .myc-spore {
+  transform-box: fill-box; transform-origin: center;
+  transform: scale(0);
+  animation: myc-spore 320ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes myc-spore {
+  0%   { transform: scale(0); }
+  60%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+.intro-mycelium .myc-line {
+  stroke-dasharray: 260; stroke-dashoffset: 260;
+  animation: myc-draw 720ms cubic-bezier(.2,.7,.2,1) 220ms forwards;
+}
+.intro-mycelium .myc-line.l2 { animation-delay: 260ms; }
+.intro-mycelium .myc-line.l3 { animation-delay: 300ms; }
+.intro-mycelium .myc-line.l4 { animation-delay: 340ms; }
+.intro-mycelium .myc-line.l5 { animation-delay: 380ms; }
+.intro-mycelium .myc-line.l6 { animation-delay: 420ms; }
+.intro-mycelium .myc-line.l7 { animation-delay: 460ms; }
+.intro-mycelium .myc-line.l8 { animation-delay: 500ms; }
+.intro-mycelium .myc-sub {
+  stroke-dasharray: 110; stroke-dashoffset: 110;
+  animation: myc-draw 460ms cubic-bezier(.2,.7,.2,1) 720ms forwards;
+}
+.intro-mycelium .myc-sub:nth-of-type(odd)  { animation-delay: 800ms; }
+.intro-mycelium .myc-sub:nth-of-type(3n)   { animation-delay: 880ms; }
+@keyframes myc-draw { to { stroke-dashoffset: 0; } }
+.intro-mycelium .myc-node {
+  transform-box: fill-box; transform-origin: center;
+  transform: scale(0); opacity: 0;
+  animation: myc-node 360ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-mycelium .myc-node.tier-1 { animation-delay: 760ms; }
+.intro-mycelium .myc-node.tier-2 { animation-delay: 980ms; }
+.intro-mycelium .myc-node.tier-3 { animation-delay: 1200ms; }
+@keyframes myc-node {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(1);  opacity: 1; }
+}
+.intro-mycelium .myc-canvas {
+  animation: myc-fade 520ms 1700ms ease forwards;
+}
+@keyframes myc-fade { to { opacity: 0; transform: scale(1.04); } }
+
+/* ============================================================
+   2) Logo build-up
+   ============================================================ */
+.intro-logo svg { width: min(60vmin, 380px); height: auto; }
+.intro-logo .lg-line {
+  stroke-dasharray: 80; stroke-dashoffset: 80;
+  animation: lg-draw 380ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-logo .lg-line.d1 { animation-delay: 700ms; }
+.intro-logo .lg-line.d2 { animation-delay: 760ms; }
+.intro-logo .lg-line.d3 { animation-delay: 820ms; }
+.intro-logo .lg-line.d4 { animation-delay: 880ms; }
+.intro-logo .lg-line.d5 { animation-delay: 940ms; }
+.intro-logo .lg-line.d6 { animation-delay: 1000ms; }
+@keyframes lg-draw { to { stroke-dashoffset: 0; } }
+.intro-logo .lg-node {
+  transform-box: fill-box; transform-origin: center;
+  transform: scale(0); opacity: 0;
+  animation: lg-node 360ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-logo .lg-node:nth-of-type(1) { animation-delay: 100ms; }
+.intro-logo .lg-node:nth-of-type(2) { animation-delay: 180ms; }
+.intro-logo .lg-node:nth-of-type(3) { animation-delay: 260ms; }
+.intro-logo .lg-node:nth-of-type(4) { animation-delay: 340ms; }
+.intro-logo .lg-node:nth-of-type(5) { animation-delay: 420ms; }
+.intro-logo .lg-node:nth-of-type(6) { animation-delay: 500ms; }
+.intro-logo .lg-node:nth-of-type(7) { animation-delay: 580ms; }
+@keyframes lg-node {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1);  opacity: 1; }
+}
+.intro-logo .lg-wordmark {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  color: var(--azul, #1F3B5B);
+  margin-top: 18px;
+  letter-spacing: 0.4em;
+  opacity: 0;
+  animation: lg-word 600ms 1200ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes lg-word {
+  0%   { opacity: 0; letter-spacing: 0.4em; transform: translateY(8px); }
+  100% { opacity: 1; letter-spacing: 0;     transform: translateY(0); }
+}
+.intro-logo .lg-canvas {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  animation: lg-fade 500ms 1750ms ease forwards;
+}
+@keyframes lg-fade { to { opacity: 0; transform: scale(0.96); } }
+
+/* ============================================================
+   3) Spores germinating
+   ============================================================ */
+.intro-spores svg { width: min(82vmin, 720px); height: auto; }
+.intro-spores .sp-soil {
+  opacity: 0;
+  animation: sp-soil 500ms 100ms ease forwards;
+}
+@keyframes sp-soil { to { opacity: 0.6; } }
+.intro-spores .sp-spore  { /* JS-driven via WAAPI */ }
+.intro-spores .sp-sprout {
+  stroke-dasharray: 80; stroke-dashoffset: 80;
+  /* JS-driven start */
+}
+.intro-spores .sp-thread {
+  stroke-dasharray: 160; stroke-dashoffset: 160;
+}
+.intro-spores .sp-canvas {
+  animation: sp-fade 500ms 1750ms ease forwards;
+}
+@keyframes sp-fade { to { opacity: 0; } }
+
+/* ============================================================
+   4) Underground emergence
+   ============================================================ */
+.intro-emergence { position: relative; width: 100%; height: 100%; }
+.intro-emergence .em-curtain {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #3B2E26 0%, #5b4a3c 35%, #898561 70%, #DCC8A8 100%);
+  transform: translateY(0);
+  animation: em-rise 1500ms 200ms cubic-bezier(.7,0,.2,1) forwards;
+  overflow: hidden;
+}
+@keyframes em-rise {
+  0%   { transform: translateY(0);    }
+  100% { transform: translateY(-105%); }
+}
+.intro-emergence .em-curtain::before {
+  /* topographic dotted texture */
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(247,245,242,0.18) 1px, transparent 0);
+  background-size: 22px 22px;
+  opacity: 0.6;
+}
+.intro-emergence .em-roots {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -2px;
+  width: 100%;
+  display: block;
+}
+.intro-emergence .em-root {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: em-root-sway 1.2s ease-in-out infinite;
+}
+.intro-emergence .em-root:nth-child(2n) { animation-duration: 1.4s; animation-delay: -0.3s; }
+.intro-emergence .em-root:nth-child(3n) { animation-duration: 1.6s; animation-delay: -0.6s; }
+@keyframes em-root-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg);  }
+}
+.intro-emergence .em-dirt {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #B07A4A;
+  top: 60%;
+  opacity: 0;
+  animation: em-dirt 1400ms ease-in forwards;
+}
+.intro-emergence .em-canvas {
+  animation: em-fade 360ms 1800ms ease forwards;
+}
+@keyframes em-fade { to { opacity: 0; } }
+
+@keyframes em-dirt {
+  0%   { opacity: 1; transform: translate(0, 0); }
+  100% { opacity: 0; transform: translate(var(--dx, 0px), 220px); }
+}
+
+/* ============================================================
+   prefers-reduced-motion: kill all intros
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  #intro-root .intro-stage { display: none !important; }
+}
+
+/* ============================================================
+   Vistas (gallery) page styles
+   ============================================================ */
+.vistas-main { padding: 56px 0 96px; }
+.vistas-head { margin-bottom: 48px; }
+.vistas-head .breadcrumb {
+  font-size: 0.85rem;
+  color: var(--ink-soft, #4a5160);
+  margin-bottom: 18px;
+}
+.vistas-head .breadcrumb a { color: var(--azul, #1F3B5B); font-weight: 500; }
+.vistas-head h1 {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 12px;
+}
+.vistas-head p { max-width: 640px; }
+
+.vistas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 720px) { .vistas-grid { grid-template-columns: 1fr; } }
+
+.vista-card {
+  display: flex; flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line, #e8e2d6);
+  border-radius: var(--radius, 18px);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.vista-card.is-default {
+  border-color: rgba(102, 183, 201, 0.65);
+  box-shadow: 0 30px 60px -30px rgba(102, 183, 201, 0.35);
+}
+.vista-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+.vista-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #fbf8f1, #efe7d3);
+  overflow: hidden;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line, #e8e2d6);
+}
+.vista-thumb svg { width: 100%; height: 100%; display: block; }
+.vista-thumb .vista-play {
+  position: absolute; inset: auto 12px 12px auto;
+  background: rgba(31, 59, 91, 0.9);
+  color: var(--blanco, #F7F5F2);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font: 500 0.78rem/1 "Sora", system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.vista-thumb .vista-play:hover { background: var(--azul, #1F3B5B); }
+
+.vista-body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.vista-body .meta {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--arcilla, #898561);
+  font-weight: 600;
+}
+.vista-body h3 { margin: 0; font-size: 1.15rem; color: var(--azul, #1F3B5B); }
+.vista-body p { margin: 0; font-size: 0.92rem; color: var(--ink-soft, #4a5160); flex: 1; }
+.vista-actions {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 18px;
+  align-items: center;
+}
+.vista-actions .btn-link {
+  padding: 8px 0; font-size: 0.88rem;
+}
+.vista-actions .btn {
+  padding: 9px 16px;
+  font-size: 0.85rem;
+}
+.vista-default-chip {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #fff;
+  background: var(--agua, #66B7C9);
+  padding: 4px 10px; border-radius: 999px;
+  margin-left: auto;
+}
+.vista-card.is-default .vista-mark-default { display: none; }
+.vista-card:not(.is-default) .vista-default-chip { display: none; }

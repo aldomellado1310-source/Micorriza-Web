@@ -12,9 +12,13 @@ Construido como un sitio estático con HTML, CSS y JavaScript vanilla, fiel a la
 
 ```
 .
-├── index.html      # Marcado y secciones del sitio
-├── styles.css      # Sistema de diseño y layout
-├── script.js       # Navegación móvil y reveal-on-scroll
+├── index.html         # Marcado y secciones del sitio
+├── vistas.html        # Galería de combinaciones portada + transición
+├── styles.css         # Sistema de diseño y layout
+├── script.js          # Navegación móvil y reveal-on-scroll
+├── intros/
+│   ├── intros.css     # Estilos overlay + 4 animaciones de bienvenida
+│   └── intros.js      # Controlador y secuencias (módulo ES)
 ├── assets/
 │   └── favicon.svg
 └── README.md
@@ -62,3 +66,42 @@ y evita transformaciones no deseadas sobre nuestros archivos.
 Para usar un dominio propio (p. ej. `micorriza.tech`), añade un archivo
 `CNAME` en la raíz con el dominio y configura los DNS según la documentación
 oficial de GitHub Pages.
+
+## Animaciones de bienvenida (intros)
+
+El sitio reproduce una transición de bienvenida la primera vez que un visitante
+llega en una sesión. Hay cuatro candidatas implementadas en `intros/intros.js`:
+
+| ID | Concepto | Tecnología |
+|---|---|---|
+| `mycelium`  | Hilos que brotan desde el centro y conectan nodos. | SVG + CSS |
+| `logo`      | Construcción del logo Micorriza nodo a nodo + wordmark. | SVG + CSS |
+| `spores`    | Esporas que caen, aterrizan y germinan en micelios. | SVG + WAAPI |
+| `emergence` | Capa de tierra con raíces colgantes que se repliega hacia arriba. | SVG + CSS |
+
+### Vistas (galería)
+
+`vistas.html` muestra cada combinación **portada + transición** como una tarjeta:
+
+- **Reproducir**: lanza la transición en overlay sobre la galería.
+- **Abrir vista completa**: navega a `index.html?portada=1&intro=<id>`,
+  forzando esa transición sobre el sitio real.
+- **Marcar como predeterminada**: persiste la elección en `localStorage`
+  (`micorriza:intro:default`). Se aplicará a futuros visitantes.
+
+### Selección en `index.html`
+
+Orden de prioridad al cargar:
+
+1. Query param `?intro=mycelium|logo|spores|emergence|none` — fuerza esa
+   intro (o ninguna) y **no** marca la sesión como vista. Ideal para QA y
+   enlaces compartibles.
+2. `localStorage["micorriza:intro:default"]` — la intro elegida en la galería.
+3. Default: `mycelium`.
+
+Si `sessionStorage["micorriza:intro:played"]` está marcado, la intro se omite
+hasta que el usuario abra una pestaña/sesión nueva. `prefers-reduced-motion`
+desactiva todas las intros.
+
+Skip manual: clic en el botón **Saltar** (esquina inferior derecha) o tecla
+`Esc` durante la reproducción.
