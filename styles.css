@@ -782,6 +782,345 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   transform: none;
 }
 
+/* ----- Eyebrow viewport reveal ----- */
+.eyebrow {
+  opacity: 0;
+  letter-spacing: 0.30em;
+  transition: opacity 0.5s ease, letter-spacing 0.5s ease;
+}
+.eyebrow.is-revealed {
+  opacity: 1;
+  letter-spacing: 0.18em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow { opacity: 1; letter-spacing: 0.18em; transition: none; }
+}
+
+/* ================================================================
+   New components — KPI strip, Manifesto band, Partners + Cases,
+   Sector POV, Section dividers
+   ================================================================ */
+
+/* ----- KPI strip (post-hero credibility band) ----- */
+.kpi-strip {
+  border-block: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, transparent, rgba(247, 245, 242, 0.4));
+  padding: 36px 0;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.kpi-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-inline: 24px;
+  border-left: 1px solid var(--line);
+}
+.kpi-tile:first-child { border-left: 0; padding-left: 0; }
+.kpi-num {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--azul);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.kpi-desc {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* ----- Manifesto band (replaces redundant "Esencia") ----- */
+.manifesto-band {
+  padding: 96px 0;
+  background:
+    radial-gradient(900px 320px at 50% 50%, rgba(220, 200, 168, 0.30), transparent 70%),
+    linear-gradient(180deg, transparent, rgba(102, 183, 201, 0.04));
+  text-align: center;
+}
+.manifesto-band blockquote {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.55rem, 3.3vw, 2.4rem);
+  line-height: 1.25;
+  color: var(--azul);
+  max-width: 820px;
+  margin: 0 auto 22px;
+  letter-spacing: -0.012em;
+}
+.manifesto-band blockquote::before { content: "\201C"; color: var(--agua); margin-right: 2px; }
+.manifesto-band blockquote::after  { content: "\201D"; color: var(--agua); margin-left: 2px; }
+.manifesto-band cite {
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--arcilla);
+}
+
+/* ----- Sector POV (extra line on each sector card) ----- */
+.sector-pov {
+  display: block;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(102, 183, 201, 0.35);
+  font-size: 0.86rem;
+  color: var(--azul);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ----- Partners section ----- */
+.partners {
+  padding: 96px 0;
+  background:
+    linear-gradient(180deg, rgba(247, 245, 242, 0.8), transparent);
+}
+.partners-lede {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.partners-lede p {
+  font-size: 1.02rem;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-bottom: 56px;
+}
+.partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  color: var(--arcilla);
+  transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  filter: saturate(0.6);
+  opacity: 0.75;
+}
+.partner-logo:hover {
+  color: var(--azul);
+  background: rgba(102, 183, 201, 0.08);
+  filter: saturate(1);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+.partner-logo svg {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* ----- Case cards (featured projects) ----- */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.case-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 14px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+.case-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px 220px at 100% 0%, rgba(102, 183, 201, 0.10), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(102, 183, 201, 0.55);
+  box-shadow: var(--shadow);
+}
+.case-card:hover::before { opacity: 1; }
+.case-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.case-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--azul);
+  background: rgba(102, 183, 201, 0.14);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+.case-id {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--arcilla);
+  font-weight: 600;
+}
+.case-card h3 {
+  margin: 4px 0 0;
+  font-size: 1.18rem;
+  color: var(--azul);
+}
+.case-card p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+.case-metric {
+  margin-top: 10px;
+  padding: 18px 20px;
+  background: linear-gradient(180deg, #fbf8f1, #f4ead8);
+  border-radius: 14px;
+  display: grid;
+  gap: 4px;
+}
+.case-metric strong {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--azul);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.case-metric span {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+.case-cta {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--agua);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: start;
+}
+.case-card:hover .case-cta { color: var(--azul); }
+
+/* ----- Section divider (topographic) ----- */
+.section-divider {
+  height: 36px;
+  margin: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(137, 133, 97, 0.08) 20%, rgba(137, 133, 97, 0.08) 80%, transparent),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 14px,
+      rgba(137, 133, 97, 0.16) 14px 16px
+    );
+  background-size: 100% 100%, 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center, center 12px;
+  position: relative;
+  overflow: hidden;
+}
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 6px,
+    rgba(102, 183, 201, 0.18) 6px 7px
+  );
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+          mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+}
+.section-divider::before { top: 18px; }
+.section-divider::after  { bottom: 12px; }
+
+/* ----- About: enriched layout after manifesto move ----- */
+.about-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0;
+}
+.cred-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(102, 183, 201, 0.10);
+  border: 1px solid rgba(102, 183, 201, 0.30);
+  font-size: 0.82rem;
+  color: var(--azul);
+  font-weight: 500;
+}
+.cred-chip strong { color: var(--azul); font-weight: 600; }
+.about-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.bento-tile {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  display: grid;
+  gap: 8px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.bento-tile:hover {
+  border-color: rgba(102, 183, 201, 0.5);
+  transform: translateY(-2px);
+}
+.bento-tile strong {
+  display: block;
+  color: var(--azul);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.bento-tile span {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.bento-tile .bento-num {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--agua);
+}
+
+/* ----- Solution card icon hover anim ----- */
+.card-icon { transition: transform 0.25s ease; }
+.card:hover .card-icon { transform: rotate(4deg) scale(1.05); }
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .card-icon { transform: none; }
+}
+
 /* ----- Responsive ----- */
 @media (max-width: 1024px) {
   .hero-grid, .tech-grid, .essence-grid, .about-grid, .cta-inner {
@@ -793,6 +1132,10 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   .cards, .sector-grid, .resource-grid { grid-template-columns: repeat(2, 1fr); }
   .icon-row { grid-template-columns: repeat(4, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .kpi-tile { border-left: 0; padding-left: 0; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .about-bento { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 720px) {
@@ -815,4 +1158,8 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   .footer-grid { grid-template-columns: 1fr; }
   .cta { margin: 0 12px 24px; }
   .cta-inner { padding: 48px 20px; }
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
+  .partner-logo { height: 64px; }
+  .manifesto-band { padding: 64px 0; }
+  .partners { padding: 64px 0; }
 }

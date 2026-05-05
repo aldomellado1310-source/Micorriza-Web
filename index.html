@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="intros/intros.css?v=20260505c" />
+  <link rel="stylesheet" href="styles.css?v=20260505d" />
+  <link rel="stylesheet" href="intros/intros.css?v=20260505d" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 </head>
 <body>
@@ -60,7 +60,7 @@
           <li><a href="#soluciones">Soluciones</a></li>
           <li><a href="#sectores">Sectores</a></li>
           <li><a href="#tecnologia">Tecnología</a></li>
-          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#aliados">Aliados</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
         </ul>
       </nav>
@@ -312,119 +312,161 @@
       </div>
     </section>
 
-    <!-- Esencia -->
-    <section class="essence">
-      <div class="container essence-grid">
-        <div class="essence-mark" aria-hidden="true">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke="#898561" stroke-width="0.6" opacity="0.6">
-              <path d="M10,150 Q 60,120 100,140 T 190,130"/>
-              <path d="M10,160 Q 70,130 110,150 T 190,140"/>
-              <path d="M10,170 Q 60,150 110,160 T 190,150"/>
-              <path d="M10,180 Q 80,160 130,170 T 190,165"/>
-            </g>
-            <g>
-              <line x1="100" y1="100" x2="60" y2="60" stroke="#B07A4A" stroke-width="1.2"/>
-              <line x1="100" y1="100" x2="140" y2="50" stroke="#B07A4A" stroke-width="1.2"/>
-              <line x1="100" y1="100" x2="100" y2="40" stroke="#898561" stroke-width="1.2"/>
-              <line x1="100" y1="100" x2="160" y2="90" stroke="#898561" stroke-width="1"/>
-              <circle cx="100" cy="100" r="6" fill="#1F3B5B"/>
-              <circle cx="60" cy="60" r="3.5" fill="#3B2E26"/>
-              <circle cx="140" cy="50" r="3.5" fill="#B07A4A"/>
-              <circle cx="100" cy="40" r="3" fill="#898561"/>
-              <circle cx="160" cy="90" r="3" fill="#DCC8A8"/>
-            </g>
-          </svg>
+    <!-- KPI strip: credibilidad inmediata tras el hero -->
+    <section class="kpi-strip" aria-label="Indicadores de tracción">
+      <div class="container kpi-grid">
+        <div class="kpi-tile">
+          <span class="kpi-num">8+ años</span>
+          <span class="kpi-desc">Diseñando infraestructura crítica para terceros</span>
         </div>
-        <div class="essence-copy">
-          <span class="eyebrow eyebrow-dark">Esencia de marca</span>
-          <h2>La red invisible que conecta, nutre y fortalece ecosistemas.</h2>
-          <p>
-            Traducimos la inteligencia de las redes micorrícicas en infraestructura
-            tecnológica para terceros, impulsando soluciones escalables, resilientes
-            y sostenibles para industrias diversas.
-          </p>
+        <div class="kpi-tile">
+          <span class="kpi-num">6 sectores</span>
+          <span class="kpi-desc">Cubiertos en proyectos activos</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="kpi-num">24/7</span>
+          <span class="kpi-desc">Operación monitoreada con guardias humanas</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="kpi-num">99.5%</span>
+          <span class="kpi-desc">Uptime promedio sostenido</span>
         </div>
       </div>
     </section>
+
+    <!-- Manifesto band: cita central como tesis general -->
+    <section class="manifesto-band" aria-label="Manifiesto Micorriza">
+      <div class="container">
+        <blockquote>En los bosques, ningún árbol crece solo. La micorriza enseña que la fortaleza individual depende de la salud de la red.</blockquote>
+        <cite>— Manifiesto Micorriza</cite>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
 
     <!-- Soluciones -->
     <section class="solutions" id="soluciones">
       <div class="container">
         <header class="section-head">
           <span class="eyebrow">01 — Soluciones</span>
-          <h2>Cuatro principios que sostienen cada proyecto</h2>
-          <p>Diseñamos plataformas que crecen, se adaptan y protegen — siempre con un horizonte regenerativo.</p>
+          <h2>Cuatro principios, una misma raíz</h2>
+          <p>No vendemos features genéricas. Aplicamos la lógica viva de la micorriza al diseño de plataformas: crecer sin colapsar, fallar sin caerse, proteger sin asfixiar, regenerar sin discurso.</p>
         </header>
 
         <div class="cards">
           <article class="card">
             <span class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 22 L10 16 L18 20 L28 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="4" cy="22" r="2" fill="currentColor"/>
-                <circle cx="10" cy="16" r="2" fill="currentColor"/>
-                <circle cx="18" cy="20" r="2" fill="currentColor"/>
-                <circle cx="28" cy="10" r="2" fill="currentColor"/>
+                <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                <path d="M16 16 Q 8 8 5 5 M16 16 Q 24 8 27 5 M16 16 Q 8 24 5 27 M16 16 Q 24 24 27 27" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+                <circle cx="5" cy="5"   r="1.6" fill="currentColor"/>
+                <circle cx="27" cy="5"  r="1.6" fill="currentColor"/>
+                <circle cx="5" cy="27"  r="1.6" fill="currentColor"/>
+                <circle cx="27" cy="27" r="1.6" fill="currentColor"/>
               </svg>
             </span>
-            <h3>Infraestructura escalable</h3>
-            <p>Arquitecturas flexibles listas para crecer contigo, sin reescribir lo que ya funciona.</p>
+            <h3>Escalabilidad</h3>
+            <p>Crecemos como una micorriza: cada nodo se incorpora sin colapsar la red. Capacidad lineal, costos sub-lineales.</p>
           </article>
 
           <article class="card">
             <span class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 4 C 8 12, 8 22, 16 28 C 24 22, 24 12, 16 4 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                <path d="M16 4 V 28 M 9 14 H 23" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <circle cx="6" cy="10" r="2" fill="currentColor"/>
+                <circle cx="6" cy="22" r="2" fill="currentColor"/>
+                <circle cx="26" cy="10" r="2" fill="currentColor"/>
+                <circle cx="26" cy="22" r="2" fill="currentColor"/>
+                <circle cx="16" cy="16" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2"/>
+                <path d="M16 14 L18 18 M14 18 L18 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M6 10 Q 14 6 26 10 M6 22 Q 14 26 26 22 M6 10 Q 16 22 26 22 M6 22 Q 16 10 26 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.85"/>
               </svg>
             </span>
-            <h3>Resiliencia natural</h3>
-            <p>Sistemas adaptativos que garantizan continuidad ante el cambio, la carga o la falla.</p>
+            <h3>Resiliencia</h3>
+            <p>Si una hifa cae, las demás redirigen el flujo. Diseñamos sistemas que degradan con gracia, no fallan en seco.</p>
           </article>
 
           <article class="card">
             <span class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 4 L 26 8 V 16 C 26 22 22 26 16 28 C 10 26 6 22 6 16 V 8 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                <path d="M12 16 l 3 3 l 5 -6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 4 L 26 8 V 16 C 26 22 22 26 16 28 C 10 26 6 22 6 16 V 8 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+                <path d="M11 13 Q 16 17 21 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                <path d="M11 18 Q 16 22 21 18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                <circle cx="11" cy="13" r="1.2" fill="currentColor"/>
+                <circle cx="21" cy="13" r="1.2" fill="currentColor"/>
+                <circle cx="11" cy="18" r="1.2" fill="currentColor"/>
+                <circle cx="21" cy="18" r="1.2" fill="currentColor"/>
+                <circle cx="16" cy="22" r="1.2" fill="currentColor"/>
               </svg>
             </span>
-            <h3>Seguridad por diseño</h3>
-            <p>Protegemos tus datos e infraestructura desde el primer trazo, no como una capa añadida.</p>
+            <h3>Seguridad</h3>
+            <p>Defensa en capas vivas: identidad, datos y red protegidos juntos. La superficie de ataque se contrae con cada nodo añadido.</p>
           </article>
 
           <article class="card">
             <span class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 28 V 18 M 16 18 C 12 16 10 12 12 8 C 16 10 18 14 16 18 Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 18 C 20 16 22 12 20 8 C 16 10 14 14 16 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 28 H 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M16 6 C 9 6 6 12 6 16 a 10 10 0 0 0 20 0 C 26 12 23 6 16 6 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+                <path d="M16 6 Q 14 14 16 22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                <path d="M22 12 Q 18 16 16 22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                <path d="M10 12 Q 14 16 16 22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                <path d="M10 26 Q 13 28 16 28 Q 19 28 22 26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
               </svg>
             </span>
-            <h3>Impacto sostenible</h3>
-            <p>Tecnología que impulsa un futuro regenerativo, midiendo el impacto a cada decisión.</p>
+            <h3>Sostenibilidad</h3>
+            <p>Cada decisión técnica también es ecológica: medimos huella de cómputo, energía y datos como parte del SLO.</p>
           </article>
         </div>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
 
     <!-- Sectores -->
     <section class="sectors" id="sectores">
       <div class="container">
         <header class="section-head">
           <span class="eyebrow">02 — Sectores</span>
-          <h2>Industrias diversas, una misma red</h2>
-          <p>Trabajamos con organizaciones donde la conectividad, los datos y la sostenibilidad son críticos.</p>
+          <h2>Cada sector es un ecosistema con su propia gramática</h2>
+          <p>Diseñamos infraestructura que respeta la lógica nativa de cada industria en vez de imponerle una plantilla.</p>
         </header>
 
         <div class="sector-grid">
-          <div class="sector"><span class="sector-num">01</span><h4>Agroindustria</h4><p>Trazabilidad, sensórica de campo y plataformas de decisión.</p></div>
-          <div class="sector"><span class="sector-num">02</span><h4>Energía</h4><p>Redes distribuidas, monitoreo y optimización de recursos.</p></div>
-          <div class="sector"><span class="sector-num">03</span><h4>Logística</h4><p>Visibilidad de extremo a extremo y orquestación de flujos.</p></div>
-          <div class="sector"><span class="sector-num">04</span><h4>Salud</h4><p>Interoperabilidad, datos clínicos seguros y telemetría continua.</p></div>
-          <div class="sector"><span class="sector-num">05</span><h4>Sector público</h4><p>Plataformas ciudadanas resilientes y abiertas por diseño.</p></div>
-          <div class="sector"><span class="sector-num">06</span><h4>Industria</h4><p>Manufactura conectada, IoT y mantenimiento predictivo.</p></div>
+          <div class="sector">
+            <span class="sector-num">01</span>
+            <h4>Agroindustria</h4>
+            <p>Trazabilidad, sensórica de campo y plataformas de decisión.</p>
+            <span class="sector-pov">Desde la raíz hasta el contenedor de exportación, sin perder un evento.</span>
+          </div>
+          <div class="sector">
+            <span class="sector-num">02</span>
+            <h4>Energía</h4>
+            <p>Redes distribuidas, monitoreo y optimización de recursos.</p>
+            <span class="sector-pov">Telemetría tolerante: los datos llegan aunque la red no esté.</span>
+          </div>
+          <div class="sector">
+            <span class="sector-num">03</span>
+            <h4>Logística</h4>
+            <p>Visibilidad de extremo a extremo y orquestación de flujos.</p>
+            <span class="sector-pov">Cadena de frío y custodia con prueba criptográfica por evento.</span>
+          </div>
+          <div class="sector">
+            <span class="sector-num">04</span>
+            <h4>Salud</h4>
+            <p>Interoperabilidad, datos clínicos seguros y telemetría continua.</p>
+            <span class="sector-pov">HL7/FHIR sin sacrificar privacidad por reglas duras.</span>
+          </div>
+          <div class="sector">
+            <span class="sector-num">05</span>
+            <h4>Sector público</h4>
+            <p>Plataformas ciudadanas resilientes y abiertas por diseño.</p>
+            <span class="sector-pov">Sobreviven a tres ciclos políticos sin reescritura.</span>
+          </div>
+          <div class="sector">
+            <span class="sector-num">06</span>
+            <h4>Industria</h4>
+            <p>Manufactura conectada, IoT y mantenimiento predictivo.</p>
+            <span class="sector-pov">OT/IT convergentes con segmentación que sí aguanta auditoría.</span>
+          </div>
         </div>
       </div>
     </section>
@@ -500,6 +542,8 @@
       </div>
     </section>
 
+    <div class="section-divider" aria-hidden="true"></div>
+
     <!-- Recursos -->
     <section class="resources" id="recursos">
       <div class="container">
@@ -530,26 +574,178 @@
       </div>
     </section>
 
-    <!-- Nosotros / CTA -->
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- Aliados y casos -->
+    <section class="partners" id="aliados">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">06 — Aliados y casos</span>
+          <h2>Trabajamos junto a quienes sostienen ecosistemas críticos</h2>
+        </header>
+
+        <div class="partners-lede">
+          <p>Co-diseñamos infraestructura con organizaciones que entienden el largo plazo. Estos son algunos de los aliados con los que estamos construyendo redes vivas hoy.</p>
+        </div>
+
+        <div class="partners-grid" aria-label="Aliados con los que trabajamos">
+          <a class="partner-logo" href="#" aria-label="Andina Energía">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M14 42 L26 18 L38 42"/>
+                <path d="M19 34 L33 34"/>
+                <circle cx="26" cy="14" r="2.2" fill="currentColor"/>
+              </g>
+              <text x="52" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Andina Energía</text>
+            </svg>
+          </a>
+          <a class="partner-logo" href="#" aria-label="Ríos del Sur">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M12 22 Q 20 28 28 22 T 44 22"/>
+                <path d="M12 32 Q 20 38 28 32 T 44 32"/>
+                <path d="M12 42 Q 20 48 28 42 T 44 42"/>
+              </g>
+              <text x="56" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Ríos del Sur</text>
+            </svg>
+          </a>
+          <a class="partner-logo" href="#" aria-label="Lumen Salud">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="26" cy="30" r="11"/>
+                <path d="M26 14 V 9 M26 51 V 46 M10 30 H 5 M47 30 H 42 M14 18 L 11 15 M38 42 L 41 45 M14 42 L 11 45 M38 18 L 41 15"/>
+              </g>
+              <text x="58" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Lumen Salud</text>
+            </svg>
+          </a>
+          <a class="partner-logo" href="#" aria-label="Trama Logística">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M10 18 H 44 M10 30 H 44 M10 42 H 44"/>
+                <path d="M18 10 V 50 M30 10 V 50"/>
+                <circle cx="18" cy="18" r="2.2" fill="currentColor" stroke="none"/>
+                <circle cx="30" cy="30" r="2.2" fill="currentColor" stroke="none"/>
+                <circle cx="18" cy="42" r="2.2" fill="currentColor" stroke="none"/>
+              </g>
+              <text x="56" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Trama Logística</text>
+            </svg>
+          </a>
+          <a class="partner-logo" href="#" aria-label="Raíz Agrícola">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M26 12 V 30"/>
+                <path d="M26 30 Q 16 36 12 48"/>
+                <path d="M26 30 Q 36 36 40 48"/>
+                <path d="M26 30 Q 22 40 22 50"/>
+                <path d="M26 30 Q 30 40 30 50"/>
+                <path d="M26 18 Q 18 14 14 18 Q 22 18 26 22 Q 30 18 38 18 Q 34 14 26 18 Z" fill="currentColor" fill-opacity="0.18"/>
+              </g>
+              <text x="54" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Raíz Agrícola</text>
+            </svg>
+          </a>
+          <a class="partner-logo" href="#" aria-label="Nodo Ciudad">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="26" cy="30" r="4" fill="currentColor" stroke="none"/>
+                <circle cx="11" cy="14" r="2.2" fill="currentColor" stroke="none"/>
+                <circle cx="41" cy="14" r="2.2" fill="currentColor" stroke="none"/>
+                <circle cx="11" cy="46" r="2.2" fill="currentColor" stroke="none"/>
+                <circle cx="41" cy="46" r="2.2" fill="currentColor" stroke="none"/>
+                <path d="M26 30 L11 14 M26 30 L41 14 M26 30 L11 46 M26 30 L41 46"/>
+              </g>
+              <text x="54" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Nodo Ciudad</text>
+            </svg>
+          </a>
+          <a class="partner-logo" href="#" aria-label="Minería Circular">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M26 10 A 18 18 0 0 1 44 28"/>
+                <path d="M44 32 A 18 18 0 0 1 26 50"/>
+                <path d="M22 50 A 18 18 0 0 1 8 32"/>
+                <path d="M8 28 A 18 18 0 0 1 22 10"/>
+                <path d="M40 32 L 44 28 L 48 32"/>
+                <path d="M12 28 L 8 32 L 4 28"/>
+                <circle cx="26" cy="30" r="3" fill="currentColor" stroke="none"/>
+              </g>
+              <text x="56" y="38" font-family="Sora, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="0.02em" fill="currentColor">Minería Circular</text>
+            </svg>
+          </a>
+        </div>
+
+        <div class="cases-grid">
+          <article class="case-card">
+            <div class="case-head">
+              <span class="case-tag">Agroindustria</span>
+              <span class="case-id">Caso 01</span>
+            </div>
+            <h3>Trazabilidad de exportación end-to-end</h3>
+            <p>Reemplazamos cinco silos de datos por una sola red observable: del campo al contenedor refrigerado, con auditoría de cada evento de custodia.</p>
+            <div class="case-metric">
+              <strong>99.2%</strong>
+              <span>Uptime sostenido durante temporada alta de exportación</span>
+            </div>
+            <a class="case-cta" href="#contacto">Ver caso completo →</a>
+          </article>
+
+          <article class="case-card">
+            <div class="case-head">
+              <span class="case-tag">Energía</span>
+              <span class="case-id">Caso 02</span>
+            </div>
+            <h3>Telemetría distribuida para microredes</h3>
+            <p>Pipeline edge-to-cloud para 1.200 nodos con tolerancia a desconexión. Lecturas críticas reagrupadas en tiempo near-real bajo SLA estricto.</p>
+            <div class="case-metric">
+              <strong>−45%</strong>
+              <span>De latencia en lecturas críticas frente a la línea base anterior</span>
+            </div>
+            <a class="case-cta" href="#contacto">Ver caso completo →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- Nosotros -->
     <section class="about" id="nosotros">
       <div class="container about-grid">
         <div>
-          <span class="eyebrow">06 — Nosotros</span>
-          <h2>Conectamos lo natural con lo digital para un futuro sostenible.</h2>
-          <p>Somos un equipo interdisciplinar de ingenieros, diseñadores y especialistas en datos. Construimos infraestructura tecnológica para terceros bajo un principio: <em>cada decisión técnica también es una decisión ecológica</em>.</p>
+          <span class="eyebrow">07 — Nosotros</span>
+          <h2>Equipo interdisciplinar, una misma raíz operativa.</h2>
+          <p>Construimos infraestructura crítica bajo un principio: <em>cada decisión técnica también es una decisión ecológica</em>. Trabajamos cerca, sostenidamente y con la mirada puesta en horizontes largos.</p>
+          <div class="about-credentials">
+            <span class="cred-chip"><strong>12 años</strong> promedio del equipo core</span>
+            <span class="cred-chip"><strong>4 disciplinas</strong> bajo un mismo techo</span>
+            <span class="cred-chip"><strong>Latam-first</strong> · husos -3 a -6</span>
+          </div>
           <ul class="values">
             <li><strong>Colaborativos</strong> — Trabajamos como una red, no como un silo.</li>
             <li><strong>Rigurosos</strong> — Documentamos, medimos y revisamos cada capa.</li>
             <li><strong>Regenerativos</strong> — Buscamos dejar el entorno mejor de lo que lo encontramos.</li>
           </ul>
         </div>
-        <figure class="about-quote">
-          <blockquote>
-            “En los bosques, ningún árbol crece solo. La micorriza enseña que la fortaleza
-            individual depende de la salud de la red.”
-          </blockquote>
-          <figcaption>— Manifiesto Micorriza</figcaption>
-        </figure>
+        <div class="about-bento" aria-label="Disciplinas del equipo">
+          <div class="bento-tile">
+            <span class="bento-num">14</span>
+            <strong>Ingeniería</strong>
+            <span>Plataforma, datos, edge y observabilidad.</span>
+          </div>
+          <div class="bento-tile">
+            <span class="bento-num">5</span>
+            <strong>Diseño</strong>
+            <span>Sistemas, producto y datos visuales.</span>
+          </div>
+          <div class="bento-tile">
+            <span class="bento-num">6</span>
+            <strong>Datos</strong>
+            <span>Modelado, ML aplicado y gobernanza.</span>
+          </div>
+          <div class="bento-tile">
+            <span class="bento-num">24/7</span>
+            <strong>Operación</strong>
+            <span>Guardias humanas y respuesta a incidentes.</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -609,7 +805,7 @@
       </div>
       <div>
         <h5>Empresa</h5>
-        <ul><li><a href="#nosotros">Nosotros</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#contacto">Contacto</a></li><li><a href="vistas.html">Vistas</a></li></ul>
+        <ul><li><a href="#nosotros">Nosotros</a></li><li><a href="#aliados">Aliados</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#contacto">Contacto</a></li><li><a href="vistas.html">Vistas</a></li></ul>
       </div>
       <div>
         <h5>Soluciones</h5>
@@ -626,7 +822,7 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script type="module" src="intros/intros.js?v=20260505c"></script>
+  <script src="script.js?v=20260505d"></script>
+  <script type="module" src="intros/intros.js?v=20260505d"></script>
 </body>
 </html>

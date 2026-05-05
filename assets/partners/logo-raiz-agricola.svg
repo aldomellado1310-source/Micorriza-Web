@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Raíz Agrícola">
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <path d="M26 12 V 30"/>
+    <path d="M26 30 Q 16 36 12 48"/>
+    <path d="M26 30 Q 36 36 40 48"/>
+    <path d="M26 30 Q 22 40 22 50"/>
+    <path d="M26 30 Q 30 40 30 50"/>
+    <path d="M26 18 Q 18 14 14 18 Q 22 18 26 22 Q 30 18 38 18 Q 34 14 26 18 Z" fill="currentColor" fill-opacity="0.18"/>
+  </g>
+  <text x="54" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Raíz Agrícola</text>
+</svg>

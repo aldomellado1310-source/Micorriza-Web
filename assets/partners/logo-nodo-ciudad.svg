@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nodo Ciudad">
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <circle cx="26" cy="30" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="11" cy="14" r="2.2" fill="currentColor" stroke="none"/>
+    <circle cx="41" cy="14" r="2.2" fill="currentColor" stroke="none"/>
+    <circle cx="11" cy="46" r="2.2" fill="currentColor" stroke="none"/>
+    <circle cx="41" cy="46" r="2.2" fill="currentColor" stroke="none"/>
+    <path d="M26 30 L11 14 M26 30 L41 14 M26 30 L11 46 M26 30 L41 46"/>
+  </g>
+  <text x="54" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Nodo Ciudad</text>
+</svg>

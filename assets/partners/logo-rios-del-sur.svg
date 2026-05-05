@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ríos del Sur">
+  <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M12 22 Q 20 28 28 22 T 44 22"/>
+    <path d="M12 32 Q 20 38 28 32 T 44 32"/>
+    <path d="M12 42 Q 20 48 28 42 T 44 42"/>
+  </g>
+  <text x="56" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Ríos del Sur</text>
+</svg>

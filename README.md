@@ -20,21 +20,50 @@ Construido como un sitio estático con HTML, CSS y JavaScript vanilla, fiel a la
 │   ├── intros.css     # Estilos overlay + 4 animaciones de bienvenida
 │   └── intros.js      # Controlador y secuencias (módulo ES)
 ├── assets/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   └── partners/      # Logos placeholder en SVG (currentColor)
 └── README.md
 ```
 
 ## Secciones
 
-1. **Hero** — Propuesta de valor + ilustración SVG de la red micorrícica.
-2. **Esencia de marca** — Manifiesto y posicionamiento.
-3. **Soluciones** — Escalabilidad, resiliencia, seguridad e impacto sostenible.
-4. **Sectores** — Industrias atendidas.
-5. **Tecnología** — Las cuatro capas (Aplicación, Datos, Red, Infraestructura) + panel de métricas en vivo.
-6. **Capacidades** — Iconografía oficial.
-7. **Recursos** — Whitepapers, casos de estudio, guías.
-8. **Nosotros** — Equipo y manifiesto.
-9. **Contacto** — Formulario y CTA final.
+1. **Hero** — Propuesta de valor + ilustración SVG de la red micorrícica animada.
+2. **KPI strip** — Banda de credibilidad inmediata: años, sectores, operación, uptime.
+3. **Manifiesto** — Cita central como tesis general (anchor de marca).
+4. **Soluciones (01)** — Cuatro principios reescritos con POV Micorriza explícita y iconografía custom.
+5. **Sectores (02)** — Tesis "cada sector es un ecosistema" + 6 cards con POV específica de una línea.
+6. **Tecnología (03)** — Las cuatro capas (Aplicación, Datos, Red, Infraestructura) + panel de métricas en vivo.
+7. **Capacidades (04)** — Iconografía oficial.
+8. **Recursos (05)** — Whitepapers, casos de estudio, guías.
+9. **Aliados y casos (06)** — Muro de logos placeholder + 2 case study cards con métrica destacada.
+10. **Nosotros (07)** — Equipo, credenciales y bento de disciplinas.
+11. **Contacto** — Formulario y CTA final.
+
+## Aliados y casos
+
+La sección `#aliados` muestra dos bloques de prueba social:
+
+### Logo wall
+
+7 logos placeholder en `assets/partners/` (SVG monolínea, viewBox `200×60`,
+`stroke="currentColor"` para que el CSS controle su color y estado de hover).
+Para reemplazar por logos reales:
+
+1. Coloca el logo nuevo en `assets/partners/logo-<slug>.svg`.
+2. Mantén el mismo viewBox (`200×60`) y usa `currentColor` en lugar de
+   colores fijos para que herede los estados de la grilla.
+3. Reemplaza el `<svg>` inline correspondiente dentro de `index.html`
+   bajo la `.partners-grid`.
+
+Comportamiento por defecto: monocromos en color arcilla y opacidad 0.75;
+en hover suben a azul Micorriza y opacidad completa.
+
+### Case study cards
+
+Dos `.case-card` con: sector tag (pill agua-claro), título h3, descripción
+corta, métrica grande tipográfica (Fraunces 500) y CTA "Ver caso completo →".
+Diseñadas para ser duplicadas — basta copiar el bloque `<article class="case-card">`
+y ajustar contenido. La grilla `.cases-grid` colapsa a una columna en mobile.
 
 ## Desarrollo local
 

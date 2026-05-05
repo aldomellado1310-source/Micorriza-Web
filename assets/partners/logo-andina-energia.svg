@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Andina Energía">
+  <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M14 42 L26 18 L38 42"/>
+    <path d="M19 34 L33 34"/>
+    <circle cx="26" cy="14" r="2.2" fill="currentColor"/>
+  </g>
+  <text x="52" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Andina Energía</text>
+</svg>

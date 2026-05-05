@@ -19,7 +19,7 @@ if (toggle && nav) {
 
 // Reveal-on-scroll for major blocks
 const revealTargets = document.querySelectorAll(
-  ".hero-copy > *, .hero-visual, .essence-grid, .section-head, .card, .sector, .tech-copy, .metrics-panel, .resource, .about-grid > *, .cta-inner > *, .icon-row > li"
+  ".hero-copy > *, .hero-visual, .section-head, .card, .sector, .tech-copy, .metrics-panel, .resource, .about-grid > *, .cta-inner > *, .icon-row > li, .kpi-tile, .case-card, .partner-logo, .manifesto-band blockquote, .bento-tile"
 );
 revealTargets.forEach((el) => el.classList.add("reveal"));
 
@@ -35,3 +35,17 @@ const io = new IntersectionObserver(
   { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
 );
 revealTargets.forEach((el) => io.observe(el));
+
+// Eyebrow letter-spacing reveal on viewport entry
+const eyebrowIO = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-revealed");
+        eyebrowIO.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.6, rootMargin: "0px 0px -20px 0px" }
+);
+document.querySelectorAll(".eyebrow").forEach((el) => eyebrowIO.observe(el));

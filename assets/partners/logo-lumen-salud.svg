@@ -1,0 +1,7 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lumen Salud">
+  <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <circle cx="26" cy="30" r="11"/>
+    <path d="M26 14 V 9 M26 51 V 46 M10 30 H 5 M47 30 H 42 M14 18 L 11 15 M38 42 L 41 45 M14 42 L 11 45 M38 18 L 41 15"/>
+  </g>
+  <text x="58" y="38" font-family="Sora, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="0.02em" fill="currentColor">Lumen Salud</text>
+</svg>
