@@ -14,7 +14,7 @@ export const INTROS = [
   {
     id: "mycelium",
     label: "Micelio que crece",
-    summary: "Hilos que brotan desde el centro, ramifican y conectan nodos.",
+    summary: "Las raíces emergen, se entrelazan en una red neuronal que recibe nutrientes, y la planta crece sobre la superficie.",
     play: playMycelium,
     thumb: thumbMycelium,
   },
@@ -99,7 +99,17 @@ export async function playIntro(id, { container, force = false } = {}) {
   }
 }
 
-/* ---------- 1) Mycelium ---------- */
+/* ---------- 1) Mycelium ----------
+   Narrative (~2.9s):
+     0–700ms   : roots fan out from a central spore (stroke-dashoffset draw)
+     500–1100  : sub-branches sprout at root tips
+     900–1300  : tier-1 nodes pop in at root tips, tier-2 at sub-tips
+     1300–1900 : neural cross-connections draw between distant nodes
+     1400–2200 : nutrient particles travel from outer endpoints inward (SMIL)
+     1700–2400 : stem grows upward from the spore
+     1900–2700 : leaves unfurl one by one
+     2580–2900 : whole canvas fades, page revealed
+*/
 function playMycelium(stage, { isSkipped }) {
   const NS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(NS, "svg");
@@ -107,68 +117,154 @@ function playMycelium(stage, { isSkipped }) {
   svg.setAttribute("class", "myc-canvas");
   svg.setAttribute("aria-hidden", "true");
 
-  // central spore
-  const spore = circle(NS, 300, 300, 12, "#1F3B5B", "myc-spore");
-  svg.appendChild(spore);
+  // soil reference line (subtle)
+  const soil = line(NS, 60, 320, 540, 320, "#DCC8A8", 1, "myc-soil");
+  soil.setAttribute("stroke-dasharray", "3 5");
+  svg.appendChild(soil);
 
-  // 8 main hyphae paths
-  const main = [
-    "M300,300 Q 250,260 190,200",
-    "M300,300 Q 350,260 410,200",
-    "M300,300 Q 240,300 150,290",
-    "M300,300 Q 360,300 450,310",
-    "M300,300 Q 250,360 200,420",
-    "M300,300 Q 350,360 400,420",
-    "M300,300 Q 290,360 290,460",
-    "M300,300 Q 310,260 320,170",
+  // 8 main roots radiating down/sideways from the central spore
+  const rootDefs = [
+    "M300,320 Q 250,360 200,420",
+    "M300,320 Q 350,360 400,420",
+    "M300,320 Q 220,400 160,460",
+    "M300,320 Q 380,400 440,460",
+    "M300,320 Q 290,420 290,500",
+    "M300,320 Q 310,420 320,520",
+    "M300,320 Q 230,335 150,340",
+    "M300,320 Q 370,335 450,340",
   ];
-  const palette = ["#898561", "#B07A4A", "#898561", "#B07A4A", "#66B7C9", "#66B7C9", "#1F3B5B", "#898561"];
-  main.forEach((d, i) => {
-    const p = path(NS, d, palette[i], 2, `myc-line l${i + 1}`);
-    svg.appendChild(p);
+  const rootColors = ["#898561","#B07A4A","#898561","#B07A4A","#66B7C9","#66B7C9","#898561","#B07A4A"];
+  rootDefs.forEach((d, i) => {
+    svg.appendChild(path(NS, d, rootColors[i], 2, `myc-line l${i + 1}`));
   });
 
-  // sub-branches at endpoints
+  // sub-branches at root endpoints
   const subs = [
-    "M190,200 Q 160,180 130,150",
-    "M410,200 Q 440,180 470,150",
-    "M150,290 Q 110,300 80,310",
-    "M450,310 Q 490,310 520,310",
-    "M200,420 Q 170,460 150,500",
-    "M400,420 Q 430,460 450,500",
-    "M290,460 Q 270,500 270,540",
-    "M320,170 Q 320,140 330,110",
+    "M200,420 Q 170,440 140,460",
+    "M400,420 Q 430,440 460,460",
+    "M160,460 Q 130,490 110,520",
+    "M440,460 Q 470,490 490,520",
+    "M290,500 Q 280,540 280,570",
+    "M320,520 Q 330,550 340,580",
+    "M150,340 Q 110,340 80,345",
+    "M450,340 Q 490,340 520,345",
   ];
   subs.forEach((d, i) => {
-    const p = path(NS, d, i % 2 ? "#B07A4A" : "#66B7C9", 1.4, "myc-sub");
-    svg.appendChild(p);
+    svg.appendChild(path(NS, d, i % 2 ? "#B07A4A" : "#66B7C9", 1.4, "myc-sub"));
   });
 
-  // nodes at junctions
+  // central spore (above roots in z-order)
+  svg.appendChild(circle(NS, 300, 320, 12, "#1F3B5B", "myc-spore"));
+
+  // tier-1 nodes at root tips, tier-2 at sub-branch tips
   const nodes = [
-    [190, 200, 5, "#3B2E26", "tier-1"],
-    [410, 200, 5, "#B07A4A", "tier-1"],
-    [150, 290, 5, "#66B7C9", "tier-1"],
-    [450, 310, 5, "#66B7C9", "tier-1"],
-    [200, 420, 5, "#1F3B5B", "tier-1"],
-    [400, 420, 5, "#1F3B5B", "tier-1"],
-    [290, 460, 4, "#66B7C9", "tier-1"],
-    [320, 170, 4, "#898561", "tier-1"],
-    [130, 150, 3, "#B07A4A", "tier-2"],
-    [470, 150, 3, "#B07A4A", "tier-2"],
-    [80,  310, 3, "#66B7C9", "tier-2"],
-    [520, 310, 3, "#66B7C9", "tier-2"],
-    [150, 500, 3, "#66B7C9", "tier-2"],
-    [450, 500, 3, "#66B7C9", "tier-2"],
-    [270, 540, 3, "#1F3B5B", "tier-3"],
-    [330, 110, 3, "#898561", "tier-3"],
+    [200, 420, 5, "#3B2E26", "tier-1"],
+    [400, 420, 5, "#B07A4A", "tier-1"],
+    [160, 460, 5, "#66B7C9", "tier-1"],
+    [440, 460, 5, "#66B7C9", "tier-1"],
+    [290, 500, 4, "#1F3B5B", "tier-1"],
+    [320, 520, 4, "#1F3B5B", "tier-1"],
+    [150, 340, 4, "#898561", "tier-1"],
+    [450, 340, 4, "#B07A4A", "tier-1"],
+    [140, 460, 3, "#B07A4A", "tier-2"],
+    [460, 460, 3, "#B07A4A", "tier-2"],
+    [110, 520, 3, "#66B7C9", "tier-2"],
+    [490, 520, 3, "#66B7C9", "tier-2"],
+    [280, 570, 3, "#1F3B5B", "tier-2"],
+    [340, 580, 3, "#1F3B5B", "tier-2"],
+    [80,  345, 3, "#898561", "tier-2"],
+    [520, 345, 3, "#898561", "tier-2"],
   ];
   nodes.forEach(([cx, cy, r, fill, tier]) => {
     svg.appendChild(circle(NS, cx, cy, r, fill, `myc-node ${tier}`));
   });
 
+  // neural cross-connections: dashed lines between distant nodes,
+  // suggesting the mycelial junctions becoming a neural network
+  const neural = [
+    "M200,420 L 400,420",
+    "M160,460 L 440,460",
+    "M150,340 L 450,340",
+    "M200,420 L 160,460",
+    "M400,420 L 440,460",
+    "M290,500 L 320,520",
+    "M150,340 L 200,420",
+    "M450,340 L 400,420",
+  ];
+  neural.forEach((d, i) => {
+    const p = path(NS, d, "#66B7C9", 0.9, `myc-neural neu-${i + 1}`);
+    p.setAttribute("stroke-dasharray", "3 4");
+    svg.appendChild(p);
+  });
+
+  // nutrient particles flow inward along each root (SMIL animateMotion + opacity)
+  rootDefs.forEach((d, i) => {
+    const n = circle(NS, 0, 0, 2.6, "#DCC8A8", "myc-nutrient");
+    n.setAttribute("opacity", "0");
+    const begin = 1.4 + i * 0.08;
+
+    const fadeIn = document.createElementNS(NS, "animate");
+    fadeIn.setAttribute("attributeName", "opacity");
+    fadeIn.setAttribute("begin", `${begin}s`);
+    fadeIn.setAttribute("dur", "0.15s");
+    fadeIn.setAttribute("from", "0");
+    fadeIn.setAttribute("to", "1");
+    fadeIn.setAttribute("fill", "freeze");
+    n.appendChild(fadeIn);
+
+    const motion = document.createElementNS(NS, "animateMotion");
+    motion.setAttribute("dur", "0.7s");
+    motion.setAttribute("begin", `${begin}s`);
+    motion.setAttribute("fill", "freeze");
+    motion.setAttribute("keyPoints", "1;0");
+    motion.setAttribute("keyTimes", "0;1");
+    motion.setAttribute("path", d);
+    n.appendChild(motion);
+
+    const fadeOut = document.createElementNS(NS, "animate");
+    fadeOut.setAttribute("attributeName", "opacity");
+    fadeOut.setAttribute("begin", `${begin + 0.55}s`);
+    fadeOut.setAttribute("dur", "0.15s");
+    fadeOut.setAttribute("from", "1");
+    fadeOut.setAttribute("to", "0");
+    fadeOut.setAttribute("fill", "freeze");
+    n.appendChild(fadeOut);
+
+    svg.appendChild(n);
+  });
+
+  // stem rising above the soil from the spore
+  svg.appendChild(path(NS, "M300,320 Q 298,260 302,200 Q 298,140 300,90", "#5e8b56", 3, "myc-stem"));
+
+  // leaves along the stem
+  const leaves = [
+    { y: 270, rot: -55, size: 1,    fill: "#6da25a" },
+    { y: 280, rot:  50, size: 1,    fill: "#5e8b4a" },
+    { y: 200, rot: -45, size: 0.85, fill: "#7ab063" },
+    { y: 195, rot:  40, size: 0.85, fill: "#6da25a" },
+    { y: 110, rot: -18, size: 0.75, fill: "#7ab063" },
+  ];
+  leaves.forEach((l, i) => {
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("transform", `translate(300 ${l.y}) rotate(${l.rot}) scale(${l.size})`);
+    const inner = document.createElementNS(NS, "g");
+    inner.setAttribute("class", `myc-leaf myc-leaf-${i + 1}`);
+    const blade = document.createElementNS(NS, "path");
+    blade.setAttribute("d", "M0 0 Q -22 -28 0 -64 Q 22 -28 0 0 Z");
+    blade.setAttribute("fill", l.fill);
+    inner.appendChild(blade);
+    const vein = document.createElementNS(NS, "path");
+    vein.setAttribute("d", "M 0 -3 L 0 -56");
+    vein.setAttribute("stroke", "#3a5e2f");
+    vein.setAttribute("stroke-width", "0.6");
+    vein.setAttribute("stroke-linecap", "round");
+    inner.appendChild(vein);
+    g.appendChild(inner);
+    svg.appendChild(g);
+  });
+
   stage.appendChild(svg);
-  return raceWithSkip(2200, isSkipped);
+  return raceWithSkip(2900, isSkipped);
 }
 
 /* ---------- 2) Logo build-up ---------- */
@@ -383,25 +479,39 @@ function playEmergence(stage, { isSkipped }) {
 function thumbMycelium() {
   return `
     <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+      <line x1="40" y1="200" x2="560" y2="200" stroke="#DCC8A8" stroke-width="1" stroke-dasharray="3 5" opacity="0.55"/>
+      <!-- stem + leaves above soil -->
+      <path d="M300,200 Q 298,150 302,100 Q 300,80 300,70" stroke="#5e8b56" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <g transform="translate(300 175) rotate(-50) scale(0.85)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(300 180) rotate(50)  scale(0.85)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#5e8b4a"/></g>
+      <g transform="translate(300 110) rotate(-30) scale(0.6)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#7ab063"/></g>
+      <g transform="translate(300 105) rotate(30)  scale(0.6)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#6da25a"/></g>
+      <!-- roots below soil -->
       <g stroke-linecap="round" fill="none">
-        <path d="M300,190 Q 240,150 180,110" stroke="#898561" stroke-width="1.6"/>
-        <path d="M300,190 Q 360,150 420,110" stroke="#B07A4A" stroke-width="1.6"/>
-        <path d="M300,190 Q 220,200 130,200" stroke="#898561" stroke-width="1.6"/>
-        <path d="M300,190 Q 380,200 470,200" stroke="#B07A4A" stroke-width="1.6"/>
-        <path d="M300,190 Q 240,250 180,290" stroke="#66B7C9" stroke-width="1.6"/>
-        <path d="M300,190 Q 360,250 420,290" stroke="#66B7C9" stroke-width="1.6"/>
-        <path d="M300,190 Q 295,250 290,320" stroke="#1F3B5B" stroke-width="1.6"/>
+        <path d="M300,200 Q 240,250 180,290" stroke="#898561" stroke-width="1.6"/>
+        <path d="M300,200 Q 360,250 420,290" stroke="#B07A4A" stroke-width="1.6"/>
+        <path d="M300,200 Q 220,290 130,300" stroke="#898561" stroke-width="1.6"/>
+        <path d="M300,200 Q 380,290 470,300" stroke="#B07A4A" stroke-width="1.6"/>
+        <path d="M300,200 Q 295,260 290,330" stroke="#1F3B5B" stroke-width="1.6"/>
       </g>
-      <g>
-        <circle cx="300" cy="190" r="9" fill="#1F3B5B"/>
-        <circle cx="180" cy="110" r="4" fill="#3B2E26"/>
-        <circle cx="420" cy="110" r="4" fill="#B07A4A"/>
-        <circle cx="130" cy="200" r="4" fill="#66B7C9"/>
-        <circle cx="470" cy="200" r="4" fill="#66B7C9"/>
-        <circle cx="180" cy="290" r="4" fill="#1F3B5B"/>
-        <circle cx="420" cy="290" r="4" fill="#1F3B5B"/>
-        <circle cx="290" cy="320" r="3" fill="#66B7C9"/>
+      <!-- neural cross-connections -->
+      <g stroke="#66B7C9" stroke-width="0.8" fill="none" stroke-dasharray="2 3" opacity="0.55">
+        <path d="M180,290 L 420,290"/>
+        <path d="M130,300 L 470,300"/>
+        <path d="M180,290 L 290,330"/>
+        <path d="M420,290 L 290,330"/>
       </g>
+      <!-- nutrients in transit -->
+      <circle cx="240" cy="245" r="2.4" fill="#DCC8A8"/>
+      <circle cx="360" cy="245" r="2.4" fill="#DCC8A8"/>
+      <circle cx="295" cy="265" r="2.4" fill="#DCC8A8"/>
+      <!-- nodes -->
+      <circle cx="300" cy="200" r="8"   fill="#1F3B5B"/>
+      <circle cx="180" cy="290" r="4"   fill="#3B2E26"/>
+      <circle cx="420" cy="290" r="4"   fill="#B07A4A"/>
+      <circle cx="130" cy="300" r="3.5" fill="#66B7C9"/>
+      <circle cx="470" cy="300" r="3.5" fill="#66B7C9"/>
+      <circle cx="290" cy="330" r="3"   fill="#1F3B5B"/>
     </svg>
   `;
 }
@@ -500,6 +610,15 @@ function circle(NS, cx, cy, r, fill, cls) {
   c.setAttribute("r", r);   c.setAttribute("fill", fill);
   if (cls) c.setAttribute("class", cls);
   return c;
+}
+function line(NS, x1, y1, x2, y2, stroke, sw, cls) {
+  const l = document.createElementNS(NS, "line");
+  l.setAttribute("x1", x1); l.setAttribute("y1", y1);
+  l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+  l.setAttribute("stroke", stroke);
+  l.setAttribute("stroke-width", sw);
+  if (cls) l.setAttribute("class", cls);
+  return l;
 }
 function wait(ms) { return new Promise((r) => setTimeout(r, ms)); }
 function raceWithSkip(durationMs, isSkipped) {

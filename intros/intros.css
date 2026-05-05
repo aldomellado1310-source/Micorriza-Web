@@ -43,9 +43,18 @@
 @keyframes skip-in { to { opacity: 1; } }
 
 /* ============================================================
-   1) Mycelium grow
+   1) Mycelium grow → neural network → nutrients → plant grows
    ============================================================ */
 .intro-mycelium svg { width: min(78vmin, 720px); height: auto; }
+
+/* soil reference line (subtle dashed) */
+.intro-mycelium .myc-soil {
+  opacity: 0;
+  animation: myc-soil-in 400ms 200ms ease forwards;
+}
+@keyframes myc-soil-in { to { opacity: 0.5; } }
+
+/* central spore */
 .intro-mycelium .myc-spore {
   transform-box: fill-box; transform-origin: center;
   transform: scale(0);
@@ -56,6 +65,8 @@
   60%  { transform: scale(1.3); }
   100% { transform: scale(1); }
 }
+
+/* main roots draw outward (staggered by class) */
 .intro-mycelium .myc-line {
   stroke-dasharray: 260; stroke-dashoffset: 260;
   animation: myc-draw 720ms cubic-bezier(.2,.7,.2,1) 220ms forwards;
@@ -67,6 +78,8 @@
 .intro-mycelium .myc-line.l6 { animation-delay: 420ms; }
 .intro-mycelium .myc-line.l7 { animation-delay: 460ms; }
 .intro-mycelium .myc-line.l8 { animation-delay: 500ms; }
+
+/* sub-branches */
 .intro-mycelium .myc-sub {
   stroke-dasharray: 110; stroke-dashoffset: 110;
   animation: myc-draw 460ms cubic-bezier(.2,.7,.2,1) 720ms forwards;
@@ -74,21 +87,68 @@
 .intro-mycelium .myc-sub:nth-of-type(odd)  { animation-delay: 800ms; }
 .intro-mycelium .myc-sub:nth-of-type(3n)   { animation-delay: 880ms; }
 @keyframes myc-draw { to { stroke-dashoffset: 0; } }
+
+/* nodes pop in at root tips & sub-tips */
 .intro-mycelium .myc-node {
   transform-box: fill-box; transform-origin: center;
   transform: scale(0); opacity: 0;
   animation: myc-node 360ms cubic-bezier(.2,.7,.2,1) forwards;
 }
-.intro-mycelium .myc-node.tier-1 { animation-delay: 760ms; }
-.intro-mycelium .myc-node.tier-2 { animation-delay: 980ms; }
-.intro-mycelium .myc-node.tier-3 { animation-delay: 1200ms; }
+.intro-mycelium .myc-node.tier-1 { animation-delay: 900ms; }
+.intro-mycelium .myc-node.tier-2 { animation-delay: 1180ms; }
 @keyframes myc-node {
   0%   { transform: scale(0); opacity: 0; }
   60%  { transform: scale(1.4); opacity: 1; }
   100% { transform: scale(1);  opacity: 1; }
 }
+
+/* neural cross-connections: dashed lines between distant nodes */
+.intro-mycelium .myc-neural {
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: myc-neural-in 600ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-mycelium .neu-1 { animation-delay: 1300ms; }
+.intro-mycelium .neu-2 { animation-delay: 1340ms; }
+.intro-mycelium .neu-3 { animation-delay: 1380ms; }
+.intro-mycelium .neu-4 { animation-delay: 1420ms; }
+.intro-mycelium .neu-5 { animation-delay: 1460ms; }
+.intro-mycelium .neu-6 { animation-delay: 1500ms; }
+.intro-mycelium .neu-7 { animation-delay: 1540ms; }
+.intro-mycelium .neu-8 { animation-delay: 1580ms; }
+@keyframes myc-neural-in {
+  0%   { opacity: 0; transform: translateZ(0); }
+  100% { opacity: 0.6; }
+}
+
+/* stem rises from the spore */
+.intro-mycelium .myc-stem {
+  stroke-dasharray: 260; stroke-dashoffset: 260;
+  fill: none; stroke-linecap: round;
+  animation: myc-draw 700ms 1700ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+/* leaves unfurl one by one */
+.intro-mycelium .myc-leaf {
+  transform-box: fill-box; transform-origin: 50% 100%;
+  transform: scale(0); opacity: 0;
+  animation: myc-leaf-unfurl 480ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-mycelium .myc-leaf-1 { animation-delay: 1900ms; }
+.intro-mycelium .myc-leaf-2 { animation-delay: 1980ms; }
+.intro-mycelium .myc-leaf-3 { animation-delay: 2080ms; }
+.intro-mycelium .myc-leaf-4 { animation-delay: 2160ms; }
+.intro-mycelium .myc-leaf-5 { animation-delay: 2260ms; }
+@keyframes myc-leaf-unfurl {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1);  opacity: 1; }
+}
+
+/* whole canvas fades out at the end of the narrative */
 .intro-mycelium .myc-canvas {
-  animation: myc-fade 520ms 1700ms ease forwards;
+  animation: myc-fade 320ms 2580ms ease forwards;
 }
 @keyframes myc-fade { to { opacity: 0; transform: scale(1.04); } }
 
