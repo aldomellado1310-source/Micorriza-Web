@@ -43,9 +43,7 @@
 @keyframes skip-in { to { opacity: 1; } }
 
 /* ============================================================
-   0) Simbiosis: nace una micorriza
-   La unión entre hongo (izq) y raíz (der) puesta en escena.
-   ~6.3 s total.
+   0) Simbiosis: bosque vivo → logo Micorriza
    ============================================================ */
 .intro-simbiosis .intro-stage,
 .intro-simbiosis .sym-canvas {
@@ -57,153 +55,157 @@
   display: block;
 }
 
-/* etymology labels */
-.intro-simbiosis .sym-etymology {
+/* --- Soil --- */
+.intro-simbiosis .sym-soil {
   opacity: 0;
-  animation: sym-fade-in 600ms 200ms ease forwards;
+  animation: sym-soil-fade 500ms 200ms ease forwards;
 }
-@keyframes sym-fade-in { to { opacity: 0.9; } }
+@keyframes sym-soil-fade { to { opacity: 0.7; } }
 
-/* fungal spore: aparece y luego respira suavemente */
-.intro-simbiosis .sym-spore {
-  transform-box: fill-box;
-  transform-origin: center;
+/* --- Trees grow up from base (scale-from-soil) --- */
+.intro-simbiosis .sym-tree {
+  transform-box: view-box;
   transform: scale(0);
-  animation:
-    sym-pop 420ms 400ms cubic-bezier(.2,.7,.2,1) forwards,
-    sym-spore-breath 3.2s 1100ms ease-in-out infinite;
+  opacity: 0;
 }
+.intro-simbiosis .sym-tree.st-1 {
+  transform-origin: 300px 350px;
+  animation: sym-tree-grow 1100ms 500ms cubic-bezier(.16,.84,.44,1) forwards;
+}
+.intro-simbiosis .sym-tree.st-2 {
+  transform-origin: 500px 350px;
+  animation: sym-tree-grow 1200ms 700ms cubic-bezier(.16,.84,.44,1) forwards;
+}
+.intro-simbiosis .sym-tree.st-3 {
+  transform-origin: 700px 350px;
+  animation: sym-tree-grow 1100ms 900ms cubic-bezier(.16,.84,.44,1) forwards;
+}
+@keyframes sym-tree-grow {
+  0%   { transform: scale(0); opacity: 0; }
+  20%  { opacity: 1; }
+  35%  { transform: scale(0.45); }
+  60%  { transform: scale(0.55); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* --- Mushrooms pop --- */
+.intro-simbiosis .sym-mushroom {
+  transform-box: view-box;
+  transform: scale(0);
+  opacity: 0;
+  animation: sym-pop 480ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-simbiosis .sym-mushroom.sm-1 { transform-origin: 268px 350px; animation-delay: 1700ms; }
+.intro-simbiosis .sym-mushroom.sm-2 { transform-origin: 524px 350px; animation-delay: 1850ms; }
+.intro-simbiosis .sym-mushroom.sm-3 { transform-origin: 731px 350px; animation-delay: 2000ms; }
 @keyframes sym-pop {
-  0%   { transform: scale(0); }
-  60%  { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-@keyframes sym-spore-breath {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.10); }
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-/* trunk */
-.intro-simbiosis .sym-trunk {
-  stroke-dasharray: 240;
-  stroke-dashoffset: 240;
-  fill: none;
-  stroke-linecap: round;
-  animation: sym-draw 700ms 400ms cubic-bezier(.2,.7,.2,1) forwards;
-}
-
-/* hyphae and roots — main networks growing toward the center */
-.intro-simbiosis .sym-hyphae,
+/* --- Roots draw outward (per-tree timing) --- */
 .intro-simbiosis .sym-root {
   fill: none;
   stroke-linecap: round;
-  stroke-dasharray: 380;
-  stroke-dashoffset: 380;
-  animation: sym-draw 1200ms cubic-bezier(.55,.05,.45,.95) forwards;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: sym-draw 700ms cubic-bezier(.55,.05,.45,.95) forwards;
 }
-.intro-simbiosis .sh-1 { animation-delay: 700ms; }
-.intro-simbiosis .sh-2 { animation-delay: 800ms; }
-.intro-simbiosis .sh-3 { animation-delay: 900ms; }
-.intro-simbiosis .sh-4 { animation-delay: 1000ms; }
-.intro-simbiosis .sh-5 { animation-delay: 1100ms; }
-.intro-simbiosis .sh-6 { animation-delay: 1200ms; }
-.intro-simbiosis .sh-7 { animation-delay: 1300ms; }
-.intro-simbiosis .sr-1 { animation-delay: 700ms; }
-.intro-simbiosis .sr-2 { animation-delay: 850ms; }
-.intro-simbiosis .sr-3 { animation-delay: 1000ms; }
-.intro-simbiosis .sr-4 { animation-delay: 1150ms; }
-.intro-simbiosis .sr-5 { animation-delay: 1300ms; }
+.intro-simbiosis .sr-1-1, .intro-simbiosis .sr-1-2,
+.intro-simbiosis .sr-1-3, .intro-simbiosis .sr-1-4,
+.intro-simbiosis .sr-1-5 { animation-delay: 1500ms; }
+.intro-simbiosis .sr-2-1, .intro-simbiosis .sr-2-2,
+.intro-simbiosis .sr-2-3, .intro-simbiosis .sr-2-4,
+.intro-simbiosis .sr-2-5 { animation-delay: 1700ms; }
+.intro-simbiosis .sr-3-1, .intro-simbiosis .sr-3-2,
+.intro-simbiosis .sr-3-3, .intro-simbiosis .sr-3-4,
+.intro-simbiosis .sr-3-5 { animation-delay: 1900ms; }
 @keyframes sym-draw { to { stroke-dashoffset: 0; } }
 
-/* sub-branches off hyphae */
-.intro-simbiosis .sym-hyphae-sub {
+/* --- Underground network draws --- */
+.intro-simbiosis .sym-network {
   fill: none;
   stroke-linecap: round;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: sym-draw 600ms cubic-bezier(.2,.7,.2,1) forwards;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: sym-draw 900ms cubic-bezier(.55,.05,.45,.95) forwards;
 }
-.intro-simbiosis .sub-1 { animation-delay: 1500ms; }
-.intro-simbiosis .sub-2 { animation-delay: 1600ms; }
-.intro-simbiosis .sub-3 { animation-delay: 1700ms; }
-.intro-simbiosis .sub-4 { animation-delay: 1800ms; }
-.intro-simbiosis .sub-5 { animation-delay: 1900ms; }
+.intro-simbiosis .sn-1 { animation-delay: 2400ms; }
+.intro-simbiosis .sn-2 { animation-delay: 2520ms; }
+.intro-simbiosis .sn-3 { animation-delay: 2640ms; }
+.intro-simbiosis .sn-4 { animation-delay: 2760ms; }
+.intro-simbiosis .sn-5 { animation-delay: 2880ms; }
+.intro-simbiosis .sn-6 { animation-delay: 3000ms; }
+.intro-simbiosis .sn-7 { animation-delay: 3120ms; }
 
-/* leaves */
-.intro-simbiosis .sym-leaf {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  transform: scale(0);
-  opacity: 0;
-  animation: sym-leaf 500ms cubic-bezier(.2,.7,.2,1) forwards;
+/* --- Organic scene fades to make way for the logo --- */
+.intro-simbiosis .sym-organic-scene {
+  animation: sym-organic-fade 900ms 5000ms ease forwards;
 }
-.intro-simbiosis .sl-1 { animation-delay: 1200ms; }
-.intro-simbiosis .sl-2 { animation-delay: 1300ms; }
-.intro-simbiosis .sl-3 { animation-delay: 1400ms; }
-@keyframes sym-leaf {
-  0%   { opacity: 0; transform: scale(0); }
-  60%  { opacity: 1; transform: scale(1.15); }
-  100% { opacity: 1; transform: scale(1); }
+@keyframes sym-organic-fade {
+  to { opacity: 0; }
 }
 
-/* mycorrhizal interface — the union zone */
-.intro-simbiosis .sym-halo {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0.3);
-  animation: sym-halo 1300ms 1900ms ease-out forwards;
-}
-@keyframes sym-halo {
-  0%   { opacity: 0; transform: scale(0.3); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* interface nodes: pop-in y luego pulso ambient en bucle (la red está viva) */
-.intro-simbiosis .sym-iface {
+/* --- Logo nodes pop in (top cinnamon, center, bottom teal) --- */
+.intro-simbiosis .sym-logo-node {
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
   opacity: 0;
-  animation:
-    sym-pop-glow 520ms cubic-bezier(.2,.7,.2,1) forwards,
-    sym-iface-pulse 2.6s ease-in-out infinite;
+  animation: sym-logo-node-pop 520ms cubic-bezier(.2,.7,.2,1) forwards;
 }
-.intro-simbiosis .sin-1 { animation-delay: 2100ms, 3000ms; }
-.intro-simbiosis .sin-2 { animation-delay: 2150ms, 3120ms; }
-.intro-simbiosis .sin-3 { animation-delay: 2200ms, 3240ms; }
-.intro-simbiosis .sin-4 { animation-delay: 2250ms, 3360ms; }
-.intro-simbiosis .sin-5 { animation-delay: 2300ms, 3480ms; }
-.intro-simbiosis .sin-6 { animation-delay: 2350ms, 3600ms; }
-@keyframes sym-pop-glow {
+.intro-simbiosis .sln-center { animation-delay: 5300ms; }
+.intro-simbiosis .sln-top-1  { animation-delay: 5400ms; }
+.intro-simbiosis .sln-top-2  { animation-delay: 5440ms; }
+.intro-simbiosis .sln-top-3  { animation-delay: 5480ms; }
+.intro-simbiosis .sln-top-4  { animation-delay: 5520ms; }
+.intro-simbiosis .sln-top-5  { animation-delay: 5560ms; }
+.intro-simbiosis .sln-top-6  { animation-delay: 5600ms; }
+.intro-simbiosis .sln-top-7  { animation-delay: 5640ms; }
+.intro-simbiosis .sln-top-8  { animation-delay: 5680ms; }
+.intro-simbiosis .sln-bot-1  { animation-delay: 5500ms; }
+.intro-simbiosis .sln-bot-2  { animation-delay: 5540ms; }
+.intro-simbiosis .sln-bot-3  { animation-delay: 5580ms; }
+.intro-simbiosis .sln-bot-4  { animation-delay: 5620ms; }
+.intro-simbiosis .sln-bot-5  { animation-delay: 5660ms; }
+.intro-simbiosis .sln-bot-6  { animation-delay: 5700ms; }
+.intro-simbiosis .sln-bot-7  { animation-delay: 5740ms; }
+.intro-simbiosis .sln-bot-8  { animation-delay: 5780ms; }
+@keyframes sym-logo-node-pop {
   0%   { opacity: 0; transform: scale(0); }
-  60%  { opacity: 1; transform: scale(1.6); }
+  60%  { opacity: 1; transform: scale(1.4); }
   100% { opacity: 1; transform: scale(1); }
 }
-@keyframes sym-iface-pulse {
-  0%, 100% { transform: scale(1);    }
-  50%      { transform: scale(1.18); }
-}
 
-/* word "Micorriza" forms at the moment of union */
+/* --- Logo connection lines draw --- */
+.intro-simbiosis .sym-logo-line {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  animation: sym-draw 520ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-simbiosis .sll-1, .intro-simbiosis .sll-2, .intro-simbiosis .sll-3 { animation-delay: 5900ms; }
+.intro-simbiosis .sll-4, .intro-simbiosis .sll-5, .intro-simbiosis .sll-6 { animation-delay: 5960ms; }
+.intro-simbiosis .sll-7, .intro-simbiosis .sll-8, .intro-simbiosis .sll-9 { animation-delay: 6020ms; }
+.intro-simbiosis .sll-10, .intro-simbiosis .sll-11, .intro-simbiosis .sll-12, .intro-simbiosis .sll-13 { animation-delay: 6080ms; }
+.intro-simbiosis .sll-14, .intro-simbiosis .sll-15, .intro-simbiosis .sll-16 { animation-delay: 6140ms; }
+.intro-simbiosis .sll-17, .intro-simbiosis .sll-18, .intro-simbiosis .sll-19 { animation-delay: 6200ms; }
+.intro-simbiosis .sll-20, .intro-simbiosis .sll-21, .intro-simbiosis .sll-22 { animation-delay: 6260ms; }
+.intro-simbiosis .sll-23, .intro-simbiosis .sll-24, .intro-simbiosis .sll-25, .intro-simbiosis .sll-26 { animation-delay: 6320ms; }
+
+/* --- Wordmark "Micorriza" appears next to the logo --- */
 .intro-simbiosis .sym-word {
   opacity: 0;
-  animation: sym-word-in 800ms 3700ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation: sym-word-in 700ms 6500ms cubic-bezier(.2,.7,.2,1) forwards;
 }
 @keyframes sym-word-in {
-  0%   { opacity: 0; letter-spacing: 0.20em; }
-  100% { opacity: 1; letter-spacing: 0.04em; }
+  0%   { opacity: 0; transform: translateX(-12px); }
+  100% { opacity: 1; transform: translateX(0);     }
 }
 
-/* tagline below the word */
-.intro-simbiosis .sym-tag {
-  opacity: 0;
-  animation: sym-fade-in 600ms 4200ms ease forwards;
-}
-
-/* final fade */
+/* --- Final fade of canvas --- */
 .intro-simbiosis .sym-canvas {
-  animation: sym-final 700ms 5500ms ease forwards;
+  animation: sym-final 800ms 7100ms ease forwards;
 }
 @keyframes sym-final {
   0%   { opacity: 1; transform: scale(1); }
@@ -217,6 +219,7 @@
     transform: none !important;
     stroke-dashoffset: 0 !important;
   }
+  .intro-simbiosis .sym-organic-scene { opacity: 0 !important; }
 }
 
 /* ============================================================
