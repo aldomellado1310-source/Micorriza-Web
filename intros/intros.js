@@ -13,8 +13,8 @@ const STORAGE_PLAYED  = "micorriza:intro:played";
 export const INTROS = [
   {
     id: "mycelium",
-    label: "Micelio que crece",
-    summary: "Las raíces emergen, se entrelazan en una red neuronal que recibe nutrientes, y la planta crece sobre la superficie.",
+    label: "Arrayán y micorriza",
+    summary: "Las raíces emergen, se entrelazan en una red neuronal que recibe nutrientes; brotan hongos al pie del arrayán mientras la planta crece sobre la superficie.",
     play: playMycelium,
     thumb: thumbMycelium,
   },
@@ -233,16 +233,34 @@ function playMycelium(stage, { isSkipped }) {
     svg.appendChild(n);
   });
 
-  // stem rising above the soil from the spore
-  svg.appendChild(path(NS, "M300,320 Q 298,260 302,200 Q 298,140 300,90", "#5e8b56", 3, "myc-stem"));
+  // arrayán-style stem: cinnamon bark, slight sway
+  svg.appendChild(path(NS, "M300,320 Q 296,270 304,220 Q 295,170 302,120 Q 299,100 300,82", "#b56a3e", 3.5, "myc-stem"));
 
-  // leaves along the stem
+  // bark highlights: cream patches on the trunk (arrayán's peeling bark)
+  const barkSpots = [
+    { cx: 299, cy: 280, rx: 4,   ry: 2 },
+    { cx: 302, cy: 240, rx: 3.2, ry: 1.6 },
+    { cx: 298, cy: 180, rx: 4,   ry: 2 },
+    { cx: 302, cy: 130, rx: 3,   ry: 1.5 },
+  ];
+  barkSpots.forEach((s, i) => {
+    const e = document.createElementNS(NS, "ellipse");
+    e.setAttribute("cx", s.cx); e.setAttribute("cy", s.cy);
+    e.setAttribute("rx", s.rx); e.setAttribute("ry", s.ry);
+    e.setAttribute("fill", "#e8c8a4");
+    e.setAttribute("class", `myc-bark-spot bs-${i + 1}`);
+    svg.appendChild(e);
+  });
+
+  // bigger arrayán leaves along the stem
+  const leafD = "M0 0 Q -26 -32 0 -76 Q 26 -32 0 0 Z";
+  const veinD = "M 0 -3 L 0 -68";
   const leaves = [
-    { y: 270, rot: -55, size: 1,    fill: "#6da25a" },
-    { y: 280, rot:  50, size: 1,    fill: "#5e8b4a" },
-    { y: 200, rot: -45, size: 0.85, fill: "#7ab063" },
-    { y: 195, rot:  40, size: 0.85, fill: "#6da25a" },
-    { y: 110, rot: -18, size: 0.75, fill: "#7ab063" },
+    { y: 255, rot: -58, size: 1.30, fill: "#6da25a" },
+    { y: 265, rot:  52, size: 1.30, fill: "#5e8b4a" },
+    { y: 190, rot: -50, size: 1.10, fill: "#7ab063" },
+    { y: 185, rot:  45, size: 1.10, fill: "#6da25a" },
+    { y: 115, rot: -22, size: 0.95, fill: "#7ab063" },
   ];
   leaves.forEach((l, i) => {
     const g = document.createElementNS(NS, "g");
@@ -250,16 +268,54 @@ function playMycelium(stage, { isSkipped }) {
     const inner = document.createElementNS(NS, "g");
     inner.setAttribute("class", `myc-leaf myc-leaf-${i + 1}`);
     const blade = document.createElementNS(NS, "path");
-    blade.setAttribute("d", "M0 0 Q -22 -28 0 -64 Q 22 -28 0 0 Z");
+    blade.setAttribute("d", leafD);
     blade.setAttribute("fill", l.fill);
     inner.appendChild(blade);
     const vein = document.createElementNS(NS, "path");
-    vein.setAttribute("d", "M 0 -3 L 0 -56");
+    vein.setAttribute("d", veinD);
     vein.setAttribute("stroke", "#3a5e2f");
-    vein.setAttribute("stroke-width", "0.6");
+    vein.setAttribute("stroke-width", "0.7");
     vein.setAttribute("stroke-linecap", "round");
     inner.appendChild(vein);
     g.appendChild(inner);
+    svg.appendChild(g);
+  });
+
+  // mushrooms fruiting at the base of the arrayán (mycelium → fruiting body)
+  const mushrooms = [
+    { x: 268, capRx: 14, capRy: 9, stemH: 16, stemW: 5,   capColor: "#b53a3a" },
+    { x: 336, capRx: 11, capRy: 7, stemH: 13, stemW: 4.2, capColor: "#d05330" },
+    { x: 252, capRx: 8,  capRy: 5, stemH: 10, stemW: 3.2, capColor: "#a83030" },
+  ];
+  mushrooms.forEach((m, i) => {
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", `myc-mushroom mush-${i + 1}`);
+    const stemRect = document.createElementNS(NS, "rect");
+    stemRect.setAttribute("x", m.x - m.stemW / 2);
+    stemRect.setAttribute("y", 320 - m.stemH);
+    stemRect.setAttribute("width", m.stemW);
+    stemRect.setAttribute("height", m.stemH);
+    stemRect.setAttribute("rx", m.stemW / 2);
+    stemRect.setAttribute("fill", "#f4ead8");
+    g.appendChild(stemRect);
+    const cap = document.createElementNS(NS, "ellipse");
+    cap.setAttribute("cx", m.x);
+    cap.setAttribute("cy", 320 - m.stemH);
+    cap.setAttribute("rx", m.capRx);
+    cap.setAttribute("ry", m.capRy);
+    cap.setAttribute("fill", m.capColor);
+    g.appendChild(cap);
+    const spots = [
+      [m.x - m.capRx * 0.55, 320 - m.stemH - m.capRy * 0.25, m.capRx * 0.18],
+      [m.x + m.capRx * 0.40, 320 - m.stemH - m.capRy * 0.55, m.capRx * 0.14],
+      [m.x - m.capRx * 0.10, 320 - m.stemH - m.capRy * 0.75, m.capRx * 0.13],
+    ];
+    spots.forEach(([sx, sy, sr]) => {
+      const dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", sx); dot.setAttribute("cy", sy);
+      dot.setAttribute("r", sr);  dot.setAttribute("fill", "#fff7e6");
+      g.appendChild(dot);
+    });
     svg.appendChild(g);
   });
 
@@ -480,12 +536,25 @@ function thumbMycelium() {
   return `
     <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
       <line x1="40" y1="200" x2="560" y2="200" stroke="#DCC8A8" stroke-width="1" stroke-dasharray="3 5" opacity="0.55"/>
-      <!-- stem + leaves above soil -->
-      <path d="M300,200 Q 298,150 302,100 Q 300,80 300,70" stroke="#5e8b56" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <g transform="translate(300 175) rotate(-50) scale(0.85)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#6da25a"/></g>
-      <g transform="translate(300 180) rotate(50)  scale(0.85)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#5e8b4a"/></g>
-      <g transform="translate(300 110) rotate(-30) scale(0.6)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#7ab063"/></g>
-      <g transform="translate(300 105) rotate(30)  scale(0.6)"><path d="M0 0 Q -20 -25 0 -56 Q 20 -25 0 0 Z" fill="#6da25a"/></g>
+      <!-- arrayán stem (cinnamon bark) -->
+      <path d="M300,200 Q 296,160 304,120 Q 295,90 302,60" stroke="#b56a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="299" cy="170" rx="3.5" ry="1.8" fill="#e8c8a4"/>
+      <ellipse cx="302" cy="130" rx="3"   ry="1.5" fill="#e8c8a4"/>
+      <ellipse cx="298" cy="90"  rx="3"   ry="1.5" fill="#e8c8a4"/>
+      <!-- bigger leaves -->
+      <g transform="translate(300 160) rotate(-58) scale(1.05)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(300 165) rotate(52)  scale(1.05)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#5e8b4a"/></g>
+      <g transform="translate(300 95)  rotate(-40) scale(0.85)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#7ab063"/></g>
+      <g transform="translate(300 90)  rotate(40)  scale(0.85)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
+      <!-- mushrooms at the base -->
+      <rect x="265.5" y="186" width="5" height="14" rx="2.5" fill="#f4ead8"/>
+      <ellipse cx="268" cy="186" rx="13" ry="8" fill="#b53a3a"/>
+      <circle cx="261" cy="184" r="2.2" fill="#fff7e6"/>
+      <circle cx="272" cy="181" r="1.8" fill="#fff7e6"/>
+      <rect x="334" y="190" width="4" height="10" rx="2" fill="#f4ead8"/>
+      <ellipse cx="336" cy="190" rx="10" ry="6" fill="#d05330"/>
+      <circle cx="332" cy="188" r="1.6" fill="#fff7e6"/>
+      <circle cx="340" cy="186" r="1.4" fill="#fff7e6"/>
       <!-- roots below soil -->
       <g stroke-linecap="round" fill="none">
         <path d="M300,200 Q 240,250 180,290" stroke="#898561" stroke-width="1.6"/>

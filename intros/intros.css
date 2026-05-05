@@ -122,11 +122,37 @@
   100% { opacity: 0.6; }
 }
 
-/* stem rises from the spore */
+/* arrayán stem rises from the spore */
 .intro-mycelium .myc-stem {
-  stroke-dasharray: 260; stroke-dashoffset: 260;
+  stroke-dasharray: 280; stroke-dashoffset: 280;
   fill: none; stroke-linecap: round;
-  animation: myc-draw 700ms 1700ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation: myc-draw 720ms 1700ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+/* arrayán bark patches fade in once the trunk is drawn */
+.intro-mycelium .myc-bark-spot {
+  opacity: 0;
+  animation: myc-bark-fade 360ms ease forwards;
+}
+.intro-mycelium .bs-1 { animation-delay: 2200ms; }
+.intro-mycelium .bs-2 { animation-delay: 2240ms; }
+.intro-mycelium .bs-3 { animation-delay: 2280ms; }
+.intro-mycelium .bs-4 { animation-delay: 2320ms; }
+@keyframes myc-bark-fade { to { opacity: 0.75; } }
+
+/* mushrooms fruit at the base of the arrayán */
+.intro-mycelium .myc-mushroom {
+  transform-box: fill-box; transform-origin: 50% 100%;
+  transform: scale(0); opacity: 0;
+  animation: myc-mush-pop 480ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-mycelium .mush-1 { animation-delay: 1700ms; }
+.intro-mycelium .mush-2 { animation-delay: 1820ms; }
+.intro-mycelium .mush-3 { animation-delay: 1920ms; }
+@keyframes myc-mush-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 /* leaves unfurl one by one */
