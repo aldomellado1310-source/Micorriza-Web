@@ -64,17 +64,23 @@
 }
 @keyframes sym-fade-in { to { opacity: 0.9; } }
 
-/* fungal spore */
+/* fungal spore: aparece y luego respira suavemente */
 .intro-simbiosis .sym-spore {
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
-  animation: sym-pop 420ms 400ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation:
+    sym-pop 420ms 400ms cubic-bezier(.2,.7,.2,1) forwards,
+    sym-spore-breath 3.2s 1100ms ease-in-out infinite;
 }
 @keyframes sym-pop {
   0%   { transform: scale(0); }
   60%  { transform: scale(1.3); }
   100% { transform: scale(1); }
+}
+@keyframes sym-spore-breath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.10); }
 }
 
 /* trunk */
@@ -153,24 +159,30 @@
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* interface nodes */
+/* interface nodes: pop-in y luego pulso ambient en bucle (la red está viva) */
 .intro-simbiosis .sym-iface {
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
   opacity: 0;
-  animation: sym-pop-glow 520ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation:
+    sym-pop-glow 520ms cubic-bezier(.2,.7,.2,1) forwards,
+    sym-iface-pulse 2.6s ease-in-out infinite;
 }
-.intro-simbiosis .sin-1 { animation-delay: 2100ms; }
-.intro-simbiosis .sin-2 { animation-delay: 2150ms; }
-.intro-simbiosis .sin-3 { animation-delay: 2200ms; }
-.intro-simbiosis .sin-4 { animation-delay: 2250ms; }
-.intro-simbiosis .sin-5 { animation-delay: 2300ms; }
-.intro-simbiosis .sin-6 { animation-delay: 2350ms; }
+.intro-simbiosis .sin-1 { animation-delay: 2100ms, 3000ms; }
+.intro-simbiosis .sin-2 { animation-delay: 2150ms, 3120ms; }
+.intro-simbiosis .sin-3 { animation-delay: 2200ms, 3240ms; }
+.intro-simbiosis .sin-4 { animation-delay: 2250ms, 3360ms; }
+.intro-simbiosis .sin-5 { animation-delay: 2300ms, 3480ms; }
+.intro-simbiosis .sin-6 { animation-delay: 2350ms, 3600ms; }
 @keyframes sym-pop-glow {
   0%   { opacity: 0; transform: scale(0); }
   60%  { opacity: 1; transform: scale(1.6); }
   100% { opacity: 1; transform: scale(1); }
+}
+@keyframes sym-iface-pulse {
+  0%, 100% { transform: scale(1);    }
+  50%      { transform: scale(1.18); }
 }
 
 /* word "Micorriza" forms at the moment of union */

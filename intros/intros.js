@@ -132,9 +132,23 @@ function playSimbiosis(stage, { isSkipped }) {
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   svg.setAttribute("aria-hidden", "true");
 
-  // Defs: glow para nodos, halo radial para la interfaz
+  // Defs: tinta-sobre-papel (turbulence + displacement) + glow + halo radial.
+  // El feTurbulence con seed animada da un "shimmer" suave: los trazos
+  // parecen moverse como tinta que aún no ha secado.
   const defs = document.createElementNS(NS, "defs");
   defs.innerHTML = `
+    <filter id="sym-ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.024" numOctaves="2" seed="3" result="ink-noise">
+        <animate attributeName="seed" values="3;7;3" dur="6s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="ink-noise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="sym-ink-strong" x="-12%" y="-12%" width="124%" height="124%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.026 0.030" numOctaves="2" seed="5" result="ink-noise-2">
+        <animate attributeName="seed" values="5;11;5" dur="5s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="ink-noise-2" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
     <filter id="sym-glow" x="-60%" y="-60%" width="220%" height="220%">
       <feGaussianBlur stdDeviation="2.5"/>
     </filter>
@@ -163,6 +177,7 @@ function playSimbiosis(stage, { isSkipped }) {
   hyphaePaths.forEach((d, i) => {
     const p = path(NS, d, "#a8865c", 1.3, `sym-hyphae sh-${i + 1}`);
     p.setAttribute("opacity", "0.9");
+    p.setAttribute("filter", "url(#sym-ink)");
     svg.appendChild(p);
   });
 
@@ -177,6 +192,7 @@ function playSimbiosis(stage, { isSkipped }) {
   hyphaeSubs.forEach((d, i) => {
     const p = path(NS, d, "#c89e6f", 1, `sym-hyphae-sub sub-${i + 1}`);
     p.setAttribute("opacity", "0.7");
+    p.setAttribute("filter", "url(#sym-ink-strong)");
     svg.appendChild(p);
   });
 
@@ -213,6 +229,7 @@ function playSimbiosis(stage, { isSkipped }) {
   rootPaths.forEach((d, i) => {
     const p = path(NS, d, "#a05738", 1.7, `sym-root sr-${i + 1}`);
     p.setAttribute("opacity", "0.95");
+    p.setAttribute("filter", "url(#sym-ink)");
     svg.appendChild(p);
   });
 
@@ -337,6 +354,40 @@ function playSimbiosis(stage, { isSkipped }) {
     fadeOut.setAttribute("fill", "freeze");
     p.appendChild(fadeOut);
 
+    svg.appendChild(p);
+  });
+
+  // === AMBIENT FLOW: tras el intercambio principal, partículas tenues
+  //     siguen circulando en bucle para que la red se sienta viva en
+  //     vez de estática durante la pose final. ===
+  const ambientPaths = [
+    { d: hyphaePaths[1], color: "#66B7C9", begin: 4.0, dur: 2.0 },
+    { d: hyphaePaths[3], color: "#66B7C9", begin: 4.6, dur: 2.2 },
+    { d: rootPaths[2],   color: "#d4a373", begin: 4.3, dur: 2.0 },
+    { d: rootPaths[4],   color: "#d4a373", begin: 4.9, dur: 2.4 },
+  ];
+  ambientPaths.forEach((amb, i) => {
+    const p = circle(NS, 0, 0, 2.2, amb.color, "sym-ambient");
+    p.setAttribute("opacity", "0.55");
+    p.setAttribute("filter", "url(#sym-glow)");
+
+    const motion = document.createElementNS(NS, "animateMotion");
+    motion.setAttribute("dur", `${amb.dur}s`);
+    motion.setAttribute("begin", `${amb.begin}s`);
+    motion.setAttribute("repeatCount", "indefinite");
+    motion.setAttribute("path", amb.d);
+    p.appendChild(motion);
+
+    const fadeIn = document.createElementNS(NS, "animate");
+    fadeIn.setAttribute("attributeName", "opacity");
+    fadeIn.setAttribute("begin", `${amb.begin - 0.2}s`);
+    fadeIn.setAttribute("dur", "0.4s");
+    fadeIn.setAttribute("from", "0");
+    fadeIn.setAttribute("to", "0.55");
+    fadeIn.setAttribute("fill", "freeze");
+    p.appendChild(fadeIn);
+
+    p.setAttribute("opacity", "0");
     svg.appendChild(p);
   });
 

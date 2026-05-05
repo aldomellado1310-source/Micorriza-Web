@@ -921,7 +921,10 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   background: rgba(247, 245, 242, 0.85);
   border: 1px solid var(--line);
 }
-.metaphor-mark svg { width: 64px; height: 64px; }
+.metaphor-mark svg {
+  width: 64px; height: 64px;
+  filter: url(#metaphor-ink);
+}
 .metaphor-fungus    .metaphor-mark { color: #a8865c; }
 .metaphor-root      .metaphor-mark { color: #a05738; }
 .metaphor-mycorriza .metaphor-mark {
