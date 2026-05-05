@@ -234,7 +234,7 @@ function playMycelium(stage, { isSkipped }) {
   });
 
   // arrayán-style stem: cinnamon bark, slight sway
-  svg.appendChild(path(NS, "M300,320 Q 296,270 304,220 Q 295,170 302,120 Q 299,100 300,82", "#b56a3e", 3.5, "myc-stem"));
+  svg.appendChild(path(NS, "M300,320 Q 296,270 304,220 Q 295,170 302,120 Q 299,100 300,82", "#b56a3e", 4.5, "myc-stem"));
 
   // bark highlights: cream patches on the trunk (arrayán's peeling bark)
   const barkSpots = [
@@ -283,9 +283,9 @@ function playMycelium(stage, { isSkipped }) {
 
   // mushrooms fruiting at the base of the arrayán (mycelium → fruiting body)
   const mushrooms = [
-    { x: 268, capRx: 14, capRy: 9, stemH: 16, stemW: 5,   capColor: "#b53a3a" },
-    { x: 336, capRx: 11, capRy: 7, stemH: 13, stemW: 4.2, capColor: "#d05330" },
-    { x: 252, capRx: 8,  capRy: 5, stemH: 10, stemW: 3.2, capColor: "#a83030" },
+    { x: 262, capRx: 18, capRy: 12, stemH: 20, stemW: 6.5, capColor: "#b53a3a" },
+    { x: 340, capRx: 14, capRy: 9,  stemH: 16, stemW: 5.5, capColor: "#d05330" },
+    { x: 240, capRx: 10, capRy: 7,  stemH: 12, stemW: 4,   capColor: "#a83030" },
   ];
   mushrooms.forEach((m, i) => {
     const g = document.createElementNS(NS, "g");
@@ -320,7 +320,7 @@ function playMycelium(stage, { isSkipped }) {
   });
 
   stage.appendChild(svg);
-  return raceWithSkip(2900, isSkipped);
+  return raceWithSkip(3300, isSkipped);
 }
 
 /* ---------- 2) Logo build-up ---------- */
