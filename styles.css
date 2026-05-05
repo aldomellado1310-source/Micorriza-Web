@@ -877,6 +877,109 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   line-height: 1.4;
 }
 
+/* ----- Metaphor explainer: ¿Qué es una micorriza? -----
+   Hongo + Raíz = Micorriza. The visible explainer that grounds the
+   brand name and the company vision in the actual biology. */
+.metaphor {
+  padding: 80px 0 88px;
+  background:
+    linear-gradient(180deg, transparent, rgba(220, 200, 168, 0.12) 60%, transparent);
+}
+.metaphor-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 44px;
+}
+.metaphor-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.metaphor-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(102, 183, 201, 0.55);
+  box-shadow: var(--shadow);
+}
+.metaphor-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  background: rgba(247, 245, 242, 0.85);
+  border: 1px solid var(--line);
+}
+.metaphor-mark svg { width: 64px; height: 64px; }
+.metaphor-fungus    .metaphor-mark { color: #a8865c; }
+.metaphor-root      .metaphor-mark { color: #a05738; }
+.metaphor-mycorriza .metaphor-mark {
+  color: var(--azul);
+  background: linear-gradient(180deg, rgba(102, 183, 201, 0.12), rgba(102, 183, 201, 0.04));
+  border-color: rgba(102, 183, 201, 0.35);
+}
+.metaphor-mycorriza {
+  background: linear-gradient(180deg, #fff, rgba(102, 183, 201, 0.06));
+  border-color: rgba(102, 183, 201, 0.40);
+}
+.metaphor-eyebrow {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--azul);
+  letter-spacing: -0.01em;
+}
+.metaphor-fungus .metaphor-eyebrow { color: #8a6c44; }
+.metaphor-root   .metaphor-eyebrow { color: #8a4827; }
+.metaphor-card p {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 28ch;
+}
+.metaphor-card em {
+  font-style: italic;
+  color: var(--azul);
+  font-weight: 500;
+}
+.metaphor-op {
+  align-self: center;
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: 2.2rem;
+  color: var(--arcilla);
+  user-select: none;
+  line-height: 1;
+}
+.metaphor-bridge {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.metaphor-bridge strong {
+  color: var(--azul);
+  font-weight: 600;
+}
+@media (max-width: 1024px) {
+  .metaphor-grid { grid-template-columns: 1fr; gap: 16px; }
+  .metaphor-op { display: none; }
+}
+
 /* ----- Tech strip (compact "live system" band, replaces full Tecnología section) ----- */
 .tech-strip {
   padding: 64px 0;

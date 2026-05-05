@@ -43,117 +43,168 @@
 @keyframes skip-in { to { opacity: 1; } }
 
 /* ============================================================
-   0) Acuarela viva — atmospheric / painterly intro
-      Asymmetric, contemplative, no labels. ~6.2 s total.
+   0) Simbiosis: nace una micorriza
+   La unión entre hongo (izq) y raíz (der) puesta en escena.
+   ~6.3 s total.
    ============================================================ */
-.intro-acuarela .intro-stage,
-.intro-acuarela .acu-canvas {
+.intro-simbiosis .intro-stage,
+.intro-simbiosis .sym-canvas {
   background: linear-gradient(180deg, #fafafa 0%, #f5f0e8 100%);
 }
-.intro-acuarela .acu-canvas {
+.intro-simbiosis .sym-canvas {
   width: min(96vw, 1100px);
-  height: min(72vh, 660px);
+  height: auto;
   display: block;
 }
 
-/* warm wash backgrounds */
-.intro-acuarela .acu-wash {
+/* etymology labels */
+.intro-simbiosis .sym-etymology {
   opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0.4);
-  animation: acu-wash-bloom 2400ms ease-out forwards;
+  animation: sym-fade-in 600ms 200ms ease forwards;
 }
-.intro-acuarela .acu-wash-1 { animation-delay: 600ms; }
-.intro-acuarela .acu-wash-2 { animation-delay: 900ms; }
-@keyframes acu-wash-bloom {
-  0%   { opacity: 0; transform: scale(0.4); }
-  100% { opacity: 1; transform: scale(1); }
-}
+@keyframes sym-fade-in { to { opacity: 0.9; } }
 
-/* main calligraphic brushstroke (slow, deliberate) */
-.intro-acuarela .acu-stroke.main {
-  stroke-dasharray: 720;
-  stroke-dashoffset: 720;
-  animation: acu-draw 1900ms 700ms cubic-bezier(.55,.05,.45,.95) forwards;
-}
-.intro-acuarela .acu-stroke.heavy {
-  stroke-dasharray: 520;
-  stroke-dashoffset: 520;
-  animation: acu-draw 1700ms 850ms cubic-bezier(.55,.05,.45,.95) forwards;
-}
-@keyframes acu-draw { to { stroke-dashoffset: 0; } }
-
-/* sub-branches grow from the main path */
-.intro-acuarela .acu-branch {
-  stroke-dasharray: 110;
-  stroke-dashoffset: 110;
-  animation: acu-draw 720ms cubic-bezier(.2,.7,.2,1) forwards;
-}
-.intro-acuarela .ab-1 { animation-delay: 1850ms; }
-.intro-acuarela .ab-2 { animation-delay: 2050ms; }
-.intro-acuarela .ab-3 { animation-delay: 2250ms; }
-.intro-acuarela .ab-4 { animation-delay: 2450ms; }
-.intro-acuarela .ab-5 { animation-delay: 2650ms; }
-
-/* watercolor blooms */
-.intro-acuarela .acu-bloom {
-  opacity: 0;
+/* fungal spore */
+.intro-simbiosis .sym-spore {
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
-  animation: acu-bloom-grow 1500ms ease-out forwards;
+  animation: sym-pop 420ms 400ms cubic-bezier(.2,.7,.2,1) forwards;
 }
-.intro-acuarela .ab-bloom-1 { animation-delay: 2400ms; }
-.intro-acuarela .ab-bloom-2 { animation-delay: 2700ms; }
-.intro-acuarela .ab-bloom-3 { animation-delay: 2550ms; }
-.intro-acuarela .ab-bloom-4 { animation-delay: 2900ms; }
-@keyframes acu-bloom-grow {
-  0%   { opacity: 0; transform: scale(0); }
-  60%  { opacity: 1; }
-  100% { opacity: 0.95; transform: scale(1); }
+@keyframes sym-pop {
+  0%   { transform: scale(0); }
+  60%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
 }
 
-/* dewdrops on top of blooms */
-.intro-acuarela .acu-dewdrop {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0);
-  animation: acu-dew 720ms cubic-bezier(.2,.7,.2,1) forwards;
+/* trunk */
+.intro-simbiosis .sym-trunk {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  fill: none;
+  stroke-linecap: round;
+  animation: sym-draw 700ms 400ms cubic-bezier(.2,.7,.2,1) forwards;
 }
-.intro-acuarela .ad-1 { animation-delay: 2800ms; }
-.intro-acuarela .ad-2 { animation-delay: 3000ms; }
-.intro-acuarela .ad-3 { animation-delay: 3150ms; }
-.intro-acuarela .ad-4 { animation-delay: 3300ms; }
-@keyframes acu-dew {
+
+/* hyphae and roots — main networks growing toward the center */
+.intro-simbiosis .sym-hyphae,
+.intro-simbiosis .sym-root {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 380;
+  stroke-dashoffset: 380;
+  animation: sym-draw 1200ms cubic-bezier(.55,.05,.45,.95) forwards;
+}
+.intro-simbiosis .sh-1 { animation-delay: 700ms; }
+.intro-simbiosis .sh-2 { animation-delay: 800ms; }
+.intro-simbiosis .sh-3 { animation-delay: 900ms; }
+.intro-simbiosis .sh-4 { animation-delay: 1000ms; }
+.intro-simbiosis .sh-5 { animation-delay: 1100ms; }
+.intro-simbiosis .sh-6 { animation-delay: 1200ms; }
+.intro-simbiosis .sh-7 { animation-delay: 1300ms; }
+.intro-simbiosis .sr-1 { animation-delay: 700ms; }
+.intro-simbiosis .sr-2 { animation-delay: 850ms; }
+.intro-simbiosis .sr-3 { animation-delay: 1000ms; }
+.intro-simbiosis .sr-4 { animation-delay: 1150ms; }
+.intro-simbiosis .sr-5 { animation-delay: 1300ms; }
+@keyframes sym-draw { to { stroke-dashoffset: 0; } }
+
+/* sub-branches off hyphae */
+.intro-simbiosis .sym-hyphae-sub {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: sym-draw 600ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-simbiosis .sub-1 { animation-delay: 1500ms; }
+.intro-simbiosis .sub-2 { animation-delay: 1600ms; }
+.intro-simbiosis .sub-3 { animation-delay: 1700ms; }
+.intro-simbiosis .sub-4 { animation-delay: 1800ms; }
+.intro-simbiosis .sub-5 { animation-delay: 1900ms; }
+
+/* leaves */
+.intro-simbiosis .sym-leaf {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(0);
+  opacity: 0;
+  animation: sym-leaf 500ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-simbiosis .sl-1 { animation-delay: 1200ms; }
+.intro-simbiosis .sl-2 { animation-delay: 1300ms; }
+.intro-simbiosis .sl-3 { animation-delay: 1400ms; }
+@keyframes sym-leaf {
   0%   { opacity: 0; transform: scale(0); }
-  60%  { opacity: 1; transform: scale(1.4); }
+  60%  { opacity: 1; transform: scale(1.15); }
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* final hold + breath + fade out */
-.intro-acuarela .acu-canvas {
-  animation: acu-final 1500ms 4700ms ease forwards;
+/* mycorrhizal interface — the union zone */
+.intro-simbiosis .sym-halo {
+  opacity: 0;
+  transform-box: fill-box;
   transform-origin: center;
+  transform: scale(0.3);
+  animation: sym-halo 1300ms 1900ms ease-out forwards;
 }
-@keyframes acu-final {
+@keyframes sym-halo {
+  0%   { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* interface nodes */
+.intro-simbiosis .sym-iface {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  opacity: 0;
+  animation: sym-pop-glow 520ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-simbiosis .sin-1 { animation-delay: 2100ms; }
+.intro-simbiosis .sin-2 { animation-delay: 2150ms; }
+.intro-simbiosis .sin-3 { animation-delay: 2200ms; }
+.intro-simbiosis .sin-4 { animation-delay: 2250ms; }
+.intro-simbiosis .sin-5 { animation-delay: 2300ms; }
+.intro-simbiosis .sin-6 { animation-delay: 2350ms; }
+@keyframes sym-pop-glow {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* word "Micorriza" forms at the moment of union */
+.intro-simbiosis .sym-word {
+  opacity: 0;
+  animation: sym-word-in 800ms 3700ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes sym-word-in {
+  0%   { opacity: 0; letter-spacing: 0.20em; }
+  100% { opacity: 1; letter-spacing: 0.04em; }
+}
+
+/* tagline below the word */
+.intro-simbiosis .sym-tag {
+  opacity: 0;
+  animation: sym-fade-in 600ms 4200ms ease forwards;
+}
+
+/* final fade */
+.intro-simbiosis .sym-canvas {
+  animation: sym-final 700ms 5500ms ease forwards;
+}
+@keyframes sym-final {
   0%   { opacity: 1; transform: scale(1); }
-  35%  { opacity: 1; transform: scale(1.012); }
-  100% { opacity: 0; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.02); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .intro-acuarela .acu-wash,
-  .intro-acuarela .acu-bloom,
-  .intro-acuarela .acu-dewdrop {
-    opacity: 1; transform: none; animation: none;
+  .intro-simbiosis * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
   }
-  .intro-acuarela .acu-stroke,
-  .intro-acuarela .acu-branch {
-    stroke-dashoffset: 0; animation: none;
-  }
-  .intro-acuarela .acu-canvas { animation: none; }
 }
 
 /* ============================================================

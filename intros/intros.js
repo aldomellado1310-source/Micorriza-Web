@@ -12,11 +12,11 @@ const STORAGE_PLAYED  = "micorriza:intro:played";
 
 export const INTROS = [
   {
-    id: "acuarela",
-    label: "Acuarela viva",
-    summary: "Una caligrafía de tinta que se despliega lentamente, manchas de acuarela que florecen en los nodos, y partículas doradas que derivan en parallax. Atmosférica, asimétrica, contemplativa.",
-    play: playAcuarela,
-    thumb: thumbAcuarela,
+    id: "simbiosis",
+    label: "Simbiosis: nace una micorriza",
+    summary: "El hongo (izquierda) y la raíz del árbol (derecha) crecen hasta encontrarse. En la unión florece la interfaz micorrícica: nutrientes que viajan en ambas direcciones — azúcares hacia el hongo, agua y minerales hacia el árbol. Cuando la simbiosis se forma, aparece el nombre Micorriza.",
+    play: playSimbiosis,
+    thumb: thumbSimbiosis,
   },
   {
     id: "mycelium",
@@ -56,7 +56,7 @@ export function getIntroById(id) {
 
 export function getDefaultIntro() {
   const stored = localStorage.getItem(STORAGE_DEFAULT);
-  return VALID_IDS.includes(stored) ? stored : "acuarela";
+  return VALID_IDS.includes(stored) ? stored : "simbiosis";
 }
 
 export function setDefaultIntro(id) {
@@ -106,174 +106,270 @@ export async function playIntro(id, { container, force = false } = {}) {
   }
 }
 
-/* ---------- 0) Acuarela viva — atmospheric / painterly ----------
-   Composición asimétrica al estilo sumi-e + acuarela:
-   - 0.0–0.8s   wash de fondo cálido (golden-ratio offset)
-   - 0.6–2.5s   trazo caligráfico que dibuja un arco con peso variable
-   - 1.8–3.0s   sub-ramas finas que brotan del trazo
-   - 2.4–4.2s   manchas de acuarela (blooms) florecen en nodos
-   - 2.8–4.4s   gotitas crisp aparecen sobre las manchas
-   - 3.0–6.0s   motas doradas derivan con parallax
-   - 5.0–6.2s   pulso "respiración" + fade
+/* ---------- 0) Simbiosis: nace una micorriza ----------
+   La micorriza no es una metáfora abstracta: es la unión simbiótica
+   entre un hongo y la raíz de un árbol. Esta intro lo pone en escena.
+
+   - 0.0–0.6s   despertar: aparece la espora (izq) y el árbol-tronco (der)
+   - 0.5–2.2s   crecimiento: hifas del hongo se extienden hacia la
+                derecha, raíces del árbol se extienden hacia la izquierda
+   - 1.8–2.6s   encuentro: ambas redes se tocan en el centro y aparecen
+                los nodos de la interfaz micorrícica con halo agua
+   - 2.6–4.0s   intercambio simbiótico: partículas doradas (azúcares)
+                viajan del árbol hacia el hongo; partículas azules
+                (agua/minerales) viajan del hongo hacia el árbol
+   - 3.7–4.5s   se forma el nombre "Micorriza" en la unión central
+   - 4.1–5.0s   subtítulo "donde la red sostiene a cada nodo"
+   - 5.5–6.3s   fade out
+
+   Etimología etiquetada en pantalla: MYCO · HONGO   /   RHIZA · RAÍZ
 */
-function playAcuarela(stage, { isSkipped }) {
+function playSimbiosis(stage, { isSkipped }) {
   const NS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(NS, "svg");
   svg.setAttribute("viewBox", "0 0 1000 600");
-  svg.setAttribute("class", "acu-canvas");
-  svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
+  svg.setAttribute("class", "sym-canvas");
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   svg.setAttribute("aria-hidden", "true");
 
-  // Defs: filtros de desenfoque para los blooms y glow
+  // Defs: glow para nodos, halo radial para la interfaz
   const defs = document.createElementNS(NS, "defs");
   defs.innerHTML = `
-    <filter id="acu-bloom" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="14"/>
+    <filter id="sym-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.5"/>
     </filter>
-    <filter id="acu-soft" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3"/>
-    </filter>
-    <filter id="acu-mote" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="1.4"/>
-    </filter>
+    <radialGradient id="sym-interface" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="rgba(102, 183, 201, 0.55)"/>
+      <stop offset="55%"  stop-color="rgba(102, 183, 201, 0.18)"/>
+      <stop offset="100%" stop-color="rgba(102, 183, 201, 0)"/>
+    </radialGradient>
   `;
   svg.appendChild(defs);
 
-  // 1) Wash de fondo (golden-ratio offset, no centrado)
-  const wash1 = document.createElementNS(NS, "ellipse");
-  wash1.setAttribute("cx", "620"); wash1.setAttribute("cy", "320");
-  wash1.setAttribute("rx", "340"); wash1.setAttribute("ry", "240");
-  wash1.setAttribute("fill", "rgba(220, 200, 168, 0.30)");
-  wash1.setAttribute("filter", "url(#acu-bloom)");
-  wash1.setAttribute("class", "acu-wash acu-wash-1");
-  svg.appendChild(wash1);
+  // === FUNGAL HALF (left, cream/gold) ===
+  // Spore origin
+  svg.appendChild(circle(NS, 180, 300, 9, "#a8865c", "sym-spore"));
 
-  const wash2 = document.createElementNS(NS, "ellipse");
-  wash2.setAttribute("cx", "260"); wash2.setAttribute("cy", "440");
-  wash2.setAttribute("rx", "200"); wash2.setAttribute("ry", "140");
-  wash2.setAttribute("fill", "rgba(102, 183, 201, 0.18)");
-  wash2.setAttribute("filter", "url(#acu-bloom)");
-  wash2.setAttribute("class", "acu-wash acu-wash-2");
-  svg.appendChild(wash2);
-
-  // 2) Trazo caligráfico principal — dos paths superpuestos para
-  //    simular peso variable sin animar stroke-width.
-  const mainStroke = path(NS,
-    "M 180,440 Q 320,400 420,360 Q 520,320 580,260 Q 640,200 720,180 Q 780,170 820,200",
-    "#2c2820", 2.4, "acu-stroke main"
-  );
-  mainStroke.setAttribute("opacity", "0.9");
-  svg.appendChild(mainStroke);
-
-  const heavyStroke = path(NS,
-    "M 240,420 Q 360,380 440,340 Q 520,300 590,250",
-    "#2c2820", 6, "acu-stroke heavy"
-  );
-  heavyStroke.setAttribute("opacity", "0.30");
-  heavyStroke.setAttribute("filter", "url(#acu-soft)");
-  svg.appendChild(heavyStroke);
-
-  // 3) Sub-ramas finas brotan del trazo principal
-  const branches = [
-    "M 380,372 Q 360,420 340,470",
-    "M 480,332 Q 510,280 540,250",
-    "M 580,260 Q 620,300 660,330",
-    "M 290,408 Q 250,440 210,460",
-    "M 720,180 Q 750,140 770,100",
+  // Hifas: 7 paths que extienden de (180,300) hacia el centro
+  const hyphaePaths = [
+    "M 180,300 Q 280,260 360,280 Q 420,290 480,300",
+    "M 180,300 Q 260,330 340,310 Q 420,300 480,310",
+    "M 180,300 Q 240,280 280,250 Q 360,240 460,260",
+    "M 180,300 Q 240,320 280,350 Q 360,360 460,340",
+    "M 180,300 Q 220,260 240,220 Q 280,200 350,210",
+    "M 180,300 Q 220,340 240,380 Q 280,400 350,390",
+    "M 180,300 Q 260,300 320,300 Q 400,300 470,300",
   ];
-  branches.forEach((d, i) => {
-    const b = path(NS, d, "#2c2820", 1.2, `acu-branch ab-${i + 1}`);
-    b.setAttribute("opacity", "0.7");
-    svg.appendChild(b);
+  hyphaePaths.forEach((d, i) => {
+    const p = path(NS, d, "#a8865c", 1.3, `sym-hyphae sh-${i + 1}`);
+    p.setAttribute("opacity", "0.9");
+    svg.appendChild(p);
   });
 
-  // 4) Blooms de acuarela — manchas grandes con desenfoque en color
-  const blooms = [
-    { cx: 380, cy: 372, color: "rgba(176, 122, 74, 0.55)", r: 80 },
-    { cx: 580, cy: 260, color: "rgba(102, 183, 201, 0.50)", r: 90 },
-    { cx: 290, cy: 408, color: "rgba(137, 133, 97, 0.55)", r: 70 },
-    { cx: 720, cy: 180, color: "rgba(31, 59, 91, 0.40)",  r: 60 },
+  // Sub-ramas finas
+  const hyphaeSubs = [
+    "M 280,250 Q 250,210 220,180",
+    "M 350,210 Q 320,180 300,150",
+    "M 280,350 Q 250,390 230,420",
+    "M 350,390 Q 320,420 310,460",
+    "M 360,280 Q 380,250 410,240",
   ];
-  blooms.forEach((b, i) => {
-    const e = circle(NS, b.cx, b.cy, b.r, b.color, `acu-bloom ab-bloom-${i + 1}`);
-    e.setAttribute("filter", "url(#acu-bloom)");
-    svg.appendChild(e);
+  hyphaeSubs.forEach((d, i) => {
+    const p = path(NS, d, "#c89e6f", 1, `sym-hyphae-sub sub-${i + 1}`);
+    p.setAttribute("opacity", "0.7");
+    svg.appendChild(p);
   });
 
-  // 5) Dewdrops — los nodos crisp encima de los blooms
-  const dewdrops = [
-    { cx: 380, cy: 372, fill: "#3B2E26", r: 4 },
-    { cx: 580, cy: 260, fill: "#66B7C9", r: 5 },
-    { cx: 290, cy: 408, fill: "#898561", r: 3.5 },
-    { cx: 720, cy: 180, fill: "#1F3B5B", r: 4 },
+  // === PLANT HALF (right, cinnamon) ===
+  // Tronco corto desde arriba
+  const trunk = path(NS, "M 820,80 Q 818,140 822,200 Q 818,260 820,300", "#b56a3e", 5, "sym-trunk");
+  svg.appendChild(trunk);
+
+  // Hojas básicas para ubicar al árbol
+  const leaves = [
+    { x: 820, y: 80, rot: -55, size: 0.85, fill: "#6da25a" },
+    { x: 820, y: 80, rot:  55, size: 0.85, fill: "#5e8b4a" },
+    { x: 820, y: 60, rot:   0, size: 0.7,  fill: "#7ab063" },
   ];
-  dewdrops.forEach((d, i) => {
-    const c = circle(NS, d.cx, d.cy, d.r, d.fill, `acu-dewdrop ad-${i + 1}`);
-    c.setAttribute("filter", "url(#acu-soft)");
+  leaves.forEach((l, i) => {
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("transform", `translate(${l.x} ${l.y}) rotate(${l.rot}) scale(${l.size})`);
+    g.setAttribute("class", `sym-leaf sl-${i + 1}`);
+    const blade = document.createElementNS(NS, "path");
+    blade.setAttribute("d", "M0 0 Q -22 -28 0 -64 Q 22 -28 0 0 Z");
+    blade.setAttribute("fill", l.fill);
+    g.appendChild(blade);
+    svg.appendChild(g);
+  });
+
+  // Raíces: 5 paths desde (820,300) hacia la izquierda al centro
+  const rootPaths = [
+    "M 820,300 Q 720,330 640,320 Q 580,310 520,310",
+    "M 820,300 Q 740,290 660,280 Q 580,290 520,300",
+    "M 820,300 Q 760,330 700,360 Q 620,360 540,330",
+    "M 820,300 Q 760,270 700,240 Q 620,240 540,270",
+    "M 820,300 Q 720,310 660,310 Q 580,310 530,310",
+  ];
+  rootPaths.forEach((d, i) => {
+    const p = path(NS, d, "#a05738", 1.7, `sym-root sr-${i + 1}`);
+    p.setAttribute("opacity", "0.95");
+    svg.appendChild(p);
+  });
+
+  // === MYCORRHIZAL INTERFACE (center) ===
+  // Halo radial agua-azul donde se encuentran
+  const halo = document.createElementNS(NS, "ellipse");
+  halo.setAttribute("cx", "500");
+  halo.setAttribute("cy", "300");
+  halo.setAttribute("rx", "130");
+  halo.setAttribute("ry", "70");
+  halo.setAttribute("fill", "url(#sym-interface)");
+  halo.setAttribute("class", "sym-halo");
+  svg.appendChild(halo);
+
+  // Nodos crisp en los puntos de unión hifa-raíz
+  const interfacePoints = [
+    { cx: 480, cy: 300 },
+    { cx: 520, cy: 310 },
+    { cx: 460, cy: 260 },
+    { cx: 540, cy: 270 },
+    { cx: 470, cy: 340 },
+    { cx: 530, cy: 330 },
+  ];
+  interfacePoints.forEach((p, i) => {
+    const c = circle(NS, p.cx, p.cy, 4, "#1F3B5B", `sym-iface sin-${i + 1}`);
+    c.setAttribute("filter", "url(#sym-glow)");
     svg.appendChild(c);
   });
 
-  // 6) Motas doradas — partículas con drift parallax (SMIL animateMotion-like via animate)
-  const moteCount = 16;
-  for (let i = 0; i < moteCount; i++) {
-    const m = document.createElementNS(NS, "circle");
-    const startX = -40 + Math.random() * 1080;
-    const startY = 100 + Math.random() * 460;
-    const driftX = 80 + Math.random() * 180;
-    const driftY = -40 + Math.random() * 80;
-    const r = 1 + Math.random() * 2.4;
-    m.setAttribute("cx", startX);
-    m.setAttribute("cy", startY);
-    m.setAttribute("r", r);
-    m.setAttribute("fill", "#d4a373");
-    m.setAttribute("opacity", "0");
-    m.setAttribute("filter", "url(#acu-mote)");
-    m.setAttribute("class", "acu-mote");
+  // === ETIMOLOGÍA: etiquetas en pantalla ===
+  const ety1 = document.createElementNS(NS, "text");
+  ety1.setAttribute("x", "200"); ety1.setAttribute("y", "200");
+  ety1.setAttribute("text-anchor", "middle");
+  ety1.setAttribute("font-family", "Sora, system-ui, sans-serif");
+  ety1.setAttribute("font-weight", "600");
+  ety1.setAttribute("font-size", "13");
+  ety1.setAttribute("letter-spacing", "0.20em");
+  ety1.setAttribute("fill", "#a8865c");
+  ety1.setAttribute("class", "sym-etymology sym-myco");
+  ety1.textContent = "MYCO · HONGO";
+  svg.appendChild(ety1);
 
-    const begin = 3.0 + Math.random() * 1.5;
-    const dur = 2.5 + Math.random() * 1.6;
+  const ety2 = document.createElementNS(NS, "text");
+  ety2.setAttribute("x", "820"); ety2.setAttribute("y", "200");
+  ety2.setAttribute("text-anchor", "middle");
+  ety2.setAttribute("font-family", "Sora, system-ui, sans-serif");
+  ety2.setAttribute("font-weight", "600");
+  ety2.setAttribute("font-size", "13");
+  ety2.setAttribute("letter-spacing", "0.20em");
+  ety2.setAttribute("fill", "#a05738");
+  ety2.setAttribute("class", "sym-etymology sym-rhiza");
+  ety2.textContent = "RHIZA · RAÍZ";
+  svg.appendChild(ety2);
+
+  // === INTERCAMBIO BIDIRECCIONAL DE NUTRIENTES ===
+  // Azúcares (oro): viajan del árbol → hongo, a lo largo de los rootPaths
+  // animateMotion sigue el path de su atributo "from start to end" (0→1).
+  // rootPaths empiezan en (820,...) y terminan cerca del centro: 0→1 ya
+  // significa "del árbol hacia el hongo". ✓
+  rootPaths.forEach((d, i) => {
+    const p = circle(NS, 0, 0, 3.4, "#d4a373", "sym-sugar");
+    p.setAttribute("opacity", "0");
+    p.setAttribute("filter", "url(#sym-glow)");
+    const begin = 2.6 + i * 0.18;
 
     const fadeIn = document.createElementNS(NS, "animate");
     fadeIn.setAttribute("attributeName", "opacity");
     fadeIn.setAttribute("begin", `${begin}s`);
-    fadeIn.setAttribute("dur", "0.6s");
-    fadeIn.setAttribute("from", "0");
-    fadeIn.setAttribute("to", `${0.5 + Math.random() * 0.4}`);
+    fadeIn.setAttribute("dur", "0.15s");
+    fadeIn.setAttribute("from", "0"); fadeIn.setAttribute("to", "1");
     fadeIn.setAttribute("fill", "freeze");
-    m.appendChild(fadeIn);
+    p.appendChild(fadeIn);
 
-    const dx = document.createElementNS(NS, "animate");
-    dx.setAttribute("attributeName", "cx");
-    dx.setAttribute("begin", `${begin}s`);
-    dx.setAttribute("dur", `${dur}s`);
-    dx.setAttribute("from", startX);
-    dx.setAttribute("to", startX + driftX);
-    dx.setAttribute("fill", "freeze");
-    m.appendChild(dx);
-
-    const dy = document.createElementNS(NS, "animate");
-    dy.setAttribute("attributeName", "cy");
-    dy.setAttribute("begin", `${begin}s`);
-    dy.setAttribute("dur", `${dur}s`);
-    dy.setAttribute("from", startY);
-    dy.setAttribute("to", startY + driftY);
-    dy.setAttribute("fill", "freeze");
-    m.appendChild(dy);
+    const motion = document.createElementNS(NS, "animateMotion");
+    motion.setAttribute("dur", "0.95s");
+    motion.setAttribute("begin", `${begin}s`);
+    motion.setAttribute("fill", "freeze");
+    motion.setAttribute("path", d);
+    p.appendChild(motion);
 
     const fadeOut = document.createElementNS(NS, "animate");
     fadeOut.setAttribute("attributeName", "opacity");
-    fadeOut.setAttribute("begin", `${begin + dur - 0.7}s`);
-    fadeOut.setAttribute("dur", "0.7s");
-    fadeOut.setAttribute("from", "0.7");
-    fadeOut.setAttribute("to", "0");
+    fadeOut.setAttribute("begin", `${begin + 0.80}s`);
+    fadeOut.setAttribute("dur", "0.15s");
+    fadeOut.setAttribute("from", "1"); fadeOut.setAttribute("to", "0");
     fadeOut.setAttribute("fill", "freeze");
-    m.appendChild(fadeOut);
+    p.appendChild(fadeOut);
 
-    svg.appendChild(m);
-  }
+    svg.appendChild(p);
+  });
+
+  // Agua/minerales (azul): viajan del hongo → árbol, a lo largo de hyphaePaths
+  // hyphaePaths empiezan en (180,...) y terminan cerca del centro: 0→1 = hongo→interfaz.
+  // Para mostrar "del hongo hacia el árbol" hasta el interfaz basta — la idea es
+  // que llegan al árbol por el interfaz.
+  hyphaePaths.forEach((d, i) => {
+    const p = circle(NS, 0, 0, 3.4, "#66B7C9", "sym-mineral");
+    p.setAttribute("opacity", "0");
+    p.setAttribute("filter", "url(#sym-glow)");
+    const begin = 2.7 + i * 0.15;
+
+    const fadeIn = document.createElementNS(NS, "animate");
+    fadeIn.setAttribute("attributeName", "opacity");
+    fadeIn.setAttribute("begin", `${begin}s`);
+    fadeIn.setAttribute("dur", "0.15s");
+    fadeIn.setAttribute("from", "0"); fadeIn.setAttribute("to", "1");
+    fadeIn.setAttribute("fill", "freeze");
+    p.appendChild(fadeIn);
+
+    const motion = document.createElementNS(NS, "animateMotion");
+    motion.setAttribute("dur", "0.95s");
+    motion.setAttribute("begin", `${begin}s`);
+    motion.setAttribute("fill", "freeze");
+    motion.setAttribute("path", d);
+    p.appendChild(motion);
+
+    const fadeOut = document.createElementNS(NS, "animate");
+    fadeOut.setAttribute("attributeName", "opacity");
+    fadeOut.setAttribute("begin", `${begin + 0.80}s`);
+    fadeOut.setAttribute("dur", "0.15s");
+    fadeOut.setAttribute("from", "1"); fadeOut.setAttribute("to", "0");
+    fadeOut.setAttribute("fill", "freeze");
+    p.appendChild(fadeOut);
+
+    svg.appendChild(p);
+  });
+
+  // === REVELACIÓN DEL NOMBRE ===
+  // "Micorriza" se forma exactamente donde nació la simbiosis
+  const word = document.createElementNS(NS, "text");
+  word.setAttribute("x", "500");
+  word.setAttribute("y", "445");
+  word.setAttribute("text-anchor", "middle");
+  word.setAttribute("font-family", "Fraunces, 'Sora', Georgia, serif");
+  word.setAttribute("font-weight", "500");
+  word.setAttribute("font-size", "62");
+  word.setAttribute("fill", "#1F3B5B");
+  word.setAttribute("class", "sym-word");
+  word.textContent = "Micorriza";
+  svg.appendChild(word);
+
+  // Subtítulo más pequeño
+  const tag = document.createElementNS(NS, "text");
+  tag.setAttribute("x", "500");
+  tag.setAttribute("y", "478");
+  tag.setAttribute("text-anchor", "middle");
+  tag.setAttribute("font-family", "Sora, system-ui, sans-serif");
+  tag.setAttribute("font-weight", "400");
+  tag.setAttribute("font-size", "14");
+  tag.setAttribute("letter-spacing", "0.10em");
+  tag.setAttribute("fill", "#4a5160");
+  tag.setAttribute("class", "sym-tag");
+  tag.textContent = "donde la red sostiene a cada nodo";
+  svg.appendChild(tag);
 
   stage.appendChild(svg);
-  return raceWithSkip(6200, isSkipped);
+  return raceWithSkip(6300, isSkipped);
 }
 
 /* ---------- 1) Mycelium ----------
@@ -897,33 +993,57 @@ function playEmergence(stage, { isSkipped }) {
 }
 
 /* ---------- thumbnails for the gallery ---------- */
-function thumbAcuarela() {
+function thumbSimbiosis() {
   return `
     <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <filter id="thumb-acu-bloom" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="8"/>
+        <filter id="thumb-sym-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6"/>
         </filter>
+        <radialGradient id="thumb-sym-iface" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(102,183,201,0.55)"/>
+          <stop offset="55%" stop-color="rgba(102,183,201,0.18)"/>
+          <stop offset="100%" stop-color="rgba(102,183,201,0)"/>
+        </radialGradient>
       </defs>
-      <ellipse cx="380" cy="180" rx="180" ry="120" fill="rgba(220,200,168,0.35)" filter="url(#thumb-acu-bloom)"/>
-      <ellipse cx="160" cy="240" rx="110" ry="80"  fill="rgba(102,183,201,0.18)" filter="url(#thumb-acu-bloom)"/>
-      <path d="M 100,260 Q 200,230 260,200 Q 320,170 360,140 Q 400,110 460,100" stroke="#2c2820" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.9"/>
-      <path d="M 140,250 Q 220,220 280,190 Q 340,160 380,140" stroke="#2c2820" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.28" filter="url(#thumb-acu-bloom)"/>
-      <path d="M 230,210 Q 220,240 210,270" stroke="#2c2820" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <path d="M 290,180 Q 305,160 320,140" stroke="#2c2820" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <ellipse cx="230" cy="210" rx="40" ry="30" fill="rgba(176,122,74,0.55)" filter="url(#thumb-acu-bloom)"/>
-      <ellipse cx="320" cy="160" rx="44" ry="32" fill="rgba(102,183,201,0.45)" filter="url(#thumb-acu-bloom)"/>
-      <ellipse cx="160" cy="250" rx="32" ry="22" fill="rgba(137,133,97,0.50)" filter="url(#thumb-acu-bloom)"/>
-      <circle cx="230" cy="210" r="3"   fill="#3B2E26"/>
-      <circle cx="320" cy="160" r="3.5" fill="#66B7C9"/>
-      <circle cx="160" cy="250" r="2.6" fill="#898561"/>
-      <circle cx="460" cy="100" r="3"   fill="#1F3B5B"/>
-      <!-- motas -->
-      <circle cx="100" cy="120" r="1.8" fill="#d4a373" opacity="0.7"/>
-      <circle cx="200" cy="80"  r="1.4" fill="#d4a373" opacity="0.7"/>
-      <circle cx="350" cy="280" r="1.6" fill="#d4a373" opacity="0.7"/>
-      <circle cx="480" cy="200" r="1.4" fill="#d4a373" opacity="0.7"/>
-      <circle cx="540" cy="140" r="1.8" fill="#d4a373" opacity="0.7"/>
+      <!-- etymology hints -->
+      <text x="115" y="60" text-anchor="middle" font-family="Sora, sans-serif" font-weight="600" font-size="9" letter-spacing="2" fill="#a8865c">MYCO · HONGO</text>
+      <text x="490" y="60" text-anchor="middle" font-family="Sora, sans-serif" font-weight="600" font-size="9" letter-spacing="2" fill="#a05738">RHIZA · RAÍZ</text>
+      <!-- fungus left half -->
+      <g stroke-linecap="round" fill="none">
+        <path d="M 110,190 Q 170,170 220,180 Q 260,185 290,190" stroke="#a8865c" stroke-width="1.2"/>
+        <path d="M 110,190 Q 160,210 210,200 Q 260,195 290,200" stroke="#a8865c" stroke-width="1.2"/>
+        <path d="M 110,190 Q 150,170 170,150 Q 210,140 270,160" stroke="#a8865c" stroke-width="1.2"/>
+        <path d="M 110,190 Q 150,210 170,230 Q 210,240 270,225" stroke="#a8865c" stroke-width="1.2"/>
+        <path d="M 110,190 Q 145,180 175,180 Q 230,180 285,190" stroke="#a8865c" stroke-width="1.2"/>
+      </g>
+      <circle cx="110" cy="190" r="6" fill="#a8865c"/>
+      <!-- plant right half -->
+      <path d="M 480,80 Q 478,120 482,160 Q 478,180 480,190" stroke="#b56a3e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <g transform="translate(480 80) rotate(-50) scale(0.5)"><path d="M0 0 Q -22 -28 0 -64 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(480 80) rotate(50)  scale(0.5)"><path d="M0 0 Q -22 -28 0 -64 Q 22 -28 0 0 Z" fill="#5e8b4a"/></g>
+      <g stroke-linecap="round" fill="none">
+        <path d="M 480,190 Q 420,210 360,205 Q 330,200 310,200" stroke="#a05738" stroke-width="1.6"/>
+        <path d="M 480,190 Q 430,180 370,175 Q 330,180 310,190" stroke="#a05738" stroke-width="1.6"/>
+        <path d="M 480,190 Q 440,210 400,225 Q 350,225 320,210" stroke="#a05738" stroke-width="1.6"/>
+        <path d="M 480,190 Q 440,170 400,155 Q 350,155 320,170" stroke="#a05738" stroke-width="1.6"/>
+      </g>
+      <!-- interface halo -->
+      <ellipse cx="300" cy="195" rx="70" ry="35" fill="url(#thumb-sym-iface)"/>
+      <!-- interface nodes -->
+      <circle cx="295" cy="195" r="3" fill="#1F3B5B" filter="url(#thumb-sym-glow)"/>
+      <circle cx="312" cy="200" r="3" fill="#1F3B5B" filter="url(#thumb-sym-glow)"/>
+      <circle cx="285" cy="172" r="2.5" fill="#1F3B5B" filter="url(#thumb-sym-glow)"/>
+      <circle cx="320" cy="178" r="2.5" fill="#1F3B5B" filter="url(#thumb-sym-glow)"/>
+      <circle cx="290" cy="218" r="2.5" fill="#1F3B5B" filter="url(#thumb-sym-glow)"/>
+      <!-- particles in transit -->
+      <circle cx="380" cy="195" r="2.6" fill="#d4a373"/>
+      <circle cx="220" cy="190" r="2.6" fill="#66B7C9"/>
+      <circle cx="350" cy="205" r="2"   fill="#d4a373"/>
+      <circle cx="250" cy="200" r="2"   fill="#66B7C9"/>
+      <!-- name -->
+      <text x="300" y="285" text-anchor="middle" font-family="Fraunces, serif" font-weight="500" font-size="38" fill="#1F3B5B">Micorriza</text>
+      <text x="300" y="310" text-anchor="middle" font-family="Sora, sans-serif" font-weight="400" font-size="11" letter-spacing="1.2" fill="#4a5160">donde la red sostiene a cada nodo</text>
     </svg>
   `;
 }

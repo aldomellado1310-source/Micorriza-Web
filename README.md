@@ -28,17 +28,18 @@ Construido como un sitio estático con HTML, CSS y JavaScript vanilla, fiel a la
 
 ## Secciones (home)
 
-Estructura editorial deliberadamente compacta — 8 secciones, cada una con un trabajo claro:
+Estructura editorial deliberadamente compacta — cada sección con un trabajo claro:
 
-1. **Hero** — Propuesta de valor + ilustración SVG de la red micorrícica animada.
-2. **KPI strip** — Banda de credibilidad inmediata: años, sectores, operación, uptime.
-3. **Soluciones (01)** — Cuatro principios reescritos con POV Micorriza explícita y iconografía custom.
-4. **Sectores (02)** — Tesis "cada sector es un ecosistema" + 6 cards con POV específica de una línea.
-5. **Sistemas vivos en producción** — Banda compacta con el panel de métricas (la antigua "Tecnología" reducida a su parte más fuerte).
-6. **Aliados y casos (03)** — Muro de logos placeholder + 2 case study cards con métrica destacada.
-7. **Nosotros (04)** — Equipo, credenciales y bento de disciplinas.
-8. **Manifiesto** — Cita central como cierre poético antes del CTA.
-9. **Contacto** — Formulario y CTA final.
+1. **Hero** — Propuesta de valor + ilustración SVG de la red micorrícica animada. La lede define el sustrato metafórico: bosque ↔ red invisible.
+2. **¿Qué es una micorriza?** — Explainer visual del nombre y la metáfora: tres cards (Hongo + Raíz = Micorriza) con SVG diagramáticos y un puente que conecta la biología con la propuesta de la empresa.
+3. **KPI strip** — Banda de credibilidad inmediata: años, sectores, operación, uptime.
+4. **Soluciones (01)** — Cuatro principios reescritos con POV Micorriza explícita y iconografía custom.
+5. **Sectores (02)** — Tesis "cada sector es un ecosistema" + 6 cards con POV específica de una línea.
+6. **Sistemas vivos en producción** — Banda compacta con el panel de métricas en vivo.
+7. **Aliados y casos (03)** — Muro de logos placeholder + 2 case study cards con métrica destacada.
+8. **Nosotros (04)** — Equipo, credenciales y bento de disciplinas.
+9. **Manifiesto** — Cita central como cierre poético antes del CTA.
+10. **Contacto** — Formulario y CTA final.
 
 Los recursos (whitepapers, casos extensos, guías) viven ahora en **`recursos.html`** — accesibles desde nav y footer. Las secciones "Capacidades" (iconografía decorativa) y la "Tecnología" extensa quedaron deliberadamente fuera de la home: aportaban menos de lo que ocupaban.
 
@@ -106,7 +107,7 @@ llega en una sesión. Hay cuatro candidatas implementadas en `intros/intros.js`:
 
 | ID | Concepto | Tecnología |
 |---|---|---|
-| `acuarela` *(default)* | Caligrafía sumi-e + manchas de acuarela + motas doradas en parallax. Atmosférica y asimétrica. | SVG + filtros + CSS + SMIL |
+| `simbiosis` *(default)* | Hongo (izq) + raíz del árbol (der) crecen y se encuentran en el centro. Aparecen los nodos de la interfaz micorrícica con halo agua. Partículas doradas (azúcares) viajan del árbol hacia el hongo; partículas azules (agua/minerales) viajan del hongo hacia el árbol. En la unión se forma el nombre **Micorriza**. Etimología etiquetada (MYCO · HONGO / RHIZA · RAÍZ). | SVG + CSS + SMIL animateMotion |
 | `mycelium`  | Raíces, red neuronal, nutrientes, arrayán que crece, hongos al pie y bosque interconectado. | SVG + CSS + SMIL |
 | `logo`      | Construcción del logo Micorriza nodo a nodo + wordmark. | SVG + CSS |
 | `spores`    | Esporas que caen, aterrizan y germinan en micelios. | SVG + WAAPI |
