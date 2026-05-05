@@ -13,8 +13,8 @@ const STORAGE_PLAYED  = "micorriza:intro:played";
 export const INTROS = [
   {
     id: "mycelium",
-    label: "Arrayán y micorriza",
-    summary: "Las raíces emergen, se entrelazan en una red neuronal que recibe nutrientes; brotan hongos al pie del arrayán mientras la planta crece sobre la superficie.",
+    label: "Arrayán, bosque y micorriza",
+    summary: "Las raíces brotan, se entrelazan en una red neuronal y reciben nutrientes; un arrayán crece, hongos fructifican a sus pies, y luego un bosque entero emerge interconectado por la micorriza.",
     play: playMycelium,
     thumb: thumbMycelium,
   },
@@ -360,8 +360,111 @@ function playMycelium(stage, { isSkipped }) {
     svg.appendChild(g);
   });
 
+  // === FOREST: side trees emerge after the central arrayán ===
+  const forestSpec = [
+    { x: 140, scale: 0.55 },
+    { x: 460, scale: 0.55 },
+    { x:  72, scale: 0.40 },
+    { x: 528, scale: 0.40 },
+  ];
+  const sideLeafD = "M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z";
+  forestSpec.forEach((t, i) => {
+    const tree = document.createElementNS(NS, "g");
+    tree.setAttribute("class", `myc-forest-tree ft-${i + 1}`);
+
+    // 3 short roots fanning into the soil
+    const rs = 50 * t.scale;
+    [
+      `M${t.x},320 Q ${t.x - rs * 0.5},${320 + rs * 0.5} ${t.x - rs * 0.7},${320 + rs}`,
+      `M${t.x},320 Q ${t.x + rs * 0.5},${320 + rs * 0.5} ${t.x + rs * 0.7},${320 + rs}`,
+      `M${t.x},320 Q ${t.x - rs * 0.1},${320 + rs * 0.7} ${t.x},${320 + rs * 1.2}`,
+    ].forEach((d) => {
+      tree.appendChild(path(NS, d, "#898561", 1.4 * t.scale, "ft-root"));
+    });
+
+    // cinnamon stem
+    const stemH = 130 * t.scale;
+    const sTop = 320 - stemH;
+    const stemD =
+      `M${t.x},320 ` +
+      `Q ${t.x - 2},${320 - stemH * 0.45} ${t.x + 2},${320 - stemH * 0.7} ` +
+      `Q ${t.x - 1},${sTop + 6} ${t.x},${sTop}`;
+    tree.appendChild(path(NS, stemD, "#b56a3e", 3 * t.scale, "ft-stem"));
+
+    // 4 leaves (paired lower + paired upper)
+    const treeLeaves = [
+      { y: sTop + stemH * 0.30, rot: -55, size: 1.00, fill: "#6da25a" },
+      { y: sTop + stemH * 0.32, rot:  50, size: 1.00, fill: "#5e8b4a" },
+      { y: sTop + 4,            rot: -28, size: 0.85, fill: "#7ab063" },
+      { y: sTop + 4,            rot:  28, size: 0.85, fill: "#6da25a" },
+    ];
+    treeLeaves.forEach((l) => {
+      const g = document.createElementNS(NS, "g");
+      g.setAttribute(
+        "transform",
+        `translate(${t.x} ${l.y}) rotate(${l.rot}) scale(${l.size * t.scale})`
+      );
+      const blade = document.createElementNS(NS, "path");
+      blade.setAttribute("d", sideLeafD);
+      blade.setAttribute("fill", l.fill);
+      g.appendChild(blade);
+      tree.appendChild(g);
+    });
+
+    svg.appendChild(tree);
+  });
+
+  // === INTER-TREE MYCORRIZA NETWORK: a single mycelium connecting them all ===
+  const networkPaths = [
+    "M300,320 Q 220,360 140,332",  // central → tree-1 (left medium)
+    "M300,320 Q 380,360 460,332",  // central → tree-2 (right medium)
+    "M140,332 Q 105,355  72,338",  // tree-1 → tree-3 (far left)
+    "M460,332 Q 495,355 528,338",  // tree-2 → tree-4 (far right)
+    "M300,320 Q 200,420  72,338",  // central → tree-3 (deep arc)
+    "M300,320 Q 400,420 528,338",  // central → tree-4 (deep arc)
+  ];
+  networkPaths.forEach((d, i) => {
+    const p = path(NS, d, "#4f9eb0", 1.6, `myc-network mn-${i + 1}`);
+    svg.appendChild(p);
+  });
+
+  // small "signal" pulses travel from each side tree toward the central spore,
+  // showing the forest "talking" through the network
+  networkPaths.slice(0, 4).forEach((d, i) => {
+    const pulse = circle(NS, 0, 0, 2.4, "#9be0ee", "myc-pulse");
+    pulse.setAttribute("opacity", "0");
+    const begin = 4.4 + i * 0.12;
+
+    const fadeIn = document.createElementNS(NS, "animate");
+    fadeIn.setAttribute("attributeName", "opacity");
+    fadeIn.setAttribute("begin", `${begin}s`);
+    fadeIn.setAttribute("dur", "0.15s");
+    fadeIn.setAttribute("from", "0"); fadeIn.setAttribute("to", "1");
+    fadeIn.setAttribute("fill", "freeze");
+    pulse.appendChild(fadeIn);
+
+    const motion = document.createElementNS(NS, "animateMotion");
+    motion.setAttribute("dur", "0.7s");
+    motion.setAttribute("begin", `${begin}s`);
+    motion.setAttribute("fill", "freeze");
+    motion.setAttribute("keyPoints", "1;0");
+    motion.setAttribute("keyTimes", "0;1");
+    motion.setAttribute("path", d);
+    pulse.appendChild(motion);
+
+    const fadeOut = document.createElementNS(NS, "animate");
+    fadeOut.setAttribute("attributeName", "opacity");
+    fadeOut.setAttribute("begin", `${begin + 0.55}s`);
+    fadeOut.setAttribute("dur", "0.15s");
+    fadeOut.setAttribute("from", "1"); fadeOut.setAttribute("to", "0");
+    fadeOut.setAttribute("fill", "freeze");
+    pulse.appendChild(fadeOut);
+
+    svg.appendChild(pulse);
+  });
+
   stage.appendChild(svg);
-  return raceWithSkip(4000, isSkipped);
+  return raceWithSkip(5400, isSkipped);
 }
 
 /* ---------- 2) Logo build-up ---------- */
@@ -576,57 +679,57 @@ function playEmergence(stage, { isSkipped }) {
 function thumbMycelium() {
   return `
     <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
-      <line x1="40" y1="200" x2="560" y2="200" stroke="#DCC8A8" stroke-width="1" stroke-dasharray="3 5" opacity="0.55"/>
-      <!-- arrayán stem (cinnamon bark) -->
-      <path d="M300,200 Q 296,160 304,120 Q 295,90 302,60" stroke="#b56a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <ellipse cx="299" cy="170" rx="3.5" ry="1.8" fill="#e8c8a4"/>
-      <ellipse cx="302" cy="130" rx="3"   ry="1.5" fill="#e8c8a4"/>
-      <ellipse cx="298" cy="90"  rx="3"   ry="1.5" fill="#e8c8a4"/>
-      <!-- bigger leaves -->
-      <g transform="translate(300 160) rotate(-58) scale(1.05)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
-      <g transform="translate(300 165) rotate(52)  scale(1.05)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#5e8b4a"/></g>
-      <g transform="translate(300 95)  rotate(-40) scale(0.85)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#7ab063"/></g>
-      <g transform="translate(300 90)  rotate(40)  scale(0.85)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
-      <!-- mushrooms at the base (larger, wider) -->
-      <ellipse cx="220" cy="202" rx="22" ry="2.5" fill="#3B2E26" opacity="0.18"/>
-      <rect x="215.5" y="172" width="9" height="28" rx="4.5" fill="#f4ead8" stroke="#c8b88a" stroke-width="0.6"/>
-      <ellipse cx="220" cy="172" rx="24" ry="14" fill="#c83030" stroke="#7a1f1f" stroke-width="0.8"/>
-      <circle cx="208" cy="170" r="3.6" fill="#fff7e6"/>
-      <circle cx="230" cy="166" r="2.8" fill="#fff7e6"/>
-      <circle cx="221" cy="160" r="3.0" fill="#fff7e6"/>
-      <circle cx="214" cy="167" r="2.0" fill="#fff7e6"/>
-      <ellipse cx="380" cy="202" rx="18" ry="2" fill="#3B2E26" opacity="0.18"/>
-      <rect x="376.5" y="178" width="7" height="22" rx="3.5" fill="#f4ead8" stroke="#c8b88a" stroke-width="0.6"/>
-      <ellipse cx="380" cy="178" rx="20" ry="12" fill="#d85530" stroke="#7a1f1f" stroke-width="0.8"/>
-      <circle cx="370" cy="176" r="2.8" fill="#fff7e6"/>
-      <circle cx="388" cy="173" r="2.4" fill="#fff7e6"/>
-      <circle cx="380" cy="167" r="2.6" fill="#fff7e6"/>
-      <!-- roots below soil -->
+      <line x1="20" y1="220" x2="580" y2="220" stroke="#DCC8A8" stroke-width="1" stroke-dasharray="3 5" opacity="0.55"/>
+      <!-- forest: 4 side trees -->
       <g stroke-linecap="round" fill="none">
-        <path d="M300,200 Q 240,250 180,290" stroke="#898561" stroke-width="1.6"/>
-        <path d="M300,200 Q 360,250 420,290" stroke="#B07A4A" stroke-width="1.6"/>
-        <path d="M300,200 Q 220,290 130,300" stroke="#898561" stroke-width="1.6"/>
-        <path d="M300,200 Q 380,290 470,300" stroke="#B07A4A" stroke-width="1.6"/>
-        <path d="M300,200 Q 295,260 290,330" stroke="#1F3B5B" stroke-width="1.6"/>
+        <path d="M150,220 Q 148,190 152,160 Q 147,140 150,128" stroke="#b56a3e" stroke-width="2"/>
+        <path d="M450,220 Q 448,190 452,160 Q 447,140 450,128" stroke="#b56a3e" stroke-width="2"/>
+        <path d="M85,220  Q 83,200  87,182 Q 84,168  85,160"   stroke="#b56a3e" stroke-width="1.5"/>
+        <path d="M515,220 Q 513,200 517,182 Q 514,168 515,160"  stroke="#b56a3e" stroke-width="1.5"/>
       </g>
-      <!-- neural cross-connections -->
-      <g stroke="#66B7C9" stroke-width="0.8" fill="none" stroke-dasharray="2 3" opacity="0.55">
-        <path d="M180,290 L 420,290"/>
-        <path d="M130,300 L 470,300"/>
-        <path d="M180,290 L 290,330"/>
-        <path d="M420,290 L 290,330"/>
+      <g transform="translate(150 152) rotate(-50) scale(0.6)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(150 156) rotate(50)  scale(0.6)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#5e8b4a"/></g>
+      <g transform="translate(150 130) rotate(-25) scale(0.5)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#7ab063"/></g>
+      <g transform="translate(150 130) rotate(25)  scale(0.5)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(450 152) rotate(-50) scale(0.6)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(450 156) rotate(50)  scale(0.6)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#5e8b4a"/></g>
+      <g transform="translate(450 130) rotate(-25) scale(0.5)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#7ab063"/></g>
+      <g transform="translate(450 130) rotate(25)  scale(0.5)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(85  175) rotate(-45) scale(0.45)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(85  175) rotate(45)  scale(0.45)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#5e8b4a"/></g>
+      <g transform="translate(515 175) rotate(-45) scale(0.45)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(515 175) rotate(45)  scale(0.45)"><path d="M0 0 Q -20 -22 0 -52 Q 20 -22 0 0 Z" fill="#5e8b4a"/></g>
+      <!-- central arrayán -->
+      <path d="M300,220 Q 296,180 304,140 Q 295,110 302,80" stroke="#b56a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="299" cy="190" rx="3.5" ry="1.8" fill="#e8c8a4"/>
+      <ellipse cx="302" cy="150" rx="3"   ry="1.5" fill="#e8c8a4"/>
+      <g transform="translate(300 180) rotate(-58) scale(1.0)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
+      <g transform="translate(300 184) rotate(52)  scale(1.0)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#5e8b4a"/></g>
+      <g transform="translate(300 115) rotate(-40) scale(0.8)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#7ab063"/></g>
+      <g transform="translate(300 110) rotate(40)  scale(0.8)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
+      <!-- inter-tree mycorriza network -->
+      <g stroke="#4f9eb0" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85">
+        <path d="M300,220 Q 220,250 150,225"/>
+        <path d="M300,220 Q 380,250 450,225"/>
+        <path d="M150,225 Q 110,238  85,228"/>
+        <path d="M450,225 Q 490,238 515,228"/>
+        <path d="M300,220 Q 200,275  85,228"/>
+        <path d="M300,220 Q 400,275 515,228"/>
       </g>
-      <!-- nutrients in transit -->
-      <circle cx="240" cy="245" r="2.4" fill="#DCC8A8"/>
-      <circle cx="360" cy="245" r="2.4" fill="#DCC8A8"/>
-      <circle cx="295" cy="265" r="2.4" fill="#DCC8A8"/>
-      <!-- nodes -->
-      <circle cx="300" cy="200" r="8"   fill="#1F3B5B"/>
-      <circle cx="180" cy="290" r="4"   fill="#3B2E26"/>
-      <circle cx="420" cy="290" r="4"   fill="#B07A4A"/>
-      <circle cx="130" cy="300" r="3.5" fill="#66B7C9"/>
-      <circle cx="470" cy="300" r="3.5" fill="#66B7C9"/>
-      <circle cx="290" cy="330" r="3"   fill="#1F3B5B"/>
+      <!-- mushrooms at the base of central tree -->
+      <ellipse cx="240" cy="222" rx="14" ry="2" fill="#3B2E26" opacity="0.18"/>
+      <rect x="236.5" y="200" width="7" height="20" rx="3.5" fill="#f4ead8" stroke="#c8b88a" stroke-width="0.6"/>
+      <ellipse cx="240" cy="200" rx="16" ry="10" fill="#c83030" stroke="#7a1f1f" stroke-width="0.7"/>
+      <circle cx="232" cy="198" r="2.4" fill="#fff7e6"/>
+      <circle cx="247" cy="195" r="2.0" fill="#fff7e6"/>
+      <circle cx="240" cy="190" r="2.0" fill="#fff7e6"/>
+      <ellipse cx="362" cy="222" rx="11" ry="1.6" fill="#3B2E26" opacity="0.18"/>
+      <rect x="359" y="206" width="6" height="14" rx="3" fill="#f4ead8" stroke="#c8b88a" stroke-width="0.6"/>
+      <ellipse cx="362" cy="206" rx="13" ry="8" fill="#d85530" stroke="#7a1f1f" stroke-width="0.7"/>
+      <circle cx="356" cy="204" r="1.8" fill="#fff7e6"/>
+      <circle cx="367" cy="202" r="1.6" fill="#fff7e6"/>
+      <!-- central node + a couple of root tips -->
+      <circle cx="300" cy="220" r="6" fill="#1F3B5B"/>
     </svg>
   `;
 }
