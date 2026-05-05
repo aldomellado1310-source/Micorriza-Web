@@ -43,3 +43,23 @@ npx serve .
 ```
 
 Luego abre <http://localhost:8000>.
+
+## Despliegue — GitHub Pages (Actions)
+
+El sitio se publica automáticamente con `.github/workflows/pages.yml`.
+
+**Configuración por única vez:**
+
+1. En el repositorio: `Settings` → `Pages`.
+2. En *Build and deployment* → *Source*, elige **GitHub Actions**.
+
+A partir de ahí, cada push a `main` (o a la rama de diseño actual) ejecuta
+el workflow y publica el sitio. La URL aparece como output del job
+`deploy` y queda visible en la pestaña *Environments → github-pages*.
+
+El archivo `.nojekyll` evita que GitHub procese el contenido con Jekyll
+(necesario para que carpetas/rutas con prefijo `_` se sirvan tal cual).
+
+Para usar un dominio propio (p. ej. `micorriza.tech`), añade un archivo
+`CNAME` en la raíz con el dominio y configura los DNS según la documentación
+oficial de GitHub Pages.
