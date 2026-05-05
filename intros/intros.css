@@ -122,11 +122,25 @@
   100% { opacity: 0.6; }
 }
 
-/* arrayán stem rises from the spore */
+/* the entire arrayán scales from sapling to full tree progressively */
+.intro-mycelium .myc-plant {
+  transform-box: view-box;
+  transform-origin: 300px 320px;
+  transform: scale(0.18);
+  opacity: 0;
+  animation: myc-plant-grow 1500ms 1500ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes myc-plant-grow {
+  0%   { transform: scale(0.18); opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* arrayán stem rises from the spore (drawn while the tree is scaling up) */
 .intro-mycelium .myc-stem {
   stroke-dasharray: 320; stroke-dashoffset: 320;
   fill: none; stroke-linecap: round;
-  animation: myc-draw 760ms 1600ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation: myc-draw 900ms 1600ms cubic-bezier(.2,.7,.2,1) forwards;
 }
 
 /* arrayán bark patches fade in once the trunk is drawn */
@@ -134,21 +148,23 @@
   opacity: 0;
   animation: myc-bark-fade 360ms ease forwards;
 }
-.intro-mycelium .bs-1 { animation-delay: 2400ms; }
-.intro-mycelium .bs-2 { animation-delay: 2450ms; }
-.intro-mycelium .bs-3 { animation-delay: 2500ms; }
-.intro-mycelium .bs-4 { animation-delay: 2550ms; }
+.intro-mycelium .bs-1 { animation-delay: 2700ms; }
+.intro-mycelium .bs-2 { animation-delay: 2750ms; }
+.intro-mycelium .bs-3 { animation-delay: 2800ms; }
+.intro-mycelium .bs-4 { animation-delay: 2850ms; }
 @keyframes myc-bark-fade { to { opacity: 0.75; } }
 
-/* mushrooms fruit at the base of the arrayán */
+/* mushrooms fruit at the base of the arrayán
+   transform-box: view-box gives a deterministic origin in user units,
+   anchoring each cap to the soil line at y=320.                      */
 .intro-mycelium .myc-mushroom {
-  transform-box: fill-box; transform-origin: 50% 100%;
+  transform-box: view-box;
   transform: scale(0); opacity: 0;
-  animation: myc-mush-pop 480ms cubic-bezier(.2,.7,.2,1) forwards;
+  animation: myc-mush-pop 560ms cubic-bezier(.2,.7,.2,1) forwards;
 }
-.intro-mycelium .mush-1 { animation-delay: 1750ms; }
-.intro-mycelium .mush-2 { animation-delay: 1880ms; }
-.intro-mycelium .mush-3 { animation-delay: 2000ms; }
+.intro-mycelium .mush-1 { transform-origin: 230px 320px; animation-delay: 2700ms; }
+.intro-mycelium .mush-2 { transform-origin: 372px 320px; animation-delay: 2820ms; }
+.intro-mycelium .mush-3 { transform-origin: 196px 320px; animation-delay: 2940ms; }
 @keyframes myc-mush-pop {
   0%   { transform: scale(0); opacity: 0; }
   60%  { transform: scale(1.18); opacity: 1; }
@@ -161,11 +177,11 @@
   transform: scale(0); opacity: 0;
   animation: myc-leaf-unfurl 480ms cubic-bezier(.2,.7,.2,1) forwards;
 }
-.intro-mycelium .myc-leaf-1 { animation-delay: 2050ms; }
-.intro-mycelium .myc-leaf-2 { animation-delay: 2150ms; }
-.intro-mycelium .myc-leaf-3 { animation-delay: 2270ms; }
-.intro-mycelium .myc-leaf-4 { animation-delay: 2380ms; }
-.intro-mycelium .myc-leaf-5 { animation-delay: 2500ms; }
+.intro-mycelium .myc-leaf-1 { animation-delay: 2100ms; }
+.intro-mycelium .myc-leaf-2 { animation-delay: 2200ms; }
+.intro-mycelium .myc-leaf-3 { animation-delay: 2320ms; }
+.intro-mycelium .myc-leaf-4 { animation-delay: 2430ms; }
+.intro-mycelium .myc-leaf-5 { animation-delay: 2560ms; }
 @keyframes myc-leaf-unfurl {
   0%   { transform: scale(0); opacity: 0; }
   60%  { transform: scale(1.18); opacity: 1; }
@@ -174,7 +190,7 @@
 
 /* whole canvas holds the final composition, then fades out */
 .intro-mycelium .myc-canvas {
-  animation: myc-fade 320ms 3000ms ease forwards;
+  animation: myc-fade 320ms 3700ms ease forwards;
 }
 @keyframes myc-fade { to { opacity: 0; transform: scale(1.04); } }
 

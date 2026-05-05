@@ -233,8 +233,12 @@ function playMycelium(stage, { isSkipped }) {
     svg.appendChild(n);
   });
 
+  // === arrayán plant: scales progressively from sapling to tree ===
+  const plant = document.createElementNS(NS, "g");
+  plant.setAttribute("class", "myc-plant");
+
   // arrayán-style stem: cinnamon bark, slight sway
-  svg.appendChild(path(NS, "M300,320 Q 296,270 304,220 Q 295,170 302,120 Q 299,100 300,82", "#b56a3e", 4.5, "myc-stem"));
+  plant.appendChild(path(NS, "M300,320 Q 296,270 304,220 Q 295,170 302,120 Q 299,100 300,82", "#b56a3e", 4.5, "myc-stem"));
 
   // bark highlights: cream patches on the trunk (arrayán's peeling bark)
   const barkSpots = [
@@ -249,7 +253,7 @@ function playMycelium(stage, { isSkipped }) {
     e.setAttribute("rx", s.rx); e.setAttribute("ry", s.ry);
     e.setAttribute("fill", "#e8c8a4");
     e.setAttribute("class", `myc-bark-spot bs-${i + 1}`);
-    svg.appendChild(e);
+    plant.appendChild(e);
   });
 
   // bigger arrayán leaves along the stem
@@ -278,18 +282,35 @@ function playMycelium(stage, { isSkipped }) {
     vein.setAttribute("stroke-linecap", "round");
     inner.appendChild(vein);
     g.appendChild(inner);
-    svg.appendChild(g);
+    plant.appendChild(g);
   });
 
+  // attach the plant group last so leaves render above the trunk
+  svg.appendChild(plant);
+
   // mushrooms fruiting at the base of the arrayán (mycelium → fruiting body)
+  // Sized big and placed wide so they read clearly on mobile.
   const mushrooms = [
-    { x: 262, capRx: 18, capRy: 12, stemH: 20, stemW: 6.5, capColor: "#b53a3a" },
-    { x: 340, capRx: 14, capRy: 9,  stemH: 16, stemW: 5.5, capColor: "#d05330" },
-    { x: 240, capRx: 10, capRy: 7,  stemH: 12, stemW: 4,   capColor: "#a83030" },
+    { x: 230, capRx: 26, capRy: 16, stemH: 30, stemW: 9,   capColor: "#c83030", outline: "#7a1f1f" },
+    { x: 372, capRx: 22, capRy: 14, stemH: 26, stemW: 7.5, capColor: "#d85530", outline: "#7a1f1f" },
+    { x: 196, capRx: 16, capRy: 11, stemH: 20, stemW: 5.5, capColor: "#b02828", outline: "#6a1818" },
   ];
   mushrooms.forEach((m, i) => {
     const g = document.createElementNS(NS, "g");
     g.setAttribute("class", `myc-mushroom mush-${i + 1}`);
+    g.setAttribute("data-x", m.x);
+
+    // ground shadow under the cap
+    const shadow = document.createElementNS(NS, "ellipse");
+    shadow.setAttribute("cx", m.x);
+    shadow.setAttribute("cy", 322);
+    shadow.setAttribute("rx", m.capRx * 0.85);
+    shadow.setAttribute("ry", 2.5);
+    shadow.setAttribute("fill", "#3B2E26");
+    shadow.setAttribute("opacity", "0.18");
+    g.appendChild(shadow);
+
+    // stem (rounded rect)
     const stemRect = document.createElementNS(NS, "rect");
     stemRect.setAttribute("x", m.x - m.stemW / 2);
     stemRect.setAttribute("y", 320 - m.stemH);
@@ -297,18 +318,38 @@ function playMycelium(stage, { isSkipped }) {
     stemRect.setAttribute("height", m.stemH);
     stemRect.setAttribute("rx", m.stemW / 2);
     stemRect.setAttribute("fill", "#f4ead8");
+    stemRect.setAttribute("stroke", "#c8b88a");
+    stemRect.setAttribute("stroke-width", "0.6");
     g.appendChild(stemRect);
+
+    // cap
     const cap = document.createElementNS(NS, "ellipse");
     cap.setAttribute("cx", m.x);
     cap.setAttribute("cy", 320 - m.stemH);
     cap.setAttribute("rx", m.capRx);
     cap.setAttribute("ry", m.capRy);
     cap.setAttribute("fill", m.capColor);
+    cap.setAttribute("stroke", m.outline);
+    cap.setAttribute("stroke-width", "0.8");
     g.appendChild(cap);
+
+    // cap highlight (lighter top stripe)
+    const hi = document.createElementNS(NS, "ellipse");
+    hi.setAttribute("cx", m.x - m.capRx * 0.2);
+    hi.setAttribute("cy", 320 - m.stemH - m.capRy * 0.45);
+    hi.setAttribute("rx", m.capRx * 0.55);
+    hi.setAttribute("ry", m.capRy * 0.18);
+    hi.setAttribute("fill", "#ffffff");
+    hi.setAttribute("opacity", "0.25");
+    g.appendChild(hi);
+
+    // white spots on cap (5, larger)
     const spots = [
-      [m.x - m.capRx * 0.55, 320 - m.stemH - m.capRy * 0.25, m.capRx * 0.18],
-      [m.x + m.capRx * 0.40, 320 - m.stemH - m.capRy * 0.55, m.capRx * 0.14],
-      [m.x - m.capRx * 0.10, 320 - m.stemH - m.capRy * 0.75, m.capRx * 0.13],
+      [m.x - m.capRx * 0.55, 320 - m.stemH - m.capRy * 0.20, m.capRx * 0.16],
+      [m.x + m.capRx * 0.45, 320 - m.stemH - m.capRy * 0.45, m.capRx * 0.13],
+      [m.x - m.capRx * 0.05, 320 - m.stemH - m.capRy * 0.75, m.capRx * 0.14],
+      [m.x - m.capRx * 0.30, 320 - m.stemH - m.capRy * 0.55, m.capRx * 0.10],
+      [m.x + m.capRx * 0.20, 320 - m.stemH - m.capRy * 0.10, m.capRx * 0.10],
     ];
     spots.forEach(([sx, sy, sr]) => {
       const dot = document.createElementNS(NS, "circle");
@@ -320,7 +361,7 @@ function playMycelium(stage, { isSkipped }) {
   });
 
   stage.appendChild(svg);
-  return raceWithSkip(3300, isSkipped);
+  return raceWithSkip(4000, isSkipped);
 }
 
 /* ---------- 2) Logo build-up ---------- */
@@ -546,15 +587,20 @@ function thumbMycelium() {
       <g transform="translate(300 165) rotate(52)  scale(1.05)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#5e8b4a"/></g>
       <g transform="translate(300 95)  rotate(-40) scale(0.85)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#7ab063"/></g>
       <g transform="translate(300 90)  rotate(40)  scale(0.85)"><path d="M0 0 Q -22 -28 0 -68 Q 22 -28 0 0 Z" fill="#6da25a"/></g>
-      <!-- mushrooms at the base -->
-      <rect x="265.5" y="186" width="5" height="14" rx="2.5" fill="#f4ead8"/>
-      <ellipse cx="268" cy="186" rx="13" ry="8" fill="#b53a3a"/>
-      <circle cx="261" cy="184" r="2.2" fill="#fff7e6"/>
-      <circle cx="272" cy="181" r="1.8" fill="#fff7e6"/>
-      <rect x="334" y="190" width="4" height="10" rx="2" fill="#f4ead8"/>
-      <ellipse cx="336" cy="190" rx="10" ry="6" fill="#d05330"/>
-      <circle cx="332" cy="188" r="1.6" fill="#fff7e6"/>
-      <circle cx="340" cy="186" r="1.4" fill="#fff7e6"/>
+      <!-- mushrooms at the base (larger, wider) -->
+      <ellipse cx="220" cy="202" rx="22" ry="2.5" fill="#3B2E26" opacity="0.18"/>
+      <rect x="215.5" y="172" width="9" height="28" rx="4.5" fill="#f4ead8" stroke="#c8b88a" stroke-width="0.6"/>
+      <ellipse cx="220" cy="172" rx="24" ry="14" fill="#c83030" stroke="#7a1f1f" stroke-width="0.8"/>
+      <circle cx="208" cy="170" r="3.6" fill="#fff7e6"/>
+      <circle cx="230" cy="166" r="2.8" fill="#fff7e6"/>
+      <circle cx="221" cy="160" r="3.0" fill="#fff7e6"/>
+      <circle cx="214" cy="167" r="2.0" fill="#fff7e6"/>
+      <ellipse cx="380" cy="202" rx="18" ry="2" fill="#3B2E26" opacity="0.18"/>
+      <rect x="376.5" y="178" width="7" height="22" rx="3.5" fill="#f4ead8" stroke="#c8b88a" stroke-width="0.6"/>
+      <ellipse cx="380" cy="178" rx="20" ry="12" fill="#d85530" stroke="#7a1f1f" stroke-width="0.8"/>
+      <circle cx="370" cy="176" r="2.8" fill="#fff7e6"/>
+      <circle cx="388" cy="173" r="2.4" fill="#fff7e6"/>
+      <circle cx="380" cy="167" r="2.6" fill="#fff7e6"/>
       <!-- roots below soil -->
       <g stroke-linecap="round" fill="none">
         <path d="M300,200 Q 240,250 180,290" stroke="#898561" stroke-width="1.6"/>
