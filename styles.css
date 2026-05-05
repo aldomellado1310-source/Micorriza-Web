@@ -877,6 +877,36 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   line-height: 1.4;
 }
 
+/* ----- Tech strip (compact "live system" band, replaces full Tecnología section) ----- */
+.tech-strip {
+  padding: 64px 0;
+  background:
+    linear-gradient(180deg, transparent, rgba(220, 200, 168, 0.10));
+}
+.tech-strip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+.tech-strip-copy h3 {
+  font-family: "Fraunces", "Sora", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  color: var(--azul);
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+  margin: 6px 0 12px;
+}
+.tech-strip-copy p {
+  font-size: 0.98rem;
+  max-width: 460px;
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  .tech-strip-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
 /* ----- Partners section ----- */
 .partners {
   padding: 96px 0;

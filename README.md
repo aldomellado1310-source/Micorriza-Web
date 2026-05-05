@@ -12,12 +12,13 @@ Construido como un sitio estático con HTML, CSS y JavaScript vanilla, fiel a la
 
 ```
 .
-├── index.html         # Marcado y secciones del sitio
+├── index.html         # Home (8 secciones)
+├── recursos.html      # Página dedicada de whitepapers/casos/guías
 ├── vistas.html        # Galería de combinaciones portada + transición
 ├── styles.css         # Sistema de diseño y layout
 ├── script.js          # Navegación móvil y reveal-on-scroll
 ├── intros/
-│   ├── intros.css     # Estilos overlay + 4 animaciones de bienvenida
+│   ├── intros.css     # Estilos overlay + 5 animaciones de bienvenida
 │   └── intros.js      # Controlador y secuencias (módulo ES)
 ├── assets/
 │   ├── favicon.svg
@@ -25,19 +26,21 @@ Construido como un sitio estático con HTML, CSS y JavaScript vanilla, fiel a la
 └── README.md
 ```
 
-## Secciones
+## Secciones (home)
+
+Estructura editorial deliberadamente compacta — 8 secciones, cada una con un trabajo claro:
 
 1. **Hero** — Propuesta de valor + ilustración SVG de la red micorrícica animada.
 2. **KPI strip** — Banda de credibilidad inmediata: años, sectores, operación, uptime.
-3. **Manifiesto** — Cita central como tesis general (anchor de marca).
-4. **Soluciones (01)** — Cuatro principios reescritos con POV Micorriza explícita y iconografía custom.
-5. **Sectores (02)** — Tesis "cada sector es un ecosistema" + 6 cards con POV específica de una línea.
-6. **Tecnología (03)** — Las cuatro capas (Aplicación, Datos, Red, Infraestructura) + panel de métricas en vivo.
-7. **Capacidades (04)** — Iconografía oficial.
-8. **Recursos (05)** — Whitepapers, casos de estudio, guías.
-9. **Aliados y casos (06)** — Muro de logos placeholder + 2 case study cards con métrica destacada.
-10. **Nosotros (07)** — Equipo, credenciales y bento de disciplinas.
-11. **Contacto** — Formulario y CTA final.
+3. **Soluciones (01)** — Cuatro principios reescritos con POV Micorriza explícita y iconografía custom.
+4. **Sectores (02)** — Tesis "cada sector es un ecosistema" + 6 cards con POV específica de una línea.
+5. **Sistemas vivos en producción** — Banda compacta con el panel de métricas (la antigua "Tecnología" reducida a su parte más fuerte).
+6. **Aliados y casos (03)** — Muro de logos placeholder + 2 case study cards con métrica destacada.
+7. **Nosotros (04)** — Equipo, credenciales y bento de disciplinas.
+8. **Manifiesto** — Cita central como cierre poético antes del CTA.
+9. **Contacto** — Formulario y CTA final.
+
+Los recursos (whitepapers, casos extensos, guías) viven ahora en **`recursos.html`** — accesibles desde nav y footer. Las secciones "Capacidades" (iconografía decorativa) y la "Tecnología" extensa quedaron deliberadamente fuera de la home: aportaban menos de lo que ocupaban.
 
 ## Aliados y casos
 
@@ -103,7 +106,8 @@ llega en una sesión. Hay cuatro candidatas implementadas en `intros/intros.js`:
 
 | ID | Concepto | Tecnología |
 |---|---|---|
-| `mycelium`  | Hilos que brotan desde el centro y conectan nodos. | SVG + CSS |
+| `acuarela` *(default)* | Caligrafía sumi-e + manchas de acuarela + motas doradas en parallax. Atmosférica y asimétrica. | SVG + filtros + CSS + SMIL |
+| `mycelium`  | Raíces, red neuronal, nutrientes, arrayán que crece, hongos al pie y bosque interconectado. | SVG + CSS + SMIL |
 | `logo`      | Construcción del logo Micorriza nodo a nodo + wordmark. | SVG + CSS |
 | `spores`    | Esporas que caen, aterrizan y germinan en micelios. | SVG + WAAPI |
 | `emergence` | Capa de tierra con raíces colgantes que se repliega hacia arriba. | SVG + CSS |

@@ -12,6 +12,13 @@ const STORAGE_PLAYED  = "micorriza:intro:played";
 
 export const INTROS = [
   {
+    id: "acuarela",
+    label: "Acuarela viva",
+    summary: "Una caligrafía de tinta que se despliega lentamente, manchas de acuarela que florecen en los nodos, y partículas doradas que derivan en parallax. Atmosférica, asimétrica, contemplativa.",
+    play: playAcuarela,
+    thumb: thumbAcuarela,
+  },
+  {
     id: "mycelium",
     label: "Arrayán, bosque y micorriza",
     summary: "Las raíces brotan, se entrelazan en una red neuronal y reciben nutrientes; un arrayán crece, hongos fructifican a sus pies, y luego un bosque entero emerge interconectado por la micorriza.",
@@ -49,7 +56,7 @@ export function getIntroById(id) {
 
 export function getDefaultIntro() {
   const stored = localStorage.getItem(STORAGE_DEFAULT);
-  return VALID_IDS.includes(stored) ? stored : "mycelium";
+  return VALID_IDS.includes(stored) ? stored : "acuarela";
 }
 
 export function setDefaultIntro(id) {
@@ -97,6 +104,176 @@ export async function playIntro(id, { container, force = false } = {}) {
     stage.remove();
     root.classList.remove("is-active");
   }
+}
+
+/* ---------- 0) Acuarela viva — atmospheric / painterly ----------
+   Composición asimétrica al estilo sumi-e + acuarela:
+   - 0.0–0.8s   wash de fondo cálido (golden-ratio offset)
+   - 0.6–2.5s   trazo caligráfico que dibuja un arco con peso variable
+   - 1.8–3.0s   sub-ramas finas que brotan del trazo
+   - 2.4–4.2s   manchas de acuarela (blooms) florecen en nodos
+   - 2.8–4.4s   gotitas crisp aparecen sobre las manchas
+   - 3.0–6.0s   motas doradas derivan con parallax
+   - 5.0–6.2s   pulso "respiración" + fade
+*/
+function playAcuarela(stage, { isSkipped }) {
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 1000 600");
+  svg.setAttribute("class", "acu-canvas");
+  svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
+  svg.setAttribute("aria-hidden", "true");
+
+  // Defs: filtros de desenfoque para los blooms y glow
+  const defs = document.createElementNS(NS, "defs");
+  defs.innerHTML = `
+    <filter id="acu-bloom" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="acu-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="acu-mote" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+  `;
+  svg.appendChild(defs);
+
+  // 1) Wash de fondo (golden-ratio offset, no centrado)
+  const wash1 = document.createElementNS(NS, "ellipse");
+  wash1.setAttribute("cx", "620"); wash1.setAttribute("cy", "320");
+  wash1.setAttribute("rx", "340"); wash1.setAttribute("ry", "240");
+  wash1.setAttribute("fill", "rgba(220, 200, 168, 0.30)");
+  wash1.setAttribute("filter", "url(#acu-bloom)");
+  wash1.setAttribute("class", "acu-wash acu-wash-1");
+  svg.appendChild(wash1);
+
+  const wash2 = document.createElementNS(NS, "ellipse");
+  wash2.setAttribute("cx", "260"); wash2.setAttribute("cy", "440");
+  wash2.setAttribute("rx", "200"); wash2.setAttribute("ry", "140");
+  wash2.setAttribute("fill", "rgba(102, 183, 201, 0.18)");
+  wash2.setAttribute("filter", "url(#acu-bloom)");
+  wash2.setAttribute("class", "acu-wash acu-wash-2");
+  svg.appendChild(wash2);
+
+  // 2) Trazo caligráfico principal — dos paths superpuestos para
+  //    simular peso variable sin animar stroke-width.
+  const mainStroke = path(NS,
+    "M 180,440 Q 320,400 420,360 Q 520,320 580,260 Q 640,200 720,180 Q 780,170 820,200",
+    "#2c2820", 2.4, "acu-stroke main"
+  );
+  mainStroke.setAttribute("opacity", "0.9");
+  svg.appendChild(mainStroke);
+
+  const heavyStroke = path(NS,
+    "M 240,420 Q 360,380 440,340 Q 520,300 590,250",
+    "#2c2820", 6, "acu-stroke heavy"
+  );
+  heavyStroke.setAttribute("opacity", "0.30");
+  heavyStroke.setAttribute("filter", "url(#acu-soft)");
+  svg.appendChild(heavyStroke);
+
+  // 3) Sub-ramas finas brotan del trazo principal
+  const branches = [
+    "M 380,372 Q 360,420 340,470",
+    "M 480,332 Q 510,280 540,250",
+    "M 580,260 Q 620,300 660,330",
+    "M 290,408 Q 250,440 210,460",
+    "M 720,180 Q 750,140 770,100",
+  ];
+  branches.forEach((d, i) => {
+    const b = path(NS, d, "#2c2820", 1.2, `acu-branch ab-${i + 1}`);
+    b.setAttribute("opacity", "0.7");
+    svg.appendChild(b);
+  });
+
+  // 4) Blooms de acuarela — manchas grandes con desenfoque en color
+  const blooms = [
+    { cx: 380, cy: 372, color: "rgba(176, 122, 74, 0.55)", r: 80 },
+    { cx: 580, cy: 260, color: "rgba(102, 183, 201, 0.50)", r: 90 },
+    { cx: 290, cy: 408, color: "rgba(137, 133, 97, 0.55)", r: 70 },
+    { cx: 720, cy: 180, color: "rgba(31, 59, 91, 0.40)",  r: 60 },
+  ];
+  blooms.forEach((b, i) => {
+    const e = circle(NS, b.cx, b.cy, b.r, b.color, `acu-bloom ab-bloom-${i + 1}`);
+    e.setAttribute("filter", "url(#acu-bloom)");
+    svg.appendChild(e);
+  });
+
+  // 5) Dewdrops — los nodos crisp encima de los blooms
+  const dewdrops = [
+    { cx: 380, cy: 372, fill: "#3B2E26", r: 4 },
+    { cx: 580, cy: 260, fill: "#66B7C9", r: 5 },
+    { cx: 290, cy: 408, fill: "#898561", r: 3.5 },
+    { cx: 720, cy: 180, fill: "#1F3B5B", r: 4 },
+  ];
+  dewdrops.forEach((d, i) => {
+    const c = circle(NS, d.cx, d.cy, d.r, d.fill, `acu-dewdrop ad-${i + 1}`);
+    c.setAttribute("filter", "url(#acu-soft)");
+    svg.appendChild(c);
+  });
+
+  // 6) Motas doradas — partículas con drift parallax (SMIL animateMotion-like via animate)
+  const moteCount = 16;
+  for (let i = 0; i < moteCount; i++) {
+    const m = document.createElementNS(NS, "circle");
+    const startX = -40 + Math.random() * 1080;
+    const startY = 100 + Math.random() * 460;
+    const driftX = 80 + Math.random() * 180;
+    const driftY = -40 + Math.random() * 80;
+    const r = 1 + Math.random() * 2.4;
+    m.setAttribute("cx", startX);
+    m.setAttribute("cy", startY);
+    m.setAttribute("r", r);
+    m.setAttribute("fill", "#d4a373");
+    m.setAttribute("opacity", "0");
+    m.setAttribute("filter", "url(#acu-mote)");
+    m.setAttribute("class", "acu-mote");
+
+    const begin = 3.0 + Math.random() * 1.5;
+    const dur = 2.5 + Math.random() * 1.6;
+
+    const fadeIn = document.createElementNS(NS, "animate");
+    fadeIn.setAttribute("attributeName", "opacity");
+    fadeIn.setAttribute("begin", `${begin}s`);
+    fadeIn.setAttribute("dur", "0.6s");
+    fadeIn.setAttribute("from", "0");
+    fadeIn.setAttribute("to", `${0.5 + Math.random() * 0.4}`);
+    fadeIn.setAttribute("fill", "freeze");
+    m.appendChild(fadeIn);
+
+    const dx = document.createElementNS(NS, "animate");
+    dx.setAttribute("attributeName", "cx");
+    dx.setAttribute("begin", `${begin}s`);
+    dx.setAttribute("dur", `${dur}s`);
+    dx.setAttribute("from", startX);
+    dx.setAttribute("to", startX + driftX);
+    dx.setAttribute("fill", "freeze");
+    m.appendChild(dx);
+
+    const dy = document.createElementNS(NS, "animate");
+    dy.setAttribute("attributeName", "cy");
+    dy.setAttribute("begin", `${begin}s`);
+    dy.setAttribute("dur", `${dur}s`);
+    dy.setAttribute("from", startY);
+    dy.setAttribute("to", startY + driftY);
+    dy.setAttribute("fill", "freeze");
+    m.appendChild(dy);
+
+    const fadeOut = document.createElementNS(NS, "animate");
+    fadeOut.setAttribute("attributeName", "opacity");
+    fadeOut.setAttribute("begin", `${begin + dur - 0.7}s`);
+    fadeOut.setAttribute("dur", "0.7s");
+    fadeOut.setAttribute("from", "0.7");
+    fadeOut.setAttribute("to", "0");
+    fadeOut.setAttribute("fill", "freeze");
+    m.appendChild(fadeOut);
+
+    svg.appendChild(m);
+  }
+
+  stage.appendChild(svg);
+  return raceWithSkip(6200, isSkipped);
 }
 
 /* ---------- 1) Mycelium ----------
@@ -720,6 +897,36 @@ function playEmergence(stage, { isSkipped }) {
 }
 
 /* ---------- thumbnails for the gallery ---------- */
+function thumbAcuarela() {
+  return `
+    <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="thumb-acu-bloom" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="8"/>
+        </filter>
+      </defs>
+      <ellipse cx="380" cy="180" rx="180" ry="120" fill="rgba(220,200,168,0.35)" filter="url(#thumb-acu-bloom)"/>
+      <ellipse cx="160" cy="240" rx="110" ry="80"  fill="rgba(102,183,201,0.18)" filter="url(#thumb-acu-bloom)"/>
+      <path d="M 100,260 Q 200,230 260,200 Q 320,170 360,140 Q 400,110 460,100" stroke="#2c2820" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M 140,250 Q 220,220 280,190 Q 340,160 380,140" stroke="#2c2820" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.28" filter="url(#thumb-acu-bloom)"/>
+      <path d="M 230,210 Q 220,240 210,270" stroke="#2c2820" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M 290,180 Q 305,160 320,140" stroke="#2c2820" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <ellipse cx="230" cy="210" rx="40" ry="30" fill="rgba(176,122,74,0.55)" filter="url(#thumb-acu-bloom)"/>
+      <ellipse cx="320" cy="160" rx="44" ry="32" fill="rgba(102,183,201,0.45)" filter="url(#thumb-acu-bloom)"/>
+      <ellipse cx="160" cy="250" rx="32" ry="22" fill="rgba(137,133,97,0.50)" filter="url(#thumb-acu-bloom)"/>
+      <circle cx="230" cy="210" r="3"   fill="#3B2E26"/>
+      <circle cx="320" cy="160" r="3.5" fill="#66B7C9"/>
+      <circle cx="160" cy="250" r="2.6" fill="#898561"/>
+      <circle cx="460" cy="100" r="3"   fill="#1F3B5B"/>
+      <!-- motas -->
+      <circle cx="100" cy="120" r="1.8" fill="#d4a373" opacity="0.7"/>
+      <circle cx="200" cy="80"  r="1.4" fill="#d4a373" opacity="0.7"/>
+      <circle cx="350" cy="280" r="1.6" fill="#d4a373" opacity="0.7"/>
+      <circle cx="480" cy="200" r="1.4" fill="#d4a373" opacity="0.7"/>
+      <circle cx="540" cy="140" r="1.8" fill="#d4a373" opacity="0.7"/>
+    </svg>
+  `;
+}
 function thumbMycelium() {
   return `
     <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">

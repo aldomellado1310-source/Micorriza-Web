@@ -43,6 +43,120 @@
 @keyframes skip-in { to { opacity: 1; } }
 
 /* ============================================================
+   0) Acuarela viva — atmospheric / painterly intro
+      Asymmetric, contemplative, no labels. ~6.2 s total.
+   ============================================================ */
+.intro-acuarela .intro-stage,
+.intro-acuarela .acu-canvas {
+  background: linear-gradient(180deg, #fafafa 0%, #f5f0e8 100%);
+}
+.intro-acuarela .acu-canvas {
+  width: min(96vw, 1100px);
+  height: min(72vh, 660px);
+  display: block;
+}
+
+/* warm wash backgrounds */
+.intro-acuarela .acu-wash {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  animation: acu-wash-bloom 2400ms ease-out forwards;
+}
+.intro-acuarela .acu-wash-1 { animation-delay: 600ms; }
+.intro-acuarela .acu-wash-2 { animation-delay: 900ms; }
+@keyframes acu-wash-bloom {
+  0%   { opacity: 0; transform: scale(0.4); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* main calligraphic brushstroke (slow, deliberate) */
+.intro-acuarela .acu-stroke.main {
+  stroke-dasharray: 720;
+  stroke-dashoffset: 720;
+  animation: acu-draw 1900ms 700ms cubic-bezier(.55,.05,.45,.95) forwards;
+}
+.intro-acuarela .acu-stroke.heavy {
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  animation: acu-draw 1700ms 850ms cubic-bezier(.55,.05,.45,.95) forwards;
+}
+@keyframes acu-draw { to { stroke-dashoffset: 0; } }
+
+/* sub-branches grow from the main path */
+.intro-acuarela .acu-branch {
+  stroke-dasharray: 110;
+  stroke-dashoffset: 110;
+  animation: acu-draw 720ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-acuarela .ab-1 { animation-delay: 1850ms; }
+.intro-acuarela .ab-2 { animation-delay: 2050ms; }
+.intro-acuarela .ab-3 { animation-delay: 2250ms; }
+.intro-acuarela .ab-4 { animation-delay: 2450ms; }
+.intro-acuarela .ab-5 { animation-delay: 2650ms; }
+
+/* watercolor blooms */
+.intro-acuarela .acu-bloom {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation: acu-bloom-grow 1500ms ease-out forwards;
+}
+.intro-acuarela .ab-bloom-1 { animation-delay: 2400ms; }
+.intro-acuarela .ab-bloom-2 { animation-delay: 2700ms; }
+.intro-acuarela .ab-bloom-3 { animation-delay: 2550ms; }
+.intro-acuarela .ab-bloom-4 { animation-delay: 2900ms; }
+@keyframes acu-bloom-grow {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; }
+  100% { opacity: 0.95; transform: scale(1); }
+}
+
+/* dewdrops on top of blooms */
+.intro-acuarela .acu-dewdrop {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation: acu-dew 720ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.intro-acuarela .ad-1 { animation-delay: 2800ms; }
+.intro-acuarela .ad-2 { animation-delay: 3000ms; }
+.intro-acuarela .ad-3 { animation-delay: 3150ms; }
+.intro-acuarela .ad-4 { animation-delay: 3300ms; }
+@keyframes acu-dew {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.4); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* final hold + breath + fade out */
+.intro-acuarela .acu-canvas {
+  animation: acu-final 1500ms 4700ms ease forwards;
+  transform-origin: center;
+}
+@keyframes acu-final {
+  0%   { opacity: 1; transform: scale(1); }
+  35%  { opacity: 1; transform: scale(1.012); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-acuarela .acu-wash,
+  .intro-acuarela .acu-bloom,
+  .intro-acuarela .acu-dewdrop {
+    opacity: 1; transform: none; animation: none;
+  }
+  .intro-acuarela .acu-stroke,
+  .intro-acuarela .acu-branch {
+    stroke-dashoffset: 0; animation: none;
+  }
+  .intro-acuarela .acu-canvas { animation: none; }
+}
+
+/* ============================================================
    1) Mycelium grow → neural network → nutrients → plant grows
    ============================================================ */
 .intro-mycelium svg { width: min(78vmin, 720px); height: auto; }
