@@ -203,6 +203,10 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   align-items: center;
   width: 100%;
 }
+.hero-copy { padding-left: 0; }
+@media (min-width: 1025px) {
+  .hero-copy { padding-left: clamp(8px, 2vw, 32px); }
+}
 .hero-copy .lede {
   font-size: 1.05rem;
   max-width: 480px;
@@ -329,6 +333,18 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   to { stroke-dashoffset: -120; }
 }
 
+/* Mycorrhizal network connectors above soil — soft dashed drift */
+.plant-network .connector {
+  stroke-linecap: round;
+  stroke-dasharray: 4 7;
+  animation: connector-drift 14s linear infinite;
+}
+.plant-network .connector-2 { animation-duration: 18s; animation-direction: reverse; }
+.plant-network .connector-3 { animation-duration: 16s; }
+@keyframes connector-drift {
+  to { stroke-dashoffset: -110; }
+}
+
 /* Floating spores above the canopy */
 .plant-network .spore {
   transform-box: fill-box;
@@ -354,6 +370,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   .plant-network .halo,
   .plant-network .node,
   .plant-network .flow,
+  .plant-network .connector,
   .plant-network .spore,
   .plant-network .pulses circle {
     animation: none !important;
