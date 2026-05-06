@@ -96,9 +96,10 @@ El sitio se publica directamente desde la rama, sin pipeline.
 El archivo `.nojekyll` desactiva el procesamiento Jekyll: acelera el build
 y evita transformaciones no deseadas sobre nuestros archivos.
 
-Para usar un dominio propio (p. ej. `micorriza.tech`), añade un archivo
-`CNAME` en la raíz con el dominio y configura los DNS según la documentación
-oficial de GitHub Pages.
+El sitio se sirve desde el dominio propio `micorriza.bio` mediante el archivo
+`CNAME` en la raíz del repo. Los DNS deben apuntar a las IPs de GitHub Pages
+(registros A en el apex + CNAME `www` → `<usuario>.github.io`) según la
+documentación oficial de GitHub Pages.
 
 ## Animaciones de bienvenida (intros)
 
