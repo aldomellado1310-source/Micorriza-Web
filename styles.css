@@ -201,7 +201,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   display: flex;
   align-items: center;
   position: relative;
-  background-image: url('assets/hero-cover.png');
+  background-image: url('assets/hero-cover.jpg');
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
