@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="x-apple-disable-message-reformatting" />
+  <title>Cotización Micorriza</title>
+  <!--[if mso]>
+  <style type="text/css">
+    table, td, div, h1, h2, h3, p { font-family: Arial, sans-serif !important; }
+  </style>
+  <![endif]-->
+  <style type="text/css">
+    /* Reset cliente-mail */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #F7F5F2; }
+    a { color: #1F3B5B; text-decoration: underline; }
+
+    /* Móvil */
+    @media screen and (max-width: 620px) {
+      .container { width: 100% !important; }
+      .px-32 { padding-left: 20px !important; padding-right: 20px !important; }
+      .stack { display: block !important; width: 100% !important; }
+      .stack-pad { padding-top: 16px !important; }
+      .h1 { font-size: 22px !important; line-height: 30px !important; }
+      .btn { width: 100% !important; }
+    }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#F7F5F2; font-family: Helvetica, Arial, sans-serif; color:#3B2E26;">
+
+  <!-- Preheader (texto que asoma en la bandeja antes de abrir) -->
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#F7F5F2; opacity:0;">
+    Cotización {{NUMERO_COTIZACION}} adjunta — {{NOMBRE_PROYECTO}}. Vigente hasta {{VALIDEZ}}.
+  </div>
+
+  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#F7F5F2;">
+    <tr>
+      <td align="center" style="padding: 32px 16px;">
+
+        <!-- Contenedor 600px -->
+        <table role="presentation" class="container" width="600" border="0" cellspacing="0" cellpadding="0" style="width:600px; max-width:600px; background-color:#FFFFFF; border-radius:14px; overflow:hidden; box-shadow:0 4px 24px rgba(31,59,91,0.08);">
+
+          <!-- HEADER: logo sobre fondo claro -->
+          <tr>
+            <td align="center" class="px-32" style="padding: 36px 32px 24px 32px; background-color:#FFFFFF; border-bottom: 1px solid #ECE6DC;">
+              <img src="https://aldomellado1310-source.github.io/Micorriza-Web/assets/logo-micorriza.png"
+                   width="200" alt="Micorriza"
+                   style="width:200px; max-width:60%; height:auto; display:block;" />
+            </td>
+          </tr>
+
+          <!-- BARRA ETIQUETA -->
+          <tr>
+            <td align="center" style="background-color:#1F3B5B; padding:12px 24px;">
+              <p style="margin:0; font-family: Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#DCC8A8; font-weight:600;">
+                Cotización · {{NUMERO_COTIZACION}}
+              </p>
+            </td>
+          </tr>
+
+          <!-- SALUDO Y MENSAJE -->
+          <tr>
+            <td class="px-32" style="padding: 36px 40px 8px 40px;">
+              <h1 class="h1" style="margin:0 0 16px 0; font-family: Helvetica, Arial, sans-serif; font-size:26px; line-height:34px; color:#1F3B5B; font-weight:700;">
+                Hola, {{NOMBRE_CLIENTE}}.
+              </h1>
+              <p style="margin:0 0 16px 0; font-family: Helvetica, Arial, sans-serif; font-size:16px; line-height:26px; color:#3B2E26;">
+                Gracias por confiar en nosotros para <strong style="color:#1F3B5B;">{{NOMBRE_PROYECTO}}</strong>.
+                Adjunto a este correo encontrarás la cotización en formato PDF con el detalle técnico,
+                alcance, plazos y condiciones comerciales.
+              </p>
+              <p style="margin:0 0 24px 0; font-family: Helvetica, Arial, sans-serif; font-size:16px; line-height:26px; color:#3B2E26;">
+                Está pensada como un primer mapa: si algo no encaja con tu realidad operativa, nos sentamos a ajustarla.
+              </p>
+            </td>
+          </tr>
+
+          <!-- TARJETA RESUMEN -->
+          <tr>
+            <td class="px-32" style="padding: 0 40px 24px 40px;">
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0"
+                     style="background-color:#F7F5F2; border:1px solid #ECE6DC; border-radius:12px;">
+                <tr>
+                  <td style="padding: 22px 24px;">
+                    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="font-family: Helvetica, Arial, sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#7A6A5A; padding-bottom:6px;">N° de cotización</td>
+                        <td align="right" style="font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#1F3B5B; font-weight:600; padding-bottom:6px;">{{NUMERO_COTIZACION}}</td>
+                      </tr>
+                      <tr><td colspan="2" style="border-top:1px solid #ECE6DC; line-height:0; font-size:0;">&nbsp;</td></tr>
+                      <tr>
+                        <td style="font-family: Helvetica, Arial, sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#7A6A5A; padding:8px 0 6px 0;">Fecha</td>
+                        <td align="right" style="font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#1F3B5B; font-weight:600; padding:8px 0 6px 0;">{{FECHA}}</td>
+                      </tr>
+                      <tr><td colspan="2" style="border-top:1px solid #ECE6DC; line-height:0; font-size:0;">&nbsp;</td></tr>
+                      <tr>
+                        <td style="font-family: Helvetica, Arial, sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#7A6A5A; padding:8px 0 6px 0;">Vigencia</td>
+                        <td align="right" style="font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#1F3B5B; font-weight:600; padding:8px 0 6px 0;">Hasta {{VALIDEZ}}</td>
+                      </tr>
+                      <tr><td colspan="2" style="border-top:1px solid #ECE6DC; line-height:0; font-size:0;">&nbsp;</td></tr>
+                      <tr>
+                        <td style="font-family: Helvetica, Arial, sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#7A6A5A; padding:8px 0 0 0;">Monto referencial</td>
+                        <td align="right" style="font-family: Helvetica, Arial, sans-serif; font-size:18px; color:#1F3B5B; font-weight:700; padding:8px 0 0 0;">{{MONTO}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- AVISO ADJUNTO -->
+          <tr>
+            <td class="px-32" style="padding: 0 40px 24px 40px;">
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0"
+                     style="background-color:#FFFFFF; border:1px dashed #66B7C9; border-radius:12px;">
+                <tr>
+                  <td valign="middle" style="padding: 16px 20px;">
+                    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td valign="middle" width="44" style="padding-right:14px;">
+                          <div style="width:40px; height:40px; background:#1F3B5B; border-radius:8px; text-align:center; line-height:40px; color:#DCC8A8; font-family: Helvetica, Arial, sans-serif; font-size:11px; font-weight:700; letter-spacing:1px;">PDF</div>
+                        </td>
+                        <td valign="middle">
+                          <p style="margin:0 0 2px 0; font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#1F3B5B; font-weight:600;">Cotización_{{NUMERO_COTIZACION}}.pdf</p>
+                          <p style="margin:0; font-family: Helvetica, Arial, sans-serif; font-size:12px; color:#7A6A5A;">Documento adjunto a este correo</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- BOTÓN -->
+          <tr>
+            <td align="center" class="px-32" style="padding: 0 40px 8px 40px;">
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="mailto:{{REMITENTE_EMAIL}}?subject=Re%3A%20Cotizaci%C3%B3n%20{{NUMERO_COTIZACION}}" style="height:48px;v-text-anchor:middle;width:280px;" arcsize="25%" stroke="f" fillcolor="#1F3B5B">
+                <w:anchorlock/>
+                <center style="color:#F7F5F2;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">Responder con tus comentarios</center>
+              </v:roundrect>
+              <![endif]-->
+              <!--[if !mso]><!-- -->
+              <a href="mailto:{{REMITENTE_EMAIL}}?subject=Re%3A%20Cotizaci%C3%B3n%20{{NUMERO_COTIZACION}}" class="btn"
+                 style="display:inline-block; background-color:#1F3B5B; color:#F7F5F2; font-family: Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; text-decoration:none; padding:14px 32px; border-radius:10px; mso-padding-alt:0;">
+                Responder con tus comentarios
+              </a>
+              <!--<![endif]-->
+            </td>
+          </tr>
+
+          <!-- PRÓXIMOS PASOS -->
+          <tr>
+            <td class="px-32" style="padding: 28px 40px 8px 40px;">
+              <h3 style="margin:0 0 12px 0; font-family: Helvetica, Arial, sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#7A6A5A; font-weight:700;">Próximos pasos</h3>
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td valign="top" width="28" style="padding: 4px 12px 12px 0; font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#66B7C9; font-weight:700;">1.</td>
+                  <td valign="top" style="padding-bottom:12px; font-family: Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#3B2E26;">Revisa el PDF adjunto con el detalle de alcance, entregables y plazos.</td>
+                </tr>
+                <tr>
+                  <td valign="top" width="28" style="padding: 4px 12px 12px 0; font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#66B7C9; font-weight:700;">2.</td>
+                  <td valign="top" style="padding-bottom:12px; font-family: Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#3B2E26;">Envíanos cualquier ajuste o pregunta — afinamos la propuesta.</td>
+                </tr>
+                <tr>
+                  <td valign="top" width="28" style="padding: 4px 12px 12px 0; font-family: Helvetica, Arial, sans-serif; font-size:14px; color:#66B7C9; font-weight:700;">3.</td>
+                  <td valign="top" style="padding-bottom:12px; font-family: Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#3B2E26;">Confirmas y agendamos kickoff dentro de 5 días hábiles.</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- FIRMA -->
+          <tr>
+            <td class="px-32" style="padding: 16px 40px 36px 40px; border-top:1px solid #ECE6DC;">
+              <p style="margin:24px 0 4px 0; font-family: Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#3B2E26;">Quedamos atentos,</p>
+              <p style="margin:0; font-family: Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; color:#1F3B5B; font-weight:700;">{{REMITENTE_NOMBRE}}</p>
+              <p style="margin:0 0 10px 0; font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#7A6A5A;">{{REMITENTE_CARGO}} · Micorriza</p>
+              <p style="margin:0; font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#3B2E26;">
+                <a href="mailto:{{REMITENTE_EMAIL}}" style="color:#1F3B5B; text-decoration:none;">{{REMITENTE_EMAIL}}</a>
+                &nbsp;·&nbsp; {{REMITENTE_TELEFONO}}
+              </p>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td align="center" style="background-color:#3B2E26; padding: 24px 32px;">
+              <p style="margin:0 0 6px 0; font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#DCC8A8;">
+                Micorriza · Redes vivas para datos, plataformas y territorios
+              </p>
+              <p style="margin:0; font-family: Helvetica, Arial, sans-serif; font-size:11px; line-height:16px; color:rgba(220,200,168,0.7);">
+                <a href="https://aldomellado1310-source.github.io/Micorriza-Web/" style="color:#DCC8A8; text-decoration:underline;">micorriza.cl</a>
+                &nbsp;·&nbsp; Este mensaje y su adjunto son confidenciales.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Contenedor -->
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
