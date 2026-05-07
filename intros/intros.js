@@ -7,8 +7,8 @@
    - prefers-reduced-motion → no intro.
    ============================================================ */
 
-const STORAGE_DEFAULT = "micorriza:intro:default";
-const STORAGE_PLAYED  = "micorriza:intro:played";
+const STORAGE_DEFAULT = "micorriza:intro:default:v2";
+const STORAGE_PLAYED  = "micorriza:intro:played:v2";
 
 export const INTROS = [
   {
