@@ -12,6 +12,13 @@ const STORAGE_PLAYED  = "micorriza:intro:played";
 
 export const INTROS = [
   {
+    id: "videofull",
+    label: "Video bienvenida",
+    summary: "Plano cinematográfico de la red micorrícica viva — nodos azules y dorados pulsando sobre el tronco. Reproducción full-screen al entrar al sitio.",
+    play: playVideoFull,
+    thumb: thumbVideoFull,
+  },
+  {
     id: "simbiosis",
     label: "Simbiosis: nace una micorriza",
     summary: "Tres árboles emergen sobre la línea del suelo, brotan hongos a sus pies, y bajo tierra una micorriza los interconecta. Nutrientes circulan: azúcares bajan, agua y minerales suben, y partículas viajan entre árboles por la red. Al final, todo el bosque se resuelve geométricamente en el logo Micorriza con su wordmark.",
@@ -56,7 +63,7 @@ export function getIntroById(id) {
 
 export function getDefaultIntro() {
   const stored = localStorage.getItem(STORAGE_DEFAULT);
-  return VALID_IDS.includes(stored) ? stored : "simbiosis";
+  return VALID_IDS.includes(stored) ? stored : "videofull";
 }
 
 export function setDefaultIntro(id) {
@@ -104,6 +111,102 @@ export async function playIntro(id, { container, force = false } = {}) {
     stage.remove();
     root.classList.remove("is-active");
   }
+}
+
+/* ---------- Video full-screen intro ----------
+   Reproduce assets/intro/intro.{webm,mp4} a pantalla completa.
+   Resuelve cuando termina el video, el usuario salta, o si el
+   video no consigue empezar a cargar dentro de un timeout. */
+async function playVideoFull(stage, { isSkipped }) {
+  const video = document.createElement("video");
+  video.className = "vf-video";
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+  video.autoplay = true;
+  video.preload = "auto";
+  video.poster = "assets/intro/intro-poster.jpg";
+
+  const webm = document.createElement("source");
+  webm.src = "assets/intro/intro.webm";
+  webm.type = "video/webm";
+  video.appendChild(webm);
+
+  const mp4 = document.createElement("source");
+  mp4.src = "assets/intro/intro.mp4";
+  mp4.type = "video/mp4";
+  video.appendChild(mp4);
+
+  stage.appendChild(video);
+
+  await new Promise((resolve) => {
+    let done = false;
+    const finish = () => { if (!done) { done = true; resolve(); } };
+
+    video.addEventListener("ended", finish, { once: true });
+    video.addEventListener("error", finish, { once: true });
+
+    // If the video never starts decoding within 1.5s, skip the intro
+    const startGuard = setTimeout(() => {
+      if (video.readyState < 2) finish();
+    }, 1500);
+    video.addEventListener("loadeddata", () => clearTimeout(startGuard), { once: true });
+
+    // Hard cap: never linger more than the video duration + 2s
+    const hardCap = setTimeout(finish, 8000);
+
+    // Poll for skip
+    const pollId = setInterval(() => {
+      if (isSkipped()) { clearInterval(pollId); clearTimeout(hardCap); finish(); }
+    }, 80);
+
+    video.play().catch(() => {});
+  });
+}
+
+function thumbVideoFull() {
+  return `
+    <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="vfBg" cx="50%" cy="55%" r="65%">
+          <stop offset="0%"  stop-color="#1a2740"/>
+          <stop offset="100%" stop-color="#0a0e14"/>
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="600" height="380" fill="url(#vfBg)"/>
+      <g fill="none" stroke-width="1.2" opacity="0.55">
+        <g stroke="#B07A4A">
+          <line x1="180" y1="120" x2="240" y2="160"/>
+          <line x1="240" y1="160" x2="200" y2="220"/>
+          <line x1="200" y1="220" x2="260" y2="260"/>
+        </g>
+        <g stroke="#66B7C9">
+          <line x1="360" y1="140" x2="420" y2="180"/>
+          <line x1="420" y1="180" x2="380" y2="240"/>
+          <line x1="380" y1="240" x2="440" y2="270"/>
+        </g>
+      </g>
+      <g>
+        <circle cx="180" cy="120" r="5" fill="#B07A4A"/>
+        <circle cx="240" cy="160" r="6" fill="#DCC8A8"/>
+        <circle cx="200" cy="220" r="5" fill="#B07A4A"/>
+        <circle cx="260" cy="260" r="4" fill="#DCC8A8"/>
+        <circle cx="360" cy="140" r="5" fill="#66B7C9"/>
+        <circle cx="420" cy="180" r="6" fill="#66B7C9"/>
+        <circle cx="380" cy="240" r="5" fill="#66B7C9"/>
+        <circle cx="440" cy="270" r="4" fill="#66B7C9"/>
+      </g>
+      <g transform="translate(300 190)">
+        <circle r="32" fill="rgba(255,255,255,0.92)"/>
+        <path d="M-9,-13 L 14,0 L -9,13 Z" fill="#1F3B5B"/>
+      </g>
+      <text x="300" y="345" text-anchor="middle"
+        font-family="Sora, sans-serif" font-weight="500" font-size="14" fill="#DCC8A8"
+        letter-spacing="1">Video bienvenida</text>
+    </svg>
+  `;
 }
 
 /* ---------- 0) Simbiosis: nace una micorriza ----------

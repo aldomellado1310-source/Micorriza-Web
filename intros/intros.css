@@ -43,6 +43,28 @@
 @keyframes skip-in { to { opacity: 1; } }
 
 /* ============================================================
+   videofull — intro de video a pantalla completa
+   ============================================================ */
+.intro-videofull .intro-stage {
+  background: #000;
+}
+.intro-videofull .vf-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+@media (orientation: portrait) and (max-width: 720px) {
+  .intro-videofull .vf-video { object-fit: cover; }
+}
+.intro-videofull .intro-skip {
+  background: rgba(247, 245, 242, 0.12);
+  border-color: rgba(247, 245, 242, 0.32);
+  color: #F7F5F2;
+}
+
+/* ============================================================
    0) Simbiosis: bosque vivo → logo Micorriza
    ============================================================ */
 .intro-simbiosis .intro-stage,
