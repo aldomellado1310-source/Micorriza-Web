@@ -243,137 +243,25 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   position: relative;
   width: 100%;
 }
-.hero-visual .plant-network {
+.hero-video {
   width: 100%;
   height: auto;
-  max-height: 720px;
+  aspect-ratio: 1040 / 576;
+  object-fit: cover;
   display: block;
-  overflow: visible;
+  border-radius: var(--radius);
+  background: #0a0e14;
 }
 
-/* ============================================================
-   Hero animations — leaves, halos, nodes, flow, spores
-   ============================================================ */
-
-/* Leaves: gentle sway around their base attachment to the stem */
-.plant-network .leaf {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  animation: leaf-sway 5s ease-in-out infinite;
-}
-.plant-network .leaf-1 { animation-duration: 5.2s; animation-delay: -0.4s; }
-.plant-network .leaf-2 { animation-duration: 6.4s; animation-delay: -1.2s; }
-.plant-network .leaf-3 { animation-duration: 4.6s; animation-delay: -2.0s; }
-.plant-network .leaf-4 { animation-duration: 5.8s; animation-delay: -0.8s; }
-.plant-network .leaf-5 { animation-duration: 4.2s; animation-delay: -1.6s; }
-.plant-network .leaf-6 { animation-duration: 3.6s; animation-delay: -0.2s; }
-@keyframes leaf-sway {
-  0%, 100% { transform: rotate(-6deg); }
-  50%      { transform: rotate(6deg); }
-}
-
-/* Stem: very subtle bend at the base */
-.plant-network .stem {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  animation: stem-sway 8s ease-in-out infinite;
-}
-@keyframes stem-sway {
-  0%, 100% { transform: rotate(-1.2deg); }
-  50%      { transform: rotate(1.2deg); }
-}
-
-/* Halos: slow breath */
-.plant-network .halo {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: halo-breathe 6s ease-in-out infinite;
-  mix-blend-mode: multiply;
-}
-.plant-network .halo-2 { animation-duration: 7s;   animation-delay: -1s; }
-.plant-network .halo-3 { animation-duration: 8s;   animation-delay: -2s; }
-.plant-network .halo-4 { animation-duration: 6.5s; animation-delay: -3s; }
-.plant-network .halo-5 { animation-duration: 7.5s; animation-delay: -1.5s; }
-@keyframes halo-breathe {
-  0%, 100% { transform: scale(0.85); opacity: 0.55; }
-  50%      { transform: scale(1.18); opacity: 1; }
-}
-
-/* Network nodes: layered pulse and twinkle */
-.plant-network .node {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: node-pulse 3.4s ease-in-out infinite;
-}
-.plant-network .node-lg { animation-duration: 2.6s; }
-.plant-network .node-md { animation-duration: 3s; }
-.plant-network .node:nth-of-type(2n)   { animation-delay: -0.6s; }
-.plant-network .node:nth-of-type(3n)   { animation-delay: -1.4s; }
-.plant-network .node:nth-of-type(5n)   { animation-delay: -2.1s; }
-.plant-network .node.twinkle { animation: twinkle 2.4s ease-in-out infinite; }
-.plant-network .node.twinkle:nth-of-type(2n) { animation-delay: -0.9s; }
-.plant-network .node.twinkle:nth-of-type(3n) { animation-delay: -1.7s; }
-@keyframes node-pulse {
-  0%, 100% { transform: scale(0.85); opacity: 0.7; }
-  50%      { transform: scale(1.15); opacity: 1; }
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 0.25; transform: scale(0.7); }
-  50%      { opacity: 1;    transform: scale(1.2); }
-}
-
-/* Underground flow lines: continuous drift */
-.plant-network .flow {
-  stroke-linecap: round;
-  animation: flow-drift 9s linear infinite;
-}
-.plant-network .flow-2 { animation-duration: 13s; animation-direction: reverse; }
-.plant-network .flow-3 { animation-duration: 11s; }
-@keyframes flow-drift {
-  to { stroke-dashoffset: -120; }
-}
-
-/* Mycorrhizal network connectors above soil — soft dashed drift */
-.plant-network .connector {
-  stroke-linecap: round;
-  stroke-dasharray: 4 7;
-  animation: connector-drift 14s linear infinite;
-}
-.plant-network .connector-2 { animation-duration: 18s; animation-direction: reverse; }
-.plant-network .connector-3 { animation-duration: 16s; }
-@keyframes connector-drift {
-  to { stroke-dashoffset: -110; }
-}
-
-/* Floating spores above the canopy */
-.plant-network .spore {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: spore-float 8s ease-in-out infinite;
-  opacity: 0.8;
-}
-.plant-network .spore-1 { animation-duration: 7s;  animation-delay: -1s; }
-.plant-network .spore-2 { animation-duration: 9s;  animation-delay: -3s; }
-.plant-network .spore-3 { animation-duration: 6.5s; animation-delay: -2s; }
-.plant-network .spore-4 { animation-duration: 8.5s; animation-delay: -0.5s; }
-.plant-network .spore-5 { animation-duration: 10s; animation-delay: -4s; }
-.plant-network .spore-6 { animation-duration: 7.5s; animation-delay: -1.7s; }
-@keyframes spore-float {
-  0%, 100% { transform: translate(0, 0);     opacity: 0.55; }
-  50%      { transform: translate(8px, -12px); opacity: 1; }
-}
-
-/* Respect reduced-motion */
+/* Reduced-motion: replace the playing video with the static poster */
 @media (prefers-reduced-motion: reduce) {
-  .plant-network .leaf,
-  .plant-network .stem,
-  .plant-network .halo,
-  .plant-network .node,
-  .plant-network .flow,
-  .plant-network .connector,
-  .plant-network .spore,
-  .plant-network .pulses circle {
-    animation: none !important;
+  .hero-video { display: none; }
+  .hero-visual {
+    aspect-ratio: 1040 / 576;
+    background-image: url("assets/hero/portada-poster.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius);
   }
 }
 
