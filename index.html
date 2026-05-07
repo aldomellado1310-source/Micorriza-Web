@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260507a" />
+  <link rel="stylesheet" href="styles.css?v=20260507b" />
   <link rel="stylesheet" href="intros/intros.css?v=20260506a" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="shortcut icon" href="assets/favicon.ico" />
 </head>
 <body>
   <!-- Welcome intro overlay -->
@@ -116,11 +119,10 @@
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <video class="hero-video" autoplay muted loop playsinline preload="metadata"
-                 poster="assets/hero/portada-poster.jpg">
-            <source src="assets/hero/portada.webm" type="video/webm">
-            <source src="assets/hero/portada.mp4" type="video/mp4">
-          </video>
+          <picture>
+            <source srcset="assets/hero/portada.webp" type="image/webp" />
+            <img class="hero-image" src="assets/hero/portada.jpg" alt="" width="1535" height="1024" loading="eager" decoding="async" />
+          </picture>
         </div>
       </div>
     </section>

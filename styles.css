@@ -243,26 +243,10 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   position: relative;
   width: 100%;
 }
-.hero-video {
+.hero-image {
   width: 100%;
   height: auto;
-  aspect-ratio: 1040 / 576;
-  object-fit: cover;
   display: block;
-  border-radius: var(--radius);
-  background: #0a0e14;
-}
-
-/* Reduced-motion: replace the playing video with the static poster */
-@media (prefers-reduced-motion: reduce) {
-  .hero-video { display: none; }
-  .hero-visual {
-    aspect-ratio: 1040 / 576;
-    background-image: url("assets/hero/portada-poster.jpg");
-    background-size: cover;
-    background-position: center;
-    border-radius: var(--radius);
-  }
 }
 
 /* ----- Essence ----- */
