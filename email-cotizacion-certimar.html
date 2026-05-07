@@ -25,6 +25,8 @@
       .stack { display: block !important; width: 100% !important; }
       .h1 { font-size: 26px !important; line-height: 36px !important; }
       .btn { width: 100% !important; box-sizing: border-box; }
+      .hide-mobile { display: none !important; max-height: 0 !important; overflow: hidden !important; }
+      .mobile-center { text-align: center !important; }
     }
   </style>
 </head>
@@ -41,12 +43,23 @@
 
         <table role="presentation" class="container" width="600" border="0" cellspacing="0" cellpadding="0" style="width:600px; max-width:600px; background-color:#FFFFFF; border-radius:16px; overflow:hidden; box-shadow:0 6px 28px rgba(31,59,91,0.07);">
 
-          <!-- HEADER -->
+          <!-- HEADER · Logo (izquierda) + Ilustración de marca (derecha, bleed) -->
           <tr>
-            <td align="center" class="px-48" style="padding: 48px 48px 20px 48px; background-color:#FFFFFF;">
-              <img src="https://aldomellado1310-source.github.io/Micorriza-Web/assets/logo-micorriza.png"
-                   width="220" alt="Micorriza"
-                   style="width:220px; max-width:60%; height:auto; display:block;" />
+            <td style="padding: 36px 40px 12px 40px; background-color:#FFFFFF;">
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td valign="middle" class="stack mobile-center" width="58%" style="padding-right:8px;">
+                    <img src="assets/logo-micorriza.png"
+                         width="210" alt="Micorriza"
+                         style="width:210px; max-width:80%; height:auto; display:block;" />
+                  </td>
+                  <td valign="top" class="hide-mobile" width="42%" align="right" style="padding:0;">
+                    <img src="assets/brand-illustration.png"
+                         width="220" alt=""
+                         style="width:220px; max-width:100%; height:auto; display:block; margin-left:auto;" />
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
