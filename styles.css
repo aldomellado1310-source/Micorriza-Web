@@ -1188,3 +1188,105 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   .manifesto-band { padding: 64px 0; }
   .partners { padding: 64px 0; }
 }
+
+/* ============================================================
+   Ambient atmosphere — sutil sensación orgánica
+   Capas suaves de luz/tierra/agua que añaden profundidad sin
+   romper la pulcritud minimalista. Nada supera ~7% de opacidad.
+   ============================================================ */
+
+/* Hero: niebla cálida desde el suelo + halo de agua arriba */
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(220, 200, 168, 0.22), transparent 70%),
+    radial-gradient(ellipse 55% 35% at 25% 5%, rgba(102, 183, 201, 0.06), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Secciones flat → ganan profundidad con halos sutiles tierra/agua */
+.solutions, .sectors, .partners, .metaphor, .essence {
+  position: relative;
+}
+.solutions::before, .sectors::before, .partners::before, .metaphor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 5% 95%, rgba(137, 133, 97, 0.045), transparent 60%),
+    radial-gradient(ellipse 45% 35% at 95% 5%, rgba(102, 183, 201, 0.035), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.solutions > .container,
+.sectors > .container,
+.partners > .container,
+.metaphor > .container { position: relative; z-index: 1; }
+
+/* Sectors — paleta cromática por categoría, muy contenida.
+   Los acentos solo aparecen como halo de bottom-left y línea
+   superior en hover. La grilla blanca dominante se preserva. */
+.sector[data-sector="agroindustria"] { --sector-accent: #7fa863; }
+.sector[data-sector="energia"]      { --sector-accent: #c89e64; }
+.sector[data-sector="logistica"]    { --sector-accent: #66B7C9; }
+.sector[data-sector="salud"]        { --sector-accent: #b07a4a; }
+.sector[data-sector="publico"]      { --sector-accent: #1F3B5B; }
+.sector[data-sector="industria"]    { --sector-accent: #898561; }
+
+.sector { position: relative; overflow: hidden; }
+.sector::before {
+  content: "";
+  position: absolute;
+  bottom: -90px; left: -90px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, var(--sector-accent, transparent) 0%, transparent 65%);
+  opacity: 0.07;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+.sector:hover::before { opacity: 0.14; transform: scale(1.12); }
+.sector::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--sector-accent, var(--azul));
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.sector:hover::after { transform: scaleX(1); }
+.sector > * { position: relative; z-index: 1; }
+
+/* Mobile menu — translucido con blur sutil */
+@media (max-width: 720px) {
+  .primary-nav.is-open {
+    background: rgba(247, 245, 242, 0.78);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    box-shadow: 0 14px 36px -16px rgba(31, 59, 91, 0.22);
+    border-bottom-color: rgba(232, 226, 214, 0.6);
+  }
+}
+
+/* Manifesto / CTA — vino de tierra cálida y curva orgánica al borde */
+.manifesto-band, .cta { position: relative; }
+.manifesto-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 50% at 50% 100%, rgba(176, 122, 74, 0.06), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.manifesto-band > .container { position: relative; z-index: 1; }
+
+/* Reduced-motion respeta */
+@media (prefers-reduced-motion: reduce) {
+  .sector::before, .sector::after { transition: none; }
+}
