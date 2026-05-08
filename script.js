@@ -23,6 +23,15 @@ const revealTargets = document.querySelectorAll(
 );
 revealTargets.forEach((el) => el.classList.add("reveal"));
 
+// Asigna --reveal-i a hijos directos de grids para cascada al hacer reveal.
+document.querySelectorAll(
+  ".cards, .sector-grid, .metaphor-grid, .icon-row, .kpi-grid, .partner-grid"
+).forEach((grid) => {
+  Array.from(grid.children).forEach((child, i) => {
+    child.style.setProperty("--reveal-i", i);
+  });
+});
+
 const io = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
