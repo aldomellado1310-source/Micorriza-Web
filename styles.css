@@ -202,13 +202,25 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 .section-head p { font-size: 1.05rem; }
 
 /* ----- Hero ----- */
-.hero { padding: 64px 0 40px; min-height: calc(100vh - 76px); display: flex; align-items: center; }
+.hero {
+  padding: 64px 0 40px;
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  background-image: url("assets/fondo_portada.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: 56px;
   align-items: center;
   width: 100%;
+}
+.hero-copy {
+  padding-inline-start: clamp(16px, 6vw, 96px);
 }
 .hero-copy .lede {
   font-size: 1.05rem;
@@ -1278,6 +1290,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  .hero-copy { padding-inline-start: 0; }
   .essence-grid { padding: 32px; }
   .essence-mark { max-width: 200px; }
   .cards, .sector-grid, .resource-grid { grid-template-columns: repeat(2, 1fr); }
