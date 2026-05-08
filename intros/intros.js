@@ -12,6 +12,13 @@ const STORAGE_PLAYED  = "micorriza:intro:played";
 
 export const INTROS = [
   {
+    id: "video",
+    label: "Video institucional",
+    summary: "Reproduce el video introductorio de Micorriza a pantalla completa antes de revelar el sitio.",
+    play: playVideo,
+    thumb: thumbVideo,
+  },
+  {
     id: "simbiosis",
     label: "Simbiosis: nace una micorriza",
     summary: "Tres árboles emergen sobre la línea del suelo, brotan hongos a sus pies, y bajo tierra una micorriza los interconecta. Nutrientes circulan: azúcares bajan, agua y minerales suben, y partículas viajan entre árboles por la red. Al final, todo el bosque se resuelve geométricamente en el logo Micorriza con su wordmark.",
@@ -56,7 +63,7 @@ export function getIntroById(id) {
 
 export function getDefaultIntro() {
   const stored = localStorage.getItem(STORAGE_DEFAULT);
-  return VALID_IDS.includes(stored) ? stored : "simbiosis";
+  return VALID_IDS.includes(stored) ? stored : "video";
 }
 
 export function setDefaultIntro(id) {
@@ -149,6 +156,74 @@ function addParticleAnims(NS, el, begin, dur, pathD) {
   fadeOut.setAttribute("to", "0");
   fadeOut.setAttribute("fill", "freeze");
   el.appendChild(fadeOut);
+}
+
+/* ---------- 0) Video institucional ---------- */
+function playVideo(stage, { isSkipped }) {
+  return new Promise((resolve) => {
+    const wrap = document.createElement("div");
+    wrap.className = "vid-canvas";
+
+    const video = document.createElement("video");
+    video.className = "vid-player";
+    video.autoplay = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
+    video.setAttribute("aria-hidden", "true");
+
+    const source = document.createElement("source");
+    source.src = "assets/video_Intro";
+    source.type = "video/mp4";
+    video.appendChild(source);
+
+    wrap.appendChild(video);
+    stage.appendChild(wrap);
+
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      resolve();
+    };
+
+    video.addEventListener("ended", finish);
+    video.addEventListener("error", finish);
+
+    // Safety: never block the page longer than 20s, and respect skip.
+    const start = performance.now();
+    const tick = setInterval(() => {
+      if (done) { clearInterval(tick); return; }
+      if (isSkipped() || performance.now() - start > 20000) {
+        clearInterval(tick);
+        try { video.pause(); } catch {}
+        finish();
+      }
+    }, 120);
+
+    // Best-effort autoplay (some browsers require a kick)
+    const tryPlay = video.play();
+    if (tryPlay && typeof tryPlay.catch === "function") tryPlay.catch(finish);
+  });
+}
+
+function thumbVideo() {
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 64 64");
+  svg.setAttribute("aria-hidden", "true");
+  const rect = document.createElementNS(NS, "rect");
+  rect.setAttribute("x", "8"); rect.setAttribute("y", "14");
+  rect.setAttribute("width", "48"); rect.setAttribute("height", "36");
+  rect.setAttribute("rx", "6");
+  rect.setAttribute("fill", "#1F3B5B"); rect.setAttribute("opacity", "0.12");
+  rect.setAttribute("stroke", "#1F3B5B"); rect.setAttribute("stroke-width", "1.4");
+  const tri = document.createElementNS(NS, "path");
+  tri.setAttribute("d", "M28,24 L42,32 L28,40 Z");
+  tri.setAttribute("fill", "#1F3B5B");
+  svg.appendChild(rect);
+  svg.appendChild(tri);
+  return svg;
 }
 
 function playSimbiosis(stage, { isSkipped }) {
