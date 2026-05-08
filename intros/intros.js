@@ -159,27 +159,10 @@ function addParticleAnims(NS, el, begin, dur, pathD) {
 }
 
 /* ---------- 0) Video institucional ---------- */
+const VIDEO_SRC = "assets/video_Intro";
+
 function playVideo(stage, { isSkipped }) {
   return new Promise((resolve) => {
-    const wrap = document.createElement("div");
-    wrap.className = "vid-canvas";
-
-    const video = document.createElement("video");
-    video.className = "vid-player";
-    video.autoplay = true;
-    video.muted = true;
-    video.playsInline = true;
-    video.preload = "auto";
-    video.setAttribute("aria-hidden", "true");
-
-    const source = document.createElement("source");
-    source.src = "assets/video_Intro";
-    source.type = "video/mp4";
-    video.appendChild(source);
-
-    wrap.appendChild(video);
-    stage.appendChild(wrap);
-
     let done = false;
     const finish = () => {
       if (done) return;
@@ -187,23 +170,63 @@ function playVideo(stage, { isSkipped }) {
       resolve();
     };
 
-    video.addEventListener("ended", finish);
-    video.addEventListener("error", finish);
+    // Pre-check: si el archivo no existe o es claramente un placeholder (<1KB),
+    // saltar el intro por completo para no mostrar pantalla negra.
+    fetch(VIDEO_SRC, { method: "HEAD", cache: "no-store" })
+      .then((res) => {
+        if (!res.ok) return finish();
+        const len = parseInt(res.headers.get("content-length") || "0", 10);
+        if (len > 0 && len < 1024) return finish();
+        startVideo();
+      })
+      .catch(() => finish());
 
-    // Safety: never block the page longer than 20s, and respect skip.
-    const start = performance.now();
-    const tick = setInterval(() => {
-      if (done) { clearInterval(tick); return; }
-      if (isSkipped() || performance.now() - start > 20000) {
-        clearInterval(tick);
-        try { video.pause(); } catch {}
-        finish();
-      }
-    }, 120);
+    function startVideo() {
+      if (done) return;
 
-    // Best-effort autoplay (some browsers require a kick)
-    const tryPlay = video.play();
-    if (tryPlay && typeof tryPlay.catch === "function") tryPlay.catch(finish);
+      const wrap = document.createElement("div");
+      wrap.className = "vid-canvas";
+
+      const video = document.createElement("video");
+      video.className = "vid-player";
+      video.autoplay = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      video.setAttribute("aria-hidden", "true");
+
+      const source = document.createElement("source");
+      source.src = VIDEO_SRC;
+      source.type = "video/mp4";
+      video.appendChild(source);
+
+      wrap.appendChild(video);
+      stage.appendChild(wrap);
+
+      ["ended", "error", "abort", "emptied"].forEach((ev) => {
+        video.addEventListener(ev, finish);
+      });
+      source.addEventListener("error", finish);
+
+      // Si en 2s no hay datos cargados, abandonar (evita pantalla negra eterna).
+      setTimeout(() => {
+        if (!done && (video.readyState < 1 || video.error)) finish();
+      }, 2000);
+
+      // Watchdog general: cierra a los 20s o al saltar.
+      const start = performance.now();
+      const tick = setInterval(() => {
+        if (done) { clearInterval(tick); return; }
+        if (isSkipped() || performance.now() - start > 20000) {
+          clearInterval(tick);
+          try { video.pause(); } catch {}
+          finish();
+        }
+      }, 120);
+
+      const tryPlay = video.play();
+      if (tryPlay && typeof tryPlay.catch === "function") tryPlay.catch(finish);
+    }
   });
 }
 
