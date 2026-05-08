@@ -418,7 +418,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 .essence-copy p { font-size: 1.05rem; max-width: 620px; }
 
 /* ----- Solutions cards ----- */
-.solutions { padding: 96px 0; }
+.solutions { padding: clamp(72px, 10vw, 144px) 0; }
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -461,7 +461,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 .card p  { font-size: 0.95rem; }
 
 /* ----- Sectors ----- */
-.sectors { padding: 96px 0; background: rgba(220, 200, 168, 0.14); border-block: 1px solid var(--line); }
+.sectors { padding: clamp(72px, 10vw, 144px) 0; background: rgba(220, 200, 168, 0.14); border-block: 1px solid var(--line); }
 .sector-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -489,7 +489,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 .sector p  { font-size: 0.9rem; margin: 0; }
 
 /* ----- Tech / metrics ----- */
-.tech { padding: 96px 0; }
+.tech { padding: clamp(72px, 10vw, 144px) 0; }
 .tech-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -609,7 +609,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 .icon-row span { font-size: 0.82rem; font-weight: 500; }
 
 /* ----- Resources ----- */
-.resources { padding: 96px 0; }
+.resources { padding: clamp(72px, 10vw, 144px) 0; }
 .resource-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -642,7 +642,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 .resource-link { color: var(--agua); font-weight: 600; font-size: 0.9rem; }
 
 /* ----- About ----- */
-.about { padding: 96px 0; }
+.about { padding: clamp(72px, 10vw, 144px) 0; }
 .about-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -807,15 +807,58 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   gap: 12px;
 }
 
-/* ----- Reveal on scroll ----- */
+/* ----- Section rhythm (Agile-Digital-inspired) -----
+   Padding generoso, alternancia sutil de fondo y hairline divider
+   entre secciones para crear cadencia editorial. */
+main > section { position: relative; padding-block: clamp(72px, 10vw, 144px); }
+main > section.hero { padding-block: 64px 40px; }
+main > section + section:not(.cta):not(.manifesto-band)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--container), calc(100% - 48px));
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(31, 59, 91, 0.10) 18%,
+    rgba(31, 59, 91, 0.10) 82%,
+    transparent 100%);
+}
+main > section.solutions,
+main > section.tech-strip,
+main > section.about {
+  background: linear-gradient(180deg,
+    rgba(247, 245, 242, 0) 0%,
+    rgba(220, 200, 168, 0.05) 50%,
+    rgba(247, 245, 242, 0) 100%);
+}
+
+/* ----- Reveal on scroll (Agile-Digital-inspired: longer, eased, staggered) ----- */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(36px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+/* Stagger siblings within grids so cards reveal in cascade. */
+.cards > .card.reveal,
+.sector-grid > .sector.reveal,
+.metaphor-grid > .metaphor-card.reveal,
+.icon-row > li.reveal,
+.kpi-grid > .kpi-tile.reveal,
+.partner-grid .partner-logo.reveal {
+  transition-delay: calc(var(--reveal-i, 0) * 90ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; transform: none; opacity: 1; }
 }
 
 /* ----- Eyebrow viewport reveal ----- */
@@ -874,7 +917,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 
 /* ----- Manifesto band (replaces redundant "Esencia") ----- */
 .manifesto-band {
-  padding: 96px 0;
+  padding: clamp(72px, 10vw, 144px) 0;
   background:
     radial-gradient(900px 320px at 50% 50%, rgba(220, 200, 168, 0.30), transparent 70%),
     linear-gradient(180deg, transparent, rgba(102, 183, 201, 0.04));
@@ -1051,7 +1094,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 
 /* ----- Partners section ----- */
 .partners {
-  padding: 96px 0;
+  padding: clamp(72px, 10vw, 144px) 0;
   background:
     linear-gradient(180deg, rgba(247, 245, 242, 0.8), transparent);
 }
