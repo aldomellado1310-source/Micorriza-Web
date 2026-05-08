@@ -115,11 +115,14 @@ a { color: inherit; text-decoration: none; }
 .brand-logo svg { width: 38px; height: 38px; }
 img.brand-logo {
   display: block;
-  height: 56px;
+  height: 92px;
   width: auto;
-  max-width: 220px;
+  max-width: 320px;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
+.site-header .header-inner { height: 108px; }
+.footer-brand img.brand-logo { mix-blend-mode: normal; }
 .primary-nav { margin-left: auto; }
 .primary-nav ul {
   display: flex; gap: 28px;
@@ -214,13 +217,19 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: center;
   width: 100%;
 }
 .hero-copy {
-  padding-inline-start: clamp(16px, 6vw, 96px);
+  max-width: 620px;
+  padding: 32px 36px;
+  background: rgba(247, 245, 242, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(31, 59, 91, 0.08);
 }
 .hero-copy .lede {
   font-size: 1.05rem;
@@ -1290,7 +1299,9 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .hero-copy { padding-inline-start: 0; }
+  .hero-copy { padding: 24px; max-width: 100%; }
+  img.brand-logo { height: 64px; }
+  .site-header .header-inner { height: 84px; }
   .essence-grid { padding: 32px; }
   .essence-mark { max-width: 200px; }
   .cards, .sector-grid, .resource-grid { grid-template-columns: repeat(2, 1fr); }
