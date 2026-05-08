@@ -36,6 +36,7 @@
       .hide-mobile { display: none !important; max-height: 0 !important; overflow: hidden !important; }
       .stage-amount { font-size: 20px !important; }
       .role-cell { width: 56px !important; }
+      .hero-cell { height: auto !important; min-height: 0 !important; padding-bottom: 110% !important; }
     }
   </style>
 </head>
@@ -71,18 +72,34 @@
             </td>
           </tr>
 
-          <!-- 2 · SALUDO + CONTEXTO -->
+          <!-- 2 · SALUDO + CONTEXTO · ilustración como fondo bulletproof -->
           <tr>
-            <td class="px-pad" style="padding: 36px 40px 4px 40px; background-color:#FFFFFF;">
-              <p class="mono" style="margin:0 0 16px 0; font-family:'DM Mono','Courier New',monospace; font-size:11px; letter-spacing:2px; color:#C87941; text-transform:uppercase;">
-                Propuesta · MIC-0005
-              </p>
-              <h1 class="h1 serif" style="margin:0 0 18px 0; font-family:'Playfair Display',Georgia,serif; font-size:34px; line-height:42px; color:#2D6A8F; font-weight:500;">
-                Hola Engelbert,
-              </h1>
-              <p class="sans" style="margin:0; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:16px; line-height:26px; color:#1C2B35;">
-                Tras lo que conversamos la semana pasada, te dejo formalizada la propuesta para extender Certimar a CICE 1 y CICE 2 — la versión corta acá, el detalle completo en el PDF adjunto.
-              </p>
+            <td background="assets/brand-illustration.png" bgcolor="#F5F3EF" valign="top"
+                style="background-image:url('assets/brand-illustration.png'); background-color:#F5F3EF; background-position:top right; background-repeat:no-repeat; background-size:100% auto; padding:0;">
+              <!--[if gte mso 9]>
+              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000; height:849px;">
+                <v:fill type="frame" src="assets/brand-illustration.png" color="#F5F3EF" />
+                <v:textbox inset="0,0,0,0">
+              <![endif]-->
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td valign="top" class="px-pad hero-cell" style="padding: 44px 40px 40px 40px; height:849px;">
+                    <p class="mono" style="margin:0 0 16px 0; font-family:'DM Mono','Courier New',monospace; font-size:11px; letter-spacing:2px; color:#C87941; text-transform:uppercase;">
+                      Propuesta · MIC-0005
+                    </p>
+                    <h1 class="h1 serif" style="margin:0 0 18px 0; font-family:'Playfair Display',Georgia,serif; font-size:34px; line-height:42px; color:#2D6A8F; font-weight:500; max-width:300px;">
+                      Hola Engelbert,
+                    </h1>
+                    <p class="sans" style="margin:0; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:15px; line-height:24px; color:#1C2B35; max-width:300px;">
+                      Tras lo que conversamos la semana pasada, te dejo formalizada la propuesta para extender Certimar a CICE 1 y CICE 2 — la versión corta acá, el detalle completo en el PDF.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              <!--[if gte mso 9]>
+                </v:textbox>
+              </v:rect>
+              <![endif]-->
             </td>
           </tr>
 
@@ -96,12 +113,12 @@
                       <tr>
                         <td valign="top" class="stack" width="58%" style="padding-right:18px;">
                           <p class="mono" style="margin:0 0 6px 0; font-family:'DM Mono','Courier New',monospace; font-size:10px; letter-spacing:2px; color:#3E8C6E; text-transform:uppercase;">
-                            Rango referencial
+                            Cobertura
                           </p>
-                          <p class="mono stage-amount" style="margin:0 0 4px 0; font-family:'DM Mono','Courier New',monospace; font-size:24px; line-height:30px; color:#1C2B35; font-weight:500; letter-spacing:-0.5px;">
-                            $1,9M&nbsp;–&nbsp;$5,2M&nbsp;CLP
+                          <p class="serif" style="margin:0 0 4px 0; font-family:'Playfair Display',Georgia,serif; font-size:20px; line-height:26px; color:#1C2B35; font-weight:500;">
+                            CICE 1 + CICE 2
                           </p>
-                          <p class="sans" style="margin:0; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:12px; color:#5A6770;">+ IVA · según alternativa elegida</p>
+                          <p class="sans" style="margin:0; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:12px; color:#5A6770;">Res. SUBPESCA 1511 · 1821/2020</p>
                         </td>
                         <td valign="top" class="stack stack-pad" width="42%" style="padding-left:18px; border-left:1px solid #E8E3DA;">
                           <p class="mono" style="margin:0 0 6px 0; font-family:'DM Mono','Courier New',monospace; font-size:10px; letter-spacing:2px; color:#3E8C6E; text-transform:uppercase;">
