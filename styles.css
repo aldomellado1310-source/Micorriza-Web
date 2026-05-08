@@ -738,7 +738,48 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   gap: 16px;
   backdrop-filter: blur(6px);
 }
+.cta-form-header {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(247, 245, 242, 0.12);
+  margin-bottom: 4px;
+}
+.form-logo {
+  display: block;
+  width: 180px;
+  max-width: 80%;
+  height: auto;
+  background: var(--blanco);
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+.form-tagline {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(247, 245, 242, 0.7);
+  text-align: center;
+}
 .cta-form label { display: grid; gap: 6px; }
+.cta-form textarea {
+  background: rgba(247, 245, 242, 0.08);
+  border: 1px solid rgba(247, 245, 242, 0.18);
+  color: var(--blanco);
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 96px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cta-form textarea::placeholder { color: rgba(247, 245, 242, 0.45); }
+.cta-form textarea:focus {
+  outline: none;
+  border-color: var(--agua);
+  background: rgba(102, 183, 201, 0.1);
+}
 .cta-form span {
   font-size: 0.78rem;
   letter-spacing: 0.12em;

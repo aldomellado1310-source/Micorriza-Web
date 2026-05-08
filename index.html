@@ -577,6 +577,10 @@
           <p>Cuéntanos sobre tu proyecto. Te responderemos en menos de 48 horas con un primer mapa de posibilidades.</p>
         </div>
         <form class="cta-form" onsubmit="event.preventDefault(); this.querySelector('.form-success').hidden = false;">
+          <div class="cta-form-header">
+            <img src="assets/logo-micorriza.png" alt="Micorriza" class="form-logo" />
+            <p class="form-tagline">Escríbenos. Te respondemos en menos de 48 h.</p>
+          </div>
           <label>
             <span>Nombre</span>
             <input type="text" name="name" required placeholder="Tu nombre" />
@@ -588,6 +592,10 @@
           <label>
             <span>Tu reto en una línea</span>
             <input type="text" name="topic" placeholder="¿Qué quieres construir?" />
+          </label>
+          <label>
+            <span>Mensaje</span>
+            <textarea name="message" rows="4" placeholder="Cuéntanos brevemente tu proyecto"></textarea>
           </label>
           <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
           <p class="form-success" hidden>Gracias. Tu mensaje viaja por la red — pronto recibirás respuesta.</p>
