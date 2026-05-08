@@ -27,6 +27,7 @@
       .btn { width: 100% !important; box-sizing: border-box; }
       .hide-mobile { display: none !important; max-height: 0 !important; overflow: hidden !important; }
       .mobile-center { text-align: center !important; }
+      .hero-cell { height: auto !important; min-height: 0 !important; padding-bottom: 70% !important; }
     }
   </style>
 </head>
@@ -43,58 +44,39 @@
 
         <table role="presentation" class="container" width="600" border="0" cellspacing="0" cellpadding="0" style="width:600px; max-width:600px; background-color:#FFFFFF; border-radius:16px; overflow:hidden; box-shadow:0 6px 28px rgba(31,59,91,0.07);">
 
-          <!-- HEADER · Logo (izquierda) + Ilustración de marca (derecha, bleed) -->
+          <!-- HERO · Ilustración como fondo bulletproof + logo / eyebrow / h1 encima -->
           <tr>
-            <td style="padding: 0; background-color:#F7F5F2;">
+            <td background="assets/brand-illustration.png" bgcolor="#F7F5F2" valign="top"
+                style="background-image:url('assets/brand-illustration.png'); background-color:#F7F5F2; background-position:top center; background-repeat:no-repeat; background-size:100% auto; padding:0;">
+              <!--[if gte mso 9]>
+              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000; height:849px;">
+                <v:fill type="frame" src="assets/brand-illustration.png" color="#F7F5F2" />
+                <v:textbox inset="0,0,0,0">
+              <![endif]-->
               <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td valign="middle" class="stack mobile-center" width="55%" style="padding:48px 24px 32px 48px;">
-                    <img src="assets/logo-micorriza.png"
-                         width="220" alt="Micorriza"
-                         style="width:220px; max-width:90%; height:auto; display:block;" />
-                  </td>
-                  <td valign="top" class="hide-mobile" width="45%" align="right" style="padding:0; line-height:0; font-size:0;">
-                    <img src="assets/brand-illustration.png"
-                         width="270" alt=""
-                         style="width:270px; max-width:100%; height:auto; display:block; margin-left:auto;" />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- DIVISOR · NODO · LÍNEA · NODO -->
-          <tr>
-            <td align="center" style="padding: 4px 48px 8px 48px;">
-              <table role="presentation" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td style="font-size:0; line-height:0;">
-                    <span style="display:inline-block; width:6px; height:6px; background:#66B7C9; border-radius:50%; vertical-align:middle;">&nbsp;</span>
-                    <span style="display:inline-block; width:120px; height:1px; background:#ECE6DC; vertical-align:middle; margin:0 10px;">&nbsp;</span>
-                    <span style="display:inline-block; width:8px; height:8px; background:#1F3B5B; border-radius:50%; vertical-align:middle;">&nbsp;</span>
-                    <span style="display:inline-block; width:120px; height:1px; background:#ECE6DC; vertical-align:middle; margin:0 10px;">&nbsp;</span>
-                    <span style="display:inline-block; width:6px; height:6px; background:#DCC8A8; border-radius:50%; vertical-align:middle;">&nbsp;</span>
+                  <td valign="top" class="px-48 hero-cell" style="padding: 56px 48px 0 48px; height:849px;">
+                    <img src="assets/logo-micorriza.png" width="210" alt="Micorriza"
+                         style="width:210px; max-width:60%; height:auto; display:block; margin-bottom:80px;" />
+                    <p style="margin:0 0 14px 0; font-family: Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#7A6A5A; font-weight:600;">
+                      Propuesta · MIC-0005 · Certimar SpA
+                    </p>
+                    <h1 class="h1" style="margin:0; font-family: Georgia, 'Times New Roman', serif; font-size:34px; line-height:42px; color:#1F3B5B; font-weight:400; letter-spacing:-0.3px; max-width:300px;">
+                      Estimado Engelbert,
+                    </h1>
                   </td>
                 </tr>
               </table>
+              <!--[if gte mso 9]>
+                </v:textbox>
+              </v:rect>
+              <![endif]-->
             </td>
           </tr>
 
-          <!-- EYEBROW -->
+          <!-- INTRO -->
           <tr>
-            <td align="center" class="px-48" style="padding: 16px 48px 0 48px;">
-              <p style="margin:0; font-family: Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#7A6A5A; font-weight:600;">
-                Propuesta · MIC-0005 · Certimar SpA
-              </p>
-            </td>
-          </tr>
-
-          <!-- TÍTULO + INTRO -->
-          <tr>
-            <td class="px-48" style="padding: 28px 48px 8px 48px;">
-              <h1 class="h1 serif" style="margin:0 0 24px 0; font-family: Georgia, 'Times New Roman', serif; font-size:30px; line-height:40px; color:#1F3B5B; font-weight:400; letter-spacing:-0.3px;">
-                Estimado Engelbert,
-              </h1>
+            <td class="px-48" style="padding: 32px 48px 8px 48px; background-color:#FFFFFF;">
               <p style="margin:0 0 18px 0; font-family: Helvetica, Arial, sans-serif; font-size:16px; line-height:28px; color:#3B2E26;">
                 Adjunto a este correo encontrará la propuesta formal
                 <strong style="color:#1F3B5B;">MIC-0005</strong>: una
