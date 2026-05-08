@@ -212,7 +212,7 @@ p  { margin: 0 0 14px; color: var(--ink-soft); }
   align-items: center;
   background-image: url("assets/fondo_portada.png");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center top;
   background-size: cover;
 }
 .hero-grid {
