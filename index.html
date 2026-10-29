@@ -1,939 +1,988 @@
-<!DOCTYPE html>
-
-<html lang="es">
+<!doctype html>
+<html lang="es-CL">
 <head>
-<style id="critical-intro">html,body{background:#020d0b!important}body.intro-lock .bg-stage{opacity:0!important}</style>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Micorriza — infraestructura digital inspirada en sistemas vivos." name="description"/>
-<title>Micorriza | Infraestructura viva</title>
-<meta content="#031916" name="theme-color"/>
-<link href="https://micorriza.bio/" rel="canonical"/>
-<link href="assets/favicon.ico" rel="icon" sizes="any"/>
-<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="assets/favicon-32.png" rel="icon" type="image/png" sizes="32x32"/>
-<link href="assets/favicon-16.png" rel="icon" type="image/png" sizes="16x16"/>
-<link href="assets/favicon-192.png" rel="apple-touch-icon"/>
-<meta content="website" property="og:type"/>
-<meta content="https://micorriza.bio/" property="og:url"/>
-<meta content="Micorriza | Infraestructura viva" property="og:title"/>
-<meta content="Diseñamos plataformas, redes y sistemas digitales que crecen como un ecosistema: conectados, adaptables y preparados para evolucionar." property="og:description"/>
-<meta content="https://micorriza.bio/assets/og-card.png" property="og:image"/>
-<meta content="1200" property="og:image:width"/>
-<meta content="630" property="og:image:height"/>
-<meta content="Micorriza — Conectamos lo natural con lo digital." property="og:image:alt"/>
-<meta content="es_CL" property="og:locale"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="Micorriza | Infraestructura viva" name="twitter:title"/>
-<meta content="Infraestructura digital inspirada en sistemas vivos." name="twitter:description"/>
-<meta content="https://micorriza.bio/assets/og-card.png" name="twitter:image"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nothara Labs | La inteligencia está en las conexiones</title>
+<meta name="description" content="Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js"</script>
 <style>
-    :root{
-      --bg:#031916;
-      --bg-2:#06251f;
-      --card:rgba(7,35,29,.68);
-      --line:rgba(149,255,205,.18);
-      --white:#f6fbf8;
-      --muted:#afc3bb;
-      --green:#72e235;
-      --green-rgb:114,226,53;
-      --mint-rgb:140,255,196;
-      --accent:#8ceb63;
-      --aqua:#42d9ff;
-      --orange:#ff9d00;
-      --shadow:0 25px 80px rgba(0,0,0,.34);
-      --radius:28px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:#031916;color:var(--white);position:relative;isolation:isolate;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    .container{width:min(1180px,calc(100% - 40px));margin:auto}
-    .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:linear-gradient(to bottom,rgba(2,18,15,.92),rgba(2,18,15,.45),transparent);backdrop-filter:blur(12px)}
-    .nav-inner{height:86px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-    .brand{display:flex;align-items:center;justify-content:flex-start;gap:0;font-weight:750;font-size:0;letter-spacing:0}
-    .brand img{width:68px;height:68px;object-fit:contain;background:transparent;border-radius:0;padding:0;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,.22))}
-    .links{display:flex;gap:25px;align-items:center;color:#d6e4de;font-size:14px}
-    .links a:hover{color:var(--green)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:999px;border:1px solid rgba(var(--green-rgb),.45);transition:.25s ease;font-weight:700}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(var(--green-rgb),.18)}
-    .btn.primary{background:linear-gradient(135deg,#92ef43,#47bd2f);color:#092113;border:0}
-    .btn.secondary{background:rgba(255,255,255,.04)}
-    .hero{min-height:100vh;display:grid;align-items:center;padding:130px 0 65px;position:relative;overflow:hidden}
-    .hero:before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,17,14,.52),rgba(1,17,14,.74));z-index:-1}
-    .hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:46px;align-items:center}
-    .eyebrow{color:#7ce4b5;text-transform:uppercase;letter-spacing:.22em;font-size:12px;font-weight:800}
-    h1,h2,h3,p{margin-top:0}
-    h1{font-size:clamp(48px,7vw,92px);line-height:.98;letter-spacing:-.055em;margin:20px 0 26px;max-width:860px}
-    h2{font-size:clamp(34px,5vw,64px);line-height:1.03;letter-spacing:-.045em;margin-bottom:22px}
-    h3{font-size:25px;letter-spacing:-.025em;margin-bottom:10px}
-    .lead{font-size:19px;color:#d1ded8;max-width:690px}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-    .stats{position:relative;margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(3,30,24,.7);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(12px);overflow:hidden}
-    .stat{padding:22px 25px;border-right:1px solid var(--line)}
-    .stat:last-child{border-right:0}.stat b{font-size:25px}.stat small{display:block;color:var(--muted);margin-top:5px}
-    section{padding:105px 0;position:relative}
-    .section-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
-    .visual{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#061b17}
-    .visual img{width:100%;height:100%;object-fit:cover}
-    .copy p{color:#b8cbc3;font-size:17px}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.chip{padding:8px 13px;border:1px solid rgba(var(--green-rgb),.32);border-radius:999px;color:#bff39e;font-size:13px}
-    .dashboard{padding:30px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(4,31,25,.74);box-shadow:var(--shadow)}
-    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}.metric{padding:18px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid var(--line)}.metric b{font-size:30px;display:block}.metric span{color:var(--muted);font-size:13px}
-    .chart{height:190px;margin-top:20px;border-radius:18px;background:linear-gradient(180deg,rgba(67,217,255,.08),transparent),repeating-linear-gradient(0deg,transparent 0 37px,rgba(255,255,255,.05) 38px 39px);position:relative;overflow:hidden}.chart svg{position:absolute;inset:0;width:100%;height:100%}
-    .team{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}.person{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;padding:20px;background:rgba(5,34,28,.72);border:1px solid var(--line);border-radius:24px}.person img,.avatar{width:150px;height:180px;object-fit:cover;border-radius:18px}.avatar{display:grid;place-items:center;background:radial-gradient(circle at 35% 25%,#257a68,#071d19 70%);font-size:48px;font-weight:800;color:#dfffe9}.role{color:var(--accent);font-size:14px;font-weight:750}.person p{color:var(--muted);font-size:14px;margin:12px 0 0}
-    .cta{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:stretch}.cta-panel,.form{padding:34px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(6,40,32,.76);box-shadow:var(--shadow)}
-    .form label{display:block;font-size:13px;margin:14px 0 7px;color:#cfddd7}.form input,.form textarea{width:100%;padding:15px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(2,18,15,.7);color:white;font:inherit}.form textarea{min-height:125px;resize:vertical}.form .btn{width:100%;margin-top:16px}
-    footer{padding:36px 0 55px;border-top:1px solid var(--line);color:#91aaa0}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    .mobile{display:none}
-    @media(max-width:900px){.links{display:none}.mobile{display:inline-flex}.hero-grid,.section-grid,.cta{grid-template-columns:1fr}.hero-card{justify-self:start}.hero-card img{height:320px}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.cards{grid-template-columns:1fr 1fr}.sectors{grid-template-columns:1fr 1fr}.team{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:620px){.container{width:min(100% - 26px,1180px)}.nav-inner{height:72px}.brand{font-size:20px}.brand img{width:54px;height:54px}.hero{padding-top:105px}.hero:before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,17,14,.52),rgba(1,17,14,.74));z-index:-1}.hero-grid{gap:28px}h1{font-size:49px}.stats,.cards,.sectors,.metric-grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.person{grid-template-columns:1fr}.person img,.avatar{width:100%;height:300px}.hero-card{width:100%}.hero-card img{height:330px}section{padding:78px 0}}
-  
-    
-    .bg-stage{position:fixed;inset:-8vh 0;z-index:0;overflow:hidden;background:#020d0b;pointer-events:none;opacity:0;transition:opacity 1s ease}body.bg-reveal .bg-stage{opacity:1}
-    .bg-layer{position:absolute;inset:0;background-size:cover;background-position:center center;will-change:transform,opacity;pointer-events:none;backface-visibility:hidden}
-    .bg-hero{opacity:1;filter:brightness(.64) saturate(1.06)}
-    .bg-deep{opacity:0;filter:brightness(.56) saturate(1.04)}
-    body:before{content:'';position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(2,15,13,.36) 0%,rgba(2,15,13,.28) 28%,rgba(2,15,13,.48) 54%,rgba(2,15,13,.76) 100%);pointer-events:none}
-    .nav,main,footer{position:relative;z-index:2}
-    .nav{position:fixed}
-    .hero,.section-dark,section{background:transparent !important}
-    .hero:before{z-index:0}
-    .hero>.container,.hero-grid,.stats{position:relative;z-index:2}
-
-
-
-/* Ajustes V6: logo completo, portada luminosa y oscurecimiento progresivo */
-:root{--scroll-dark:.12}
-.brand{font-size:0;display:flex;align-items:center;min-width:230px}
-.brand img{width:230px;height:74px;object-fit:contain;object-position:left center;background:transparent!important;padding:0!important;border-radius:0!important;filter:drop-shadow(0 5px 18px rgba(0,0,0,.28))}
-.nav-inner{height:94px}
-.hero-grid{grid-template-columns:minmax(0,760px);justify-content:start}
-.hero-grid>div{max-width:760px}
-#inicio .lead{max-width:690px}
-.hero:before{background:linear-gradient(90deg,rgba(1,17,14,.30) 0%,rgba(1,17,14,.16) 48%,rgba(1,17,14,.03) 78%,rgba(1,17,14,0) 100%)!important}
-body:before{background:rgba(2,15,13,var(--scroll-dark))!important;transition:background .18s linear}
-.bg-hero{filter:brightness(1.02) saturate(1.06)!important}
-.bg-deep{filter:brightness(.82) saturate(1.03)!important}
-.hero h1,.hero .lead,.hero .eyebrow,.hero .stats{text-shadow:0 2px 18px rgba(0,0,0,.48)}
-@media(max-width:900px){.brand{min-width:180px}.brand img{width:180px;height:62px}.hero-grid{grid-template-columns:1fr}}
-@media(max-width:620px){.brand{min-width:150px}.brand img{width:150px;height:54px}.nav-inner{height:76px}.hero:before{background:linear-gradient(180deg,rgba(1,17,14,.30),rgba(1,17,14,.12) 55%,rgba(1,17,14,.28))!important}}
-
-.scheme{display:grid;gap:18px;align-content:center}
-.scheme-top{display:grid;grid-template-columns:1fr 110px 1fr;gap:18px;align-items:center}
-.scheme-card,.scheme-core{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(7,34,29,.82),rgba(5,26,22,.9));border:1px solid rgba(var(--mint-rgb),.14);border-radius:24px;padding:24px;box-shadow:0 18px 50px rgba(0,0,0,.18)}
-.scheme-card:before,.scheme-core:before{content:"";position:absolute;inset:auto -35px -35px auto;width:150px;height:150px;background:radial-gradient(circle,rgba(var(--mint-rgb),.10),transparent 65%)}
-.scheme-card h3,.scheme-core h3{margin:0 0 10px;font-size:24px}
-.scheme-card p,.scheme-core p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
-.scheme-knot{display:grid;place-items:center;position:relative;height:110px}
-.scheme-knot:before,.scheme-knot:after{content:"";position:absolute;height:2px;width:44px;background:linear-gradient(90deg,transparent,var(--accent),transparent);top:50%;transform:translateY(-50%)}
-.scheme-knot:before{left:0}.scheme-knot:after{right:0}
-.scheme-knot-circle{width:76px;height:76px;border-radius:999px;background:radial-gradient(circle at 30% 30%,#b7ffd7,#37c88e 45%,#103f34 80%);box-shadow:0 0 0 10px rgba(var(--mint-rgb),.07),0 0 40px rgba(var(--mint-rgb),.25);display:grid;place-items:center;color:#042019;font-size:28px;font-weight:900}
-.scheme-network{position:relative;border:1px solid rgba(var(--mint-rgb),.14);border-radius:28px;padding:28px;background:linear-gradient(135deg,rgba(10,46,39,.88),rgba(6,27,24,.92));overflow:hidden}
-.scheme-network:before{content:"";position:absolute;inset:0;background:
- radial-gradient(circle at 15% 28%,rgba(var(--mint-rgb),.32) 0 4px,transparent 5px),
- radial-gradient(circle at 28% 46%,rgba(var(--mint-rgb),.26) 0 4px,transparent 5px),
- radial-gradient(circle at 45% 34%,rgba(var(--mint-rgb),.34) 0 4px,transparent 5px),
- radial-gradient(circle at 62% 52%,rgba(var(--mint-rgb),.26) 0 4px,transparent 5px),
- radial-gradient(circle at 78% 30%,rgba(var(--mint-rgb),.34) 0 4px,transparent 5px),
- radial-gradient(circle at 84% 64%,rgba(var(--mint-rgb),.28) 0 4px,transparent 5px),
- radial-gradient(circle at 20% 74%,rgba(var(--mint-rgb),.24) 0 4px,transparent 5px),
- linear-gradient(135deg,transparent 0 18%,rgba(var(--mint-rgb),.12) 18.3% 18.8%,transparent 19.1% 100%),
- linear-gradient(25deg,transparent 0 38%,rgba(var(--mint-rgb),.12) 38.3% 38.8%,transparent 39.1% 100%),
- linear-gradient(160deg,transparent 0 58%,rgba(var(--mint-rgb),.1) 58.3% 58.8%,transparent 59.1% 100%);
-opacity:.9;pointer-events:none}
-.scheme-network-grid{position:relative;display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:18px;align-items:stretch}
-.scheme-mini{background:rgba(255,255,255,.03);border:1px solid rgba(var(--mint-rgb),.10);border-radius:22px;padding:22px;backdrop-filter:blur(8px)}
-.scheme-mini .eyebrow{margin-bottom:8px}.scheme-mini h4{margin:0 0 8px;font-size:21px}.scheme-mini p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
-.scheme-eq{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:34px;font-weight:800}
-.scheme-core{background:linear-gradient(135deg,rgba(20,87,72,.92),rgba(8,35,30,.96));border-color:rgba(var(--mint-rgb),.24)}
-.scheme-core .eyebrow{margin-bottom:8px}.scheme-core h3{font-size:30px;margin-bottom:10px}.scheme-core p{color:#dcf3ee}
-.scheme-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.scheme-pills span{padding:8px 12px;border-radius:999px;border:1px solid rgba(var(--mint-rgb),.18);background:rgba(255,255,255,.04);color:#e8faf4;font-size:12px}
-@media(max-width:900px){.scheme-top,.scheme-network-grid{grid-template-columns:1fr}.scheme-knot{height:84px}.scheme-knot:before,.scheme-knot:after{width:2px;height:26px;left:50%;transform:translateX(-50%)}.scheme-knot:before{top:0}.scheme-knot:after{top:auto;bottom:0}}
-
-
-/* Intro cinematográfica Micorriza */
-body.intro-lock{overflow:hidden}
-.intro-overlay{position:fixed;inset:0;z-index:9999;background:#020d0b;display:grid;place-items:center;overflow:hidden;opacity:1;visibility:visible;transition:opacity .8s ease,visibility .8s ease}
-.intro-overlay.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
-.intro-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#020d0b}
-.intro-shade{position:absolute;inset:0;background:radial-gradient(circle at center,transparent 35%,rgba(0,10,8,.18) 100%);pointer-events:none}
-.intro-skip{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:3;border:1px solid rgba(255,255,255,.3);background:rgba(2,17,14,.45);color:#fff;padding:10px 15px;border-radius:999px;backdrop-filter:blur(10px);font:600 13px/1 system-ui;cursor:pointer}
-.intro-handoff{position:fixed;z-index:10001;display:none;align-items:center;justify-content:center;transform-origin:center center;will-change:transform,opacity;pointer-events:none;opacity:0}
-.intro-handoff img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.28))}
-.brand.intro-target{opacity:0;transition:opacity .25s ease}
-.brand.intro-target.is-ready{opacity:1;transition:opacity .28s ease}
-@media (prefers-reduced-motion:reduce){.intro-overlay{transition:none}.intro-handoff{display:none!important}}
-
-
-.ex-arrow{display:none}.ex-banner{grid-template-columns:1fr}.ex-mini{border-left:0;border-top:1px solid rgba(255,255,255,.08)}}
-.mobile-intro-poster{display:none;position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .35s ease;z-index:0}
-@media(max-width:820px){.mobile-intro-poster{display:block;opacity:1}.intro-video{z-index:1}}
-
-.explainer-figure{background:linear-gradient(180deg,rgba(6,30,27,.68),rgba(4,21,19,.78));border:1px solid rgba(159,224,179,.14);border-radius:26px;padding:14px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
-.explainer-figure img{display:block;width:100%;height:auto;border-radius:18px;object-fit:contain}
-
-.product-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:34px}.product-card{grid-column:span 4;position:relative;overflow:hidden;min-height:330px;padding:26px;border-radius:26px;background:linear-gradient(180deg,rgba(7,34,29,.86),rgba(4,22,19,.94));border:1px solid rgba(var(--mint-rgb),.14);box-shadow:0 18px 50px rgba(0,0,0,.18)}.product-card:nth-child(4),.product-card:nth-child(5){grid-column:span 6}.product-card:before{content:"";position:absolute;right:-55px;bottom:-55px;width:190px;height:190px;border-radius:50%;background:radial-gradient(circle,rgba(var(--mint-rgb),.14),transparent 68%)}.product-number{font-size:12px;letter-spacing:.18em;color:#70d7b1;margin-bottom:24px}.product-kicker{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid rgba(var(--mint-rgb),.16);background:rgba(255,255,255,.03);color:#bce8d8;font-size:12px;margin-bottom:14px}.product-card h3{font-size:27px;margin:0 0 12px}.product-card p{color:var(--muted);line-height:1.62;margin:0 0 20px}.product-card ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}.product-card li{position:relative;padding-left:18px;color:#e5f2ed;font-size:14px}.product-card li:before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(var(--mint-rgb),.06)}.clinical{border-top:2px solid #57d9ad}.aula{border-top:2px solid #73bfff}.agenda{border-top:2px solid #b0e85f}.gremial{border-top:2px solid #9a8cff}.calidad{border-top:2px solid #f0b55f}.product-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:24px;padding:22px 0}.product-footer p{margin:0;color:var(--muted)}@media(max-width:980px){.product-card,.product-card:nth-child(4),.product-card:nth-child(5){grid-column:span 6}}@media(max-width:640px){.product-grid{grid-template-columns:1fr}.product-card,.product-card:nth-child(4),.product-card:nth-child(5){grid-column:1}.product-footer{align-items:flex-start;flex-direction:column}.product-card{min-height:auto}}
-
-.product-card{overflow:hidden;padding:0}
-.product-media{aspect-ratio:16/9;overflow:hidden;position:relative;border-bottom:1px solid rgba(255,255,255,.08)}
-.product-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.01)}
-.product-body{padding:24px}
-.product-card ul{margin:14px 0 0;padding-left:18px}
-.product-card li{margin:6px 0;color:var(--muted)}
-.product-kicker,.product-number{padding-left:24px;padding-right:24px}
-.wa-float{position:fixed;right:18px;bottom:18px;z-index:45;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:rgba(23,163,74,.92);color:#fff;text-decoration:none;font:700 14px/1 Inter,system-ui,sans-serif;box-shadow:0 18px 35px rgba(0,0,0,.22);transition:transform .35s ease, opacity .35s ease, box-shadow .35s ease}
-.wa-float:hover{transform:translateY(-2px);box-shadow:0 22px 40px rgba(0,0,0,.28)}
-.wa-float .wa-icon{width:28px;height:28px;flex-shrink:0;display:block}
-body.scrolled-wa .wa-float{transform:translateY(-8px)}
-@media(max-width:720px){.wa-float{right:14px;bottom:14px;padding:11px 14px;font-size:13px}.wa-float span.label{display:none}}
-
-/* V15: optimización móvil y animaciones */
-html,body{max-width:100%;overflow-x:hidden}
-.intro-overlay{padding:0;background:#020d0b}
-.intro-video{display:block!important;width:100%;height:100%;object-fit:cover}
-.mobile-intro-poster{display:none}
-@media(max-width:820px){
-  .intro-video{object-fit:contain;background:#020d0b}
-  .intro-skip{right:14px;bottom:14px}
-  .container{width:calc(100% - 28px)}
-  .hero{min-height:auto;padding:112px 0 62px}
-  h1{font-size:clamp(42px,13vw,58px)}
-  h2{font-size:clamp(32px,10vw,46px)}
-  .product-media{aspect-ratio:4/3}
-  .explainer-figure{padding:8px;border-radius:18px;overflow:auto}
-  .explainer-figure img{min-width:760px;max-width:none}
+:root{
+  --hueso:#f6f1e5; --papel:#fbf8f0; --verde:#123a2b; --verde-2:#1d5a40; --musgo:#4f7a52;
+  --lima:#72e235; --aqua:#42d9ff; --naranja:#ff9d00;
+  --tinta:#1b2a22; --tinta-2:#4a5a50; --linea:#d6cdb4;
+  --suelo:#8f6340; --hilo:#c8f08f;
+  --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+  --r:22px;
 }
-.counter{font-variant-numeric:tabular-nums}
-.chart-line{stroke-dasharray:1400;stroke-dashoffset:1400}
-.chart-area{opacity:0}
-.dashboard.is-animated .chart-line{animation:drawLine 1.8s cubic-bezier(.2,.7,.2,1) forwards}
-.dashboard.is-animated .chart-area{animation:fadeArea 1.2s .7s ease forwards}
-@keyframes drawLine{to{stroke-dashoffset:0}}
-@keyframes fadeArea{to{opacity:1}}
-.wa-float{animation:waFloat 3.8s ease-in-out infinite}
-@keyframes waFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@media(prefers-reduced-motion:reduce){.wa-float{animation:none}.dashboard.is-animated .chart-line,.dashboard.is-animated .chart-area{animation:none;stroke-dashoffset:0;opacity:1}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#081f17;color:var(--papel);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:300;letter-spacing:-.025em}
+h3{font-size:1.35rem}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+.label{font:500 .72rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.eyebrow{display:flex;align-items:center;gap:.8em;margin-bottom:1.2rem;color:var(--lima)}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
+.skip{position:fixed;left:-999px;top:8px;background:var(--verde);color:#fff;padding:.7em 1.1em;border-radius:8px;z-index:99}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--naranja);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.5em;background:var(--verde);color:var(--papel);text-decoration:none;font:600 1rem var(--sans);padding:.85em 1.5em;border-radius:999px;border:0;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{background:var(--verde-2);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--verde);box-shadow:inset 0 0 0 2px var(--verde)}
+.btn.ghost:hover{background:var(--verde);color:var(--papel)}
+.btn.lima{background:var(--lima);color:var(--verde)}
+.btn.lima:hover{background:#8bf055}
 
+/* ---------- nav flotante + medidor de profundidad ---------- */
+.nav{position:fixed;z-index:30;top:10px;left:50%;transform:translateX(-50%);width:min(1120px,100% - 20px);
+  background:rgba(251,248,240,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(214,205,180,.9);border-radius:999px;box-shadow:0 8px 28px -12px rgba(0,0,0,.35);color:var(--tinta)}
+.nav .in{display:flex;align-items:center;gap:18px;height:58px;padding:0 10px 0 22px}
+.nav .logo{font-size:1.5rem;text-decoration:none}
+.nav nav{margin:0 auto}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.92rem}
+.nav ul a{text-decoration:none;color:var(--tinta-2);padding:6px 2px;border-bottom:2px solid transparent}
+.nav ul a:hover{color:var(--verde);border-color:var(--lima)}
+.gauge{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;min-width:104px;font-variant-numeric:tabular-nums}
+.gauge b{font:600 .95rem var(--serif);color:var(--verde)}
+.gauge span{font:500 .62rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.nav .btn{padding:.6em 1.2em;font-size:.9rem}
+@media(max-width:860px){.nav ul{display:none}.nav .in{margin-left:0;justify-content:space-between}.gauge{margin-left:auto}}
+@media(max-width:420px){.nav .in{padding-left:16px;gap:10px}.nav .btn{padding:.55em .95em}.gauge{min-width:82px}.nav .logo{font-size:1.25rem}.nav .logo small{display:none}}
 
-@media(max-width:620px){
-  .intro-overlay{min-height:100dvh}
-  .intro-video{object-fit:cover}
-  .product-media{aspect-ratio:16/10}
-  .product-media img{object-position:center}
-  .explainer-figure{padding:8px}
-  .explainer-figure img{border-radius:14px}
+.wm{font-family:"Cormorant Infant",var(--serif);font-weight:600;letter-spacing:.01em;font-size-adjust:.5;color:var(--verde);line-height:1;white-space:nowrap}
+.wm small{font:500 .6em/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--musgo);margin-left:.5em}
+.by{font:500 .66rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.sp-row{display:flex;align-items:center;gap:12px;margin:18px 0 10px}
+.st.flip .sp-row{justify-content:flex-start;flex-direction:row-reverse}
+.st .aside .sp-row .label{margin:0}
+.sp{width:34px;height:40px;fill:var(--hilo);flex:none;opacity:.9}
+.legend{list-style:none;margin:26px 0 0;padding:14px 0;border-block:1px solid rgba(255,240,215,.28);display:grid;gap:8px;font-size:.88rem;line-height:1.45;color:#ecdcc3}
+.legend li{display:flex;gap:12px;align-items:baseline}
+.legend li::before{content:"";width:9px;height:9px;border-radius:50%;flex:none;transform:translateY(-1px)}
+.legend li:nth-child(1)::before{background:#ffc454;box-shadow:0 0 0 4px rgba(255,170,40,.22)}
+.legend li:nth-child(2)::before{background:#78e2ff;box-shadow:0 0 0 4px rgba(66,217,255,.22)}
+#side{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+#flow{position:fixed;left:0;top:0;width:100%;height:100vh;z-index:1;pointer-events:none;visibility:hidden}
+.ground.f1,.ground.f2{will-change:transform}
+.cierre{padding:clamp(60px,8vw,120px) 0 clamp(90px,10vw,150px);text-align:center}
+.cierre blockquote{margin:0 auto;max-width:20em;font:300 clamp(1.9rem,4.6vw,3.6rem)/1.12 var(--serif);letter-spacing:-.025em;color:var(--papel)}
+.cierre blockquote em{font-style:italic;color:var(--hilo)}
+.cierre p{margin:26px 0 0;color:#ecdcc3}
+.cierre .label{color:var(--hilo)}
+/* ---------- superficie ---------- */
+.hero{position:relative;min-height:max(100svh,660px);display:flex;align-items:center;overflow:hidden;color:var(--tinta);
+  background:linear-gradient(180deg,#bcd9de 0%,#dbe8e1 42%,#f3edda 78%,#f6f1e5 100%)}
+.hero .sky{position:absolute;inset:0;pointer-events:none}
+.sun{position:absolute;right:11%;top:19%;width:min(30vw,300px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#fff6c9 0 26%,rgba(255,226,140,.65) 27% 44%,rgba(255,226,140,.0) 70%)}
+.sun::before,.sun::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(160,120,40,.28)}
+.sun::before{inset:-22%}.sun::after{inset:-48%;border-color:rgba(160,120,40,.14)}
+.cloud{position:absolute;height:22px;border-radius:99px;background:rgba(255,255,255,.7);filter:blur(1px);animation:drift 90s linear infinite}
+.cloud::before{content:"";position:absolute;left:18%;bottom:8px;width:44%;height:26px;border-radius:99px;background:inherit}
+.cloud.c1{top:22%;left:-12%;width:190px}
+.cloud.c2{top:33%;left:-40%;width:130px;animation-duration:130s;animation-delay:-50s;opacity:.7}
+.cloud.c3{top:14%;left:-25%;width:240px;animation-duration:110s;animation-delay:-20s;opacity:.55}
+@keyframes drift{to{transform:translateX(calc(100vw + 60vw))}}
+.ground{position:absolute;left:0;bottom:-1px;width:100%;height:clamp(230px,40vh,420px);display:block}
+.hero .wrap{position:relative;z-index:2;padding:clamp(96px,14vh,150px) 0 clamp(180px,30vh,300px)}
+.wm-hero{display:block;font-size:clamp(2rem,3.4vw,2.9rem);margin-bottom:clamp(20px,3vh,34px)}
+.hero h1{font-weight:300;font-size:clamp(2.5rem,6.6vw,5.6rem);line-height:.98;letter-spacing:-.035em;color:var(--verde);max-width:13ch;font-variation-settings:"opsz" 144}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--musgo)}
+.hero .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--tinta-2);max-width:33em;margin:1.4rem 0 1.9rem}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.cue{position:absolute;z-index:3;left:50%;bottom:14px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--papel);text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.cue svg{width:16px;height:30px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(7px)}}
+@media(max-width:860px){.sun{right:-6%;top:12%;width:46vw;opacity:.8}.hero .wrap{padding-top:110px}.cue{left:18px;transform:translateX(-50%)}.cue .label{display:none}}
+
+/* ---------- subsuelo ---------- */
+.sub{position:relative;background:linear-gradient(180deg,#8f6340 0%,#744b32 17%,#553a28 36%,#3c3a29 52%,#22432f 70%,#12392a 86%,#0e3123 100%)}
+.sub::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;
+  background-image:radial-gradient(rgba(255,235,200,.10) 1.2px,transparent 1.6px),radial-gradient(rgba(0,0,0,.14) 2.4px,transparent 3px);
+  background-size:19px 23px,41px 37px;background-position:0 0,11px 17px}
+#mycel{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.sub .wrap{position:relative;z-index:2}
+.layer{position:relative}
+#idea{padding:clamp(110px,11vw,150px) 0 clamp(10px,3vw,30px)}
+.idea{display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);align-items:start}
+.idea .head{grid-column:1}
+.idea .head p{color:#ecdcc3;font-size:1.1rem;margin-top:1.3rem;max-width:30em}
+.idea ol{grid-column:3;list-style:none;margin:0;padding:0;counter-reset:i}
+.idea ol li{counter-increment:i;padding:22px 0 22px 0;border-top:1px solid rgba(255,240,215,.28);display:grid;grid-template-columns:auto 1fr;gap:6px 22px}
+.idea ol li:last-child{border-bottom:1px solid rgba(255,240,215,.28)}
+.idea ol li::before{content:"0" counter(i);grid-row:span 2;font:300 2.2rem/1 var(--serif);color:var(--hilo)}
+.idea h3{font-size:1.2rem;color:var(--papel)}
+.idea ol li p{margin:0;font-size:.97rem;color:#ecdcc3}
+.facts{list-style:none;margin:clamp(36px,4vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 0}
+.facts li{padding:18px 20px 0 0;border-top:1px solid rgba(255,240,215,.28);font-size:.9rem;line-height:1.45;color:#ecdcc3}
+.facts b{display:block;font:300 1.5rem var(--serif);color:var(--papel);margin-bottom:2px}
+@media(max-width:860px){
+  .sub .wrap{width:calc(100% - 66px);margin-left:46px;margin-right:20px}
+  .facts b{font-size:1.2rem}
+  .idea{grid-template-columns:minmax(0,1fr)}.idea .head,.idea ol{grid-column:1}.idea ol{margin-top:30px}
+  }
+
+/* estaciones */
+.st{display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);grid-template-areas:"card pin aside";align-items:start;padding:clamp(56px,7vw,100px) 0;scroll-margin-top:20px}
+.st.flip{grid-template-areas:"aside pin card"}
+.st .pin{grid-area:pin;justify-self:center;width:26px;height:26px;margin-top:34px}
+.st .card{grid-area:card}
+.st .aside{grid-area:aside;padding-top:6px}
+.st:not(.flip) .aside{padding-left:44px}
+.st.flip .aside{text-align:right;padding-right:44px}
+.num{display:block;font:300 clamp(5rem,12vw,9.5rem)/.85 var(--serif);letter-spacing:-.05em;color:rgba(255,240,215,.09);font-variation-settings:"opsz" 144}
+.st .aside .label{display:block;margin:18px 0 10px;color:var(--hilo)}
+.st .aside h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:300;color:var(--papel);max-width:15ch}
+.st.flip .aside h2{margin-left:auto}
+.st .aside p{margin:14px 0 0;max-width:28em;color:#ecdcc3;font-size:1rem}
+.st.flip .aside p{margin-left:auto}
+.depth{display:inline-block;margin-top:18px;padding:.5em 0;border-top:1px solid rgba(255,240,215,.3);font:500 .72rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#d8c6a6;font-variant-numeric:tabular-nums}
+.card{background:var(--papel);color:var(--tinta);border-radius:var(--r) var(--r) var(--r) 6px;padding:clamp(20px,2.4vw,30px);box-shadow:0 30px 60px -28px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}
+.st.flip .card{border-radius:var(--r) var(--r) 6px var(--r)}
+.card .top{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.card .top img{height:52px;width:auto;max-width:130px;object-fit:contain;display:block;flex:none}
+.card .top .t{display:flex;flex-direction:column;gap:6px;min-width:0}
+.card .top h3{color:var(--verde);font-size:1.45rem}
+.card .top .label{color:var(--musgo);font-size:.66rem}
+.win{display:block;border-radius:12px;overflow:hidden;border:1px solid rgba(18,58,43,.22);background:#fff;box-shadow:0 18px 36px -20px rgba(18,58,43,.55);text-decoration:none;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+a.win:hover{transform:translateY(-4px);box-shadow:0 26px 44px -20px rgba(18,58,43,.6)}
+.win .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#efe9d8;border-bottom:1px solid #ddd3b8}
+.win .bar i{width:9px;height:9px;border-radius:50%;background:#c9bf9f}
+.win .bar i:nth-child(1){background:#ef8a76}.win .bar i:nth-child(2){background:#eab95c}.win .bar i:nth-child(3){background:#8fc27a}
+.win .bar span{margin-left:8px;flex:1;max-width:260px;background:var(--papel);border-radius:99px;padding:2px 12px;font:500 .72rem var(--sans);color:var(--tinta-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.logo-only{display:grid;place-items:center;aspect-ratio:16/10;border-radius:12px;border:1.5px dashed var(--linea);background:repeating-linear-gradient(135deg,#fffdf6 0 12px,#f6f1e5 12px 24px);position:relative}
+.logo-only img{width:62%;height:auto}
+.logo-only small{position:absolute;left:14px;bottom:10px;font:500 .66rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.card p.d{margin:18px 0 12px;color:var(--tinta-2);font-size:.98rem}
+.card ul{list-style:none;margin:0 0 4px;padding:0}
+.card li{padding:.5em 0 .5em 1.5em;position:relative;border-top:1px solid var(--linea);font-size:.93rem;color:var(--tinta)}
+.card li::before{content:"";position:absolute;left:0;top:1.1em;width:10px;height:2px;background:var(--musgo)}
+.card .more{display:inline-block;margin-top:12px;font-weight:600;font-size:.95rem;color:var(--verde-2)}
+
+@media(max-width:860px){
+  .st,.st.flip{display:flex;flex-direction:column;padding:46px 0;position:relative}
+  .st .aside,.st:not(.flip) .aside,.st.flip .aside{order:1;text-align:left;padding:0 0 22px;margin:0}
+  .st .card{order:2}
+  .st.flip .aside h2,.st.flip .aside p{margin-left:0}
+  .st .pin{position:absolute;left:-40px;top:62px;margin:0}
+  .num{font-size:4.4rem}
+  .st .aside .label{margin-top:10px}
 }
-</style>
-<noscript><style>.counter::after{content:attr(data-target)}</style></noscript>
-<style id="impeccable-fixes">
-  /* --- Accesibilidad: foco visible (WCAG 2.4.7) --- */
-  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,.btn:focus-visible,[tabindex]:focus-visible{
-    outline:2px solid var(--green);outline-offset:3px;border-radius:6px
-  }
-  .form input:focus-visible,.form textarea:focus-visible{outline-offset:1px}
-  /* Placeholder con contraste suficiente (>=4.5:1 sobre el input oscuro) */
-  .form input::placeholder,.form textarea::placeholder{color:#9fb3ab;opacity:1}
-  /* Campo obligatorio + estado del formulario */
-  .form label .req{color:var(--accent)}
-  .form-status{margin:14px 0 0;min-height:1.2em;font-size:14px;color:#bff39e}
-  .form-status.is-error{color:#ffb3a7}
 
-  /* --- Navegación móvil --- */
-  .nav{z-index:60}  /* el menú desplegable debe quedar sobre <main> (que tiene z-index:2) */
-  .nav-actions{display:flex;align-items:center;gap:14px}
-  .nav-toggle{display:none;width:46px;height:46px;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:12px;cursor:pointer}
-  .nav-toggle span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;transition:transform .3s cubic-bezier(.22,.8,.22,1),opacity .2s ease}
-  .nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .nav.open .nav-toggle span:nth-child(2){opacity:0}
-  .nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* ---------- capas profundas (comercial) ---------- */
+.deep{position:relative;background:#0e3123;color:var(--papel);padding:clamp(70px,9vw,120px) 0}
+.deep.l2{background:linear-gradient(180deg,#0e3123,#0a2a1e)}
+.deep.l3{background:linear-gradient(180deg,#0a2a1e,#08241a)}
+.deep.l4{background:linear-gradient(180deg,#08241a,#061a13)}
+.deep .sec-head{max-width:44em;margin-bottom:clamp(36px,5vw,56px)}
+.deep .sec-head p{margin-top:1.1rem;color:#bfd4c5;font-size:1.08rem}
+.capa{display:flex;align-items:center;gap:12px;margin-bottom:26px;color:#8fb59d}
+.capa::after{content:"";flex:0 0 60px;height:1px;background:currentColor;opacity:.6}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,.2)}
+.svc article{padding:30px 30px 34px 0;position:relative}
+.svc article+article{padding-left:30px;border-left:1px solid rgba(255,255,255,.14)}
+.svc svg{width:54px;height:54px;margin-bottom:18px;color:var(--lima)}
+.svc h3{margin-bottom:.6rem;color:var(--papel)}
+.svc p{color:#bfd4c5;font-size:.98rem}
+.svc ul{margin:0;padding:0;list-style:none;color:#d6e6da;font-size:.93rem}
+.svc li{padding:.45em 0 .45em 1.4em;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+.svc li::before{content:"";position:absolute;left:0;top:1.05em;width:9px;height:2px;background:var(--lima)}
+@media(max-width:900px){.svc{grid-template-columns:1fr}.svc article,.svc article+article{padding:28px 0;border-left:0;border-bottom:1px solid rgba(255,255,255,.14)}}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
+.steps li{counter-increment:s;padding-top:58px;position:relative}
+.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;background:var(--lima);color:var(--verde);display:grid;place-items:center;font:600 1.15rem var(--serif);z-index:1}
+.steps li::after{content:"";position:absolute;top:20px;left:46px;right:-22px;height:2px;background:repeating-linear-gradient(90deg,rgba(200,240,143,.7) 0 8px,transparent 8px 14px)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:1.2rem;margin-bottom:.4rem}
+.steps p{font-size:.95rem;color:#bfd4c5;margin:0}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr;row-gap:36px}.steps li:nth-child(2)::after{display:none}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}.steps li::after{display:none}}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.team article{display:flex;gap:18px;align-items:center;border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:20px;background:rgba(255,255,255,.04)}
+.team img{width:96px;height:96px;object-fit:cover;border-radius:50% 50% 50% 12px;flex:none}
+.team h3{font-size:1.2rem;color:var(--papel)}.team p{margin:.25rem 0 0;font-size:.93rem;color:#bfd4c5;line-height:1.5}
+@media(max-width:760px){.team{grid-template-columns:1fr}}
+.contact{position:relative;overflow:hidden}
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start;position:relative;z-index:1}
+.contact p{color:#bfd4c5}
+.contact .alt{margin-top:1.6rem;font-size:.95rem}.contact .alt a{color:var(--lima)}
+form{display:grid;gap:14px}
+label{font-weight:600;font-size:.9rem;display:grid;gap:6px;color:var(--papel)}
+input,textarea,select{font:1rem var(--sans);padding:.8em 1em;border-radius:12px;border:1.5px solid transparent;background:var(--papel);color:var(--tinta)}
+input:focus,textarea:focus,select:focus{outline:3px solid var(--naranja);outline-offset:1px}
+textarea{min-height:110px;resize:vertical}
+.msg{min-height:1.4em;font-weight:600;color:var(--lima);margin:0}
+.bgnet{position:absolute;right:-90px;bottom:-70px;width:520px;opacity:.12;pointer-events:none}
+@media(max-width:820px){.contact .grid{grid-template-columns:1fr}}
+footer{padding:30px 0;font-size:.88rem;color:#9bb7a4;background:#061a13;border-top:1px solid rgba(255,255,255,.08)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo)}
 
-  @media(max-width:900px){
-    .nav-toggle{display:inline-flex}
-    .nav .links{
-      display:flex;flex-direction:column;align-items:stretch;text-align:left;gap:0;
-      position:absolute;top:100%;left:0;right:0;
-      padding:6px 20px 18px;
-      background:#04100d;
-      border-top:1px solid var(--line);box-shadow:0 24px 50px rgba(0,0,0,.45);
-      opacity:0;visibility:hidden;transform:translateY(-10px);
-      transition:opacity .26s ease,transform .26s cubic-bezier(.22,.8,.22,1),visibility .26s
-    }
-    .nav.open .links{opacity:1;visibility:visible;transform:translateY(0)}
-    .nav .links a{padding:15px 4px;font-size:16px;color:#e5f2ed;border-bottom:1px solid rgba(255,255,255,.07)}
-    .nav .links a:last-child{border-bottom:0}
-  }
-  @media(max-width:560px){ .header-cta{display:none} }
-  @media(prefers-reduced-motion:reduce){
-    .nav .links{transition:none}
-    .nav-toggle span{transition:none}
-  }
+/* nodos y revelado */
+#mycel .ring{fill:#0e3123;stroke:var(--lima);stroke-width:3}
+#mycel .halo{fill:rgba(114,226,53,.32);opacity:0;transition:opacity .6s}
+#mycel .core{fill:var(--lima);transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.4,1)}
+#mycel .nd{opacity:.35;transition:opacity .5s}
+#mycel .nd.on{opacity:1}
+#mycel .nd.on .halo{opacity:1}
+#mycel .nd.on .core{transform:scale(1)}
+#mycel .tip{fill:var(--lima);opacity:0;transition:opacity .3s}
+.js .st .card,.js .st .aside{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .st .aside{transition-delay:.12s}
+.js .st.on .card,.js .st.on .aside{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
+.js .rv.in{opacity:1;transform:none}
 
-  /* === Pase "quieter": menos ruido visual, mismo POV === */
-  /* Radio coherente (antes 22-28px) y una sola sombra contenida (antes halo de 50-80px) */
-  :root{--radius:16px;--shadow:0 12px 30px rgba(0,0,0,.26)}
-  .product-card{border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.20)}
-  .person{border-radius:16px}
-  .stats{border-radius:16px}
-  .explainer-figure{border-radius:18px}
-  .metric{border-radius:14px}
-  /* Eyebrow: de label en mayúsculas con tracking (señal IA) a lead-in calmado */
-  .eyebrow{text-transform:none;letter-spacing:0;font-weight:600;font-size:13px;color:#8fb6a8;margin-bottom:14px}
-  /* Display: aflojar el tracking para que las letras respiren (antes -.055/-.045em) */
-  h1{letter-spacing:-.03em}
-  h2{letter-spacing:-.03em}
-  /* Gráfico: quitar las franjas repetidas y dejar un fondo limpio */
-  .chart{border-radius:14px;background:linear-gradient(180deg,rgba(67,217,255,.05),transparent)}
-  /* Botón primario: degradado -> color plano de marca */
-  .btn.primary{background:var(--green)}
-  /* La figura explicativa se ajusta al ancho en móvil (antes forzaba scroll horizontal con min-width:760px) */
-  @media(max-width:820px){
-    .explainer-figure{overflow:visible}
-    .explainer-figure img{min-width:0;max-width:100%;width:100%}
-  }
-
-  /* === Efectos premium (patrones de 21st.dev), accesibles y on-brand === */
-  /* (A11y) Contraste garantizado del texto del hero: velo "spotlight" a la izquierda,
-     manteniendo la portada luminosa a la derecha. Resuelve el riesgo de contraste AA. */
-  @media(min-width:901px){
-    .hero:before{background:linear-gradient(95deg,rgba(1,13,11,.80) 0%,rgba(1,13,11,.62) 34%,rgba(1,13,11,.28) 62%,rgba(1,13,11,.04) 86%,rgba(1,13,11,0) 100%)!important}
-  }
-  @media(max-width:900px){
-    .hero:before{background:linear-gradient(180deg,rgba(1,13,11,.58),rgba(1,13,11,.44) 45%,rgba(1,13,11,.66))!important}
-  }
-
-  /* Spotlight de cursor + elevación en las tarjetas de producto (efecto firma de 21st.dev) */
-  .product-card{--mx:50%;--my:-20%;transition:transform .35s cubic-bezier(.22,.8,.22,1),border-color .35s ease,box-shadow .35s ease}
-  .product-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;
-    background:radial-gradient(260px circle at var(--mx) var(--my),rgba(var(--mint-rgb),.16),transparent 62%);
-    opacity:0;transition:opacity .4s ease;mix-blend-mode:screen}
-  .product-card:hover{transform:translateY(-6px);border-color:rgba(var(--mint-rgb),.42);box-shadow:0 18px 42px rgba(0,0,0,.32)}
-  .product-card:hover::after{opacity:1}
-
-  /* Barrido de brillo (shine sweep) en el botón primario al hover */
-  .btn.primary{position:relative;overflow:hidden}
-  .btn.primary::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;pointer-events:none;
-    background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-16deg)}
-  .btn.primary:hover::after{animation:btnShine .9s cubic-bezier(.22,.8,.22,1)}
-  @keyframes btnShine{from{left:-70%}to{left:140%}}
-
-  @media(prefers-reduced-motion:reduce){
-    .product-card,.product-card::after{transition:none}
-    .btn.primary:hover::after{animation:none;opacity:0}
-  }
-
-  /* Scroll suave (Lenis) */
-  html.lenis,html.lenis body{height:auto}
-  .lenis.lenis-smooth{scroll-behavior:auto!important}
-  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
-  .lenis.lenis-stopped{overflow:hidden}
-
-  /* Reveal al entrar al viewport. Se aplica SOLO por JS a elementos bajo el pliegue,
-     así el default (sin JS / crawlers) queda totalmente visible. */
-  .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.8,.22,1),transform .7s cubic-bezier(.22,.8,.22,1)}
-  .rv.is-in{opacity:1;transform:none}
-</style>
-<style id="myco-explainer-styles">
-  /* === Barra de desplazamiento en sintonía con el tema (verde sobre fondo profundo) === */
-  *{scrollbar-width:thin;scrollbar-color:rgba(var(--green-rgb),.55) rgba(2,18,15,.55)}
-  ::-webkit-scrollbar{width:12px;height:12px}
-  ::-webkit-scrollbar-track{background:rgba(2,18,15,.45);border-radius:999px}
-  ::-webkit-scrollbar-thumb{
-    background:linear-gradient(180deg,rgba(var(--green-rgb),.62),rgba(var(--mint-rgb),.46));
-    border-radius:999px;border:3px solid transparent;background-clip:padding-box}
-  ::-webkit-scrollbar-thumb:hover{
-    background:linear-gradient(180deg,rgba(var(--green-rgb),.9),rgba(var(--mint-rgb),.72));
-    background-clip:padding-box}
-  ::-webkit-scrollbar-corner{background:transparent}
-
-  /* === Explainer vivo: Hongo + Raíz = Micorriza === */
-  .myco-explainer{margin-top:48px;display:grid;gap:22px}
-  .myco-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:18px;align-items:stretch}
-
-  .myco-card{
-    --c:#8ceb63;--c-rgb:140,235,99;--mx:50%;--my:-20%;
-    position:relative;overflow:hidden;display:flex;flex-direction:column;gap:13px;
-    padding:26px;border-radius:20px;
-    background:linear-gradient(180deg,rgba(7,34,29,.84),rgba(5,26,22,.93));
-    border:1px solid rgba(var(--mint-rgb),.16);border-top:2px solid rgba(var(--c-rgb),.55);
-    box-shadow:0 14px 34px rgba(0,0,0,.26);
-    transition:transform .4s cubic-bezier(.22,.8,.22,1),border-color .4s ease,box-shadow .4s ease}
-  .myco-card--raiz{--c:#cfe24a;--c-rgb:207,226,74}
-  .myco-card--micorriza{--c:#42d9ff;--c-rgb:66,217,255}
-  /* halo de esquina */
-  .myco-card::before{content:"";position:absolute;inset:auto -42px -42px auto;width:164px;height:164px;
-    background:radial-gradient(circle,rgba(var(--c-rgb),.18),transparent 66%);pointer-events:none}
-  /* foco que sigue el cursor (firma de la página) */
-  .myco-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
-    background:radial-gradient(240px circle at var(--mx) var(--my),rgba(var(--c-rgb),.16),transparent 60%);
-    opacity:0;transition:opacity .4s ease;mix-blend-mode:screen}
-  .myco-card:hover{transform:translateY(-6px);
-    border-color:rgba(var(--c-rgb),.42);border-top-color:var(--c);
-    box-shadow:0 22px 48px rgba(0,0,0,.34),0 0 0 1px rgba(var(--c-rgb),.10)}
-  .myco-card:hover::after{opacity:1}
-
-  .myco-art{width:88px;height:88px;color:var(--c);
-    filter:drop-shadow(0 0 10px rgba(var(--c-rgb),.42));
-    animation:mycoFloat 6s ease-in-out infinite}
-  .myco-art svg{width:100%;height:100%;display:block}
-  .myco-card--raiz .myco-art{animation-duration:7.2s;animation-delay:-1.6s}
-  .myco-card--micorriza .myco-art{animation-duration:6.6s;animation-delay:-3.2s}
-  @keyframes mycoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-
-  .myco-head h3{margin:0;font-size:30px;line-height:1.05;letter-spacing:-.02em;color:var(--white)}
-  .myco-sub{display:block;margin-top:4px;color:var(--c);font-size:16px;font-weight:600}
-
-  .myco-rule{position:relative;height:2px;margin:4px 0 2px;border-radius:2px;
-    background:linear-gradient(90deg,rgba(var(--c-rgb),0),rgba(var(--c-rgb),.5))}
-  .myco-rule::before{content:"";position:absolute;top:50%;left:0;width:6px;height:6px;border-radius:50%;
-    background:var(--c);transform:translateY(-50%);box-shadow:0 0 10px 2px rgba(var(--c-rgb),.7);
-    animation:mycoTravel 3.4s linear infinite}
-  .myco-rule::after{content:"";position:absolute;top:50%;right:0;width:8px;height:8px;border-radius:50%;
-    background:var(--c);transform:translateY(-50%);animation:mycoPulse 2.6s ease-in-out infinite}
-  @keyframes mycoTravel{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}}
-  @keyframes mycoPulse{0%,100%{box-shadow:0 0 7px 1px rgba(var(--c-rgb),.5);opacity:.65}
-    50%{box-shadow:0 0 16px 4px rgba(var(--c-rgb),.85);opacity:1}}
-
-  .myco-card p{margin:0;flex:1;color:var(--muted);font-size:15px;line-height:1.62}
-  .myco-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
-  .myco-chips span{padding:7px 13px;border-radius:999px;font-size:13px;
-    color:var(--c);border:1px solid rgba(var(--c-rgb),.4);background:rgba(var(--c-rgb),.07)}
-
-  .myco-connector{display:grid;place-items:center;align-self:center}
-  .myco-node{position:relative;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
-    color:#bff3da;background:rgba(7,34,29,.65);border:1px solid rgba(var(--mint-rgb),.32)}
-  .myco-node svg{width:22px;height:22px}
-  .myco-node::before{content:"";position:absolute;inset:-4px;border-radius:50%;
-    border:1px solid rgba(var(--mint-rgb),.3);animation:mycoRing 2.9s ease-out infinite}
-  @keyframes mycoRing{0%{transform:scale(.92);opacity:.7}100%{transform:scale(1.5);opacity:0}}
-
-  /* Banner inferior */
-  .myco-banner{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center;
-    padding:26px 28px;border-radius:20px;
-    background:linear-gradient(135deg,rgba(10,46,39,.72),rgba(6,27,24,.88));
-    border:1px solid rgba(var(--mint-rgb),.15)}
-  .myco-banner-lead{display:flex;gap:18px;align-items:center}
-  .myco-leaf{flex-shrink:0;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
-    color:var(--accent);border:1px solid rgba(var(--mint-rgb),.28);background:rgba(255,255,255,.03);
-    animation:mycoFloat 7.5s ease-in-out infinite}
-  .myco-leaf svg{width:28px;height:28px}
-  .myco-banner-lead p{margin:0;color:#cfe3da;font-size:16px;line-height:1.6}
-  .myco-banner-lead p strong{color:var(--accent);font-weight:700}
-  .myco-facts{display:flex;gap:26px;padding-left:30px;border-left:1px solid rgba(var(--mint-rgb),.16)}
-  .myco-fact{display:flex;gap:12px;align-items:center}
-  .myco-fact-ic{flex-shrink:0;width:34px;height:34px;color:var(--aqua)}
-  .myco-fact:nth-child(2) .myco-fact-ic{color:var(--accent)}
-  .myco-fact-ic svg{width:100%;height:100%;display:block}
-  .myco-fact b{display:block;font-size:15px;color:var(--white)}
-  .myco-fact span{color:var(--muted);font-size:13px}
-
-  @media(max-width:900px){
-    .myco-explainer{margin-top:36px}
-    .myco-flow{grid-template-columns:1fr;gap:16px}
-    .myco-connector{align-self:center}
-    .myco-node{transform:rotate(90deg)}
-    .myco-node::before{animation:mycoRing 2.9s ease-out infinite}
-    .myco-banner{grid-template-columns:1fr;gap:22px}
-    .myco-facts{padding-left:0;border-left:0;border-top:1px solid rgba(var(--mint-rgb),.16);
-      padding-top:20px;flex-wrap:wrap;gap:18px 26px}
-  }
-  @media(max-width:520px){
-    .myco-card{padding:22px}
-    .myco-head h3{font-size:26px}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .myco-art,.myco-leaf,.myco-node::before{animation:none}
-    .myco-rule::after{animation:none}
-    .myco-rule::before{animation:none;opacity:0}
-  }
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .cloud,.cue svg{animation:none}
+  .js .st .card,.js .st .aside,.js .rv{opacity:1;transform:none;transition:none}
+  #mycel .halo,#mycel .core,#mycel .nd{transition:none}
+}
 </style>
 </head>
-<body class="intro-lock">
-<div class="intro-overlay" id="micorrizaIntro" aria-label="Introducción de Micorriza">
-  <div class="mobile-intro-poster" style="background-image:none;background-color:#020d0b"></div><video class="intro-video" id="micorrizaIntroVideo" autoplay muted playsinline preload="auto">
-    <source src="video/intro.mp4" type="video/mp4">
-  </video>
-  <div class="intro-shade"></div>
-  <button class="intro-skip" id="introSkip" type="button">Saltar introducción</button>
-</div>
-<div class="intro-handoff" id="introHandoff"><img src="assets/logo.png" alt=""></div>
+<body>
+<!--
+  MARCA (provisional, por confirmar con el dueño):
+  - Nothara = nombre comercial visible. Nothara Labs = nombre institucional. Razón social: Servicios Tecnológicos Pangal SpA (solo en el footer legal).
+  - La disponibilidad comercial/registral de "Nothara" AÚN NO está verificada.
+  - No existe logo de Nothara: el wordmark tipográfico "Nothara" (.wm) es PROVISIONAL. assets/logo.png solo se usa como logo del producto Micorriza.
+  - Micorriza (agua rural, antes HifaNet) y MicelioNet son productos independientes con firma discreta "by Nothara". HifaNet ya no existe como cliente ni nodo.
+-->
+<a class="skip" href="#main">Saltar al contenido</a>
 
-<div aria-hidden="true" class="bg-stage">
-<div class="bg-layer bg-hero" style="background-image:url('assets/bg-hero.webp')"></div>
-<div class="bg-layer bg-deep" style="background-image:url('assets/bg-deep.webp')"></div>
-</div>
 <header class="nav">
-<div class="container nav-inner">
-<a aria-label="Micorriza" class="brand" href="#inicio"><img alt="Micorriza" src="assets/logo.png"/></a>
-<nav class="links" id="primary-nav"><a href="#soluciones">Soluciones</a><a href="#nexo">Proyectos</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
-<div class="nav-actions">
-<a class="btn secondary header-cta" href="#contacto">Hablemos ↗</a>
-<button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
-</div>
-</div>
+  <div class="in">
+    <a class="logo wm" href="#inicio" aria-label="Nothara Labs, volver a la superficie"><!-- wordmark provisional -->Nothara<small>Labs</small></a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#red">La red</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#metodo">Cómo trabajamos</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+      </ul>
+    </nav>
+    <div class="gauge" aria-hidden="true"><b id="g-depth">0 cm</b><span id="g-layer">Superficie</span></div>
+    <a class="btn" href="#contacto">Hablemos</a>
+  </div>
 </header>
-<main>
-<section class="hero" id="inicio">
-<div class="container">
-<div class="hero-grid">
-<div>
-<div class="eyebrow">Infraestructura inteligente</div>
-<h1>Conectamos lo natural con lo digital.</h1>
-<p class="lead">Diseñamos plataformas, redes y sistemas digitales que crecen como un ecosistema: conectados, adaptables y preparados para evolucionar junto a cada organización.</p>
-<div class="hero-actions"><a class="btn primary" href="#soluciones">Explorar soluciones →</a><a class="btn secondary" href="#nosotros">Conocer al equipo</a></div>
-</div>
 
-</div>
-<div class="stats"><div class="stat"><b>5 líneas</b><small>Productos digitales especializados</small></div><div class="stat"><b>24/7</b><small>Arquitecturas pensadas para continuidad</small></div><div class="stat"><b>Latam-first</b><small>Visión local con proyección global</small></div><div class="stat"><b>Una raíz</b><small>Tecnología, personas y propósito</small></div></div>
-</div>
-</section>
-<section id="soluciones">
-<div class="container">
-<div class="copy" style="max-width:760px"><div class="eyebrow">¿Qué es Micorriza?</div><h2>Una red que multiplica posibilidades.</h2><p>En la naturaleza, los hongos y las raíces forman una alianza capaz de distribuir agua, nutrientes e información. Micorriza lleva esa lógica al mundo digital: conecta procesos, datos y personas para que una organización funcione como un sistema vivo.</p><div class="chips"><span class="chip">Conexión</span><span class="chip">Resiliencia</span><span class="chip">Escalabilidad</span><span class="chip">Equilibrio</span></div></div>
-<div class="myco-explainer" aria-label="Hongo más raíz es igual a micorriza">
-  <div class="myco-flow">
-    <article class="myco-card myco-card--hongo">
-      <div class="myco-art" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 35 Q38 11 57 35 Q38 31 19 35 Z"/>
-          <path d="M24 35 Q38 41 52 35"/>
-          <path d="M34 38 C32 49 32 57 35 65 M43 38 C45 49 45 57 42 65"/>
-          <path d="M35 65 Q38.5 68 42 65"/>
-          <path d="M59 51 Q67 42 75 51 Q67 48 59 51 Z"/>
-          <path d="M63 53 C62 58 62 62 64 67 M70 53 C71 58 71 62 69 67"/>
-          <path d="M38 67 C30 74 23 76 14 82 M50 68 C50 78 50 84 50 91 M67 67 C71 75 77 79 85 83" opacity=".75"/>
-          <circle cx="14" cy="82" r="2.4" fill="currentColor" stroke="none"/>
-          <circle cx="50" cy="91" r="2.4" fill="currentColor" stroke="none"/>
-          <circle cx="85" cy="83" r="2.4" fill="currentColor" stroke="none"/>
-        </svg>
-      </div>
-      <div class="myco-head"><h3>Hongo</h3><span class="myco-sub">Explora y conecta.</span></div>
-      <div class="myco-rule" aria-hidden="true"></div>
-      <p>El hongo forma una red de hifas que se expande en el suelo, explorando y conectando recursos y llevándolos donde la raíz los necesita.</p>
-      <div class="myco-chips"><span>Exploración</span><span>Conexión</span><span>Distribución</span></div>
-    </article>
-
-    <div class="myco-connector" aria-hidden="true"><span class="myco-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></div>
-
-    <article class="myco-card myco-card--raiz">
-      <div class="myco-art" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M50 8 L50 33"/>
-          <path d="M50 33 C39 43 33 52 26 64 C22 72 20 81 19 91"/>
-          <path d="M50 33 C61 43 67 52 74 64 C78 72 80 81 81 91"/>
-          <path d="M50 33 C50 50 50 70 50 92"/>
-          <path d="M34 55 C30 61 28 65 23 71 M66 55 C70 61 72 65 77 71 M50 60 C46 69 44 73 41 85 M50 60 C54 69 56 73 59 85" opacity=".8"/>
-          <circle cx="19" cy="91" r="2.3" fill="currentColor" stroke="none"/>
-          <circle cx="50" cy="92" r="2.3" fill="currentColor" stroke="none"/>
-          <circle cx="81" cy="91" r="2.3" fill="currentColor" stroke="none"/>
-          <circle cx="41" cy="85" r="2" fill="currentColor" stroke="none"/>
-          <circle cx="59" cy="85" r="2" fill="currentColor" stroke="none"/>
-        </svg>
-      </div>
-      <div class="myco-head"><h3>+ Raíz</h3><span class="myco-sub">Absorbe y comparte.</span></div>
-      <div class="myco-rule" aria-hidden="true"></div>
-      <p>La raíz entrega azúcares y recibe agua y minerales. Juntas, logran mucho más de lo que podrían por separado.</p>
-      <div class="myco-chips"><span>Absorción</span><span>Intercambio</span><span>Nutrición</span></div>
-    </article>
-
-    <div class="myco-connector" aria-hidden="true"><span class="myco-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></div>
-
-    <article class="myco-card myco-card--micorriza">
-      <div class="myco-art" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M34 27 Q50 8 66 27 Q50 23 34 27 Z"/>
-          <path d="M38 28 Q50 33 62 28"/>
-          <path d="M46 30 C45 38 45 44 47 50 M54 30 C55 38 55 44 53 50"/>
-          <path d="M50 50 C40 57 30 60 20 66 M50 50 C60 57 70 60 80 66 M50 50 L50 84 M50 67 C42 73 36 77 30 86 M50 67 C58 73 64 77 70 86" opacity=".85"/>
-          <path d="M20 66 L30 86 M80 66 L70 86 M30 86 L50 84 L70 86" opacity=".45"/>
-          <circle cx="20" cy="66" r="2.6" fill="currentColor" stroke="none"/>
-          <circle cx="80" cy="66" r="2.6" fill="currentColor" stroke="none"/>
-          <circle cx="30" cy="86" r="2.6" fill="currentColor" stroke="none"/>
-          <circle cx="70" cy="86" r="2.6" fill="currentColor" stroke="none"/>
-          <circle cx="50" cy="84" r="2.6" fill="currentColor" stroke="none"/>
-        </svg>
-      </div>
-      <div class="myco-head"><h3>= Micorriza</h3><span class="myco-sub">Multiplica posibilidades.</span></div>
-      <div class="myco-rule" aria-hidden="true"></div>
-      <p>La micorriza es una interfaz viva que permite el flujo constante de nutrientes, agua e información en ambos sentidos.</p>
-      <div class="myco-chips"><span>Colaboración</span><span>Equilibrio</span><span>Resiliencia</span></div>
-    </article>
+<main id="main">
+<!-- SUPERFICIE -->
+<section class="hero" id="inicio" data-depth="0" data-capa="Superficie" data-at="end">
+  <div class="sky" aria-hidden="true">
+    <div class="sun"></div>
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
   </div>
-
-  <div class="myco-banner">
-    <div class="myco-banner-lead">
-      <span class="myco-leaf" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 12 9 6 20 5 19 16 13 20 5 20"/><path d="M4 20C7 16 11 13 16 11"/></svg></span>
-      <p>Así como la micorriza fortalece el bosque, nuestra infraestructura <strong>conecta lo esencial</strong> para que tu negocio crezca en equilibrio con su entorno.</p>
-    </div>
-    <div class="myco-facts">
-      <div class="myco-fact"><span class="myco-fact-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C12 3 5 10.5 5 15.5A7 7 0 0 0 19 15.5C19 10.5 12 3 12 3Z"/></svg></span><div><b>Agua</b><span>Fluye sin perderse</span></div></div>
-      <div class="myco-fact"><span class="myco-fact-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 12 9 6 20 5 19 16 13 20 5 20"/><path d="M4 20C7 16 11 13 16 11"/></svg></span><div><b>Nutrientes</b><span>Llegan a donde importan</span></div></div>
-      <div class="myco-fact"><span class="myco-fact-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9a9 9 0 0 1 13 0M8 12a5 5 0 0 1 8 0"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor" stroke="none"/></svg></span><div><b>Información</b><span>Se comparte y multiplica</span></div></div>
+  <svg class="ground f1" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 232 C160 172 320 214 520 190 S900 150 1100 196 S1360 186 1440 170 V380 H0Z" fill="#c4d6b6"/>
+    <g id="fo1" data-c0="#a7c1a1" data-c1="#b5ccae"></g>
+  </svg>
+  <svg class="ground f2" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 262 C220 214 400 256 640 232 S1040 206 1240 244 S1400 236 1440 226 V380 H0Z" fill="#9dbb8b"/>
+    <g id="fo2" data-c0="#6f9763" data-c1="#80a773"></g>
+    <path d="M0 292 C180 262 380 288 600 276 S1020 258 1220 282 S1400 280 1440 270 V380 H0Z" fill="#6f9a62"/>
+  </svg>
+  <svg class="ground f3" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g id="near-bg" fill="#1f4a2c"></g>
+    <g id="grass-back" fill="#4c8147"></g>
+    <path d="M0 318 C240 304 520 318 760 312 S1220 304 1440 314 V380 H0Z" fill="#3a6e3e"/>
+    <g id="grass-front" fill="#2b5a35"></g>
+    <g id="near-fg"></g>
+    <path d="M0 330 C200 322 420 334 700 328 S1180 320 1440 330 V380 H0Z" fill="#8f6340"/>
+    <path d="M0 330 C200 322 420 334 700 328 S1180 320 1440 330" fill="none" stroke="#5f3f27" stroke-width="3" opacity=".5"/>
+  </svg>
+  <div class="wrap">
+    <span class="wm wm-hero" aria-label="Nothara Labs"><!-- wordmark provisional: aún no hay logo de Nothara -->Nothara<small>Labs · Aysén</small></span>
+    <h1>La inteligencia está en las <em>conexiones.</em></h1>
+    <p class="lead">Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Diseñamos software, plataformas digitales y redes inteligentes inspirados en cómo se conectan los sistemas naturales. Baja y recórrela.</p>
+    <div class="cta">
+      <a class="btn" href="#contacto">Conversemos</a>
+      <a class="btn ghost" href="#red">Iniciar el descenso</a>
     </div>
   </div>
+  <a class="cue" href="#red" aria-label="Descender a la red de proyectos">
+    <span class="label">Desciende</span>
+    <svg viewBox="0 0 16 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v24M2 20l6 7 6-7"/></svg>
+  </a>
+</section>
+
+<!-- SUBSUELO: red micelial -->
+<div class="sub" id="sub">
+  <svg id="side" aria-hidden="true" focusable="false"></svg>
+  <svg id="mycel" aria-hidden="true" focusable="false"></svg>
+  <canvas id="flow" aria-hidden="true"></canvas>
+
+  <section class="layer" id="red" data-depth="14" data-capa="Humus" data-at="mid">
+    <div class="wrap" id="idea">
+      <div class="idea">
+        <div class="head rv">
+          <p class="eyebrow label">Capa 01 · Humus</p>
+          <h2>Ingeniería inspirada en cómo se conectan los sistemas naturales.</h2>
+          <p>Nothara no vende naturaleza: desarrolla ingeniería inspirada en sus principios. Creemos en una tecnología útil, accesible y resiliente, capaz de crecer con las necesidades de quienes la utilizan.</p>
+          <ul class="legend" aria-label="Qué viaja por la red">
+            <li><span><b>Azúcares y carbono</b> bajan de las hojas a las raíces y a las plántulas.</span></li>
+            <li><span><b>Agua, fósforo y nitrógeno</b> suben desde el micelio hacia los árboles.</span></li>
+          </ul>
+          <ul class="facts">
+            <li><b>Nacidos en Aysén</b>ingeniería y desarrollo tecnológico desde la Patagonia</li>
+            <li><b>2 productos</b>Micorriza y MicelioNet, marcas independientes</li>
+            <li><b>3 proyectos</b>Certimar, Scissor White y Life Support Academy</li>
+            <li><b>Útil y resiliente</b>tecnología que crece con quienes la usan</li>
+          </ul>
+        </div>
+        <ol class="rv">
+          <li><h3>Conectan personas e información</h3><p>Desarrollamos software, plataformas digitales y redes inteligentes que conectan personas, información, dispositivos y organizaciones.</p></li>
+          <li><h3>Colaboran y se adaptan</h3><p>Inspirados en la manera en que los sistemas naturales se conectan, colaboran y se adaptan, resolvemos problemas reales.</p></li>
+          <li><h3>Se alimentan entre sí</h3><p>Como en un bosque, los sistemas bien conectados intercambian lo que al otro le falta. Eso es lo que construimos para nuestros clientes.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+    <section class="wrap st" id="micorriza" data-st data-depth="38" data-capa="Subsuelo">
+    <span class="pin" aria-hidden="true"></span>
+    <article class="card">
+      <div class="top">
+        <img src="assets/logo.png" alt="Logo de Micorriza" width="145" height="52">
+        <div class="t"><h3>Micorriza</h3><span class="label">Producto · Agua rural</span><span class="by">by Nothara</span></div>
+      </div>
+      <div class="logo-only"><svg viewBox="0 0 200 110" width="62%" fill="none" stroke="#1d5a40" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M100 10c14 22 26 36 26 52a26 26 0 0 1-52 0c0-16 12-30 26-52Z" fill="#cfe9f0" stroke="#0b7f9c"/><path d="M100 88v18M100 96c-18 0-34-8-52-8M100 96c18 0 34-8 52-8M48 88c-8 0-14 4-20 10M152 88c8 0 14 4 20 10"/><circle cx="28" cy="98" r="4" fill="#72e235" stroke="none"/><circle cx="172" cy="98" r="4" fill="#72e235" stroke="none"/><circle cx="100" cy="106" r="4" fill="#72e235" stroke="none"/></svg><small>Captura próximamente</small></div>
+      <p class="d">Solución para el monitoreo y la gestión inteligente del agua rural. Antes se llamaba HifaNet.</p>
+      <ul><li>Monitoreo del agua en el territorio</li><li>Gestión inteligente para quien decide</li><li>La información sube por la red, como el agua por las hifas</li></ul>
+    </article>
+    <div class="aside">
+      <span class="num" aria-hidden="true">01</span>
+      <span class="sp-row"><svg class="sp" data-sp="lenga" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Producto 01 · Lenga</span></span>
+      <h2>El agua también viaja por la red.</h2>
+      <p>Monitoreo y gestión inteligente del agua rural: como en el bosque, lo que hace falta sube por las hifas hasta quien lo necesita.</p>
+      <span class="depth">&minus;38 cm · Subsuelo</span>
+    </div>
+  </section>
+
+  <section class="wrap st flip" id="micelionet" data-st data-depth="64" data-capa="Subsuelo">
+    <span class="pin" aria-hidden="true"></span>
+    <article class="card">
+      <div class="top">
+        <img src="assets/clientes/micelionet-logo.png" alt="Logo de MicelioNet, un árbol cuyas raíces forman una red" width="49" height="52">
+        <div class="t"><h3>MicelioNet</h3><span class="label">Producto · Agendamiento y gestión</span><span class="by">by Nothara</span></div>
+      </div>
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><span>Micelio · gestión y reserva de horas</span></div>
+        <img src="assets/clientes/micelionet-web.png" alt="Captura de MicelioNet, gestión y reserva de horas para centros de salud y servicios" width="1440" height="900" loading="lazy">
+      </div>
+      <p class="d">Plataforma para conectar profesionales, servicios y personas mediante agendamiento y gestión.</p>
+      <ul><li>Agenda multi profesional</li><li>Recordatorios y control de cupos</li><li>Una base que reutilizamos en nuevos proyectos</li></ul>
+      <a class="more" href="#contacto">Conversemos sobre esto &rarr;</a>
+    </article>
+    <div class="aside">
+      <span class="num" aria-hidden="true">02</span>
+      <span class="sp-row"><svg class="sp" data-sp="coihue" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Producto 02 · Coihue de Magallanes</span></span>
+      <h2>Conectar profesionales, servicios y personas.</h2>
+      <p>Agendamiento y gestión en una sola plataforma, que se adapta a cada rubro.</p>
+      <span class="depth">&minus;64 cm · Subsuelo</span>
+    </div>
+  </section>
+
+  <section class="wrap st" id="certimar" data-st data-depth="92" data-capa="Arcilla">
+    <span class="pin" aria-hidden="true"></span>
+    <article class="card">
+      <div class="top">
+        <img src="assets/clientes/certimar-logo.svg" alt="Logo de Certimar" width="60" height="53">
+        <div class="t"><h3>Certimar</h3><span class="label">Proyecto · Acuicultura y normativa</span></div>
+      </div>
+      <a class="win" href="https://certimar.cl" target="_blank" rel="noopener" aria-label="Abrir certimar.cl en una pestaña nueva">
+        <div class="bar"><i></i><i></i><i></i><span>certimar.cl</span></div>
+        <img src="assets/clientes/certimar-web.png" alt="Captura del sitio de Certimar, seguridad operativa para la acuicultura de Aysén" width="1440" height="900" loading="lazy">
+      </a>
+      <p class="d">Un sistema integrado que certifica el manejo de mortalidad en centros de cultivo y digitaliza las inspecciones en terreno, con sitio web propio.</p>
+      <ul><li>Documentos legales en PDF con semáforo de cumplimiento</li><li>Inspecciones con firma remota y notificación</li><li>Trazabilidad documental completa</li></ul>
+      <a class="more" href="https://certimar.cl" target="_blank" rel="noopener">Visitar certimar.cl &rarr;</a>
+    </article>
+    <div class="aside">
+      <span class="num" aria-hidden="true">03</span>
+      <span class="sp-row"><svg class="sp" data-sp="cipres" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Proyecto 03 · Ciprés de las Guaitecas</span></span>
+      <h2>Donde la norma exige trazabilidad.</h2>
+      <p>Pesca y acuicultura: certificaciones, inspecciones en terreno y trazabilidad alineadas a Sernapesca.</p>
+      <span class="depth">&minus;92 cm · Arcilla</span>
+    </div>
+  </section>
+
+  <section class="wrap st flip" id="scissorwhite" data-st data-depth="120" data-capa="Lecho">
+    <span class="pin" aria-hidden="true"></span>
+    <article class="card">
+      <div class="top">
+        <img src="assets/clientes/scissorwhite-logo.png" alt="Logo de Scissor White Studio" width="52" height="52">
+        <div class="t"><h3>Scissor White</h3><span class="label">Proyecto · Barbería en Concepción</span></div>
+      </div>
+      <a class="win" href="https://scissorwhite.cl" target="_blank" rel="noopener" aria-label="Abrir scissorwhite.cl en una pestaña nueva">
+        <div class="bar"><i></i><i></i><i></i><span>scissorwhite.cl</span></div>
+        <img src="assets/clientes/scissorwhite-web.png" alt="Captura del sitio de Scissor White, barbería premium en Concepción" width="1440" height="900" loading="lazy">
+      </a>
+      <p class="d">Agenda propia que reemplaza una plataforma de terceros, con la web de la barbería posicionada para búsquedas locales.</p>
+      <ul><li>Gestión de citas, sobrecupos y traspasos</li><li>Menos pasos para reservar</li><li>SEO local con datos estructurados</li></ul>
+      <a class="more" href="https://scissorwhite.cl" target="_blank" rel="noopener">Visitar scissorwhite.cl &rarr;</a>
+    </article>
+    <div class="aside">
+      <span class="num" aria-hidden="true">04</span>
+      <span class="sp-row"><svg class="sp" data-sp="nirre" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Proyecto 04 · Ñirre</span></span>
+      <h2>Una agenda que es tuya, sin comisiones.</h2>
+      <p>Belleza y servicios: reservas, sobrecupos y estadísticas, sin depender de terceros.</p>
+      <span class="depth">&minus;120 cm · Lecho</span>
+    </div>
+  </section>
+
+  <section class="wrap st" id="lsa" data-st data-depth="148" data-capa="Lecho profundo">
+    <span class="pin" aria-hidden="true"></span>
+    <article class="card">
+      <div class="top">
+        <div class="t"><h3>Life Support Academy</h3><span class="label">Proyecto · Educación y salud</span></div>
+      </div>
+      <div class="logo-only">
+        <img src="assets/clientes/lsa-logo.webp" alt="Logo de Life Support Academy Chile" width="1050" height="302" loading="lazy">
+        <small>Sitio en preparación</small>
+      </div>
+      <p class="d">Plataforma para academia de formación en reanimación y soporte vital. Hoy ordena la formación; mañana puede crecer hacia certificación digital y seguimiento de alumnos.</p>
+      <ul><li>Hoy: base de cursos y alumnos</li><li>Siguiente: certificados verificables</li><li>Futuro: red de instructores y recertificación</li></ul>
+    </article>
+    <div class="aside">
+      <span class="num" aria-hidden="true">05</span>
+      <span class="sp-row"><svg class="sp" data-sp="notro" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Proyecto 05 · Notro</span></span>
+      <h2>Formación que puede crecer en red.</h2>
+      <p>Educación y salud: plataformas de formación y certificación para academias que quieren escalar.</p>
+      <span class="depth">&minus;148 cm · Lecho profundo</span>
+    </div>
+  </section>
+
+  <section class="layer cierre" id="cierre" data-depth="162" data-capa="Raíz común">
+    <div class="wrap">
+      <p class="eyebrow label" style="justify-content:center">Raíz común</p>
+      <blockquote class="rv">En la naturaleza, ninguna conexión existe aislada. <em>En Nothara, tampoco.</em></blockquote>
+      <p class="rv label">Nothara Labs. Tecnología inspirada en sistemas vivos.</p>
+    </div>
+  </section>
 </div>
-</div></section>
-<section id="nexo">
-<div class="container">
-  <div class="eyebrow">Proyectos</div>
-  <h2>Software real, ya en producción.</h2>
-  <p class="lead">Plataformas a medida que resuelven problemas concretos en acuicultura, salud, emergencias y servicios. Cada una operando hoy, con impacto medible.</p>
-  <div class="product-grid">
-    <article class="product-card clinical">
-      <div class="product-media"><img src="assets/proj-doctos.png" width="1200" height="675" loading="lazy" decoding="async" alt="Plataforma Certimar 1511 Doctos: certificado de cumplimiento con semáforo en verde"></div>
-      <div class="product-number">01</div><div class="product-kicker">Acuicultura · Normativa</div>
-      <div class="product-body"><h3>Certimar 1511 · Doctos</h3>
-      <p>Automatiza la certificación normativa del manejo de mortalidad en centros acuícolas (Res. 1511, Sernapesca) y emite los documentos legales en PDF con semáforo de cumplimiento.</p>
-      <ul><li>Semáforo Verde/Amarillo/Rojo automático</li><li>Verificación de umbrales sin trabajo manual</li><li>−80% en el tiempo de emisión del certificado</li></ul></div>
-    </article>
-    <article class="product-card aula">
-      <div class="product-media"><img src="assets/proj-rv.png" width="1200" height="675" loading="lazy" decoding="async" alt="Sistema Certimar 1511 RV: registro de inspección en terreno con firma remota"></div>
-      <div class="product-number">02</div><div class="product-kicker">Acuicultura · Terreno</div>
-      <div class="product-body"><h3>Certimar 1511 · RV</h3>
-      <p>Digitaliza el registro de inspecciones técnicas en terreno para centros de cultivo: crear, firmar de forma remota, guardar y notificar cada visita como PDF.</p>
-      <ul><li>Firma remota y notificación automática</li><li>Trazabilidad completa en Google Sheets</li><li>+90% de trazabilidad documental</li></ul></div>
-    </article>
-    <article class="product-card agenda">
-      <div class="product-media"><img src="assets/proj-samu.png" width="1200" height="675" loading="lazy" decoding="async" alt="App de turnos del SAMU Talcahuano: planilla mensual con ciclo de cuatro turnos"></div>
-      <div class="product-number">03</div><div class="product-kicker">Salud · Emergencias</div>
-      <div class="product-body"><h3>SAMU Talcahuano</h3>
-      <p>Automatiza las planillas mensuales de turnos del SAMU Talcahuano y garantiza el cumplimiento del Art. 72 del DL 2763 con un ciclo de cuatro turnos.</p>
-      <ul><li>Ciclo de 4 turnos con ausencias y reemplazos</li><li>Cobertura validada automáticamente</li><li>−75% de errores de cobertura</li></ul></div>
-    </article>
-    <article class="product-card gremial">
-      <div class="product-media"><img src="assets/proj-araya.png" width="1200" height="675" loading="lazy" decoding="async" alt="Landing clínica de la Dra. Javiera Araya con calendario postoperatorio de 30 días"></div>
-      <div class="product-number">04</div><div class="product-kicker">Salud · Tricología</div>
-      <div class="product-body"><h3>Dra. Javiera Araya</h3>
-      <p>Landing clínica que convierte tráfico digital en consultas calificadas, con calendario postoperatorio de 30 días y paneles duales para paciente y profesional.</p>
-      <ul><li>Calendario postoperatorio de 30 días</li><li>Dashboards de paciente y profesional</li><li>+60% de conversión vs. redes sociales</li></ul></div>
-    </article>
-    <article class="product-card calidad">
-      <div class="product-media"><img src="assets/proj-sw.png" width="1200" height="675" loading="lazy" decoding="async" alt="Sistema de agendamiento Scissor White SW Studio para barbería en Concepción"></div>
-      <div class="product-number">05</div><div class="product-kicker">Servicios · Barbería</div>
-      <div class="product-body"><h3>Scissor White · SW Studio</h3>
-      <p>Sistema de agendamiento propio para una barbería en Concepción que reemplaza AgendaPro: gestión total de citas, sobrecupos, traspasos y estadísticas.</p>
-      <ul><li>Agenda propia, sin depender de terceros</li><li>−60% de pasos para reservar</li><li>SEO local: 4 schemas + 20 keywords</li></ul></div>
-    </article>
+
+<!-- CAPAS PROFUNDAS -->
+<section class="deep l2" id="servicios" data-depth="176" data-capa="Cimientos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow label">Capa 07 · Qué construimos</p>
+      <h2>Tres formas de echar raíces digitales.</h2>
+    </div>
+    <div class="svc">
+      <article class="rv">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="28" cy="28" r="6" fill="currentColor"/><path d="M28 22V8M22 31 10 42M34 31l12 11"/><circle cx="28" cy="7" r="3.5"/><circle cx="9" cy="43" r="3.5"/><circle cx="47" cy="43" r="3.5"/></svg>
+        <h3>Software y plataformas digitales</h3>
+        <p>Sistemas a medida que automatizan lo que hoy haces a mano: certificados, planillas, informes, flujos de aprobación y sitios web.</p>
+        <ul><li>Documentos PDF y firma remota</li><li>Reglas y semáforos automáticos</li><li>Integración con Google, correo y pagos</li></ul>
+      </article>
+      <article class="rv">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="6" y="9" width="44" height="34" rx="6"/><path d="M6 19h44M20 49h16M28 43v6"/><circle cx="12" cy="14" r="1.5" fill="#ff9d00" stroke="none"/></svg>
+        <h3>Redes inteligentes</h3>
+        <p>Redes que conectan personas, información, dispositivos y organizaciones, como el agua rural que monitorea Micorriza.</p>
+        <ul><li>Monitoreo remoto</li><li>Dispositivos conectados a la red</li><li>Información útil para quien decide</li></ul>
+      </article>
+      <article class="rv">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="8" y="11" width="40" height="36" rx="6"/><path d="M8 22h40M18 6v9M38 6v9"/><path d="m20 35 6 6 11-12"/></svg>
+        <h3>Agendamiento y gestión</h3>
+        <p>Reservas, recordatorios y estadísticas en una agenda propia, con tu marca y tus reglas, basada en MicelioNet.</p>
+        <ul><li>Sobrecupos y traspasos</li><li>Menos pasos para reservar</li><li>Pensado para varios profesionales</li></ul>
+      </article>
+    </div>
   </div>
-  <div class="product-footer"><p>¿Tienes un proceso manual que podría ser software? Lo llevamos a una plataforma clara, segura y medible.</p><a class="btn primary" href="#contacto">Conversemos tu proyecto →</a></div>
-</div>
 </section>
-<section>
-<div class="container dashboard" id="dashboardMetrics"><div class="eyebrow">Panel de monitoreo</div><h2>Lo importante se puede ver, medir y mejorar.</h2><p class="lead" style="max-width:660px">Una vista de ejemplo del panel de Micorriza: así cada organización observa, mide y mejora su propio sistema en tiempo real.</p><div class="metric-grid"><div class="metric"><b class="counter" data-target="128" data-suffix="">0</b><span>servicios supervisados</span></div><div class="metric"><b class="counter" data-target="512" data-suffix="">0</b><span>conexiones activas</span></div><div class="metric"><b class="counter" data-target="98.7" data-decimals="1" data-suffix="%">0</b><span>disponibilidad</span></div><div class="metric"><b class="counter" data-target="24.6" data-decimals="1" data-prefix="+" data-suffix="%">0</b><span>actividad registrada</span></div></div><div class="chart"><svg preserveaspectratio="none" viewbox="0 0 1000 200"><defs><lineargradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#72e235" stop-opacity=".55"></stop><stop offset="1" stop-color="#72e235" stop-opacity="0"></stop></lineargradient></defs><path class="chart-area" d="M0,150 C80,80 120,155 180,112 S270,78 340,130 S430,118 500,82 S610,105 680,66 S800,115 1000,40 L1000,200 L0,200 Z" fill="url(#g)"></path><path class="chart-line" d="M0,150 C80,80 120,155 180,112 S270,78 340,130 S430,118 500,82 S610,105 680,66 S800,115 1000,40" fill="none" stroke="#77f7b3" stroke-width="4"></path></svg></div><p style="margin:14px 0 0;font-size:12px;color:#9fb3ab">Datos ilustrativos para demostración.</p></div>
+
+<section class="deep l3" id="metodo" data-depth="192" data-capa="Cimientos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow label">Capa 08 · Cómo trabajamos</p>
+      <h2>Crecer por etapas, como lo hace un micelio.</h2>
+      <p>Empezamos pequeño, comprobamos que funciona y luego extendemos la red. Sin letras chicas ni sorpresas.</p>
+    </div>
+    <ol class="steps">
+      <li class="rv"><h3>Escuchamos</h3><p>Entendemos cómo trabajas hoy y dónde se pierde tiempo o dinero.</p></li>
+      <li class="rv"><h3>Diseñamos</h3><p>Te mostramos el flujo y una primera versión navegable antes de construir todo.</p></li>
+      <li class="rv"><h3>Construimos</h3><p>Entregas parciales y probadas con tu equipo, en tu operación real.</p></li>
+      <li class="rv"><h3>Cuidamos</h3><p>Monitoreo, soporte y mejoras para que el sistema siga creciendo contigo.</p></li>
+    </ol>
+  </div>
 </section>
-<section id="nosotros">
-<div class="container"><h2>Equipo interdisciplinario, una misma raíz operativa.</h2><p class="lead">Micorriza reúne liderazgo estratégico, inteligencia artificial, salud, diseño de producto y desarrollo tecnológico para transformar problemas reales en plataformas útiles.</p>
-<div class="team">
-<article class="person"><img alt="Aldo Mellado Opazo" src="assets/equipo-aldo.webp" width="932" height="1401" loading="lazy" decoding="async"/><div><h3>Aldo Mellado Opazo</h3><div class="role">Fundador, CEO e Ingeniero en Telecomunicaciones</div><p>Lidera la visión, estrategia y desarrollo de ecosistemas digitales inspirados en sistemas vivos.</p></div></article>
-<article class="person"><img alt="Daniel Morales O." src="assets/equipo-daniel.webp" width="783" height="1052" loading="lazy" decoding="async"/><div><h3>Daniel Morales O.</h3><div class="role">Máster en Inteligencia Artificial · Diversificación y Salud</div><p>Encargado de ampliar las líneas de negocio, desarrollar soluciones para el sector salud e integrar inteligencia artificial con aplicaciones concretas y responsables.</p></div></article>
-</div>
-</div>
+
+<section class="deep l3" id="equipo" data-depth="206" data-capa="Roca madre" style="padding-top:0;background:#08241a">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow label">Capa 09 · Equipo</p>
+      <h2>Personas detrás de cada sistema.</h2>
+    </div>
+    <div class="team">
+      <article class="rv"><img src="assets/equipo-aldo.webp" alt="Aldo Mellado Opazo" loading="lazy" width="96" height="96"><div><h3>Aldo Mellado Opazo</h3><p>Fundador, CEO e Ingeniero en Telecomunicaciones. Lidera la visión y el desarrollo de los ecosistemas digitales.</p></div></article>
+      <article class="rv"><img src="assets/equipo-daniel.webp" alt="Daniel Morales O." loading="lazy" width="96" height="96"><div><h3>Daniel Morales O.</h3><p>Máster en Inteligencia Artificial. Desarrolla soluciones para salud y suma IA a los productos.</p></div></article>
+    </div>
+  </div>
 </section>
-<section id="contacto">
-<div class="container cta"><div class="cta-panel"><div class="eyebrow">Conversemos</div><h2>Diseñemos la red que sostendrá tu próxima etapa.</h2><p class="lead">Cuéntanos qué proceso necesita conectarse, simplificarse o evolucionar. Micorriza puede transformarlo en una solución digital clara, escalable y con propósito.</p><div class="chips"><span class="chip">Diagnóstico inicial</span><span class="chip">Diseño de solución</span><span class="chip">Implementación</span><span class="chip">Acompañamiento</span></div></div><form class="form" id="contactForm" novalidate><label for="cf-nombre">Nombre <span class="req" aria-hidden="true">*</span></label><input id="cf-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" required/><label for="cf-email">Correo corporativo <span class="req" aria-hidden="true">*</span></label><input id="cf-email" name="email" type="email" placeholder="tu@empresa.com" autocomplete="email" required/><label for="cf-desafio">Tu desafío <span class="req" aria-hidden="true">*</span></label><textarea id="cf-desafio" name="desafio" placeholder="Cuéntanos brevemente qué necesitas resolver..." required></textarea><button class="btn primary" type="submit">Enviar mensaje →</button><p class="form-status" role="status" aria-live="polite"></p></form></div>
+
+<section class="deep l4 contact" id="contacto" data-depth="222" data-capa="Roca madre">
+  <svg class="bgnet" viewBox="0 0 400 400" fill="none" stroke="#72e235" stroke-width="3" aria-hidden="true"><path d="M200 200C160 140 100 120 40 60M200 200C260 150 320 130 380 80M200 200C250 260 300 300 370 340M200 200C150 260 100 300 30 350M200 200V390"/><circle cx="200" cy="200" r="14" fill="#72e235"/></svg>
+  <div class="wrap grid">
+    <div class="rv">
+      <p class="eyebrow label">Contacto</p>
+      <h2>¿Tienes un problema real que podría ser un sistema?</h2>
+      <p style="margin-top:1.2rem;font-size:1.1rem">Cuéntanos en pocas líneas cómo trabajas. Te respondemos con una propuesta clara de por dónde partir.</p>
+      <!-- correo provisional: confirmar casilla definitiva de Nothara -->
+      <p class="alt">También puedes escribirnos a <a href="mailto:contacto@micorriza.bio">contacto@micorriza.bio</a>.</p>
+    </div>
+    <form id="form" class="rv" novalidate>
+      <label>Nombre<input name="n" required autocomplete="name"></label>
+      <label>Correo<input name="e" type="email" required autocomplete="email"></label>
+      <label>Rubro
+        <select name="r"><option>Pesca / acuicultura</option><option>Salud</option><option>Belleza y servicios</option><option>Educación</option><option>Otro</option></select>
+      </label>
+      <label>¿Qué quieres resolver?<textarea name="m" required></textarea></label>
+      <button class="btn lima" type="submit">Enviar mensaje</button>
+      <p class="msg" role="status" id="msg"></p>
+    </form>
+  </div>
 </section>
 </main>
-<footer><div class="container footer-inner"><div>© 2026 Micorriza SpA. Tecnología inspirada en sistemas vivos.</div><div>Privacidad · Términos · LinkedIn</div></div></footer>
+
+<footer>
+  <div class="wrap">
+    <span class="wm" aria-label="Nothara Labs"><!-- wordmark provisional -->Nothara<small>Labs</small></span>
+    <span>© Servicios Tecnológicos Pangal SpA · Nothara Labs · Aysén, Chile</span>
+  </div>
+</footer>
 
 <script>
 (function(){
-  const hero=document.querySelector('.bg-hero');
-  const deep=document.querySelector('.bg-deep');
-  const root=document.documentElement;
-  if(!hero||!deep)return;
-  const clamp=(v,min,max)=>Math.min(Math.max(v,min),max);
-  const smooth=t=>t*t*(3-2*t);
-  function update(){
-    const y=window.scrollY||0;
-    const max=Math.max(document.documentElement.scrollHeight-window.innerHeight,1);
-    const page=clamp(y/max,0,1);
+  var NS="http://www.w3.org/2000/svg";
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Portada clara; se oscurece apenas comienza el scroll.
-    const early=smooth(clamp(y/(window.innerHeight*.72),0,1));
-    const overlay=.10+early*.50;
-    root.style.setProperty('--scroll-dark',overlay.toFixed(3));
+  // ---------- utilidades ----------
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function clamp(v,a,b){return v<a?a:v>b?b:v}
+  function f(n){return n.toFixed(1)}
+  function mid(a,b){return[(a[0]+b[0])/2,(a[1]+b[1])/2]}
+  function bez(p0,p1,p2,p3,t){var u=1-t;return[u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]]}
+  function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
 
-    // Cambio elegante de fondo en la unión central de la web.
-    const mix=smooth(clamp((page-.36)/.20,0,1));
-    hero.style.opacity=String(1-mix);
-    deep.style.opacity=String(mix);
-
-    // Parallax lento, claramente menor que el movimiento del contenido.
-    hero.style.transform=`translate3d(0,${y*.065}px,0) scale(1.07)`;
-    deep.style.transform=`translate3d(0,${y*.035}px,0) scale(1.09)`;
-
-    // Luminosidad alta al inicio; más contenida después.
-    // Brillo/saturación quedan estáticos en CSS; aquí solo animamos transform+opacity (compositor, sin repintar la capa).
+  // ---------- siluetas de árboles nativos (una sola ruta por árbol) ----------
+  function blob(cx,cy,rx,ry,n,j,r){
+    var p=[],i;for(i=0;i<n;i++){var a=i/n*6.2832,k=1+(r()-.5)*j;p.push([cx+Math.cos(a)*rx*k,cy+Math.sin(a)*ry*k])}
+    var m0=mid(p[0],p[1]),d="M"+f(m0[0])+" "+f(m0[1]);
+    for(i=1;i<=n;i++){var q=p[i%n],m=mid(q,p[(i+1)%n]);d+="Q"+f(q[0])+" "+f(q[1])+" "+f(m[0])+" "+f(m[1])}
+    return d+"Z";
   }
-  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  let raf=false;
-  const request=()=>{if(raf)return;raf=true;requestAnimationFrame(()=>{update();raf=false;});};
-  function setStatic(){
-    // Estado estático y legible: sin parallax ni blur animado.
-    hero.style.transform='';deep.style.transform='';
-    hero.style.opacity='1';deep.style.opacity='0';
-    hero.style.filter='brightness(.92) saturate(1.06)';
-    deep.style.filter='brightness(.82) saturate(1.03)';
-    root.style.setProperty('--scroll-dark','0.34');
-  }
-  function apply(){
-    removeEventListener('scroll',request);
-    removeEventListener('resize',request);
-    if(reduceMotion.matches){setStatic();return;}
-    addEventListener('scroll',request,{passive:true});
-    addEventListener('resize',request);
-    update();
-  }
-  addEventListener('load',apply);
-  if(reduceMotion.addEventListener)reduceMotion.addEventListener('change',apply);
-  apply();
-})();
-</script>
+  function trunk(x,b,h,w0,w1){return "M"+f(x-w0)+" "+f(b)+"L"+f(x-w1)+" "+f(b-h)+"L"+f(x+w1)+" "+f(b-h)+"L"+f(x+w0)+" "+f(b)+"Z"}
+  var TREES={
+    lenga:function(x,b,h,r){return trunk(x,b,h*.55,h*.03,h*.018)+blob(x,b-h*.68,h*.2,h*.26,9,.35,r)+blob(x-h*.11,b-h*.5,h*.12,h*.12,7,.3,r)+blob(x+h*.12,b-h*.55,h*.13,h*.13,7,.3,r)},
+    coihue:function(x,b,h,r){var d=trunk(x,b,h*.7,h*.03,h*.015);for(var i=0;i<4;i++)d+=blob(x+(r()-.5)*h*.05,b-h*(.42+i*.17),h*(.25-.045*i),h*.075,8,.3,r);return d},
+    araucaria:function(x,b,h,r){return trunk(x,b,h*.86,h*.026,h*.014)+blob(x,b-h*.92,h*.3,h*.065,10,.25,r)+blob(x-h*.13,b-h*.82,h*.15,h*.04,6,.3,r)+blob(x+h*.14,b-h*.84,h*.15,h*.04,6,.3,r)+blob(x+h*.02,b-h*.7,h*.1,h*.03,6,.3,r)},
+    alerce:function(x,b,h){
+      var d=trunk(x,b,h*.45,h*.035,h*.014),R=[],L=[];
+      for(var i=1;i<=6;i++){var y=b-h+i*h*.1,w=h*(.02+i*.022);R.push([x+w,y],[x+w*.55,y+h*.035]);L.push([x-w,y],[x-w*.55,y+h*.035])}
+      d+="M"+f(x)+" "+f(b-h);R.forEach(function(p){d+="L"+f(p[0])+" "+f(p[1])});L.reverse().forEach(function(p){d+="L"+f(p[0])+" "+f(p[1])});
+      return d+"Z";
+    },
+    nirre:function(x,b,h,r){return trunk(x,b,h*.4,h*.03,h*.016)+blob(x,b-h*.55,h*.28,h*.2,8,.5,r)+blob(x+h*.15,b-h*.4,h*.14,h*.1,6,.4,r)},
+    quillay:function(x,b,h,r){return trunk(x,b,h*.3,h*.05,h*.03)+blob(x,b-h*.62,h*.34,h*.34,10,.25,r)},
+    canelo:function(x,b,h,r){return trunk(x,b,h*.3,h*.035,h*.02)+blob(x,b-h*.6,h*.17,h*.4,9,.2,r)},
+    helecho:function(x,b,h){
+      var d="";
+      for(var i=0;i<7;i++){var a=-1.25+i*.42,dx=Math.sin(a)*h*.95,ty=b-h*(.55+.45*Math.cos(a));
+        d+="M"+f(x-2)+" "+f(b)+"Q"+f(x+dx*.3)+" "+f(b-h*1.15)+" "+f(x+dx)+" "+f(ty)+"Q"+f(x+dx*.62)+" "+f(b-h*.4)+" "+f(x+2)+" "+f(b)+"Z"}
+      return d;
+    },
+    cipres:function(x,b,h,r){return trunk(x,b,h*.2,h*.025,h*.015)+blob(x,b-h*.55,h*.1,h*.42,9,.22,r)+blob(x+h*.03,b-h*.38,h*.09,h*.22,7,.25,r)},
+    notro:function(x,b,h,r){return trunk(x,b,h*.35,h*.035,h*.02)+blob(x,b-h*.62,h*.24,h*.26,9,.3,r)},
+    calafate:function(x,b,h,r){return blob(x,b-h*.35,h*.5,h*.35,9,.45,r)+blob(x+h*.3,b-h*.2,h*.25,h*.2,7,.4,r)},
+    nalca:function(x,b,h,r){return trunk(x,b,h,3,1.6)+blob(x,b-h,h*.55,h*.3,12,.3,r)}
+  };
+  function copihue(x,y,s){return "M"+f(x)+" "+f(y)+"C"+f(x-s)+" "+f(y+s*.2)+" "+f(x-s*1.1)+" "+f(y+s*1.8)+" "+f(x-s*.9)+" "+f(y+s*2.1)+"L"+f(x+s*.9)+" "+f(y+s*2.1)+"C"+f(x+s*1.1)+" "+f(y+s*1.8)+" "+f(x+s)+" "+f(y+s*.2)+" "+f(x)+" "+f(y)+"Z"}
 
-
-
-<script>
-(function(){
-  const dashboard=document.getElementById('dashboardMetrics');
-  if(!dashboard) return;
-  const counters=[...dashboard.querySelectorAll('.counter')];
-  let hasRun=false;
-
-  function formatValue(value, decimals){
-    return Number(value).toFixed(decimals).replace('.', ',');
-  }
-
-  function animateCounter(el){
-    const target=parseFloat(el.dataset.target || '0');
-    const decimals=parseInt(el.dataset.decimals || '0',10);
-    const prefix=el.dataset.prefix || '';
-    const suffix=el.dataset.suffix || '';
-    const duration=1550;
-    const startTime=performance.now();
-
-    function frame(now){
-      const progress=Math.min((now-startTime)/duration,1);
-      const eased=1-Math.pow(1-progress,3);
-      const current=target*eased;
-      el.textContent=prefix+formatValue(current,decimals)+suffix;
-      if(progress<1){requestAnimationFrame(frame);}
-      else{el.textContent=prefix+formatValue(target,decimals)+suffix;}
-    }
-    requestAnimationFrame(frame);
-  }
-
-  function runDashboardAnimation(){
-    if(hasRun) return;
-    hasRun=true;
-    counters.forEach(animateCounter);
-    dashboard.classList.add('is-animated');
-  }
-
-  if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          runDashboardAnimation();
-          observer.disconnect();
-        }
-      });
-    },{threshold:0.28,rootMargin:'0px 0px -8% 0px'});
-    observer.observe(dashboard);
-  }else{
-    runDashboardAnimation();
-  }
-})();
-</script>
-
-<a class="wa-float" href="#contacto" aria-label="Hablar por WhatsApp"><svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#fff" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><span class="label">WhatsApp</span></a>
-
-<script>
-(function(){
-  const overlay=document.getElementById('micorrizaIntro');
-  const video=document.getElementById('micorrizaIntroVideo');
-  const handoff=document.getElementById('introHandoff');
-  const skip=document.getElementById('introSkip');
-  const brand=document.querySelector('.brand');
-  let finished=false;
-  if(!overlay||!video||!handoff||!brand){document.body.classList.remove('intro-lock');return;}
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    video.autoplay=false; try{video.pause();}catch(e){}
-    finishIntro('immediate'); return;
-  }
-  brand.classList.add('intro-target');
-  video.muted=true; video.volume=0;
-
-  // ── iOS Safari fix: canplay ANTES de load() + Blob URL ──────────────────
-  var _ps=false;
-  function _doPlay(){
-    if(_ps||finished) return; _ps=true;
-    var p=video.play();
-    if(p&&p.catch){
-      p.catch(function(){
-        _ps=false;
-        function _tap(){
-          overlay.removeEventListener('touchstart',_tap);
-          overlay.removeEventListener('click',_tap);
-          if(!finished) video.play().catch(function(){finishIntro('immediate');});
-        }
-        overlay.addEventListener('touchstart',_tap,{once:true,passive:true});
-        overlay.addEventListener('click',_tap,{once:true});
-      });
-    }
-  }
-  video.addEventListener('canplay',_doPlay,{once:true});
-  video.addEventListener('loadeddata',_doPlay,{once:true});
-  (function(){
-    var sel=video.querySelector('source');
-    if(!sel) return;
-    var raw=sel.getAttribute('src');
-    if(!raw||raw.indexOf('data:')<0) return;
-    try{
-      var c=raw.indexOf(',');
-      var mime=raw.substring(5,raw.indexOf(';'));
-      var bin=atob(raw.substring(c+1));
-      var buf=new Uint8Array(bin.length);
-      for(var i=0;i<bin.length;i++) buf[i]=bin.charCodeAt(i);
-      var blob=new Blob([buf],{type:mime});
-      video.removeChild(sel);
-      video.src=URL.createObjectURL(blob);
-    }catch(e){
-      try{video.removeChild(sel);}catch(_){}
-      video.src=raw;
-    }
-    video.load();
-  })();
-
-  function finishIntro(mode='animated'){
-    if(finished) return; finished=true;
-    const target=brand.getBoundingClientRect();
-    const vw=window.innerWidth, vh=window.innerHeight;
-    const startW=Math.min(vw*0.40,540);
-    const startH=startW*0.34;
-    handoff.style.display='flex';
-    handoff.style.width=startW+'px'; handoff.style.height=startH+'px';
-    handoff.style.left=(vw-startW)/2+'px'; handoff.style.top=(vh-startH)/2+'px';
-
-    if(mode==='immediate' || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      overlay.classList.add('is-hidden');
-      handoff.style.display='none';
-      brand.classList.add('is-ready');
-      document.body.classList.remove('intro-lock');
-      document.body.classList.add('bg-reveal');
-      return;
-    }
-
-    handoff.animate([
-      {opacity:0, transform:'translate3d(0,0,0) scale(1)'},
-      {opacity:1, transform:'translate3d(0,0,0) scale(1)', offset:.12},
-      {opacity:1, transform:`translate3d(${target.left-(vw-startW)/2}px,${target.top-(vh-startH)/2}px,0) scale(${target.width/startW},${target.height/startH})`}
-    ],{duration:1150,easing:'cubic-bezier(.22,.8,.22,1)',fill:'forwards'});
-
-    video.animate([{opacity:1,filter:'brightness(1)'},{opacity:.08,filter:'brightness(.85)'}],{duration:380,fill:'forwards',easing:'ease-out'});
-    overlay.animate([{opacity:1},{opacity:1,offset:.45},{opacity:0}],{duration:1150,easing:'ease-in-out',fill:'forwards'}).onfinish=()=>{
-      brand.classList.add('is-ready');
-      handoff.style.display='none';
-      overlay.classList.add('is-hidden');
-      document.body.classList.remove('intro-lock');
-      document.body.classList.add('bg-reveal');
-    };
-  }
-
-  video.addEventListener('ended',()=>finishIntro('animated'));
-  video.addEventListener('error',()=>finishIntro('immediate'));
-  if(skip) skip.addEventListener('click',()=>finishIntro('animated'));
-
-  // Seguridad: si en 12s no hubo canplay, saltar intro
-  setTimeout(function(){if(!finished&&video.currentTime===0)finishIntro('immediate');},12000);
-})();
-</script>
-
-<script>
-(function(){
-  // --- Menú móvil ---
-  const nav=document.querySelector('.nav');
-  const toggle=document.querySelector('.nav-toggle');
-  const menu=document.getElementById('primary-nav');
-  if(nav&&toggle&&menu){
-    const setOpen=(open)=>{
-      nav.classList.toggle('open',open);
-      toggle.setAttribute('aria-expanded',open?'true':'false');
-      toggle.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
-    };
-    toggle.addEventListener('click',()=>setOpen(!nav.classList.contains('open')));
-    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false);});
-    const desktop=window.matchMedia('(min-width:901px)');
-    if(desktop.addEventListener)desktop.addEventListener('change',e=>{if(e.matches)setOpen(false);});
-  }
-  // --- Formulario de contacto (demo, sin backend) ---
-  const form=document.getElementById('contactForm');
-  if(form){
-    const status=form.querySelector('.form-status');
-    form.addEventListener('submit',e=>{
-      e.preventDefault();
-      if(!form.checkValidity()){
-        form.reportValidity();
-        if(status){status.classList.add('is-error');status.textContent='Revisa los campos marcados antes de enviar.';}
-        return;
-      }
-      if(status){status.classList.remove('is-error');status.textContent='Gracias. Te contactaremos pronto. (Versión demostrativa: aún no se envía.)';}
-      form.reset();
-    });
-  }
-  // --- Card spotlight (sigue el cursor sobre cada tarjeta de producto y del explainer) ---
-  document.querySelectorAll('.product-card,.myco-card').forEach(card=>{
-    card.addEventListener('pointermove',e=>{
-      const r=card.getBoundingClientRect();
-      card.style.setProperty('--mx',(((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');
-      card.style.setProperty('--my',(((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');
-    });
+  // iconos de especie (estaciones)
+  [].forEach.call(document.querySelectorAll("svg.sp"),function(s){
+    s.innerHTML='<path d="'+TREES[s.dataset.sp](30,66,58,rng(5))+'"/>';
   });
-})();
-</script>
 
-<script src="vendor/lenis.min.js"></script>
-<script>
-(function(){
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ---------- bosque de la superficie ----------
+  function forest(id,seed,base,step,kinds,hLo,hHi){
+    var g=document.getElementById(id),r=rng(seed),d0="",d1="",i=0;
+    for(var x=-20;x<1470;x+=step*(.7+r()*.7),i++){
+      var k=kinds[Math.floor(r()*kinds.length)],fx=clamp(x/1440,0,1);
+      var h=(hLo+r()*(hHi-hLo))*(.55+.45*fx+(fx>.55?.1:0));
+      var d=TREES[k](x,base,h,r);if(i%2)d1+=d;else d0+=d;
+    }
+    g.innerHTML='<path fill="'+g.dataset.c0+'" d="'+d0+'"/><path fill="'+g.dataset.c1+'" d="'+d1+'"/>';
+  }
+  forest("fo1",3,300,46,["lenga","coihue","cipres","nirre","lenga","coihue","notro","cipres","araucaria"],110,190);
+  forest("fo2",9,326,62,["lenga","coihue","cipres","nirre","notro","lenga","cipres","coihue","calafate","araucaria","alerce"],130,240);
+  function blades(id,base,count,minH,maxH,seed){
+    var g=document.getElementById(id),r=rng(seed),d="";
+    for(var i=0;i<count;i++){
+      var x=r()*1460-10,h=minH+r()*(maxH-minH),lean=(r()-.5)*26,w=2.5+r()*3.5;
+      d+="M"+(x-w).toFixed(1)+" "+base+" Q"+(x+lean*.2).toFixed(1)+" "+(base-h*.55).toFixed(1)+" "+(x+lean).toFixed(1)+" "+(base-h).toFixed(1)+" Q"+(x+lean*.2+w).toFixed(1)+" "+(base-h*.5).toFixed(1)+" "+(x+w).toFixed(1)+" "+base+"Z";
+    }
+    g.innerHTML='<path d="'+d+'"/>';
+  }
+  blades("grass-back",300,150,20,48,7);
+  blades("grass-front",334,170,24,64,21);
 
-  // --- Scroll suave premium (Lenis) ---
-  if(!reduce && window.Lenis){
-    const lenis = new Lenis({ lerp:0.1, smoothWheel:true });
-    requestAnimationFrame(function raf(t){ lenis.raf(t); requestAnimationFrame(raf); });
-    // Anclas internas con desplazamiento suave (compensando el nav fijo)
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        const id=a.getAttribute('href');
-        if(id && id.length>1){ const el=document.querySelector(id); if(el){ e.preventDefault(); lenis.scrollTo(el,{offset:-90}); } }
+  var heroEl=document.getElementById("inicio"),gnd=heroEl.querySelector(".f3");
+  function sideW(W){return Math.max(110,(W-1160)/2+60)}
+  function heroNear(W){
+    var mobile=W<=860,SW=mobile?96:sideW(W),hh=gnd.getBoundingClientRect().height||360;
+    var sc=Math.max(W/1440,hh/380),r=rng(17);
+    function vx(sx){return (sx-W/2)/sc+720}
+    var mL=vx(SW*.42),mR=vx(W-SW*.42);
+    var seeds=[.1,.8,.98].map(function(q){return vx(SW*q)}),seedsR=[.1,.8,.98].map(function(q){return vx(W-SW*q)});
+    var kinds=["lenga","nirre","cipres","coihue","notro","calafate"];
+    var bg="",i;
+    bg+=TREES.lenga(mL,346,mobile?200:250,r)+TREES.coihue(mR,346,mobile?190:235,r);
+    seeds.concat(seedsR).forEach(function(x,j){bg+=TREES[kinds[(j*2+1)%6]](x,344,34+r()*16,r)});
+    document.getElementById("near-bg").innerHTML='<path d="'+bg+'"/>';
+    var fg="",fr=rng(23);
+    [300,470,820,990,1210,1370].forEach(function(x){fg+=TREES.helecho(x+fr()*30,340,30+fr()*20,fr)+TREES.helecho(x+22+fr()*20,342,24+fr()*14,fr)});
+    var nal="";[mL+70,mR-90,700].forEach(function(x){nal+=TREES.nalca(x,342,50+fr()*18,fr)});
+    // calafate con flores, notro con flores rojas
+    var shr="",ye="",nt=TREES.notro(mL+150,342,78,fr),rd="";
+    [mL+260,640,mR-190,1050].forEach(function(x){shr+=TREES.calafate(x,342,34+fr()*10,fr);for(var q=0;q<5;q++)ye+=circ(x+(fr()-.5)*34,326+fr()*10,1.8)});
+    for(var q=0;q<16;q++)rd+=circ(mL+150+(fr()-.5)*42,342-78*(.5+fr()*.4),2.3);
+    function circ(x,y,rr){return "M"+f(x-rr)+" "+f(y)+"a"+rr+" "+rr+" 0 1 0 "+f(2*rr)+" 0a"+rr+" "+rr+" 0 1 0 "+f(-2*rr)+" 0"}
+    document.getElementById("near-fg").innerHTML='<path fill="#2b5a35" d="'+fg+'"/><path fill="#3f7544" d="'+nal+shr+'"/><path fill="#2f6a3c" d="'+nt+'"/><path fill="#e8b923" d="'+ye+'"/><path fill="#d23a2a" d="'+rd+'"/>';
+  }
+
+  // parallax suave (solo traslación, un rAF)
+  var f1=heroEl.querySelector(".f1"),f2=heroEl.querySelector(".f2"),lastPar=-1;
+  function parallax(sy){
+    if(reduce)return;
+    var y=Math.min(sy,heroEl.offsetHeight);
+    if(Math.abs(y-lastPar)<.5)return;lastPar=y;
+    f1.style.transform="translate3d(0,"+(y*.34).toFixed(1)+"px,0)";
+    f2.style.transform="translate3d(0,"+(y*.17).toFixed(1)+"px,0)";
+  }
+
+  // ---------- red micelial ligada al scroll ----------
+  var sub=document.getElementById("sub"),svg=document.getElementById("mycel"),side=document.getElementById("side");
+  var stations=[].slice.call(document.querySelectorAll("[data-st]"));
+  var anchorsEls=[].slice.call(document.querySelectorAll("[data-depth]"));
+  var gDepth=document.getElementById("g-depth"),gLayer=document.getElementById("g-layer");
+  var S={},lastHead=-1e9,lastDepth="",lastLayer="";
+  var routes=[],vis=[],parts=[],subTop=0,subH=0,subW=0,sideM1=0,sideM2=0,isMobile=false;
+
+  function addRoute(xs,ys,type,w,rec){
+    var n=xs.length,cum=new Float32Array(n),i,mn=1e9,mx=-1e9;
+    for(i=1;i<n;i++)cum[i]=cum[i-1]+Math.hypot(xs[i]-xs[i-1],ys[i]-ys[i-1]);
+    for(i=0;i<n;i++){if(ys[i]<mn)mn=ys[i];if(ys[i]>mx)mx=ys[i]}
+    var rt={xs:xs,ys:ys,cum:cum,len:cum[n-1],type:type,w:w||1,rec:rec||null,ymin:mn,ymax:mx};
+    if(rt.len>8)routes.push(rt);return rt;
+  }
+  function sampleBez(P,c1,c2,E,n){var xs=[],ys=[];for(var i=0;i<=n;i++){var p=bez(P,c1,c2,E,i/n);xs.push(p[0]);ys.push(p[1])}return[xs,ys]}
+
+  function build(){
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    while(side.firstChild)side.removeChild(side.firstChild);
+    routes=[];parts.length=0;
+    var sr=sub.getBoundingClientRect(),W=sub.offsetWidth,H=sub.offsetHeight,sy=window.scrollY,top0=sr.top+sy;
+    subTop=top0;subH=H;subW=W;
+    svg.setAttribute("viewBox","0 0 "+W+" "+H);side.setAttribute("viewBox","0 0 "+W+" "+H);
+    var mobile=W<=860,r=rng(11);isMobile=mobile;
+    heroNear(W);
+    var pins=stations.map(function(s){
+      var b=s.querySelector(".pin").getBoundingClientRect();
+      return{x:b.left+b.width/2-sr.left,y:b.top+sy+b.height/2-top0,core:s.hasAttribute("data-core"),el:s};
+    });
+    var x0=mobile?pins[0].x:W/2,amp=mobile?14:Math.min(W*.16,190),last=pins[pins.length-1];
+    var seq=[{x:x0,y:22}].concat(pins);
+    var d="M"+f(seq[0].x)+" "+f(seq[0].y);
+    for(var i=0;i<seq.length-1;i++){
+      var A=seq[i],B=seq[i+1],dy=B.y-A.y,s=(i%2===0)?-1:1;
+      if(i===0)s=1;
+      var k=(i===0)?.3:1;
+      var mx=mobile?(A.x+(i%2?12:5)):(A.x+s*amp*k),my=A.y+dy*(i===0?.5:.7);
+      d+=" C"+f(A.x)+" "+f(A.y+dy*.5)+" "+f(mx)+" "+f(my-dy*.16)+" "+f(mx)+" "+f(my)
+        +" C"+f(mx)+" "+f(my+dy*.14)+" "+f(B.x)+" "+f(B.y-dy*.28)+" "+f(B.x)+" "+f(B.y);
+    }
+    var glow=el("path",{d:d,fill:"none",stroke:"#9bd96a","stroke-width":7,"stroke-linecap":"round",opacity:.10},svg);
+    var main=el("path",{d:d,fill:"none",stroke:"#9bd96a","stroke-width":2.6,"stroke-linecap":"round"},svg);
+    var L=main.getTotalLength(),N=Math.ceil(L/6),xs=new Float32Array(N+1),ys=new Float32Array(N+1);
+    for(var j=0;j<=N;j++){var p=main.getPointAtLength(Math.min(L,j*L/N));xs[j]=p.x;ys[j]=p.y}
+    main.style.strokeDasharray=glow.style.strokeDasharray=L;
+    main.style.strokeDashoffset=glow.style.strokeDashoffset=L;
+    var mainRt=addRoute(Array.prototype.slice.call(xs),Array.prototype.slice.call(ys),"thread",2);
+    // ramas
+    var recs=[],tips=[],prev=null,att=mobile?420:620,yy=pins[0].y-60,k2=0;
+    var gB=el("g",{fill:"none",stroke:"#a9bf94","stroke-linecap":"round"},svg);
+    var gT=el("g",{fill:"#b5c79f"},svg);
+    function addPath(dd,w,op,y0,span){
+      var p=el("path",{d:dd,"stroke-width":w,opacity:op},gB),len=p.getTotalLength();
+      p.style.strokeDasharray=len;p.style.strokeDashoffset=len;
+      var rec={p:p,len:len,y0:y0,span:span,last:0};recs.push(rec);return rec;
+    }
+    function addTip(x,y,rad,rec){var c=el("circle",{cx:f(x),cy:f(y),r:rad,class:"tip"},gT);tips.push({c:c,rec:rec,on:false})}
+    while(yy<last.y-100){
+      yy+=att*(.75+r()*.5);
+      if(yy>last.y-80)break;
+      var zone=false;if(!mobile)pins.forEach(function(pp){if(yy>pp.y-240&&yy<pp.y+440)zone=true});
+      if(zone)continue;
+      var idx=0;while(idx<N&&ys[idx]<yy)idx++;
+      var P=[xs[idx],ys[idx]],side_=mobile?1:(k2%2?-1:1);
+      var dx=mobile?(12+r()*14):(80+r()*(amp+80)),dyy=70+r()*100;
+      if(!mobile){var ex=P[0]+side_*dx;if(ex<24||ex>W-24)side_=-side_}
+      var E=[P[0]+side_*dx,P[1]+dyy],c1=[P[0]+side_*dx*.5,P[1]+dyy*.12],c2=[P[0]+side_*dx*.85,P[1]+dyy*.5];
+      var rb=addPath("M"+f(P[0])+" "+f(P[1])+" C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]),1.1,.4,P[1],dyy+70);
+      addTip(E[0],E[1],2.4,rb);
+      var sm=sampleBez(P,c1,c2,E,8);addRoute(sm[0],sm[1],"branch",1,rb);
+      var M=bez(P,c1,c2,E,.58),tx=M[0]+side_*(mobile?(8+r()*10):(36+r()*50)),ty=M[1]+(46+r()*70);
+      if(mobile)tx=Math.min(tx,W-26);
+      var rt=addPath("M"+f(M[0])+" "+f(M[1])+" Q"+f(M[0]+side_*(tx-M[0])*.2)+" "+f(M[1]+(ty-M[1])*.7)+" "+f(tx)+" "+f(ty),.8,.32,P[1]+dyy*.45,dyy+30);
+      addTip(tx,ty,1.8,rt);
+      prev={E:E,side:side_};k2++;
+    }
+    var nodes=pins.map(function(p){
+      var g=el("g",{class:"nd"+(p.core?" core":""),transform:"translate("+f(p.x)+" "+f(p.y)+")"},svg);
+      el("circle",{class:"halo",r:p.core?46:30},g);el("circle",{class:"ring",r:p.core?20:14},g);el("circle",{class:"core",r:p.core?8:5.5},g);
+      return{g:g,y:p.y,el:p.el,on:false};
+    });
+    var seed=el("g",{transform:"translate("+f(x0)+" 22)"},svg);
+    el("circle",{r:6,fill:"#0e3123",stroke:"#c8f08f","stroke-width":2},seed);
+    var tip=el("circle",{r:6,fill:"#fff6c9",opacity:0},svg);
+    var anchors=anchorsEls.map(function(a){
+      var y;
+      if(a.hasAttribute("data-st"))y=nodes[stations.indexOf(a)].y;
+      else{var bb=a.getBoundingClientRect(),at=a.dataset.at;y=bb.top+sy-top0+(at==="end"?bb.height:at==="mid"?bb.height*.5:0)}
+      return{y:y+top0,depth:+a.dataset.depth,capa:a.dataset.capa};
+    }).sort(function(a,b){return a.y-b.y});
+    S={top0:top0,main:main,glow:glow,L:L,N:N,xs:xs,ys:ys,recs:recs,tips:tips,nodes:nodes,tip:tip,anchors:anchors,mainRt:mainRt,avail:0};
+    if(!mobile)sideArt(W,H,last.y);else{side.style.webkitMaskImage=side.style.maskImage="none"}
+    sizeCanvas();
+    seedParts();
+    lastHead=-1e9;
+    render(true);
+  }
+
+  // ---------- ilustración lateral: raíces, hifas, nodos ----------
+  function sideArt(W,H,endY){
+    var SW=sideW(W),r=rng(41);
+    sideM1=Math.max(60,(W-1160)/2-20);sideM2=sideM1+120;
+    var mask="linear-gradient(90deg,#000 0,#000 "+f(sideM1)+"px,transparent "+f(sideM2)+"px,transparent "+f(W-sideM2)+"px,#000 "+f(W-sideM1)+"px,#000 100%)";
+    side.style.webkitMaskImage=side.style.maskImage=mask;
+    var rootD=["","",""],hyph="",nodeD="";
+    function root(x,y,th,len,lvl,xmin,xmax){
+      var ex=x+Math.sin(th)*len;if(ex<xmin||ex>xmax){th=-th;ex=x+Math.sin(th)*len}
+      var ey=y+Math.cos(th)*len;
+      var c1=[x+Math.sin(th)*len*.35+(r()-.5)*len*.25,y+Math.cos(th)*len*.35],c2=[ex-Math.sin(th)*len*.3+(r()-.5)*len*.25,ey-Math.cos(th)*len*.3];
+      rootD[lvl]+="M"+f(x)+" "+f(y)+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(ex)+" "+f(ey);
+      if(lvl<2){var n=2;for(var i=0;i<n;i++)root(ex,ey,th+(i-.5)*.8+(r()-.5)*.3,len*(.6+r()*.15),lvl+1,xmin,xmax)}
+    }
+    // serena: un solo árbol madre por lado, una raíz con dos niveles, una hifa y un nodo
+    function hub(xm,xs_,xmin,xmax){
+      root(xm,0,(r()-.5)*.3,130,0,xmin,xmax);
+      var P=[xm,34],E=[xs_,16],c1=[xm+(xs_-xm)*.3,34+60],c2=[xs_-(xs_-xm)*.3,16+50];
+      hyph+="M"+f(P[0])+" "+f(P[1])+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]);
+      nodeD+=circ(E[0],E[1],2.6);
+    }
+    function circ(x,y,rr){return "M"+f(x-rr)+" "+f(y)+"a"+rr+" "+rr+" 0 1 0 "+f(2*rr)+" 0a"+rr+" "+rr+" 0 1 0 "+f(-2*rr)+" 0"}
+    hub(SW*.42,SW*.82,8,SW+90);
+    hub(W-SW*.42,W-SW*.82,W-SW-90,W-8);
+    // hifas profundas: muy pocas, largas y finas
+    [0,1].forEach(function(sd){
+      var lo=sd?W-SW-40:10,hi=sd?W-10:SW+40,list=[],y=320;
+      while(y<endY+80){list.push([lo+r()*(hi-lo),y+r()*60]);y+=300+r()*160}
+      list.forEach(function(a,i){
+        nodeD+=circ(a[0],a[1],2+r()*.8);
+        var b=list[i+1];if(!b)return;
+        var c1=[a[0]+(r()-.5)*70,a[1]+(b[1]-a[1])*.4],c2=[b[0]+(r()-.5)*70,b[1]-(b[1]-a[1])*.4];
+        hyph+="M"+f(a[0])+" "+f(a[1])+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(b[0])+" "+f(b[1]);
       });
     });
+    var cols=["#b79c78","#a99472","#9aa883"],ws=[2.4,1.5,1],ops=[.3,.26,.22];
+    for(var lv=0;lv<3;lv++)if(rootD[lv])el("path",{d:rootD[lv],fill:"none",stroke:cols[lv],"stroke-width":ws[lv],"stroke-linecap":"round",opacity:ops[lv]},side);
+    el("path",{d:hyph,fill:"none",stroke:"#a9bf94","stroke-width":.8,opacity:.22,"stroke-linecap":"round"},side);
+    el("path",{d:nodeD,fill:"#b5c79f",opacity:.4},side);
   }
 
-  // --- Reveal al entrar al viewport (realza un contenido ya visible por defecto) ---
-  if(!reduce && 'IntersectionObserver' in window){
-    const io = new IntersectionObserver((ents)=>{
-      ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
-    }, { threshold:0.12, rootMargin:'0px 0px -7% 0px' });
-    const reveal=(sel,stagger)=>{
-      document.querySelectorAll(sel).forEach((el,i)=>{
-        if(el.getBoundingClientRect().top < innerHeight*0.9) return; // ya en pantalla: queda visible
-        el.classList.add('rv');
-        if(stagger) el.style.transitionDelay = Math.min(i,6)*stagger + 'ms';
-        io.observe(el);
-      });
-    };
-    reveal('#soluciones .copy',0);
-    reveal('#soluciones .myco-card',90);
-    reveal('#soluciones .myco-banner',0);
-    reveal('#nexo .container > .eyebrow, #nexo .container > h2, #nexo .container > .lead',55);
-    reveal('#nexo .product-card',70);
-    reveal('.dashboard',0);
-    reveal('#nosotros .person',110);
-    reveal('#contacto .cta-panel',0);
-    reveal('#contacto .form',90);
+  // ---------- intercambio de nutrientes (canvas, rAF, pausa fuera de pantalla) ----------
+  var cv=document.getElementById("flow"),ctx=cv.getContext("2d"),dpr=1,cw=0,ch=0;
+  var inView=false,running=false,lastT=0,pr=rng(77);
+  var COL=[{core:"226,200,140",glow:"226,190,120"},{core:"170,215,215",glow:"150,205,205"}]; // 0 azúcares/carbono, 1 fósforo/agua/nitrógeno
+  function sizeCanvas(){
+    dpr=Math.min(window.devicePixelRatio||1,isMobile?1.5:2);
+    cw=cv.clientWidth;ch=cv.clientHeight;
+    cv.width=Math.round(cw*dpr);cv.height=Math.round(ch*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
   }
+  function avail(rt){return rt.type==="thread"?S.avail:rt.rec?rt.rec.last:1}
+  function pickVisible(){
+    vis.length=0;var sy=window.scrollY,y0=sy-subTop-80,y1=y0+ch+160,tot=0;
+    for(var i=0;i<routes.length;i++){var rt=routes[i];if(rt.type==="thread"&&rt.ymax>y0&&rt.ymin<y1&&avail(rt)>.04){vis.push(rt);tot+=rt.w*(rt.len>60?1:.6)}}
+    return tot;
+  }
+  function spawn(p,init){
+    if(!vis.length){p.rt=null;return}
+    var tot=0,i;for(i=0;i<vis.length;i++)tot+=vis[i].w;
+    var t=pr()*tot,rt=vis[0];
+    for(i=0;i<vis.length;i++){t-=vis[i].w;if(t<=0){rt=vis[i];break}}
+    var av=avail(rt);
+    p.rt=rt;p.k=pr()<.5?0:1;p.i=0;
+    p.v=(rt.type==="side"?26:rt.type==="thread"?70:40)*(.7+pr()*.7);
+    var max=rt.len*av;
+    p.s=init?pr()*max:(p.k?max:0);
+    p.max=max;
+  }
+  function seedParts(){
+    parts.length=0;
+    var n=reduce?0:(isMobile?7:14);
+    for(var i=0;i<n;i++)parts.push({rt:null,k:0,s:0,v:0,i:0,max:0});
+    pickVisible();
+    parts.forEach(function(p){spawn(p,true)});
+  }
+  function posAt(p){
+    var rt=p.rt,c=rt.cum,n=c.length,i=p.i;
+    while(i<n-2&&c[i+1]<p.s)i++;while(i>0&&c[i]>p.s)i--;p.i=i;
+    var seg=c[i+1]-c[i]||1,t=clamp((p.s-c[i])/seg,0,1);
+    return[rt.xs[i]+(rt.xs[i+1]-rt.xs[i])*t,rt.ys[i]+(rt.ys[i+1]-rt.ys[i])*t];
+  }
+  function sideAlpha(x){
+    if(sideM2===0)return 1;
+    var d=Math.min(x,subW-x);return clamp((sideM2-d)/(sideM2-sideM1),0,1);
+  }
+  function dot(x,y,k,a){
+    if(a<.03)return;
+    var c=COL[k];
+    ctx.globalAlpha=.12*a;ctx.fillStyle="rgb("+c.glow+")";ctx.beginPath();ctx.arc(x,y,5,0,6.2832);ctx.fill();
+    ctx.globalAlpha=.7*a;ctx.fillStyle="rgb("+c.core+")";ctx.beginPath();ctx.arc(x,y,1.9,0,6.2832);ctx.fill();
+  }
+  function clipSub(){
+    var sy=window.scrollY,t=subTop-sy,b=subTop+subH-sy;
+    ctx.save();ctx.beginPath();ctx.rect(0,Math.max(0,t),cw,Math.max(0,Math.min(ch,b)-Math.max(0,t)));ctx.clip();
+    return;
+  }
+  function drawFrame(dt){
+    ctx.clearRect(0,0,cw,ch);
+    pickVisible();
+    clipSub();
+    var sy=window.scrollY;
+    for(var n=0;n<parts.length;n++){
+      var p=parts[n];
+      if(!p.rt||vis.indexOf(p.rt)<0){spawn(p,true);if(!p.rt)continue}
+      var av=avail(p.rt);p.max=p.rt.len*av;
+      p.s+=(p.k?-1:1)*p.v*dt;
+      if(p.s<0||p.s>p.max){spawn(p,false);if(!p.rt)continue}
+      var q=posAt(p),a=Math.min(1,Math.min(p.s,p.max-p.s)/18+.2);
+      if(p.rt.type==="side")a*=sideAlpha(q[0]);
+      dot(q[0],q[1]+subTop-sy,p.k,a);
+    }
+    ctx.restore();ctx.globalAlpha=1;
+  }
+  function drawStatic(){
+    ctx.clearRect(0,0,cw,ch);if(!inView)return;
+    pickVisible();clipSub();
+    var sy=window.scrollY,cnt=0;
+    for(var i=0;i<vis.length&&cnt<8;i++){
+      var rt=vis[i],av=avail(rt);if(rt.len<40)continue;
+      [[.3,0],[.7,1]].forEach(function(pp){
+        var p={rt:rt,s:rt.len*av*pp[0],i:0},q=posAt(p),a=rt.type==="side"?sideAlpha(q[0]):1;
+        dot(q[0],q[1]+subTop-sy,pp[1],a);
+      });
+      cnt++;
+    }
+    ctx.restore();ctx.globalAlpha=1;
+  }
+  function loop(t){
+    if(!running)return;
+    var dt=Math.min(.05,(t-lastT)/1000||.016);lastT=t;
+    drawFrame(dt);
+    requestAnimationFrame(loop);
+  }
+  function setRun(){
+    var want=inView&&!document.hidden&&!reduce;
+    cv.style.visibility=inView?"visible":"hidden";
+    if(want&&!running){running=true;lastT=performance.now();requestAnimationFrame(loop)}
+    else if(!want){running=false;if(reduce)drawStatic()}
+  }
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){inView=es[0].isIntersecting;setRun()},{threshold:0}).observe(sub);
+  }else{inView=true;setRun()}
+  document.addEventListener("visibilitychange",setRun);
+
+  // ---------- render ligado al scroll ----------
+  function setOffset(rec,p){
+    var q=Math.round(p*500)/500;
+    if(q===rec.last)return;rec.last=q;rec.p.style.strokeDashoffset=rec.len*(1-q);
+  }
+  function render(force){
+    if(!S.main)return;
+    var vh=window.innerHeight,sy=window.scrollY;
+    var head=reduce?1e9:sy+vh*.6,realHead=sy+vh*.6;
+    var an=S.anchors,dp=0,cap=an[0].capa;
+    if(realHead>an[0].y){
+      var a=0;while(a<an.length-1&&an[a+1].y<=realHead)a++;
+      cap=an[a].capa;
+      if(a<an.length-1){var t=(realHead-an[a].y)/(an[a+1].y-an[a].y);dp=an[a].depth+(an[a+1].depth-an[a].depth)*clamp(t,0,1)}else dp=an[a].depth;
+    }else{dp=0;cap="Superficie"}
+    var dt=Math.round(dp)+" cm";
+    if(dt!==lastDepth){gDepth.textContent=dt;lastDepth=dt}
+    if(cap!==lastLayer){gLayer.textContent=cap;lastLayer=cap}
+    if(!force&&Math.abs(head-lastHead)<.5)return;
+    lastHead=head;
+    var hy=head-S.top0,ys=S.ys,N=S.N,lo=0,hi=N;
+    while(lo<hi){var m=(lo+hi)>>1;if(ys[m]<hy)lo=m+1;else hi=m}
+    var len=hy>=ys[N]?S.L:(hy<=ys[0]?0:Math.max(0,(lo-1+(hy-ys[lo-1])/Math.max(.001,ys[lo]-ys[lo-1]))*S.L/N));
+    var off=S.L-len;S.avail=len/S.L;
+    S.main.style.strokeDashoffset=off;S.glow.style.strokeDashoffset=off;
+    if(len>0&&len<S.L-1){var i0=Math.min(N,Math.max(0,Math.round(len/S.L*N)));S.tip.setAttribute("cx",S.xs[i0]);S.tip.setAttribute("cy",S.ys[i0]);S.tip.setAttribute("opacity",.95)}
+    else S.tip.setAttribute("opacity",0);
+    for(var r=0;r<S.recs.length;r++){var rc=S.recs[r];setOffset(rc,clamp((hy-rc.y0)/rc.span,0,1))}
+    for(var q=0;q<S.tips.length;q++){var tp=S.tips[q],on=tp.rec.last>=.99;if(on!==tp.on){tp.on=on;tp.c.style.opacity=on?.45:0}}
+    for(var n=0;n<S.nodes.length;n++){
+      var nd=S.nodes[n],reached=hy>=nd.y-6;
+      if(reached!==nd.on){nd.on=reached;nd.g.classList.toggle("on",reached);nd.el.classList.toggle("on",reached)}
+    }
+  }
+
+  var ticking=false;
+  function onScroll(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      var sy=window.scrollY;
+      render(false);parallax(sy);
+      if(reduce)drawStatic();
+    });
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  var rb=false;
+  function rebuild(){if(rb)return;rb=true;requestAnimationFrame(function(){rb=false;build();if(reduce)drawStatic();setRun()})}
+  if("ResizeObserver" in window){new ResizeObserver(rebuild).observe(sub)}
+  window.addEventListener("resize",rebuild);
+  window.addEventListener("load",rebuild);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(rebuild);
+  build();parallax(window.scrollY);
+
+  var els=document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  }else els.forEach(function(e){e.classList.add("in")});
+
+  document.getElementById("form").addEventListener("submit",function(e){
+    e.preventDefault();var fm=e.target,m=document.getElementById("msg");
+    if(!fm.n.value||!fm.e.validity.valid||!fm.m.value){m.textContent="Revisa nombre, correo y mensaje.";return}
+    m.textContent="Gracias, esto es una maqueta: en producción tu mensaje llegaría a nuestro equipo.";
+  });
 })();
 </script>
 </body>
