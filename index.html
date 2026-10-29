@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nothara Labs | La inteligencia está en las conexiones</title>
 <meta name="description" content="Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
+<link rel="canonical" href="https://micorriza.bio/">
+<meta name="theme-color" content="#081f17">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:site_name" content="Nothara Labs">
+<meta property="og:title" content="Nothara Labs | La inteligencia está en las conexiones">
+<meta property="og:description" content="Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
+<meta property="og:url" content="https://micorriza.bio/">
+<meta property="og:image" content="https://micorriza.bio/assets/og-nothara.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nothara Labs: la inteligencia está en las conexiones. Tecnología inspirada en sistemas vivos, Aysén, Chile.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://micorriza.bio/assets/og-nothara.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,6 +71,20 @@ h3{font-size:1.35rem}
 .gauge b{font:600 .95rem var(--serif);color:var(--verde)}
 .gauge span{font:500 .62rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
 .nav .btn{padding:.6em 1.2em;font-size:.9rem}
+.menu-btn{display:none;flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--linea);background:transparent;cursor:pointer;position:relative;color:var(--tinta)}
+.menu-btn span{position:absolute;left:11px;right:11px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s}
+.menu-btn span:first-child{top:15px}.menu-btn span:last-child{top:22px}
+.menu-btn[aria-expanded="true"] span:first-child{top:19px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:last-child{top:19px;transform:rotate(-45deg)}
+.menu-btn:focus-visible{outline:2px solid var(--verde-2);outline-offset:2px}
+@media(max-width:860px){
+  .menu-btn{display:inline-block}
+  .nav ul.open{display:flex;flex-direction:column;gap:2px;position:absolute;top:calc(100% + 8px);left:0;right:0;padding:12px 22px;background:#fbf8f0;border:1px solid rgba(214,205,180,.9);border-radius:24px;box-shadow:0 14px 34px -14px rgba(0,0,0,.45)}
+  .nav ul.open a{display:block;padding:12px 2px;font-size:1rem;border-bottom:1px solid var(--linea)}
+  .nav ul.open li:last-child a{border-bottom:0}
+}
+.contact .wa{margin-top:1.2rem;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.contact .wa span{font-size:.9rem;opacity:.8}
+.priv{margin:0;font-size:.82rem;opacity:.8}
 @media(max-width:860px){.nav ul{display:none}.nav .in{margin-left:0;justify-content:space-between}.gauge{margin-left:auto}}
 @media(max-width:420px){.nav .in{padding-left:16px;gap:10px}.nav .btn{padding:.55em .95em}.gauge{min-width:82px}.nav .logo{font-size:1.25rem}.nav .logo small{display:none}}
 
@@ -267,7 +295,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
   <div class="in">
     <a class="logo wm" href="#inicio" aria-label="Nothara Labs, volver a la superficie"><!-- wordmark provisional -->Nothara<small>Labs</small></a>
     <nav aria-label="Principal">
-      <ul>
+      <ul id="menu-list">
         <li><a href="#red">La red</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#metodo">Cómo trabajamos</a></li>
@@ -276,6 +304,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     </nav>
     <div class="gauge" aria-hidden="true"><b id="g-depth">0 cm</b><span id="g-layer">Superficie</span></div>
     <a class="btn" href="#contacto">Hablemos</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-list" aria-label="Abrir menú"><span></span><span></span></button>
   </div>
 </header>
 
@@ -541,8 +570,8 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       <p class="eyebrow label">Contacto</p>
       <h2>¿Tienes un problema real que podría ser un sistema?</h2>
       <p style="margin-top:1.2rem;font-size:1.1rem">Cuéntanos en pocas líneas cómo trabajas. Te respondemos con una propuesta clara de por dónde partir.</p>
-      <!-- correo provisional: confirmar casilla definitiva de Nothara -->
-      <p class="alt">También puedes escribirnos a <a href="mailto:contacto@micorriza.bio">contacto@micorriza.bio</a>.</p>
+      <p class="alt">También puedes escribirnos a <a href="mailto:amellado@micorriza.bio">amellado@micorriza.bio</a>.</p>
+      <p class="wa"><a class="btn lima" href="https://wa.me/56961156322?text=Hola%2C%20quiero%20conversar%20sobre%20un%20proyecto%20con%20Nothara%20Labs." target="_blank" rel="noopener">Escribir por WhatsApp</a><span>+56 9 6115 6322</span></p>
     </div>
     <form id="form" class="rv" novalidate>
       <label>Nombre<input name="n" required autocomplete="name"></label>
@@ -552,6 +581,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       </label>
       <label>¿Qué quieres resolver?<textarea name="m" required></textarea></label>
       <button class="btn lima" type="submit">Enviar mensaje</button>
+      <p class="priv">Usamos estos datos solo para responderte; no los compartimos con terceros.</p>
       <p class="msg" role="status" id="msg"></p>
     </form>
   </div>
@@ -978,10 +1008,21 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     els.forEach(function(e){io.observe(e)});
   }else els.forEach(function(e){e.classList.add("in")});
 
+  (function(){var b=document.querySelector(".menu-btn"),u=document.getElementById("menu-list");if(!b||!u)return;
+    function set(o){u.classList.toggle("open",o);b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Cerrar menú":"Abrir menú")}
+    b.addEventListener("click",function(){set(!u.classList.contains("open"))});
+    u.addEventListener("click",function(e){if(e.target.tagName==="A")set(false)});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)});
+    window.matchMedia("(min-width:861px)").addEventListener("change",function(){set(false)});
+  })();
   document.getElementById("form").addEventListener("submit",function(e){
     e.preventDefault();var fm=e.target,m=document.getElementById("msg");
     if(!fm.n.value||!fm.e.validity.valid||!fm.m.value){m.textContent="Revisa nombre, correo y mensaje.";return}
-    m.textContent="Gracias, esto es una maqueta: en producción tu mensaje llegaría a nuestro equipo.";
+    var sub=encodeURIComponent("Consulta desde micorriza.bio ("+fm.r.value+")");
+    var NL="%0A";
+    var body=encodeURIComponent("Nombre: "+fm.n.value)+NL+encodeURIComponent("Correo: "+fm.e.value)+NL+encodeURIComponent("Rubro: "+fm.r.value)+NL+NL+encodeURIComponent(fm.m.value);
+    m.textContent="Se abrirá tu aplicación de correo con el mensaje listo para enviar. Si no se abre, escríbenos a amellado@micorriza.bio o por WhatsApp.";
+    window.location.href="mailto:amellado@micorriza.bio?subject="+sub+"&body="+body;
   });
 })();
 </script>
