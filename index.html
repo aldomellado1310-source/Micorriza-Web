@@ -3,22 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nothara Labs | La inteligencia está en las conexiones</title>
-<meta name="description" content="Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
+<title>Micorriza | La inteligencia está en las conexiones</title>
+<meta name="description" content="Micorriza es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
 <link rel="canonical" href="https://micorriza.bio/">
 <meta name="theme-color" content="#081f17">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
-<meta property="og:site_name" content="Nothara Labs">
-<meta property="og:title" content="Nothara Labs | La inteligencia está en las conexiones">
-<meta property="og:description" content="Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
+<meta property="og:site_name" content="Micorriza">
+<meta property="og:title" content="Micorriza | La inteligencia está en las conexiones">
+<meta property="og:description" content="Micorriza es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Software, plataformas digitales y redes inteligentes inspiradas en sistemas vivos.">
 <meta property="og:url" content="https://micorriza.bio/">
-<meta property="og:image" content="https://micorriza.bio/assets/og-nothara.png">
+<meta property="og:image" content="https://micorriza.bio/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Nothara Labs: la inteligencia está en las conexiones. Tecnología inspirada en sistemas vivos, Aysén, Chile.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://micorriza.bio/assets/og-nothara.png">
+<meta name="twitter:image" content="https://micorriza.bio/assets/og-card.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,6 +60,9 @@ h3{font-size:1.35rem}
 .nav{position:fixed;z-index:30;top:10px;left:50%;transform:translateX(-50%);width:min(1120px,100% - 20px);
   background:rgba(251,248,240,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(214,205,180,.9);border-radius:999px;box-shadow:0 8px 28px -12px rgba(0,0,0,.35);color:var(--tinta)}
+.nav{transition:opacity .35s ease,transform .35s ease,visibility 0s}
+.nav.off{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,-14px);transition:opacity .25s ease,transform .25s ease,visibility 0s .25s}
+@media(prefers-reduced-motion:reduce){.nav,.nav.off{transition:none}}
 .nav .in{display:flex;align-items:center;gap:18px;height:58px;padding:0 10px 0 22px}
 .nav .logo{font-size:1.5rem;text-decoration:none}
 .nav nav{margin:0 auto}
@@ -71,20 +73,6 @@ h3{font-size:1.35rem}
 .gauge b{font:600 .95rem var(--serif);color:var(--verde)}
 .gauge span{font:500 .62rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
 .nav .btn{padding:.6em 1.2em;font-size:.9rem}
-.menu-btn{display:none;flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--linea);background:transparent;cursor:pointer;position:relative;color:var(--tinta)}
-.menu-btn span{position:absolute;left:11px;right:11px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s}
-.menu-btn span:first-child{top:15px}.menu-btn span:last-child{top:22px}
-.menu-btn[aria-expanded="true"] span:first-child{top:19px;transform:rotate(45deg)}
-.menu-btn[aria-expanded="true"] span:last-child{top:19px;transform:rotate(-45deg)}
-.menu-btn:focus-visible{outline:2px solid var(--verde-2);outline-offset:2px}
-@media(max-width:860px){
-  .menu-btn{display:inline-block}
-  .nav ul.open{display:flex;flex-direction:column;gap:2px;position:absolute;top:calc(100% + 8px);left:0;right:0;padding:12px 22px;background:#fbf8f0;border:1px solid rgba(214,205,180,.9);border-radius:24px;box-shadow:0 14px 34px -14px rgba(0,0,0,.45)}
-  .nav ul.open a{display:block;padding:12px 2px;font-size:1rem;border-bottom:1px solid var(--linea)}
-  .nav ul.open li:last-child a{border-bottom:0}
-}
-.contact .wa{margin-top:1.2rem;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.contact .wa span{font-size:.9rem;opacity:.8}
-.priv{margin:0;font-size:.82rem;opacity:.8}
 @media(max-width:860px){.nav ul{display:none}.nav .in{margin-left:0;justify-content:space-between}.gauge{margin-left:auto}}
 @media(max-width:420px){.nav .in{padding-left:16px;gap:10px}.nav .btn{padding:.55em .95em}.gauge{min-width:82px}.nav .logo{font-size:1.25rem}.nav .logo small{display:none}}
 
@@ -136,7 +124,7 @@ h3{font-size:1.35rem}
 
 /* ---------- subsuelo ---------- */
 .sub{position:relative;background:linear-gradient(180deg,#8f6340 0%,#744b32 17%,#553a28 36%,#3c3a29 52%,#22432f 70%,#12392a 86%,#0e3123 100%)}
-.sub::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;
+.sub::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
   background-image:radial-gradient(rgba(255,235,200,.10) 1.2px,transparent 1.6px),radial-gradient(rgba(0,0,0,.14) 2.4px,transparent 3px);
   background-size:19px 23px,41px 37px;background-position:0 0,11px 17px}
 #mycel{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
@@ -169,7 +157,7 @@ h3{font-size:1.35rem}
 .st .aside{grid-area:aside;padding-top:6px}
 .st:not(.flip) .aside{padding-left:44px}
 .st.flip .aside{text-align:right;padding-right:44px}
-.num{display:block;font:300 clamp(5rem,12vw,9.5rem)/.85 var(--serif);letter-spacing:-.05em;color:rgba(255,240,215,.09);font-variation-settings:"opsz" 144}
+.num{display:block;font:300 clamp(5rem,12vw,9.5rem)/.85 var(--serif);letter-spacing:-.05em;color:rgba(255,240,215,.16);font-variation-settings:"opsz" 144}
 .st .aside .label{display:block;margin:18px 0 10px;color:var(--hilo)}
 .st .aside h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:300;color:var(--papel);max-width:15ch}
 .st.flip .aside h2{margin-left:auto}
@@ -284,18 +272,17 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
 <body>
 <!--
   MARCA (provisional, por confirmar con el dueño):
-  - Nothara = nombre comercial visible. Nothara Labs = nombre institucional. Razón social: Servicios Tecnológicos Pangal SpA (solo en el footer legal).
-  - La disponibilidad comercial/registral de "Nothara" AÚN NO está verificada.
-  - No existe logo de Nothara: el wordmark tipográfico "Nothara" (.wm) es PROVISIONAL. assets/logo.png solo se usa como logo del producto Micorriza.
-  - Micorriza (agua rural, antes HifaNet) y MicelioNet son productos independientes con firma discreta "by Nothara". HifaNet ya no existe como cliente ni nodo.
+  - Micorriza = nombre comercial visible. Razón social: Servicios Tecnológicos Pangal SpA (solo en el footer legal).
+  - El wordmark tipográfico "Micorriza" (.wm) es PROVISIONAL.
+  - MicelioNet es un producto. MicelioAgua (agua rural, antes HifaNet) es PROYECTO FUTURO: solo se muestra el nombre. HifaNet ya no existe como cliente ni nodo.
 -->
 <a class="skip" href="#main">Saltar al contenido</a>
 
-<header class="nav">
+<header class="nav off" id="nav">
   <div class="in">
-    <a class="logo wm" href="#inicio" aria-label="Nothara Labs, volver a la superficie"><!-- wordmark provisional -->Nothara<small>Labs</small></a>
+    <a class="logo wm" href="#inicio" aria-label="Micorriza, volver a la superficie"><!-- wordmark provisional -->Micorriza</a>
     <nav aria-label="Principal">
-      <ul id="menu-list">
+      <ul>
         <li><a href="#red">La red</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#metodo">Cómo trabajamos</a></li>
@@ -304,7 +291,6 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     </nav>
     <div class="gauge" aria-hidden="true"><b id="g-depth">0 cm</b><span id="g-layer">Superficie</span></div>
     <a class="btn" href="#contacto">Hablemos</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-list" aria-label="Abrir menú"><span></span><span></span></button>
   </div>
 </header>
 
@@ -334,9 +320,9 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     <path d="M0 330 C200 322 420 334 700 328 S1180 320 1440 330" fill="none" stroke="#5f3f27" stroke-width="3" opacity=".5"/>
   </svg>
   <div class="wrap">
-    <span class="wm wm-hero" aria-label="Nothara Labs"><!-- wordmark provisional: aún no hay logo de Nothara -->Nothara<small>Labs · Aysén</small></span>
+    <span class="wm wm-hero" aria-label="Micorriza"><!-- wordmark provisional: el logo actual es assets/logo.png -->Micorriza<small>Aysén</small></span>
     <h1>La inteligencia está en las <em>conexiones.</em></h1>
-    <p class="lead">Nothara Labs es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Diseñamos software, plataformas digitales y redes inteligentes inspirados en cómo se conectan los sistemas naturales. Baja y recórrela.</p>
+    <p class="lead">Micorriza es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Diseñamos software, plataformas digitales y redes inteligentes inspirados en cómo se conectan los sistemas naturales. Baja y recórrela.</p>
     <div class="cta">
       <a class="btn" href="#contacto">Conversemos</a>
       <a class="btn ghost" href="#red">Iniciar el descenso</a>
@@ -360,14 +346,14 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
         <div class="head rv">
           <p class="eyebrow label">Capa 01 · Humus</p>
           <h2>Ingeniería inspirada en cómo se conectan los sistemas naturales.</h2>
-          <p>Nothara no vende naturaleza: desarrolla ingeniería inspirada en sus principios. Creemos en una tecnología útil, accesible y resiliente, capaz de crecer con las necesidades de quienes la utilizan.</p>
+          <p>Micorriza no vende naturaleza: desarrolla ingeniería inspirada en sus principios. Creemos en una tecnología útil, accesible y resiliente, capaz de crecer con las necesidades de quienes la utilizan.</p>
           <ul class="legend" aria-label="Qué viaja por la red">
             <li><span><b>Azúcares y carbono</b> bajan de las hojas a las raíces y a las plántulas.</span></li>
             <li><span><b>Agua, fósforo y nitrógeno</b> suben desde el micelio hacia los árboles.</span></li>
           </ul>
           <ul class="facts">
             <li><b>Nacidos en Aysén</b>ingeniería y desarrollo tecnológico desde la Patagonia</li>
-            <li><b>2 productos</b>Micorriza y MicelioNet, marcas independientes</li>
+            <li><b>1 producto</b>MicelioNet, con MicelioAgua en camino</li>
             <li><b>3 proyectos</b>Certimar, Scissor White y Life Support Academy</li>
             <li><b>Útil y resiliente</b>tecnología que crece con quienes la usan</li>
           </ul>
@@ -381,22 +367,17 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     </div>
   </section>
 
-    <section class="wrap st" id="micorriza" data-st data-depth="38" data-capa="Subsuelo">
+    <section class="wrap st" id="micelioagua" data-st data-depth="38" data-capa="Subsuelo">
     <span class="pin" aria-hidden="true"></span>
     <article class="card">
       <div class="top">
-        <img src="assets/logo.png" alt="Logo de Micorriza" width="145" height="52">
-        <div class="t"><h3>Micorriza</h3><span class="label">Producto · Agua rural</span><span class="by">by Nothara</span></div>
+        <div class="t"><h3>MicelioAgua</h3><span class="label">Proyecto futuro</span></div>
       </div>
-      <div class="logo-only"><svg viewBox="0 0 200 110" width="62%" fill="none" stroke="#1d5a40" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M100 10c14 22 26 36 26 52a26 26 0 0 1-52 0c0-16 12-30 26-52Z" fill="#cfe9f0" stroke="#0b7f9c"/><path d="M100 88v18M100 96c-18 0-34-8-52-8M100 96c18 0 34-8 52-8M48 88c-8 0-14 4-20 10M152 88c8 0 14 4 20 10"/><circle cx="28" cy="98" r="4" fill="#72e235" stroke="none"/><circle cx="172" cy="98" r="4" fill="#72e235" stroke="none"/><circle cx="100" cy="106" r="4" fill="#72e235" stroke="none"/></svg><small>Captura próximamente</small></div>
-      <p class="d">Solución para el monitoreo y la gestión inteligente del agua rural. Antes se llamaba HifaNet.</p>
-      <ul><li>Monitoreo del agua en el territorio</li><li>Gestión inteligente para quien decide</li><li>La información sube por la red, como el agua por las hifas</li></ul>
     </article>
     <div class="aside">
       <span class="num" aria-hidden="true">01</span>
-      <span class="sp-row"><svg class="sp" data-sp="lenga" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Producto 01 · Lenga</span></span>
+      <span class="sp-row"><svg class="sp" data-sp="lenga" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Proyecto futuro · Lenga</span></span>
       <h2>El agua también viaja por la red.</h2>
-      <p>Monitoreo y gestión inteligente del agua rural: como en el bosque, lo que hace falta sube por las hifas hasta quien lo necesita.</p>
       <span class="depth">&minus;38 cm · Subsuelo</span>
     </div>
   </section>
@@ -406,7 +387,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     <article class="card">
       <div class="top">
         <img src="assets/clientes/micelionet-logo.png" alt="Logo de MicelioNet, un árbol cuyas raíces forman una red" width="49" height="52">
-        <div class="t"><h3>MicelioNet</h3><span class="label">Producto · Agendamiento y gestión</span><span class="by">by Nothara</span></div>
+        <div class="t"><h3>MicelioNet</h3><span class="label">Producto · Agendamiento y gestión</span></div>
       </div>
       <div class="win">
         <div class="bar"><i></i><i></i><i></i><span>Micelio · gestión y reserva de horas</span></div>
@@ -418,7 +399,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     </article>
     <div class="aside">
       <span class="num" aria-hidden="true">02</span>
-      <span class="sp-row"><svg class="sp" data-sp="coihue" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Producto 02 · Coihue de Magallanes</span></span>
+      <span class="sp-row"><svg class="sp" data-sp="coihue" viewBox="0 0 60 70" aria-hidden="true"></svg><span class="label">Producto · Coihue de Magallanes</span></span>
       <h2>Conectar profesionales, servicios y personas.</h2>
       <p>Agendamiento y gestión en una sola plataforma, que se adapta a cada rubro.</p>
       <span class="depth">&minus;64 cm · Subsuelo</span>
@@ -498,8 +479,8 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
   <section class="layer cierre" id="cierre" data-depth="162" data-capa="Raíz común">
     <div class="wrap">
       <p class="eyebrow label" style="justify-content:center">Raíz común</p>
-      <blockquote class="rv">En la naturaleza, ninguna conexión existe aislada. <em>En Nothara, tampoco.</em></blockquote>
-      <p class="rv label">Nothara Labs. Tecnología inspirada en sistemas vivos.</p>
+      <blockquote class="rv">En la naturaleza, ninguna conexión existe aislada. <em>En Micorriza, tampoco.</em></blockquote>
+      <p class="rv label">Micorriza. Tecnología inspirada en sistemas vivos.</p>
     </div>
   </section>
 </div>
@@ -521,7 +502,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       <article class="rv">
         <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="6" y="9" width="44" height="34" rx="6"/><path d="M6 19h44M20 49h16M28 43v6"/><circle cx="12" cy="14" r="1.5" fill="#ff9d00" stroke="none"/></svg>
         <h3>Redes inteligentes</h3>
-        <p>Redes que conectan personas, información, dispositivos y organizaciones, como el agua rural que monitorea Micorriza.</p>
+        <p>Redes que conectan personas, información, dispositivos y organizaciones.</p>
         <ul><li>Monitoreo remoto</li><li>Dispositivos conectados a la red</li><li>Información útil para quien decide</li></ul>
       </article>
       <article class="rv">
@@ -570,8 +551,8 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       <p class="eyebrow label">Contacto</p>
       <h2>¿Tienes un problema real que podría ser un sistema?</h2>
       <p style="margin-top:1.2rem;font-size:1.1rem">Cuéntanos en pocas líneas cómo trabajas. Te respondemos con una propuesta clara de por dónde partir.</p>
-      <p class="alt">También puedes escribirnos a <a href="mailto:amellado@micorriza.bio">amellado@micorriza.bio</a>.</p>
-      <p class="wa"><a class="btn lima" href="https://wa.me/56961156322?text=Hola%2C%20quiero%20conversar%20sobre%20un%20proyecto%20con%20Nothara%20Labs." target="_blank" rel="noopener">Escribir por WhatsApp</a><span>+56 9 6115 6322</span></p>
+      <!-- correo provisional: confirmar casilla definitiva de Micorriza -->
+      <p class="alt">También puedes escribirnos a <a href="mailto:contacto@micorriza.bio">contacto@micorriza.bio</a>.</p>
     </div>
     <form id="form" class="rv" novalidate>
       <label>Nombre<input name="n" required autocomplete="name"></label>
@@ -581,7 +562,6 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       </label>
       <label>¿Qué quieres resolver?<textarea name="m" required></textarea></label>
       <button class="btn lima" type="submit">Enviar mensaje</button>
-      <p class="priv">Usamos estos datos solo para responderte; no los compartimos con terceros.</p>
       <p class="msg" role="status" id="msg"></p>
     </form>
   </div>
@@ -590,8 +570,8 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
 
 <footer>
   <div class="wrap">
-    <span class="wm" aria-label="Nothara Labs"><!-- wordmark provisional -->Nothara<small>Labs</small></span>
-    <span>© Servicios Tecnológicos Pangal SpA · Nothara Labs · Aysén, Chile</span>
+    <span class="wm" aria-label="Micorriza"><!-- wordmark provisional -->Micorriza</span>
+    <span>© Servicios Tecnológicos Pangal SpA · Micorriza · Aysén, Chile</span>
   </div>
 </footer>
 
@@ -708,7 +688,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
   var sub=document.getElementById("sub"),svg=document.getElementById("mycel"),side=document.getElementById("side");
   var stations=[].slice.call(document.querySelectorAll("[data-st]"));
   var anchorsEls=[].slice.call(document.querySelectorAll("[data-depth]"));
-  var gDepth=document.getElementById("g-depth"),gLayer=document.getElementById("g-layer");
+  var gDepth=document.getElementById("g-depth"),gLayer=document.getElementById("g-layer");var navEl=document.getElementById("nav"),navOff=true;
   var S={},lastHead=-1e9,lastDepth="",lastLayer="";
   var routes=[],vis=[],parts=[],subTop=0,subH=0,subW=0,sideM1=0,sideM2=0,isMobile=false;
 
@@ -745,17 +725,17 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       d+=" C"+f(A.x)+" "+f(A.y+dy*.5)+" "+f(mx)+" "+f(my-dy*.16)+" "+f(mx)+" "+f(my)
         +" C"+f(mx)+" "+f(my+dy*.14)+" "+f(B.x)+" "+f(B.y-dy*.28)+" "+f(B.x)+" "+f(B.y);
     }
-    var glow=el("path",{d:d,fill:"none",stroke:"#9bd96a","stroke-width":7,"stroke-linecap":"round",opacity:.10},svg);
-    var main=el("path",{d:d,fill:"none",stroke:"#9bd96a","stroke-width":2.6,"stroke-linecap":"round"},svg);
+    var glow=el("path",{d:d,fill:"none",stroke:"#72e235","stroke-width":9,"stroke-linecap":"round",opacity:.16},svg);
+    var main=el("path",{d:d,fill:"none",stroke:"#72e235","stroke-width":3.2,"stroke-linecap":"round"},svg);
     var L=main.getTotalLength(),N=Math.ceil(L/6),xs=new Float32Array(N+1),ys=new Float32Array(N+1);
     for(var j=0;j<=N;j++){var p=main.getPointAtLength(Math.min(L,j*L/N));xs[j]=p.x;ys[j]=p.y}
     main.style.strokeDasharray=glow.style.strokeDasharray=L;
     main.style.strokeDashoffset=glow.style.strokeDashoffset=L;
     var mainRt=addRoute(Array.prototype.slice.call(xs),Array.prototype.slice.call(ys),"thread",2);
     // ramas
-    var recs=[],tips=[],prev=null,att=mobile?420:620,yy=pins[0].y-60,k2=0;
-    var gB=el("g",{fill:"none",stroke:"#a9bf94","stroke-linecap":"round"},svg);
-    var gT=el("g",{fill:"#b5c79f"},svg);
+    var recs=[],tips=[],prev=null,att=mobile?170:230,yy=pins[0].y-60,k2=0;
+    var gB=el("g",{fill:"none",stroke:"#c8f08f","stroke-linecap":"round"},svg);
+    var gT=el("g",{fill:"#c8f08f"},svg);
     function addPath(dd,w,op,y0,span){
       var p=el("path",{d:dd,"stroke-width":w,opacity:op},gB),len=p.getTotalLength();
       p.style.strokeDasharray=len;p.style.strokeDashoffset=len;
@@ -772,13 +752,17 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       var dx=mobile?(12+r()*14):(80+r()*(amp+80)),dyy=70+r()*100;
       if(!mobile){var ex=P[0]+side_*dx;if(ex<24||ex>W-24)side_=-side_}
       var E=[P[0]+side_*dx,P[1]+dyy],c1=[P[0]+side_*dx*.5,P[1]+dyy*.12],c2=[P[0]+side_*dx*.85,P[1]+dyy*.5];
-      var rb=addPath("M"+f(P[0])+" "+f(P[1])+" C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]),1.1,.4,P[1],dyy+70);
-      addTip(E[0],E[1],2.4,rb);
+      var rb=addPath("M"+f(P[0])+" "+f(P[1])+" C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]),1.8,.78,P[1],dyy+70);
+      addTip(E[0],E[1],3.6,rb);
       var sm=sampleBez(P,c1,c2,E,8);addRoute(sm[0],sm[1],"branch",1,rb);
       var M=bez(P,c1,c2,E,.58),tx=M[0]+side_*(mobile?(8+r()*10):(36+r()*50)),ty=M[1]+(46+r()*70);
       if(mobile)tx=Math.min(tx,W-26);
-      var rt=addPath("M"+f(M[0])+" "+f(M[1])+" Q"+f(M[0]+side_*(tx-M[0])*.2)+" "+f(M[1]+(ty-M[1])*.7)+" "+f(tx)+" "+f(ty),.8,.32,P[1]+dyy*.45,dyy+30);
-      addTip(tx,ty,1.8,rt);
+      var rt=addPath("M"+f(M[0])+" "+f(M[1])+" Q"+f(M[0]+side_*(tx-M[0])*.2)+" "+f(M[1]+(ty-M[1])*.7)+" "+f(tx)+" "+f(ty),1.2,.65,P[1]+dyy*.45,dyy+30);
+      addTip(tx,ty,2.6,rt);
+      if(prev&&!mobile&&prev.side===side_&&Math.abs(prev.E[1]-E[1])<520){
+        var Q=[(prev.E[0]+E[0])/2+side_*28,(prev.E[1]+E[1])/2];
+        addPath("M"+f(prev.E[0])+" "+f(prev.E[1])+" Q"+f(Q[0])+" "+f(Q[1])+" "+f(E[0])+" "+f(E[1]),1,.5,prev.E[1]-20,E[1]-prev.E[1]+60);
+      }
       prev={E:E,side:side_};k2++;
     }
     var nodes=pins.map(function(p){
@@ -809,45 +793,60 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     sideM1=Math.max(60,(W-1160)/2-20);sideM2=sideM1+120;
     var mask="linear-gradient(90deg,#000 0,#000 "+f(sideM1)+"px,transparent "+f(sideM2)+"px,transparent "+f(W-sideM2)+"px,#000 "+f(W-sideM1)+"px,#000 100%)";
     side.style.webkitMaskImage=side.style.maskImage=mask;
-    var rootD=["","",""],hyph="",nodeD="";
+    var rootD=["","","",""],hyph="",nodeD="",nodeD2="";
     function root(x,y,th,len,lvl,xmin,xmax){
       var ex=x+Math.sin(th)*len;if(ex<xmin||ex>xmax){th=-th;ex=x+Math.sin(th)*len}
       var ey=y+Math.cos(th)*len;
-      var c1=[x+Math.sin(th)*len*.35+(r()-.5)*len*.25,y+Math.cos(th)*len*.35],c2=[ex-Math.sin(th)*len*.3+(r()-.5)*len*.25,ey-Math.cos(th)*len*.3];
+      var P=[x,y],c1=[x+Math.sin(th)*len*.35+(r()-.5)*len*.3,y+Math.cos(th)*len*.35],c2=[ex-Math.sin(th)*len*.3+(r()-.5)*len*.3,ey-Math.cos(th)*len*.3],E=[ex,ey];
       rootD[lvl]+="M"+f(x)+" "+f(y)+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(ex)+" "+f(ey);
-      if(lvl<2){var n=2;for(var i=0;i<n;i++)root(ex,ey,th+(i-.5)*.8+(r()-.5)*.3,len*(.6+r()*.15),lvl+1,xmin,xmax)}
+      var sm=sampleBez(P,c1,c2,E,5);addRoute(sm[0],sm[1],"side",lvl<2?2:1);
+      if(lvl<3){var n=2+(r()>.55?1:0);for(var i=0;i<n;i++)root(ex,ey,th+(r()-.5)*1.2+(i-(n-1)/2)*.7,len*(.62+r()*.2),lvl+1,xmin,xmax)}
     }
-    // serena: un solo árbol madre por lado, una raíz con dos niveles, una hifa y un nodo
-    function hub(xm,xs_,xmin,xmax){
-      root(xm,0,(r()-.5)*.3,130,0,xmin,xmax);
-      var P=[xm,34],E=[xs_,16],c1=[xm+(xs_-xm)*.3,34+60],c2=[xs_-(xs_-xm)*.3,16+50];
-      hyph+="M"+f(P[0])+" "+f(P[1])+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]);
-      nodeD+=circ(E[0],E[1],2.6);
+    function hub(xm,seedXs,xmin,xmax){
+      root(xm,0,(r()-.5)*.3,150,0,xmin,xmax);root(xm-24,0,-.5,120,0,xmin,xmax);root(xm+24,0,.5,120,0,xmin,xmax);
+      seedXs.forEach(function(xs_){
+        // plántula: raíz corta + hifa desde el árbol madre
+        root(xs_,0,(r()-.5)*.5,46,2,xmin,xmax);
+        var P=[xm,34],E=[xs_,16],c1=[xm+(xs_-xm)*.3,34+70],c2=[xs_-(xs_-xm)*.3,16+60];
+        hyph+="M"+f(P[0])+" "+f(P[1])+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]);
+        var sm=sampleBez(P,c1,c2,E,10);addRoute(sm[0],sm[1],"side",3.5);
+        nodeD+=circ(E[0],E[1],3.2);
+      });
     }
     function circ(x,y,rr){return "M"+f(x-rr)+" "+f(y)+"a"+rr+" "+rr+" 0 1 0 "+f(2*rr)+" 0a"+rr+" "+rr+" 0 1 0 "+f(-2*rr)+" 0"}
-    hub(SW*.42,SW*.82,8,SW+90);
-    hub(W-SW*.42,W-SW*.82,W-SW-90,W-8);
-    // hifas profundas: muy pocas, largas y finas
+    hub(SW*.42,[SW*.1,SW*.8,SW*.98],8,SW+90);
+    hub(W-SW*.42,[W-SW*.1,W-SW*.8,W-SW*.98],W-SW-90,W-8);
+    // red de hifas profunda
     [0,1].forEach(function(sd){
-      var lo=sd?W-SW-40:10,hi=sd?W-10:SW+40,list=[],y=320;
-      while(y<endY+80){list.push([lo+r()*(hi-lo),y+r()*60]);y+=300+r()*160}
+      var lo=sd?W-SW-40:10,hi=sd?W-10:SW+40,list=[],y=190;
+      while(y<endY+80){
+        var c=1+(r()>.5?1:0);
+        for(var q=0;q<c;q++)list.push([lo+r()*(hi-lo),y+r()*50]);
+        y+=84+r()*60;
+      }
       list.forEach(function(a,i){
-        nodeD+=circ(a[0],a[1],2+r()*.8);
-        var b=list[i+1];if(!b)return;
-        var c1=[a[0]+(r()-.5)*70,a[1]+(b[1]-a[1])*.4],c2=[b[0]+(r()-.5)*70,b[1]-(b[1]-a[1])*.4];
-        hyph+="M"+f(a[0])+" "+f(a[1])+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(b[0])+" "+f(b[1]);
+        nodeD+=circ(a[0],a[1],2+r()*2);
+        if(r()>.8)nodeD2+=circ(a[0],a[1],7);
+        var cnt=0;
+        for(var j=i+1;j<list.length&&cnt<2;j++){
+          var b=list[j];if(b[1]-a[1]>300)break;if(b===a)continue;
+          var P=a,E=b,c1=[a[0]+(r()-.5)*90,a[1]+(b[1]-a[1])*.4],c2=[b[0]+(r()-.5)*90,b[1]-(b[1]-a[1])*.4];
+          hyph+="M"+f(P[0])+" "+f(P[1])+"C"+f(c1[0])+" "+f(c1[1])+" "+f(c2[0])+" "+f(c2[1])+" "+f(E[0])+" "+f(E[1]);
+          var sm=sampleBez(P,c1,c2,E,8);addRoute(sm[0],sm[1],"side",1);cnt++;
+        }
       });
     });
-    var cols=["#b79c78","#a99472","#9aa883"],ws=[2.4,1.5,1],ops=[.3,.26,.22];
-    for(var lv=0;lv<3;lv++)if(rootD[lv])el("path",{d:rootD[lv],fill:"none",stroke:cols[lv],"stroke-width":ws[lv],"stroke-linecap":"round",opacity:ops[lv]},side);
-    el("path",{d:hyph,fill:"none",stroke:"#a9bf94","stroke-width":.8,opacity:.22,"stroke-linecap":"round"},side);
-    el("path",{d:nodeD,fill:"#b5c79f",opacity:.4},side);
+    var cols=["#d9b88a","#d9b88a","#cfae80","#c8f08f"],ws=[5,3.4,2.2,1.4],ops=[.55,.5,.45,.4];
+    for(var lv=0;lv<4;lv++)if(rootD[lv])el("path",{d:rootD[lv],fill:"none",stroke:cols[lv],"stroke-width":ws[lv],"stroke-linecap":"round",opacity:ops[lv]},side);
+    el("path",{d:hyph,fill:"none",stroke:"#c8f08f","stroke-width":1.1,opacity:.42,"stroke-linecap":"round"},side);
+    el("path",{d:nodeD,fill:"#c8f08f",opacity:.7},side);
+    el("path",{d:nodeD2,fill:"none",stroke:"#c8f08f","stroke-width":1,opacity:.35},side);
   }
 
   // ---------- intercambio de nutrientes (canvas, rAF, pausa fuera de pantalla) ----------
   var cv=document.getElementById("flow"),ctx=cv.getContext("2d"),dpr=1,cw=0,ch=0;
   var inView=false,running=false,lastT=0,pr=rng(77);
-  var COL=[{core:"226,200,140",glow:"226,190,120"},{core:"170,215,215",glow:"150,205,205"}]; // 0 azúcares/carbono, 1 fósforo/agua/nitrógeno
+  var COL=[{core:"255,196,84",glow:"255,170,40"},{core:"120,226,255",glow:"66,217,255"}]; // 0 azúcares/carbono, 1 fósforo/agua/nitrógeno
   function sizeCanvas(){
     dpr=Math.min(window.devicePixelRatio||1,isMobile?1.5:2);
     cw=cv.clientWidth;ch=cv.clientHeight;
@@ -857,7 +856,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
   function avail(rt){return rt.type==="thread"?S.avail:rt.rec?rt.rec.last:1}
   function pickVisible(){
     vis.length=0;var sy=window.scrollY,y0=sy-subTop-80,y1=y0+ch+160,tot=0;
-    for(var i=0;i<routes.length;i++){var rt=routes[i];if(rt.type==="thread"&&rt.ymax>y0&&rt.ymin<y1&&avail(rt)>.04){vis.push(rt);tot+=rt.w*(rt.len>60?1:.6)}}
+    for(var i=0;i<routes.length;i++){var rt=routes[i];if(rt.ymax>y0&&rt.ymin<y1&&avail(rt)>.04){vis.push(rt);tot+=rt.w*(rt.len>60?1:.6)}}
     return tot;
   }
   function spawn(p,init){
@@ -874,7 +873,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
   }
   function seedParts(){
     parts.length=0;
-    var n=reduce?0:(isMobile?7:14);
+    var n=reduce?0:(isMobile?34:96);
     for(var i=0;i<n;i++)parts.push({rt:null,k:0,s:0,v:0,i:0,max:0});
     pickVisible();
     parts.forEach(function(p){spawn(p,true)});
@@ -892,8 +891,8 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
   function dot(x,y,k,a){
     if(a<.03)return;
     var c=COL[k];
-    ctx.globalAlpha=.12*a;ctx.fillStyle="rgb("+c.glow+")";ctx.beginPath();ctx.arc(x,y,5,0,6.2832);ctx.fill();
-    ctx.globalAlpha=.7*a;ctx.fillStyle="rgb("+c.core+")";ctx.beginPath();ctx.arc(x,y,1.9,0,6.2832);ctx.fill();
+    ctx.globalAlpha=.2*a;ctx.fillStyle="rgb("+c.glow+")";ctx.beginPath();ctx.arc(x,y,6.5,0,6.2832);ctx.fill();
+    ctx.globalAlpha=.95*a;ctx.fillStyle="rgb("+c.core+")";ctx.beginPath();ctx.arc(x,y,2.3,0,6.2832);ctx.fill();
   }
   function clipSub(){
     var sy=window.scrollY,t=subTop-sy,b=subTop+subH-sy;
@@ -921,7 +920,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     ctx.clearRect(0,0,cw,ch);if(!inView)return;
     pickVisible();clipSub();
     var sy=window.scrollY,cnt=0;
-    for(var i=0;i<vis.length&&cnt<8;i++){
+    for(var i=0;i<vis.length&&cnt<150;i++){
       var rt=vis[i],av=avail(rt);if(rt.len<40)continue;
       [[.3,0],[.7,1]].forEach(function(pp){
         var p={rt:rt,s:rt.len*av*pp[0],i:0},q=posAt(p),a=rt.type==="side"?sideAlpha(q[0]):1;
@@ -963,6 +962,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       cap=an[a].capa;
       if(a<an.length-1){var t=(realHead-an[a].y)/(an[a+1].y-an[a].y);dp=an[a].depth+(an[a+1].depth-an[a].depth)*clamp(t,0,1)}else dp=an[a].depth;
     }else{dp=0;cap="Superficie"}
+    var onSurface=realHead<=an[0].y;if(onSurface!==navOff){navOff=onSurface;navEl.classList.toggle("off",onSurface)}
     var dt=Math.round(dp)+" cm";
     if(dt!==lastDepth){gDepth.textContent=dt;lastDepth=dt}
     if(cap!==lastLayer){gLayer.textContent=cap;lastLayer=cap}
@@ -976,7 +976,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     if(len>0&&len<S.L-1){var i0=Math.min(N,Math.max(0,Math.round(len/S.L*N)));S.tip.setAttribute("cx",S.xs[i0]);S.tip.setAttribute("cy",S.ys[i0]);S.tip.setAttribute("opacity",.95)}
     else S.tip.setAttribute("opacity",0);
     for(var r=0;r<S.recs.length;r++){var rc=S.recs[r];setOffset(rc,clamp((hy-rc.y0)/rc.span,0,1))}
-    for(var q=0;q<S.tips.length;q++){var tp=S.tips[q],on=tp.rec.last>=.99;if(on!==tp.on){tp.on=on;tp.c.style.opacity=on?.45:0}}
+    for(var q=0;q<S.tips.length;q++){var tp=S.tips[q],on=tp.rec.last>=.99;if(on!==tp.on){tp.on=on;tp.c.style.opacity=on?.9:0}}
     for(var n=0;n<S.nodes.length;n++){
       var nd=S.nodes[n],reached=hy>=nd.y-6;
       if(reached!==nd.on){nd.on=reached;nd.g.classList.toggle("on",reached);nd.el.classList.toggle("on",reached)}
@@ -1008,21 +1008,10 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     els.forEach(function(e){io.observe(e)});
   }else els.forEach(function(e){e.classList.add("in")});
 
-  (function(){var b=document.querySelector(".menu-btn"),u=document.getElementById("menu-list");if(!b||!u)return;
-    function set(o){u.classList.toggle("open",o);b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Cerrar menú":"Abrir menú")}
-    b.addEventListener("click",function(){set(!u.classList.contains("open"))});
-    u.addEventListener("click",function(e){if(e.target.tagName==="A")set(false)});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)});
-    window.matchMedia("(min-width:861px)").addEventListener("change",function(){set(false)});
-  })();
   document.getElementById("form").addEventListener("submit",function(e){
     e.preventDefault();var fm=e.target,m=document.getElementById("msg");
     if(!fm.n.value||!fm.e.validity.valid||!fm.m.value){m.textContent="Revisa nombre, correo y mensaje.";return}
-    var sub=encodeURIComponent("Consulta desde micorriza.bio ("+fm.r.value+")");
-    var NL="%0A";
-    var body=encodeURIComponent("Nombre: "+fm.n.value)+NL+encodeURIComponent("Correo: "+fm.e.value)+NL+encodeURIComponent("Rubro: "+fm.r.value)+NL+NL+encodeURIComponent(fm.m.value);
-    m.textContent="Se abrirá tu aplicación de correo con el mensaje listo para enviar. Si no se abre, escríbenos a amellado@micorriza.bio o por WhatsApp.";
-    window.location.href="mailto:amellado@micorriza.bio?subject="+sub+"&body="+body;
+    m.textContent="Gracias, esto es una maqueta: en producción tu mensaje llegaría a nuestro equipo.";
   });
 })();
 </script>
