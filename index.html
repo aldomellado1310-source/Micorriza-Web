@@ -73,11 +73,12 @@ h3{font-size:1.35rem}
 .gauge b{font:600 .95rem var(--serif);color:var(--verde)}
 .gauge span{font:500 .62rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
 .nav .btn{padding:.6em 1.2em;font-size:.9rem}
-.nav .acceso{font-weight:600;font-size:.9rem;color:var(--verde);text-decoration:none;padding:.55em 1.05em;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgba(18,58,43,.35);white-space:nowrap;transition:background .2s,color .2s}
-.nav .acceso:hover{background:var(--verde);color:var(--papel)}
-.nav .acceso:focus-visible{outline:2px solid var(--verde);outline-offset:2px}
-@media(max-width:560px){.nav .acceso .lg{display:none}.nav .gauge{display:none}.nav .in{justify-content:space-between}}
-@media(max-width:360px){.nav .acceso{padding:.5em .8em}.nav .btn{padding:.5em .8em}}
+.nav .acceso{font-weight:600;font-size:.92rem;color:var(--verde);text-decoration:none;padding:6px 2px;border-bottom:2px solid transparent;white-space:nowrap;transition:border-color .2s,color .2s}
+.nav .acceso:hover{border-color:var(--lima)}
+.nav .acceso:focus-visible{outline:2px solid var(--verde);outline-offset:3px;border-radius:4px}
+@media(max-width:360px){.nav .acceso .lg{display:none}}
+@media(max-width:560px){.nav .gauge{display:none}.nav .in{justify-content:space-between}}
+@media(max-width:360px){.nav .btn{padding:.5em .8em}}
 @media(max-width:860px){.nav ul{display:none}.nav .in{margin-left:0;justify-content:space-between}.gauge{margin-left:auto}}
 @media(max-width:420px){.nav .in{padding-left:16px;gap:10px}.nav .btn{padding:.55em .95em}.gauge{min-width:82px}.nav .logo{font-size:1.25rem}.nav .logo small{display:none}}
 
@@ -295,7 +296,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
       </ul>
     </nav>
     <div class="gauge" aria-hidden="true"><b id="g-depth">0 cm</b><span id="g-layer">Superficie</span></div>
-    <a class="acceso" href="/crm-login/" rel="noopener">Acceso<span class="lg"> clientes</span></a>
+    <a class="acceso" href="/crm-login/">Acceder<span class="lg"> a la red</span></a>
     <a class="btn" href="#contacto">Hablemos</a>
   </div>
 </header>
