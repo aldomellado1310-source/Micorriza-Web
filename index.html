@@ -64,7 +64,7 @@ h3{font-size:1.35rem}
 .nav.off{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,-14px);transition:opacity .25s ease,transform .25s ease,visibility 0s .25s}
 @media(prefers-reduced-motion:reduce){.nav,.nav.off{transition:none}}
 .nav .in{display:flex;align-items:center;gap:18px;height:58px;padding:0 10px 0 22px}
-.nav .logo{font-size:1.5rem;text-decoration:none}
+.nav .logo{text-decoration:none}
 .nav nav{margin:0 auto}
 .nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.92rem}
 .nav ul a{text-decoration:none;color:var(--tinta-2);padding:6px 2px;border-bottom:2px solid transparent}
@@ -80,7 +80,7 @@ h3{font-size:1.35rem}
 @media(max-width:560px){.nav .gauge{display:none}.nav .in{justify-content:space-between}}
 @media(max-width:360px){.nav .btn{padding:.5em .8em}}
 @media(max-width:860px){.nav ul{display:none}.nav .in{margin-left:0;justify-content:space-between}.gauge{margin-left:auto}}
-@media(max-width:420px){.nav .in{padding-left:16px;gap:10px}.nav .btn{padding:.55em .95em}.gauge{min-width:82px}.nav .logo{font-size:1.25rem}.nav .logo small{display:none}}
+@media(max-width:420px){.nav .in{padding-left:16px;gap:10px}.nav .btn{padding:.55em .95em}.gauge{min-width:82px}.nav .logo img{height:50px}}
 
 .wm{font-family:"Cormorant Infant",var(--serif);font-weight:600;letter-spacing:.01em;font-size-adjust:.5;color:var(--verde);line-height:1;white-space:nowrap}
 .wm small{font:500 .6em/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--musgo);margin-left:.5em}
@@ -118,7 +118,9 @@ h3{font-size:1.35rem}
 @keyframes drift{to{transform:translateX(calc(100vw + 60vw))}}
 .ground{position:absolute;left:0;bottom:-1px;width:100%;height:clamp(230px,40vh,420px);display:block}
 .hero .wrap{position:relative;z-index:2;padding:clamp(96px,14vh,150px) 0 clamp(180px,30vh,300px)}
-.wm-hero{display:block;font-size:clamp(2rem,3.4vw,2.9rem);margin-bottom:clamp(20px,3vh,34px)}
+.wm-hero{display:flex;align-items:center;gap:14px;margin-bottom:clamp(14px,2.4vh,26px)}.wm-hero img{height:clamp(76px,9vw,112px);width:auto;margin-left:-26px}.wm-hero small{font:500 .7rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--musgo)}
+.nav .logo{display:flex;align-items:center}.nav .logo img{height:58px;width:auto;display:block;margin:-6px 0 -6px -10px}
+.foot-logo{display:inline-flex;background:var(--papel);border-radius:12px;padding:4px 14px}.foot-logo img{height:56px;width:auto;display:block;margin:-6px 0}
 .hero h1{font-weight:300;font-size:clamp(2.5rem,6.6vw,5.6rem);line-height:.98;letter-spacing:-.035em;color:var(--verde);max-width:13ch;font-variation-settings:"opsz" 144}
 .hero h1 em{font-style:italic;font-weight:300;color:var(--musgo)}
 .hero .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--tinta-2);max-width:33em;margin:1.4rem 0 1.9rem}
@@ -279,14 +281,14 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
 <!--
   MARCA (provisional, por confirmar con el dueño):
   - Micorriza = nombre comercial visible. Razón social: Servicios Tecnológicos Pangal SpA (solo en el footer legal).
-  - El wordmark tipográfico "Micorriza" (.wm) es PROVISIONAL.
+  - El logo oficial es assets/logo.png (marca de red + wordmark).
   - MicelioNet es un producto. MicelioAgua (agua rural, antes HifaNet) es PROYECTO FUTURO: solo se muestra el nombre. HifaNet ya no existe como cliente ni nodo.
 -->
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <header class="nav off" id="nav">
   <div class="in">
-    <a class="logo wm" href="#inicio" aria-label="Micorriza, volver a la superficie"><!-- wordmark provisional -->Micorriza</a>
+    <a class="logo" href="#inicio" aria-label="Micorriza, volver a la superficie"><img src="assets/logo.png" alt="Micorriza" width="820" height="300"></a>
     <nav aria-label="Principal">
       <ul>
         <li><a href="#red">La red</a></li>
@@ -327,7 +329,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
     <path d="M0 330 C200 322 420 334 700 328 S1180 320 1440 330" fill="none" stroke="#5f3f27" stroke-width="3" opacity=".5"/>
   </svg>
   <div class="wrap">
-    <span class="wm wm-hero" aria-label="Micorriza"><!-- wordmark provisional: el logo actual es assets/logo.png -->Micorriza<small>Aysén</small></span>
+    <span class="wm-hero"><img src="assets/logo.png" alt="Micorriza" width="820" height="300"><small>Aysén</small></span>
     <h1>La inteligencia está en las <em>conexiones.</em></h1>
     <p class="lead">Micorriza es una empresa de ingeniería y desarrollo tecnológico nacida en la Región de Aysén, Chile. Diseñamos software, plataformas digitales y redes inteligentes inspirados en cómo se conectan los sistemas naturales. Baja y recórrela.</p>
     <div class="cta">
@@ -577,7 +579,7 @@ footer .wm{color:var(--papel);font-size:1.3rem}footer .wm small{color:var(--hilo
 
 <footer>
   <div class="wrap">
-    <span class="wm" aria-label="Micorriza"><!-- wordmark provisional -->Micorriza</span>
+    <span class="foot-logo"><img src="assets/logo.png" alt="Micorriza" width="820" height="300"></span>
     <span>© Servicios Tecnológicos Pangal SpA · Micorriza · Aysén, Chile</span>
   </div>
 </footer>
